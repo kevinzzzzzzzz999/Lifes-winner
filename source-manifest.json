@@ -3808,5 +3808,9 @@
     }
   ],
   "archive": "InkSpace-source-2026-10-24.zip",
-  "archiveSha256": "ccdb8ffdce0ca7a68ed089145fae432a9e4991716e752e3696a42cb4d0baf5ae"
+  "archiveSha256": "ccdb8ffdce0ca7a68ed089145fae432a9e4991716e752e3696a42cb4d0baf5ae",
+  "browsableSource": {
+    "readme": "SOURCE_README.md",
+    "publication": "verified archive expanded by repository workflow"
+  }
 }
