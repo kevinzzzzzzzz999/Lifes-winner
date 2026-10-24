@@ -1,0 +1,3812 @@
+{
+  "version": "2026-10-24",
+  "sourceFiles": [
+    {
+      "path": ".gitignore",
+      "bytes": 423,
+      "sha256": "221947bde25e25b85ef7efd35813b0cf12e4c5c09708f74c330944d4b8b85945"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1078,
+      "sha256": "92d00dec9eef92d08f29632f73a0663c664bdbc59ea9db9ca15938185cff27e8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3492,
+      "sha256": "6e0d1a593f43ea80e43ce063fe5f7d4a9255b07ad8b5e479330f8b1c19ee9bc4"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 1398,
+      "sha256": "967b70e272c1ee793a8aba290c301ef03523dd56c92660421e1e8bd9d9f5db09"
+    },
+    {
+      "path": "desktop/README.md",
+      "bytes": 338,
+      "sha256": "ead79f9447fb5d2ae9e289fdadeaee3412cff8a1c887c166e09ca20b2a5ade11"
+    },
+    {
+      "path": "desktop/build/icon.icns",
+      "bytes": 1412056,
+      "sha256": "b4299a17ef9ba4ae68c531aca4dc1da72b39f6b084ab42b64fe546b361dad4a0"
+    },
+    {
+      "path": "desktop/build/icon.ico",
+      "bytes": 99301,
+      "sha256": "2dc39b87c89b4b14862acd51b0624775511c9b409c2ddf6d69d01c6b2235b82b"
+    },
+    {
+      "path": "desktop/build/icon.png",
+      "bytes": 800249,
+      "sha256": "204addb434d9c462876444d4fce4849d26f01e09a78db718883a46e135efc0ae"
+    },
+    {
+      "path": "desktop/electron-builder.cjs",
+      "bytes": 2969,
+      "sha256": "0e6e5be1699083221193c6e9e65531fc93ab2bbaedb208c3f06c073f519f2f3a"
+    },
+    {
+      "path": "desktop/index.html",
+      "bytes": 254,
+      "sha256": "30ff0b9a579794ed4399518b587859c03fa407bbab211a801b4a94b0b8d0ac57"
+    },
+    {
+      "path": "desktop/package-lock.json",
+      "bytes": 200606,
+      "sha256": "192a736d5f173dc9570d49a66bee391a6f275034f4a296f73b98d7f0238420ec"
+    },
+    {
+      "path": "desktop/package.json",
+      "bytes": 2859,
+      "sha256": "f250d62c03326bb0e09112875001e2d3e470422cd85f49e3aeca2753a1b09b13"
+    },
+    {
+      "path": "desktop/public/math-lab/app.js",
+      "bytes": 53758,
+      "sha256": "ee44926959543c65e3a4f98c5c3dc8b7c06c55bcffea1fe59f532451ea5d384d"
+    },
+    {
+      "path": "desktop/public/math-lab/engine.js",
+      "bytes": 35866,
+      "sha256": "f4b1fe5f46f6891c87364c66d35fe3316377bcb7ea3a2fd318ae2332be4cd9b7"
+    },
+    {
+      "path": "desktop/public/math-lab/index.html",
+      "bytes": 799,
+      "sha256": "1d41c9a18b3ac0b903fd77747a8ca1019c272439aa2c33e73844c59fc885aeae"
+    },
+    {
+      "path": "desktop/public/math-lab/simple-core.js",
+      "bytes": 19849,
+      "sha256": "4ec15e82bb70838cc68e08d69845a77482273e5419de96e63655e23549f66492"
+    },
+    {
+      "path": "desktop/public/math-lab/simple.css",
+      "bytes": 8486,
+      "sha256": "edeed86a4c2f9876e31f5cfd553e6c369c38faed53078e5e190e4b89fd6e5b82"
+    },
+    {
+      "path": "desktop/public/math-lab/simple.html",
+      "bytes": 4218,
+      "sha256": "e8cdf5e62f4944af8222d2d38e558a974117be63736f0085f2453287663c5443"
+    },
+    {
+      "path": "desktop/public/math-lab/simple.js",
+      "bytes": 41736,
+      "sha256": "800bb55ca753b2b055ce586f715c2e25f8b769bb7acae2647dbedb9b16cb8063"
+    },
+    {
+      "path": "desktop/public/math-lab/style.css",
+      "bytes": 7661,
+      "sha256": "428ef30a6a03c04dc30fd746d514258232636d95744922f110bd5181f71bc7d6"
+    },
+    {
+      "path": "desktop/runtime/latex/PROVENANCE.json",
+      "bytes": 70258,
+      "sha256": "b8e50ded8bf1b775abeee6db5a4da03b7a12dde327dced12ddeb8471f1bc2a7e"
+    },
+    {
+      "path": "desktop/runtime/notebook/kernel.py",
+      "bytes": 7374,
+      "sha256": "79c8b68a839a977596e4b8d6cafdf55cc8cd511c3aa51ac2814b9b622864231d"
+    },
+    {
+      "path": "desktop/runtime/notebook/requirements-darwin-arm64.lock",
+      "bytes": 2986,
+      "sha256": "069ad5702f33279c01b41eec8ed68ebd896b62b512d9c7b41513d029defe394e"
+    },
+    {
+      "path": "desktop/scripts/packaging/README.md",
+      "bytes": 513,
+      "sha256": "08538048c2dbf9dff37627b20b4f9b8bbd7dce7060b239e0c7b441383ee8a4df"
+    },
+    {
+      "path": "desktop/scripts/packaging/check-board-viewer.cjs",
+      "bytes": 3187,
+      "sha256": "a0191d57bb6c3ca14795f16602d6d7e6b4c03a26c3ad796481481245f436a5d6"
+    },
+    {
+      "path": "desktop/scripts/packaging/collect-licenses.mjs",
+      "bytes": 2831,
+      "sha256": "a90906298f3eab61afd915b674800e45f6fed0b374e20971051e1c84aa0cdf69"
+    },
+    {
+      "path": "desktop/scripts/packaging/collect-notebook-runtime.py",
+      "bytes": 2319,
+      "sha256": "1e9e27cce9f41b4a71b622054dc4865367e109702b7691ff34282318f0b6df6a"
+    },
+    {
+      "path": "desktop/scripts/packaging/document-associations.cjs",
+      "bytes": 968,
+      "sha256": "c38c90cf8c277817bd90acb55c5ba311c7d6247ab48f9a1aa01ad423b0c60dce"
+    },
+    {
+      "path": "desktop/scripts/packaging/freeze-inputs.mjs",
+      "bytes": 1697,
+      "sha256": "33f82245dcb7daf6f50063360ff865c49088484654235cfb3fca3acfc47d21e1"
+    },
+    {
+      "path": "desktop/scripts/packaging/macos-privacy.cjs",
+      "bytes": 229,
+      "sha256": "1bdbe64e8da70ad8d6fad053f90b3aac3adf7a3547fb5ba8ddb6a2fa81a968e5"
+    },
+    {
+      "path": "desktop/scripts/packaging/package.mjs",
+      "bytes": 1966,
+      "sha256": "243a88420ee6ad1c5f40bdec9e10b0841f30d08d9cfa0066bb25edd9d351c48e"
+    },
+    {
+      "path": "desktop/scripts/packaging/prepare-latex.mjs",
+      "bytes": 6797,
+      "sha256": "7d57229d488ef9f71ce07d61c2bf62d8970813766a506b071c5afb406d236b4d"
+    },
+    {
+      "path": "desktop/scripts/packaging/prepare-notebook.py",
+      "bytes": 1191,
+      "sha256": "579d56b2b499d2b0f9c9e0a94ef7def6f320235175c47d446de7aea6b024d085"
+    },
+    {
+      "path": "desktop/scripts/packaging/prepare-python.mjs",
+      "bytes": 5182,
+      "sha256": "b969870b308cafd22e6e884ad5f324a8dc9129e644f72d1cc32e15d66df1626c"
+    },
+    {
+      "path": "desktop/scripts/packaging/probe.config.cjs",
+      "bytes": 308,
+      "sha256": "cd4cc6d99e379c2e1b9dba87da24ab470287bde4f356c1b4ad901b5435df51ef"
+    },
+    {
+      "path": "desktop/scripts/packaging/verify-artifacts.mjs",
+      "bytes": 7467,
+      "sha256": "f1968b264fe29d1af4bc2471c0dce20672a1f7313d189e603c522c89e9ada4ed"
+    },
+    {
+      "path": "desktop/scripts/prepare-pdf-assets.mjs",
+      "bytes": 683,
+      "sha256": "3da47009b859be282d929cdcfa1dae25f63cc02f456e79985f52c9b3f7f71521"
+    },
+    {
+      "path": "desktop/src/browser/browser.css",
+      "bytes": 3974,
+      "sha256": "6d91d9e84e440d5af21142b894af854b5fc69620677f8aee3f02257b5e422b24"
+    },
+    {
+      "path": "desktop/src/browser/browser.html",
+      "bytes": 4265,
+      "sha256": "665d8eab4e61e926ff6b7c26ad453c2575fdfbc8f5950ac3a586a85b1d904e62"
+    },
+    {
+      "path": "desktop/src/browser/browser.js",
+      "bytes": 5467,
+      "sha256": "49f4a5e4f2e40679e9ad867393119f59e25f4784a9c7e8de8c65fc77e2a24e25"
+    },
+    {
+      "path": "desktop/src/main/README.md",
+      "bytes": 13963,
+      "sha256": "39bbb1add8e13a1be213c0c5b3da28df0f63f674626fa259c7ac5a95ef690643"
+    },
+    {
+      "path": "desktop/src/main/ai-downloads.cjs",
+      "bytes": 3366,
+      "sha256": "0eda1156eb5bb6ccce790e438b62d232ce3424d30829a8db8f32b03f353695c7"
+    },
+    {
+      "path": "desktop/src/main/ai-image-transfer.cjs",
+      "bytes": 8474,
+      "sha256": "aa46f09931c656223d044c4fd3a492a0e21d5f76a87c78ea2b15460c0f421ab1"
+    },
+    {
+      "path": "desktop/src/main/ai-media-permissions.cjs",
+      "bytes": 6732,
+      "sha256": "d55629e40d2dfeddf787d11f368923ab9076ff1ce528d9ee153acd23ad98dad9"
+    },
+    {
+      "path": "desktop/src/main/ai-page-health.cjs",
+      "bytes": 3332,
+      "sha256": "a14740ef378b94d5073cc7ad6fdd5aef6d7a8daf4722650f62a6b027e6afc41b"
+    },
+    {
+      "path": "desktop/src/main/ai-panel.cjs",
+      "bytes": 27180,
+      "sha256": "b6ce676acee7d0c0b53b0ea96576167528a2e378f61819f485f8a9448e725d9b"
+    },
+    {
+      "path": "desktop/src/main/ai-web-providers.cjs",
+      "bytes": 4297,
+      "sha256": "423175c087b406301d7e221df2cb3aab0eb9cc67cef1cd9ee33a4f06ca3af45e"
+    },
+    {
+      "path": "desktop/src/main/board-child-links.cjs",
+      "bytes": 5991,
+      "sha256": "02e577e158f2cf7dfdbc01b3da2e805b16f2ffe06707600660550dcabd4701e7"
+    },
+    {
+      "path": "desktop/src/main/board-clipboard.cjs",
+      "bytes": 10443,
+      "sha256": "833ddeae83783465d6d73067b8253dc8ba8b2eab33aecd6c127013858476bdce"
+    },
+    {
+      "path": "desktop/src/main/board-elements.cjs",
+      "bytes": 7838,
+      "sha256": "cbf362e74fec07422d7d272f84231d37103087009117bc52c19a62be4b705572"
+    },
+    {
+      "path": "desktop/src/main/board-file-cards.cjs",
+      "bytes": 2872,
+      "sha256": "1331897bdd2344a329ad5d73763d4ef6aca76cca0bfc3d0c29afee4e7359a05b"
+    },
+    {
+      "path": "desktop/src/main/board-generated-assets.cjs",
+      "bytes": 1906,
+      "sha256": "bc635e51ba713857ab53f8c0ffebd6c022c9c700f4c64aae57a0683dddc9d6ff"
+    },
+    {
+      "path": "desktop/src/main/board-history-service.cjs",
+      "bytes": 9324,
+      "sha256": "0cd6b891ad0d1fea1ce0bb4fd8285d0df4757702a889fa42ba0de361433b9bfb"
+    },
+    {
+      "path": "desktop/src/main/board-json.cjs",
+      "bytes": 980,
+      "sha256": "508c2c23f5748b30acf5f24ad58b7e0810cb52363f220c5af5388647dc4447a2"
+    },
+    {
+      "path": "desktop/src/main/board-merge.cjs",
+      "bytes": 51343,
+      "sha256": "75ef4c456c49f2a2372194137cc24d980625c8be2b3da98188f286e8584a3b9b"
+    },
+    {
+      "path": "desktop/src/main/board-navigation.cjs",
+      "bytes": 2626,
+      "sha256": "c8aa1dc05183cd8ffd151138847b59663e0f847a5cae697fde82461aee4b4e7b"
+    },
+    {
+      "path": "desktop/src/main/board-operations.cjs",
+      "bytes": 21861,
+      "sha256": "c82a963a4bfb1578efcf8f12d49fe09a4dad933eaba79a1104c1e0741632962f"
+    },
+    {
+      "path": "desktop/src/main/board-paste.cjs",
+      "bytes": 8429,
+      "sha256": "422629594540bbfe02cbd9adc61ef81e7876693b2c5470e4680f4c334d7e3b83"
+    },
+    {
+      "path": "desktop/src/main/board-pdf-preview.cjs",
+      "bytes": 1897,
+      "sha256": "b5185f9962aa02bb96e571218c0605b60130d5a13c87318b9e466f13144888f0"
+    },
+    {
+      "path": "desktop/src/main/board-relink-stream.cjs",
+      "bytes": 5898,
+      "sha256": "ffb807d054c97573219e6fc283ac7ef8c1d52c4e2b40441c5029a55a5753e4c1"
+    },
+    {
+      "path": "desktop/src/main/board-relink.cjs",
+      "bytes": 7875,
+      "sha256": "190e6e65167b8230424336e350312f25b5d7d54261b3bc1cbd3488fa79395489"
+    },
+    {
+      "path": "desktop/src/main/board-source-resolver.cjs",
+      "bytes": 10331,
+      "sha256": "5fda386c43c20194a25ea6d3fdb85d5cf1a7198310b0dbcd928a03c9ffd2ed23"
+    },
+    {
+      "path": "desktop/src/main/board-validation.cjs",
+      "bytes": 8875,
+      "sha256": "838e6f0e0725afcbce1759af08550bbcc462538f30e264748a8375d4451928ff"
+    },
+    {
+      "path": "desktop/src/main/board-web-network.cjs",
+      "bytes": 959,
+      "sha256": "a2094438a6094150b0d159cb3482cb73fd8c8853e0595b48a073a1fe72b3920f"
+    },
+    {
+      "path": "desktop/src/main/board-web-url.cjs",
+      "bytes": 667,
+      "sha256": "9528b977d6d5f4628d6f8dcf73812848baa08dbfa6ac8577fb6bfd1bda8ff334"
+    },
+    {
+      "path": "desktop/src/main/boardnotes-file-zip.cjs",
+      "bytes": 7597,
+      "sha256": "573244e240efe51f00d55d1960c4a8a567279f8f55e191455b6e9b9425bbb5db"
+    },
+    {
+      "path": "desktop/src/main/boardnotes-format.cjs",
+      "bytes": 260,
+      "sha256": "ee1116eae636f8e73169cb4a84c30f5c9b6a0622ffda8add3170d23e396787e1"
+    },
+    {
+      "path": "desktop/src/main/boardnotes-import.cjs",
+      "bytes": 21602,
+      "sha256": "3ebcf0d0329659d884fb7400b666a6a910dc66e2348fbbe259c1aa0476639ce4"
+    },
+    {
+      "path": "desktop/src/main/boardnotes-objects.cjs",
+      "bytes": 12107,
+      "sha256": "55ee6656295f4abe3d002b2668ce0bbabc817c20dd17185e294e01152b09368e"
+    },
+    {
+      "path": "desktop/src/main/boardnotes-zip.cjs",
+      "bytes": 7630,
+      "sha256": "561c4e5bf63dba8af244adb53fa100af1d81543e8c48cad4e91cc27873467c5f"
+    },
+    {
+      "path": "desktop/src/main/browser-clips.cjs",
+      "bytes": 4329,
+      "sha256": "9948151af76ead6ae9d1a3524eb96853b971acab121a32aa7a0a156f8f554d62"
+    },
+    {
+      "path": "desktop/src/main/browser-extensions.cjs",
+      "bytes": 5319,
+      "sha256": "802e503bcbebc7155ff689e3ca53c0418053b07c315320976df992e379a907e5"
+    },
+    {
+      "path": "desktop/src/main/browser-link-routing.cjs",
+      "bytes": 507,
+      "sha256": "a9ff6329043eb260662a68da3b8606eeef16ebf11123a35430a4468264756d3e"
+    },
+    {
+      "path": "desktop/src/main/browser-security.cjs",
+      "bytes": 3871,
+      "sha256": "3a30aaefb5a4a011399f7bd3218da3b1514ed260a81622554e817dd795540605"
+    },
+    {
+      "path": "desktop/src/main/browser-service.cjs",
+      "bytes": 23479,
+      "sha256": "8b44582505d7b36c43ad53982cc27f399b4433cf29af84f0c15554b2987657a8"
+    },
+    {
+      "path": "desktop/src/main/browser-state.cjs",
+      "bytes": 6478,
+      "sha256": "73e0f51e65f6031f65c2f082779b6e1f5cfadd6d66c81e86d21b8e2390422d68"
+    },
+    {
+      "path": "desktop/src/main/calendar-service.cjs",
+      "bytes": 12758,
+      "sha256": "dae6ec31a6f7b03f5513fbe52fdd89e70a031520b571a80e900bc66cc6145158"
+    },
+    {
+      "path": "desktop/src/main/clipboard-files.cjs",
+      "bytes": 5968,
+      "sha256": "4510adad747431497dd02f0049e626e36da4cf9462e4651541055516f5b91324"
+    },
+    {
+      "path": "desktop/src/main/diagnostics.cjs",
+      "bytes": 7861,
+      "sha256": "a129bed552a97d93a2eab35a19c31e92f23763e8b341a93907131b240778e95d"
+    },
+    {
+      "path": "desktop/src/main/document-menu.cjs",
+      "bytes": 1702,
+      "sha256": "d482bc4dbf523ce33f1a2cb8e9958db7374989f3c45b48800bbd50822f628883"
+    },
+    {
+      "path": "desktop/src/main/document-pdf.cjs",
+      "bytes": 5982,
+      "sha256": "03494a74050d58d00cd43063ca5fc8216b74518b0fdc28a781348fd566f0495d"
+    },
+    {
+      "path": "desktop/src/main/document-service.cjs",
+      "bytes": 4559,
+      "sha256": "5631f7995da4c48192c841758afee3031573c8f4c2bca0a4d4a31694babdcc33"
+    },
+    {
+      "path": "desktop/src/main/docx-preview.cjs",
+      "bytes": 3201,
+      "sha256": "3f1eb537e5f55fc8ab69623810cb50c4a57e08119d75616061b8bed9e47a80eb"
+    },
+    {
+      "path": "desktop/src/main/editable-context-menu.cjs",
+      "bytes": 1248,
+      "sha256": "326bc7c484be6de2053ee772480a408a37eba40766a4621dc84f111f3508deae"
+    },
+    {
+      "path": "desktop/src/main/editable-document-model.cjs",
+      "bytes": 2447,
+      "sha256": "f13c4a73ef1feef21e108e717ff6bcb3f3c43d40c41aa5ddc2648912ebdefa35"
+    },
+    {
+      "path": "desktop/src/main/editable-office.cjs",
+      "bytes": 12980,
+      "sha256": "d84b227d0247d3d58f28f7a2d2e3bd6a2ac24a2410f3049cc1326e7279f99037"
+    },
+    {
+      "path": "desktop/src/main/errors.cjs",
+      "bytes": 10023,
+      "sha256": "fd1bdcb92e67beb50d2666afe1865cd35c6d4d91997442c8a6c8a28d6203156f"
+    },
+    {
+      "path": "desktop/src/main/excel-reader-worker.cjs",
+      "bytes": 1181,
+      "sha256": "dd0b8325e3410705d9335ab116101e12c437944aa16347c44767fb6d203f3f67"
+    },
+    {
+      "path": "desktop/src/main/excel-reading.cjs",
+      "bytes": 7274,
+      "sha256": "cd2ff676d6fe8865dc8bfacca31f0caa60f4b83853f4d40fbd4af2dca81801c1"
+    },
+    {
+      "path": "desktop/src/main/excel-service.cjs",
+      "bytes": 4456,
+      "sha256": "a76fa735139ef8d8325b143f0e5b2adcc19ad6a053944fdba2b89297bb1eb6ed"
+    },
+    {
+      "path": "desktop/src/main/excel-zip-budget.cjs",
+      "bytes": 1932,
+      "sha256": "4612b00a5aec7606219b29372bd7283d586f7874231e2524647354c973109b46"
+    },
+    {
+      "path": "desktop/src/main/exchange-file-identity.cjs",
+      "bytes": 3555,
+      "sha256": "343e02dbffb24b885726ab92130413e3403ebbdfbf73449c750492991fb6d4c1"
+    },
+    {
+      "path": "desktop/src/main/exchange-stream.cjs",
+      "bytes": 5218,
+      "sha256": "7b6497db7886d9b48e8a1b561bb2fae82d4d628e4bc7d61047bec3d0fe4d639b"
+    },
+    {
+      "path": "desktop/src/main/external-document-open.cjs",
+      "bytes": 7636,
+      "sha256": "2c1654a44ba8d92db5d9bd4a9b25b9d903b6c3497bcd0648a3512ed8dbe7e81b"
+    },
+    {
+      "path": "desktop/src/main/file-context-actions.cjs",
+      "bytes": 1793,
+      "sha256": "5cabd0ce54879d0b7b107df3f7a636784cf9d16ccfd1f5b6560c6721ecc96c4c"
+    },
+    {
+      "path": "desktop/src/main/image-import.cjs",
+      "bytes": 2724,
+      "sha256": "bd4a888cb79d4103656c0575d1f65f3980671a98499a829c1ba5c0c73af66172"
+    },
+    {
+      "path": "desktop/src/main/knowledge-service.cjs",
+      "bytes": 10890,
+      "sha256": "5feb608bae08b78a54ac0d8aa3251d54a2bed785eb225d379e5342f37437cb22"
+    },
+    {
+      "path": "desktop/src/main/legacy-doc-preview.cjs",
+      "bytes": 2652,
+      "sha256": "149be2c6a9767f4cc904037c9d49e490633dbf0f73ab94191348f13ff17ec2b2"
+    },
+    {
+      "path": "desktop/src/main/local-ocr-service.cjs",
+      "bytes": 11567,
+      "sha256": "f4cc6dfe619fc9b7c2788743978bf12c87635d3643646839daed0a107a4dad82"
+    },
+    {
+      "path": "desktop/src/main/main.cjs",
+      "bytes": 38867,
+      "sha256": "8ccfea7f7ccac7cd0f5f3c56051bf0b85bcd3a1bc3b1cdcb85b5f6c85c2e27c4"
+    },
+    {
+      "path": "desktop/src/main/math-export.cjs",
+      "bytes": 1562,
+      "sha256": "35603f7aebd234587aac6af62f7e6e310dc4e08b9069eb5922b5dd3272734261"
+    },
+    {
+      "path": "desktop/src/main/media-editor-captions.cjs",
+      "bytes": 4061,
+      "sha256": "d7b6734f6d8b8f581d5e9cf9bb650fda11698ccbec212a81d0b11f2d0ae62f00"
+    },
+    {
+      "path": "desktop/src/main/media-editor-compose.cjs",
+      "bytes": 3466,
+      "sha256": "b046f1762a3ce5aef382827f00aa809739dadccbab81abf947aca7f7f92c5002"
+    },
+    {
+      "path": "desktop/src/main/media-editor-format.cjs",
+      "bytes": 8289,
+      "sha256": "c8643b04c2cb3ea4dc16330181f53687f7422b18a11d454d6036cbb914c546f0"
+    },
+    {
+      "path": "desktop/src/main/media-editor-service.cjs",
+      "bytes": 23482,
+      "sha256": "29686d556ebf4a54d3341608f9fad3a67113db15a89dee9feb8d14f269ab98b7"
+    },
+    {
+      "path": "desktop/src/main/note-exchange.cjs",
+      "bytes": 15090,
+      "sha256": "6981eb02ee680c3d0acaca53b776146642bf2d3e3a3a30403ccac9df9bc8c883"
+    },
+    {
+      "path": "desktop/src/main/note-outline.cjs",
+      "bytes": 3920,
+      "sha256": "41e50aa6e0b3207672af3f653e0681e3800ea7753d45ad917772b2cc0fa05324"
+    },
+    {
+      "path": "desktop/src/main/notebook-data-worker.cjs",
+      "bytes": 6019,
+      "sha256": "0d09d2e21b4d8ab6a18c0949937c1cbb8f088186068c1fb9e8889b3fb5767ec5"
+    },
+    {
+      "path": "desktop/src/main/notebook-data.cjs",
+      "bytes": 3660,
+      "sha256": "808e11056d660abc5cfa617fb59bd33353731c1a61313a14de65a622b71c9af7"
+    },
+    {
+      "path": "desktop/src/main/notebook-service.cjs",
+      "bytes": 12589,
+      "sha256": "f5aeee6ae2fc43e9693f837929b62d2e7fe34b9e98346a5cc9ca2ad1af04fddd"
+    },
+    {
+      "path": "desktop/src/main/office-embedded-images.cjs",
+      "bytes": 9902,
+      "sha256": "d7de35523b4f06c19a03de5a5666f562ca0916ced1bb1d1d618bc514b505fdb3"
+    },
+    {
+      "path": "desktop/src/main/onenote-geometry-guard.cjs",
+      "bytes": 13291,
+      "sha256": "71e1fd0e6fd4e8d0e0a2833517bc05cdd3ab7b6487ac4ee2b166837c5c87556a"
+    },
+    {
+      "path": "desktop/src/main/onenote-hd.cjs",
+      "bytes": 15621,
+      "sha256": "38e1531e040ef95b17a067b919c17e569f3cf58fc19cbc2b84185f8dc6b240f3"
+    },
+    {
+      "path": "desktop/src/main/onenote-pdf.cjs",
+      "bytes": 19975,
+      "sha256": "bf120cbabaed8713f7e8511f17de27b61eade81eaffaf29635dbb6e8d0e37b79"
+    },
+    {
+      "path": "desktop/src/main/onenote-publication.cjs",
+      "bytes": 7885,
+      "sha256": "5e3bac919a0ac19eaf6c1bceea1285fce137b2510726e3d92eff1aab0a7aa9e8"
+    },
+    {
+      "path": "desktop/src/main/open-original.cjs",
+      "bytes": 1673,
+      "sha256": "134a0c8ccebe324e6fe1a65d97573df2f30413d1c04c01730883f597709cf6f2"
+    },
+    {
+      "path": "desktop/src/main/pdf-extend-model.cjs",
+      "bytes": 4692,
+      "sha256": "e7bb20f7d8a2eea1c0f2924f15837391a8c88e8fb8173b52504798e1ef4a96a0"
+    },
+    {
+      "path": "desktop/src/main/pdf-extend-service.cjs",
+      "bytes": 6441,
+      "sha256": "5eb6900fbf1f9f4cb03b0a3a4cc6d4425ff57f7a6cd852f3ea2bbb5f788627dc"
+    },
+    {
+      "path": "desktop/src/main/pdf-layer-service.cjs",
+      "bytes": 13849,
+      "sha256": "900be87f5c8f111e7f767c104924e9c3dc7b4eee786f75d074259a129e21be55"
+    },
+    {
+      "path": "desktop/src/main/pdf-native-ink.cjs",
+      "bytes": 1029,
+      "sha256": "b59e36fcbbbe3c277356a30cda47498a45e3db941c6f949a0947192df3996ddd"
+    },
+    {
+      "path": "desktop/src/main/pdf-translation-export.cjs",
+      "bytes": 5645,
+      "sha256": "d94bb004b06f22806c3fe193dfefa6d2bd2d38db07d482fe5083fc00ffee7801"
+    },
+    {
+      "path": "desktop/src/main/pdf-visual-excerpt.cjs",
+      "bytes": 6188,
+      "sha256": "21fb59c383f7769c3484328a1e2cee6ffeecaba76db7e3f49a633879b9cb1581"
+    },
+    {
+      "path": "desktop/src/main/python-service.cjs",
+      "bytes": 4989,
+      "sha256": "7f0bbce261757ae15d8b29883b4334489e79c6c3683dc0d40bb8bcd1739d4dde"
+    },
+    {
+      "path": "desktop/src/main/recent-vaults.cjs",
+      "bytes": 7340,
+      "sha256": "a3575f775bde6179a310869cc72e2c6a3070329620efde58798b35d46c278257"
+    },
+    {
+      "path": "desktop/src/main/review-service.cjs",
+      "bytes": 11285,
+      "sha256": "eec1d45183c2437da4642153e0c31d9191f20e4c2738c9dd6aa3ada2efb43d18"
+    },
+    {
+      "path": "desktop/src/main/security.cjs",
+      "bytes": 1193,
+      "sha256": "fab299199ff2978c3d1d4c3456baae511d4246366cea534fa0876fed42813003"
+    },
+    {
+      "path": "desktop/src/main/source-file-export.cjs",
+      "bytes": 1666,
+      "sha256": "93d27e8bbc418741adede70747668113ac92b72853bd9683ba6ea3f160a42b1e"
+    },
+    {
+      "path": "desktop/src/main/study-image.cjs",
+      "bytes": 2190,
+      "sha256": "262c45add82000b5e182d6f952aa64992722437d2ba996d4258d2297cdc964d4"
+    },
+    {
+      "path": "desktop/src/main/study-model.cjs",
+      "bytes": 7017,
+      "sha256": "d6723e6420cd6a11199fe6553ff83e7e67141394652e4c08a81ad9a54f1f4dae"
+    },
+    {
+      "path": "desktop/src/main/study-service.cjs",
+      "bytes": 8595,
+      "sha256": "b542dc93ba4f0780fbe3a74bf5d8d3cd207a296b01075c258d198bfe5630ee82"
+    },
+    {
+      "path": "desktop/src/main/study-transfer-model.cjs",
+      "bytes": 4717,
+      "sha256": "3ae4d7b73f8482b2f355328eb866500df645654d43aad978da2145a1c5537a62"
+    },
+    {
+      "path": "desktop/src/main/study-transfer-service.cjs",
+      "bytes": 9633,
+      "sha256": "374afaab89e0e694062577df548dbcfa33c62ed5e9a8afef014c3d170dd8d40a"
+    },
+    {
+      "path": "desktop/src/main/subtitle-format-validation.cjs",
+      "bytes": 2076,
+      "sha256": "53fcccbeced1c0c0f588516c431ce1a940013c97ac72ed9d058287189618cc04"
+    },
+    {
+      "path": "desktop/src/main/tex-service.cjs",
+      "bytes": 11769,
+      "sha256": "f1f10b53afa3fa2b3f4ba228a7faced9f15dc1a685ab82c450cdd8cd938422a0"
+    },
+    {
+      "path": "desktop/src/main/translation-service.cjs",
+      "bytes": 15486,
+      "sha256": "5b87761b4639855cec8b3e3d934103e0171c7059147a687174701f6d9bfbc267"
+    },
+    {
+      "path": "desktop/src/main/vault-file-management.cjs",
+      "bytes": 44626,
+      "sha256": "e3ef1956509dadfdca4d5b06d3fbfed711bf49dfdac63067d8166696dd5307e5"
+    },
+    {
+      "path": "desktop/src/main/vault-path.cjs",
+      "bytes": 951,
+      "sha256": "cc653522260d048652e02f98bcecd9881cac73f7821648a257430a3a1aaf6ab5"
+    },
+    {
+      "path": "desktop/src/main/vault-service.cjs",
+      "bytes": 27208,
+      "sha256": "7bfe99f8775892fcaff69074a378ff2b3e96700bedea944d6cb3a12b9d5c4573"
+    },
+    {
+      "path": "desktop/src/main/vault-watch-lifecycle.cjs",
+      "bytes": 1858,
+      "sha256": "baad8c93e32614bc16372eacc4296c1c4e6aad93290406810b1fabd45ff125f5"
+    },
+    {
+      "path": "desktop/src/main/vault-watch.cjs",
+      "bytes": 11838,
+      "sha256": "1e1f37f6d8f517ae0dde8a21c91e0d6993702d52811a388e3a94750e7b2989fb"
+    },
+    {
+      "path": "desktop/src/main/video-service.cjs",
+      "bytes": 6828,
+      "sha256": "bb27d4c9d263d5e2f8b8a2697013241496065e25af0a3552d9bd17e401df635f"
+    },
+    {
+      "path": "desktop/src/main/video-subtitles.cjs",
+      "bytes": 5877,
+      "sha256": "ac39edb18266f37cd8e47c302cf66ace874931a067ed5e9b1f6a35864a78ad7b"
+    },
+    {
+      "path": "desktop/src/main/video-window.cjs",
+      "bytes": 10269,
+      "sha256": "1f661752f7d9da92efb91a610fb5fd976d36e352544d309d854cc1219cbfbb98"
+    },
+    {
+      "path": "desktop/src/main/window-contexts.cjs",
+      "bytes": 3948,
+      "sha256": "6b043d478e35d2427376ada7c8bb054831d986afe2b8954193e8514eafdb8650"
+    },
+    {
+      "path": "desktop/src/main/workspace-services.cjs",
+      "bytes": 3999,
+      "sha256": "b7487a25750bbc8982122969f7e73152dae812f114d979ca56b577dbb35b58c8"
+    },
+    {
+      "path": "desktop/src/native/InkSpaceInkHelper.swift",
+      "bytes": 902,
+      "sha256": "252e95e8e235507587b97d630257d4a49d1925eeaaac79c6e73fcd2677206162"
+    },
+    {
+      "path": "desktop/src/native/NativeInkCore.swift",
+      "bytes": 22864,
+      "sha256": "b7d2260520de8fa6471c28e52f2df6f0ad85eedb8653c24cfaad2bd2aae6fe3b"
+    },
+    {
+      "path": "desktop/src/native/README.md",
+      "bytes": 4946,
+      "sha256": "70a2ec4246ea51bbd011e12c243b6114fe4b7e17b73429b49cf4b075ac665442"
+    },
+    {
+      "path": "desktop/src/native/RelinkPDFInfo.swift",
+      "bytes": 662,
+      "sha256": "49bf4290e38f652c46fa9f47b3ba09daa0f4a44875b86a39eab2eb8c9294f7be"
+    },
+    {
+      "path": "desktop/src/native/build-helper.py",
+      "bytes": 1426,
+      "sha256": "960adb9e783f8a89671ffb0a009d5e7f73610518f825156be66da53ad462cfc5"
+    },
+    {
+      "path": "desktop/src/native/native-ink-bridge.cjs",
+      "bytes": 3015,
+      "sha256": "f736c8e50ad8c7271493b4fa6c79e766c7595e615b3a138de7cf3b35bfb5e151"
+    },
+    {
+      "path": "desktop/src/native/ocr/LocalOCR.swift",
+      "bytes": 20664,
+      "sha256": "d59aa614ee05bdfae3dbef85d1d1bddfaf4e68e50eab3ca2ff744d0e74d7e128"
+    },
+    {
+      "path": "desktop/src/native/ocr/LocalOCRCLI.swift",
+      "bytes": 1906,
+      "sha256": "00ad5559d77d1e3ede5c3734f03397e9c36aa892cfce629ac494f80d5602d9b5"
+    },
+    {
+      "path": "desktop/src/preload/browser.cjs",
+      "bytes": 799,
+      "sha256": "f9dd90a86b81dc0a9886dcbb0937fb6942fa112ff46a0770d6d9ba0d6971eba8"
+    },
+    {
+      "path": "desktop/src/preload/preload.cjs",
+      "bytes": 10722,
+      "sha256": "be24f225763dc2c5b71e7be07a78284c4b3007a526fa066b3e4dd64ee742b570"
+    },
+    {
+      "path": "desktop/src/preload/video-window.cjs",
+      "bytes": 746,
+      "sha256": "71db45a20362b793b5f1b8b3266153c56e46d8d1fd950c7e50ccc3de9c086aa8"
+    },
+    {
+      "path": "desktop/src/renderer/AIPanel.tsx",
+      "bytes": 20834,
+      "sha256": "274f59648791158d2959627692fcd8cb00ccec7ecfcb245d4fa6d8c703bc43a9"
+    },
+    {
+      "path": "desktop/src/renderer/AIWebSettings.tsx",
+      "bytes": 3397,
+      "sha256": "61a1a766b5b3daff46180423f679baf5a5a68796fd85ef99c35377fd82eb72f7"
+    },
+    {
+      "path": "desktop/src/renderer/App.tsx",
+      "bytes": 152212,
+      "sha256": "d0f1f008c314bfd749e4d380bebb4015c8c70015b2249b85c6f42abd7b0f9529"
+    },
+    {
+      "path": "desktop/src/renderer/BoardArrangeToolbar.tsx",
+      "bytes": 3824,
+      "sha256": "f58f7fd74acbf1b23f642fc90e4fb92321904fdb6f0c0c3a78623242b94be44c"
+    },
+    {
+      "path": "desktop/src/renderer/BoardEmbed.tsx",
+      "bytes": 9454,
+      "sha256": "581e81915eafadfc5e565895782515da978811146cf3c1ae7a6fa2475b7492cb"
+    },
+    {
+      "path": "desktop/src/renderer/BoardMergeDialog.tsx",
+      "bytes": 6562,
+      "sha256": "6cab45c133fb3661db0a78eec5e02e153a4a9953e5bd4806603cfc45cee2233f"
+    },
+    {
+      "path": "desktop/src/renderer/BoardMergeGhost.tsx",
+      "bytes": 3178,
+      "sha256": "538bc1c23ee04305c97aeb9e3ae4e8d925d3f36f4fb07897ff7f91c7cfa807d3"
+    },
+    {
+      "path": "desktop/src/renderer/BoardPDFDetail.tsx",
+      "bytes": 2721,
+      "sha256": "5512085f4a1a21f651b12696af0814b39df2e5c3c3b2974ee0993bda9449bb0e"
+    },
+    {
+      "path": "desktop/src/renderer/BoardPagePreviews.ts",
+      "bytes": 5964,
+      "sha256": "730d966ad55eeddebf293e5b91b4c600f153b17229f031a0581b10a0223ed22a"
+    },
+    {
+      "path": "desktop/src/renderer/BoardRelinkDialog.tsx",
+      "bytes": 10817,
+      "sha256": "3bb47e3aea21d725072f49846370b3a1b0503887d697b4fa282f3fadd87a228b"
+    },
+    {
+      "path": "desktop/src/renderer/BoardSpeech.tsx",
+      "bytes": 5560,
+      "sha256": "b6a908fd70c5f5f98b419bb3d47866e37d3f1b325ee4918d6604e166092436aa"
+    },
+    {
+      "path": "desktop/src/renderer/BoardTextSelection.tsx",
+      "bytes": 19448,
+      "sha256": "e4129c18ec632215c34b71fb818f880af6859d71b9f3730cba6e8b12417657ec"
+    },
+    {
+      "path": "desktop/src/renderer/BoardViewer.tsx",
+      "bytes": 111048,
+      "sha256": "9da8a9d331930763e288966522b8e20b103acc0f24fb311e05900fc938dd766b"
+    },
+    {
+      "path": "desktop/src/renderer/BoardWebCard.tsx",
+      "bytes": 4707,
+      "sha256": "7b972d99941d3debb8eb53d6b487f39102afdbb693e089ded50fd66a47ba71a9"
+    },
+    {
+      "path": "desktop/src/renderer/BoxContent.tsx",
+      "bytes": 4657,
+      "sha256": "284367b77bbfda0f9023e69df972221808bace6e565355f902a537a871527691"
+    },
+    {
+      "path": "desktop/src/renderer/Calendar.tsx",
+      "bytes": 44094,
+      "sha256": "316710737c71ef6c377a516f02747dbde721ad2d9238bf41e338d96a973f97ca"
+    },
+    {
+      "path": "desktop/src/renderer/ChildBoardPortal.tsx",
+      "bytes": 16770,
+      "sha256": "be83a890a8737009802cae54b56cf344c2cd64315e231608cef1667688ad7829"
+    },
+    {
+      "path": "desktop/src/renderer/ChildBoardsDialog.tsx",
+      "bytes": 3558,
+      "sha256": "5ef8167eae62ee3613734af1af849b8343ba3125d41a58d1e587bd1533229247"
+    },
+    {
+      "path": "desktop/src/renderer/CommandPalette.tsx",
+      "bytes": 3781,
+      "sha256": "73721554a189705018247da82969f82eef3f5d691a1db787e2e1f1929b2ced21"
+    },
+    {
+      "path": "desktop/src/renderer/ContextMenu.tsx",
+      "bytes": 3953,
+      "sha256": "f2092cf21b1fd899166dd88c0bb4895ad52441e2377f20d2d3b109d6e83f44a6"
+    },
+    {
+      "path": "desktop/src/renderer/CourseChecklist.tsx",
+      "bytes": 22332,
+      "sha256": "7bed1aac6a0836b77cf61854b3a01836457f9d50ed05d4d2ae8f280215731135"
+    },
+    {
+      "path": "desktop/src/renderer/DataFilePreview.tsx",
+      "bytes": 12622,
+      "sha256": "09e285484ff2d7e3b5d96069d75535c1174d28dc28431bd7a4127e5bb7e887ae"
+    },
+    {
+      "path": "desktop/src/renderer/DetachedVideoWindow.tsx",
+      "bytes": 2819,
+      "sha256": "cbe0a2d015b781e23047e12e38cfc350640ff8d5c176d6c7cd39c661c4aa2838"
+    },
+    {
+      "path": "desktop/src/renderer/DocumentPreview.tsx",
+      "bytes": 10757,
+      "sha256": "d0c38d699b476363c1cc0bf256e8a79a3bd5c06ae09921e0e88bb4f5034c44ea"
+    },
+    {
+      "path": "desktop/src/renderer/DocumentTranslationSelection.tsx",
+      "bytes": 8283,
+      "sha256": "f2470996f12c3a960f79f5ddf6a1941dd95e099d523b87e921f70c57bc64f6d1"
+    },
+    {
+      "path": "desktop/src/renderer/DocumentZoomControls.tsx",
+      "bytes": 1077,
+      "sha256": "a0c2e39fe7268919c54571e99fbec986cf9395645a303c2595fcb2c950e41abc"
+    },
+    {
+      "path": "desktop/src/renderer/EditorPane.tsx",
+      "bytes": 7697,
+      "sha256": "cef5df8b41a6c9e4ede8e56a6c0bc0fcc60b229332de236206a07560e686dd16"
+    },
+    {
+      "path": "desktop/src/renderer/EventEditor.tsx",
+      "bytes": 14555,
+      "sha256": "4fefcf7688f232f3cbc1cff0843b96ca9cf4fda426966d99d66269b8b1309446"
+    },
+    {
+      "path": "desktop/src/renderer/ExportDialog.tsx",
+      "bytes": 6467,
+      "sha256": "9beb4bf646d85503b21e0cd96355b245c05d7b5e24bd2afffa8f5638c8e87974"
+    },
+    {
+      "path": "desktop/src/renderer/FileManagementDialog.tsx",
+      "bytes": 7884,
+      "sha256": "c66fba3a7259e13f1ae5415be5da3ae0969c544251944c973ad68c5f931c116f"
+    },
+    {
+      "path": "desktop/src/renderer/FloatingVideo.tsx",
+      "bytes": 3996,
+      "sha256": "a8c845b8d1a54d93f0d2ca163562600b75ce36a79845ca84530d47c0f278da6f"
+    },
+    {
+      "path": "desktop/src/renderer/GraphWorkspace.tsx",
+      "bytes": 62598,
+      "sha256": "e0731d2f6aba3073a4eb8649b3b2114e1b7a4f13ea24dba4e0e8d4bf59dd3c83"
+    },
+    {
+      "path": "desktop/src/renderer/HomeDashboard.tsx",
+      "bytes": 15458,
+      "sha256": "6add0d45a201637788ec253ed8d0284e0069f701f6ba26918d85df075fbc51f2"
+    },
+    {
+      "path": "desktop/src/renderer/InkReplayDialog.tsx",
+      "bytes": 13733,
+      "sha256": "d26b7c6d875fe4cf6b1e7b41a227476a328d299fe3ee7578af004d2575018652"
+    },
+    {
+      "path": "desktop/src/renderer/KnowledgePalace.tsx",
+      "bytes": 9085,
+      "sha256": "951fc709acadcfa66a52bae0f4c3458846e6906f3218cc83b6d348ce0291e274"
+    },
+    {
+      "path": "desktop/src/renderer/KnowledgePanel.tsx",
+      "bytes": 3968,
+      "sha256": "43b51e1ad2dd90ffed6ffaabcbce6fd13b56c69f10610b5aaae0f376c7e3a0d8"
+    },
+    {
+      "path": "desktop/src/renderer/KnowledgeSpace.tsx",
+      "bytes": 15241,
+      "sha256": "f6b0bc8c174c8d5113269beca2a498276debafc64f4a4ca332b881a6a6757f2d"
+    },
+    {
+      "path": "desktop/src/renderer/KnowledgeWalkthrough.tsx",
+      "bytes": 13210,
+      "sha256": "f49b1352699f6da21e0d448e71192c7a5721ea0f309e2f7344304fab1915d5d5"
+    },
+    {
+      "path": "desktop/src/renderer/LocalOCRDialog.tsx",
+      "bytes": 7626,
+      "sha256": "0e0e9234548dfe6c3af67fc17535921d12a5ed7722e51a49d530908071e5d496"
+    },
+    {
+      "path": "desktop/src/renderer/MarginPanel.tsx",
+      "bytes": 2154,
+      "sha256": "daf0bff8944b0df76704ab9997792a4a4122482bc761ebe56c8122c19c1223c4"
+    },
+    {
+      "path": "desktop/src/renderer/MathWorkbench.tsx",
+      "bytes": 4389,
+      "sha256": "0557874c7800cffa039728c686f4705056a3864d519dc23ce46f896f8d2fad01"
+    },
+    {
+      "path": "desktop/src/renderer/MediaAdvancedControls.tsx",
+      "bytes": 14512,
+      "sha256": "9504f73451986d5457786cf5f1d22855e2efb4e88bd51477559133e1119fc09b"
+    },
+    {
+      "path": "desktop/src/renderer/MediaEditor.tsx",
+      "bytes": 29666,
+      "sha256": "86344dd6e0c9dae5db24a3323805c795913a41d4d0d18cd002b083d197b2b621"
+    },
+    {
+      "path": "desktop/src/renderer/MindInkPreview.tsx",
+      "bytes": 2201,
+      "sha256": "b56a5c05c8ebe114cd51a48c875f7ee28b56ecb151a3b8a25f64ad9b2ea8f4db"
+    },
+    {
+      "path": "desktop/src/renderer/MindSourcePreview.tsx",
+      "bytes": 1515,
+      "sha256": "066a4ca4e64c6e343114d81456dd5e2e6109b5e3a4e84ea0ef4816ef73eee5aa"
+    },
+    {
+      "path": "desktop/src/renderer/ModuleArtwork.tsx",
+      "bytes": 13793,
+      "sha256": "a2ea1247406dabe09fd964252c900b409d7ce1296d505de9ddebdd0bcedd2e1b"
+    },
+    {
+      "path": "desktop/src/renderer/NewDocumentDialog.tsx",
+      "bytes": 4237,
+      "sha256": "aa49f1e547d2845792bfec02e7693da8f7cc6e90ecbf03e2e3ec29f3341563f4"
+    },
+    {
+      "path": "desktop/src/renderer/NoteExchange.tsx",
+      "bytes": 20382,
+      "sha256": "e95a131d1274ed4463a4999b1bd87af929270f43813c618488aa79bd5d8d7323"
+    },
+    {
+      "path": "desktop/src/renderer/NotebookCSVExport.tsx",
+      "bytes": 2370,
+      "sha256": "189ab20eb15e307788f0b80330148dc8a1d4b34147a1e51e5f1807ada3208706"
+    },
+    {
+      "path": "desktop/src/renderer/NotebookCSVPicker.tsx",
+      "bytes": 11775,
+      "sha256": "ffad48b0078a1bd31740244b47b9e4de37dc3f69a0625738ee61daf8b4794503"
+    },
+    {
+      "path": "desktop/src/renderer/NotebookCode.tsx",
+      "bytes": 1194,
+      "sha256": "4a49b9e9edef6214a8cbdf511c6d62008b1dab48c74fe84f4cf2684a9be7b012"
+    },
+    {
+      "path": "desktop/src/renderer/NotebookEditor.tsx",
+      "bytes": 39046,
+      "sha256": "507669b08f91e8af967acfb125df4fd50a1152fe2f9be39ba35d2a248665c21d"
+    },
+    {
+      "path": "desktop/src/renderer/NotebookOutline.tsx",
+      "bytes": 4940,
+      "sha256": "a1dde7c74bda000628f5385efdea802c08ab6f200a264be43f9038833922ddcd"
+    },
+    {
+      "path": "desktop/src/renderer/NotebookRuns.ts",
+      "bytes": 1250,
+      "sha256": "83f95e534ec40667b8730a221fca801cbfaa3f0937ba7e7a37bc4e835f7110f6"
+    },
+    {
+      "path": "desktop/src/renderer/NotebookShortcutHelp.tsx",
+      "bytes": 3650,
+      "sha256": "bcfd87e5e90d85725511bacaf358fa012225da735b63aaf7281fb43e68c3f5a9"
+    },
+    {
+      "path": "desktop/src/renderer/OfficeTextSelection.tsx",
+      "bytes": 15832,
+      "sha256": "4806991143528b25c035d4c314ccc7c7e7ecbac7b81094a9e949b23ef12b0382"
+    },
+    {
+      "path": "desktop/src/renderer/PDFBoardStudyLayout.tsx",
+      "bytes": 5360,
+      "sha256": "4edfc203e880279ed4c99062cb4ca41bb2cc25242bf7a732b316a02a30e2c35e"
+    },
+    {
+      "path": "desktop/src/renderer/PDFExtend.tsx",
+      "bytes": 15668,
+      "sha256": "63e5589b02701f2c05ecec671cd576dd63e4d4e4721d512692adc38c4bce0509"
+    },
+    {
+      "path": "desktop/src/renderer/PDFLayers.tsx",
+      "bytes": 20456,
+      "sha256": "aa001797d507d6f46780139d9481a006fdec0b82dece2c81e4224cbeaba76689"
+    },
+    {
+      "path": "desktop/src/renderer/PDFRangeTranslation.tsx",
+      "bytes": 11600,
+      "sha256": "005456023b508d85a24fe238d49fa71809940b70369c8838d1a8d1ba191c1ec5"
+    },
+    {
+      "path": "desktop/src/renderer/PDFTextSelection.tsx",
+      "bytes": 6058,
+      "sha256": "9ff0068dff0cfa17ccce220b5ffe0c828227b85f15edf6ceaec950c4a58bf7ff"
+    },
+    {
+      "path": "desktop/src/renderer/PDFToolbarMenu.tsx",
+      "bytes": 3448,
+      "sha256": "7abd834286e420dfb5babce78da3e1d824f08d111a0e0f80f49fc618e3a87d80"
+    },
+    {
+      "path": "desktop/src/renderer/PDFTranslation.tsx",
+      "bytes": 19465,
+      "sha256": "539e3f35df47c1e74fb2e5b5f159fa99b79159a44586df685c564b267ca078ef"
+    },
+    {
+      "path": "desktop/src/renderer/PDFViewer.tsx",
+      "bytes": 43377,
+      "sha256": "449c3b4fed7b4b2b5c5b3e00e39df11c51fb727ef774075c8203fe7a983a038b"
+    },
+    {
+      "path": "desktop/src/renderer/PDFWorkspace.tsx",
+      "bytes": 35287,
+      "sha256": "e28aa043545de2c5bcc0754abddf2d504280180c7af80178db5222510635305b"
+    },
+    {
+      "path": "desktop/src/renderer/PDFWorkspaceState.ts",
+      "bytes": 746,
+      "sha256": "d64af688e12b9165f56acb5570e6c3016e3528619e36c0965c88a502a275c9b1"
+    },
+    {
+      "path": "desktop/src/renderer/PanelLayout.tsx",
+      "bytes": 7830,
+      "sha256": "405e6237e68477a0327bcde3c916166c1d1cb0919fa5f9a5e9c3d6c01ca1b3ff"
+    },
+    {
+      "path": "desktop/src/renderer/PythonConsole.tsx",
+      "bytes": 1109,
+      "sha256": "399c6a2cd841d2413d47ee03d77876597cb24f7a44407d9dc5c688b0edbdd03f"
+    },
+    {
+      "path": "desktop/src/renderer/QuickNotes.tsx",
+      "bytes": 14833,
+      "sha256": "3de96ab6fe09f84c984be173c5773b212f6909331886291e230d693f48ef8b2e"
+    },
+    {
+      "path": "desktop/src/renderer/ReadOnlyFilePane.tsx",
+      "bytes": 12369,
+      "sha256": "02fc3cfba01884d4bd6fdfa227131434521bf26e4b73bbce55b94038dba70761"
+    },
+    {
+      "path": "desktop/src/renderer/RenameFileDialog.tsx",
+      "bytes": 1920,
+      "sha256": "e981f40fd149dccbba9e3a85f7b65a6a99919c387f4e7ee41bc150b7343bdf04"
+    },
+    {
+      "path": "desktop/src/renderer/ReplayBackgrounds.tsx",
+      "bytes": 5249,
+      "sha256": "38094cd0d587bd7893a939a5c240bb7d6e83bfbb5e4dd4bd38be8f843d2facda"
+    },
+    {
+      "path": "desktop/src/renderer/ReplayDisplayControl.tsx",
+      "bytes": 2073,
+      "sha256": "3dc5580834f0c03a98be623e1c8fd15b789869a5b951c0628f51e36d73d94ccf"
+    },
+    {
+      "path": "desktop/src/renderer/ResolvedChildBoardPortal.tsx",
+      "bytes": 3732,
+      "sha256": "0a535184a404f21f450be7f7b610f4981d248a40012ee78c13d954944313f6af"
+    },
+    {
+      "path": "desktop/src/renderer/ReviewPanel.tsx",
+      "bytes": 8784,
+      "sha256": "43eb8b06e16a77625d5a2ce7eb8901a350e136ec59d9e3073a7a7e88165ac076"
+    },
+    {
+      "path": "desktop/src/renderer/Sidebar.tsx",
+      "bytes": 37840,
+      "sha256": "38d90c7293a6e4bf98127646293df863390f29c75024e078afca01a0b4802b75"
+    },
+    {
+      "path": "desktop/src/renderer/StandaloneDocumentEditor.tsx",
+      "bytes": 6991,
+      "sha256": "17ac82c0d789799158e8afd471ad5976e5dc6962b0d9990c15951543bb937431"
+    },
+    {
+      "path": "desktop/src/renderer/StudyContentBlocks.tsx",
+      "bytes": 8229,
+      "sha256": "52ebe77e103eae6684e532003d00aaf97904bc657886f9083ec91027375703f3"
+    },
+    {
+      "path": "desktop/src/renderer/StudyImageAnswer.tsx",
+      "bytes": 2193,
+      "sha256": "cd180b5f8944534a6e4d751757959955cfe89b8957c8f0d769e1b8b273d608fa"
+    },
+    {
+      "path": "desktop/src/renderer/StudyPanel.tsx",
+      "bytes": 27045,
+      "sha256": "b1b9dd863bae6e7fdee1e85d8db3a552038b91ec007ac63187938bfc633306dc"
+    },
+    {
+      "path": "desktop/src/renderer/StudyTransferPanel.tsx",
+      "bytes": 11639,
+      "sha256": "3d78625638bdd3e34b267a648f66641e9a53e6b63833aeffed21533f745e1862"
+    },
+    {
+      "path": "desktop/src/renderer/TaskCalendar.tsx",
+      "bytes": 18636,
+      "sha256": "a60dc6d31abb6f29cad9e7065b0f0c4647bfd9bf29c4bb7ad4033e912b1f5a3c"
+    },
+    {
+      "path": "desktop/src/renderer/TextBoxEditor.tsx",
+      "bytes": 8373,
+      "sha256": "ec72d97537c8bd4b1eba7fe53142719665fbb85b7bbb2867c6848f113bf7db2b"
+    },
+    {
+      "path": "desktop/src/renderer/TranslationSettings.tsx",
+      "bytes": 7745,
+      "sha256": "e504e502b23a783f9cf8dadddb0126f5db8865fd6f95ea3afca352e097b00d93"
+    },
+    {
+      "path": "desktop/src/renderer/VideoPlayer.tsx",
+      "bytes": 19991,
+      "sha256": "13d50555bc0584c1c0d2bfdc13fdc88888afd33afc0c023d5f868522a79e2371"
+    },
+    {
+      "path": "desktop/src/renderer/WorkspaceFileEditor.tsx",
+      "bytes": 3973,
+      "sha256": "4bada9aa307790d8f9ef81b010087b5f90c72354006296360dc210db11d83432"
+    },
+    {
+      "path": "desktop/src/renderer/WorkspaceFilePicker.tsx",
+      "bytes": 6553,
+      "sha256": "58d6f864f4a4b1e6ad644c30679c5a59375271da8f2510203ff8c6a684c2ddce"
+    },
+    {
+      "path": "desktop/src/renderer/app-shortcuts.ts",
+      "bytes": 743,
+      "sha256": "0fba7f6d0bd2330f5a729cc8129f1f5a282dcfb8a50dc87adcb302e2dc78ce73"
+    },
+    {
+      "path": "desktop/src/renderer/autosave-tabs.ts",
+      "bytes": 910,
+      "sha256": "e78f9382fa6e82a7a36f47f521bd7b1929e5a32534c65cbeaf327032cc93efcd"
+    },
+    {
+      "path": "desktop/src/renderer/board-embed.css",
+      "bytes": 1680,
+      "sha256": "8ad4168e166f3c32f4d63960060b099ab55f7fb4119302f2ba3e61a2583a8d13"
+    },
+    {
+      "path": "desktop/src/renderer/board-export-ink.ts",
+      "bytes": 5862,
+      "sha256": "8539fdec3fe7384e16e9bf961d78f35055240a236705051ef34a2a0470735c60"
+    },
+    {
+      "path": "desktop/src/renderer/board-export.tsx",
+      "bytes": 14276,
+      "sha256": "6c6286e01ad877c334b2756cef117a4d62f1d472154e1a6f4bafeb865f7dd7a5"
+    },
+    {
+      "path": "desktop/src/renderer/board-ink-clip.ts",
+      "bytes": 6083,
+      "sha256": "9170f1c7fd9302259c122bd6397e3fd278fd2b3faa01ad51e3f7c575423381d7"
+    },
+    {
+      "path": "desktop/src/renderer/board-ink-paint.ts",
+      "bytes": 1353,
+      "sha256": "cd927f6c6f4779c3c761e6c94697b97ea05994242089ad0b0d020efd661cd4d6"
+    },
+    {
+      "path": "desktop/src/renderer/board-merge-placement.ts",
+      "bytes": 1831,
+      "sha256": "8724eab1ac6156bd9e6629054c4a6b00281551dfd61387ef88799c4431714fb5"
+    },
+    {
+      "path": "desktop/src/renderer/board-merge-tabs.ts",
+      "bytes": 1409,
+      "sha256": "b363707ae8f61d44ac5dd81eecc3a4dd2855a810e7abd7ecd1ad3f6cb711e3a1"
+    },
+    {
+      "path": "desktop/src/renderer/board-merge.css",
+      "bytes": 4207,
+      "sha256": "5c58963482bde7588c3d125512f1c8c652ce895f9e61fde305cc490e4a2e74f4"
+    },
+    {
+      "path": "desktop/src/renderer/board-paste.ts",
+      "bytes": 4767,
+      "sha256": "72e48a723907b3764f8d8a6b382e5beb5ef403822aa221890335eeb6d6d10c39"
+    },
+    {
+      "path": "desktop/src/renderer/board-pdf-progressive.ts",
+      "bytes": 3677,
+      "sha256": "7f40cab10128f54795c9f51721ceb1cf25c904a345a7a0293d3e563ddcf605e9"
+    },
+    {
+      "path": "desktop/src/renderer/board-pdf-resolution.ts",
+      "bytes": 3632,
+      "sha256": "65428cb9ac7b3c13ea22fdf225074d97765ea602e530f0469a46aca034161e3e"
+    },
+    {
+      "path": "desktop/src/renderer/board-relink.css",
+      "bytes": 918,
+      "sha256": "c1045bab0fbb931633915f9b0566a2464f1b7743a155f368c63d3b995d677d91"
+    },
+    {
+      "path": "desktop/src/renderer/board-source-navigation.ts",
+      "bytes": 1568,
+      "sha256": "efcd2d228e4c4034d58639a401b7e2bb488b3b4a03790fac5d14bdf3a6e1e74b"
+    },
+    {
+      "path": "desktop/src/renderer/board-source.ts",
+      "bytes": 1180,
+      "sha256": "76637a4160148f02ba4d380fbc1ed38137fcaad58895fc429acbaa4d16020e2f"
+    },
+    {
+      "path": "desktop/src/renderer/board-text-selection.css",
+      "bytes": 2543,
+      "sha256": "5c9719cb88224421909af88c8148024314a9d74440ef284f14b2a14ab952b5b4"
+    },
+    {
+      "path": "desktop/src/renderer/board-viewer.css",
+      "bytes": 13256,
+      "sha256": "6e9ed764b635c8d19b30242ebfd1d5a94a38c0e166f18f58499f84689f6da990"
+    },
+    {
+      "path": "desktop/src/renderer/board-web-card.css",
+      "bytes": 2108,
+      "sha256": "796f16e496ef621b4c5dcb3f37a959ad80fe5c8f90fb48f90bc1979d706cccc7"
+    },
+    {
+      "path": "desktop/src/renderer/board-web-links.ts",
+      "bytes": 1186,
+      "sha256": "92d10f29786bf04157dcb56947f5eb378b0ce1e4e7a1fde515152672ccd81198"
+    },
+    {
+      "path": "desktop/src/renderer/box-content.css",
+      "bytes": 3704,
+      "sha256": "56e18cda7949fd3272d1874a9b8e23929d0aea972d0c84d990a2428c1fc02041"
+    },
+    {
+      "path": "desktop/src/renderer/browser-pdf-links.ts",
+      "bytes": 1694,
+      "sha256": "3d6ba7cf2988ddb411297344b655c875cd8953ad30d27056b739a172fb259335"
+    },
+    {
+      "path": "desktop/src/renderer/calendar-ics.ts",
+      "bytes": 24772,
+      "sha256": "80b82cd0f4210bb5ddf030270d668c0e433caf0295fa8a187cb7eb195f085d63"
+    },
+    {
+      "path": "desktop/src/renderer/calendar-model.ts",
+      "bytes": 16447,
+      "sha256": "432bef16cb032ce60b83cc2636d0f2ca190a53083dbc930127fdee3180cec3ac"
+    },
+    {
+      "path": "desktop/src/renderer/calendar-store.ts",
+      "bytes": 3735,
+      "sha256": "308c1c9175f70f674be65f743d2c4f37d8f27c66006befec01f7fc751c1e3550"
+    },
+    {
+      "path": "desktop/src/renderer/calendar-types.ts",
+      "bytes": 994,
+      "sha256": "2bb5812b582966803d62dadf544e84b27b07d2b4c3b8fe8023a9d17f2fffaa45"
+    },
+    {
+      "path": "desktop/src/renderer/calendar-workspace.css",
+      "bytes": 20831,
+      "sha256": "7d20f9a6da1910b268237f9c1550cd97886cc598dcb7a1d0c37aca930d219a6e"
+    },
+    {
+      "path": "desktop/src/renderer/calendar.css",
+      "bytes": 7726,
+      "sha256": "e0b87135770867ca4f8b4c7bd8c04c7e01b7498dfa4b0a3a0cb6b9ecdf588121"
+    },
+    {
+      "path": "desktop/src/renderer/checklist-location.ts",
+      "bytes": 927,
+      "sha256": "531d8be3a4d3eefbeba214399e4f48c68c5fa3b1fcfe0a647c744681e24d7dc4"
+    },
+    {
+      "path": "desktop/src/renderer/child-board-model.ts",
+      "bytes": 9913,
+      "sha256": "0fe852b0cb19fa44fcd1e20a2407d5674441f66175fb877ec133e4cad74305e0"
+    },
+    {
+      "path": "desktop/src/renderer/child-board-session.ts",
+      "bytes": 5162,
+      "sha256": "d17082a42aac56830c4ac5b2c1177cc1a1fb4f609ed26316b38e37f8ab6a9faf"
+    },
+    {
+      "path": "desktop/src/renderer/clipboard-rich-text.ts",
+      "bytes": 14306,
+      "sha256": "0c65905715e67150774cab0c813cd691e5bb24c615e0cf1bfdf2b7647c082ff3"
+    },
+    {
+      "path": "desktop/src/renderer/command-palette.css",
+      "bytes": 2095,
+      "sha256": "1586b22db85be16cfc6ae76a8722a70306bb090bee30916cad19736abe333665"
+    },
+    {
+      "path": "desktop/src/renderer/context-menu.css",
+      "bytes": 1616,
+      "sha256": "7355f95a25f871fb3fea26722f856626456c7215b8096d14870d081de268a3fd"
+    },
+    {
+      "path": "desktop/src/renderer/course-calendar.ts",
+      "bytes": 9748,
+      "sha256": "370f05db98d9e9321cf586f11af075b53f311c35825042fae0bf0c8e23eed141"
+    },
+    {
+      "path": "desktop/src/renderer/course-checklist.css",
+      "bytes": 8379,
+      "sha256": "44f427e156cf7a11378bb9ab88c0529605769da36fa190456af81d5ec1128dd8"
+    },
+    {
+      "path": "desktop/src/renderer/course-checklist.ts",
+      "bytes": 11939,
+      "sha256": "b2d2c4920958938b2c2ce23163e1a7ee429f5f0d1bdddcbcb3dd2cf730f09ea2"
+    },
+    {
+      "path": "desktop/src/renderer/data-file-parsers.ts",
+      "bytes": 3068,
+      "sha256": "260811b2864253f08ed1e3a81a82a51d3cf6e8a7e7a46e4b868525c940562c17"
+    },
+    {
+      "path": "desktop/src/renderer/data-file-preview.css",
+      "bytes": 2128,
+      "sha256": "1ff23f4b3911c81c42e208ffcfed2ccfb659ff467da5aab7f20c909b58b873a6"
+    },
+    {
+      "path": "desktop/src/renderer/detached-video-window.css",
+      "bytes": 2903,
+      "sha256": "fcdf925901da3202c2d018c5e2c468b589a4d1b0a0fb18065f8923b2677f0457"
+    },
+    {
+      "path": "desktop/src/renderer/document-editing.css",
+      "bytes": 5340,
+      "sha256": "9f4c637fbebff17a9fee5ca4abbd9a1c98965d99185b9861de58b0d9a567ed23"
+    },
+    {
+      "path": "desktop/src/renderer/document-translation.css",
+      "bytes": 2186,
+      "sha256": "b68024d99880a8b9ccfcea48eb11b91c81e6df33f8d31e3112777f3168ebf2fc"
+    },
+    {
+      "path": "desktop/src/renderer/document-zoom.css",
+      "bytes": 1265,
+      "sha256": "9fdf0c4a3c2a3b0b267283c465175554dd7f48279bf46fba70ac22543252ff36"
+    },
+    {
+      "path": "desktop/src/renderer/document-zoom.ts",
+      "bytes": 798,
+      "sha256": "21cf149d04067336abf8e589460a38e31f324c33869e7d9091f56443b4ad82e8"
+    },
+    {
+      "path": "desktop/src/renderer/export-view.ts",
+      "bytes": 2602,
+      "sha256": "49ae5636beb23e282d60c30704be3f13b5d8cee0d945d5a2d3ffad4dccd5c30b"
+    },
+    {
+      "path": "desktop/src/renderer/external-open-tabs.ts",
+      "bytes": 292,
+      "sha256": "e51ca15079d6be050c85d03a1b639de642b68a93dea8bfe0eb4b5e56eb39b33f"
+    },
+    {
+      "path": "desktop/src/renderer/file-management.css",
+      "bytes": 2226,
+      "sha256": "e6a22837aeab6934abd030f133c98af7001d91a6f79652ff289a59edabf0cfd0"
+    },
+    {
+      "path": "desktop/src/renderer/file-tree-management.ts",
+      "bytes": 3237,
+      "sha256": "fc79835acc787641f7ad573776d95cbeb98905462c718fe6f0b4e1bcf982b0b9"
+    },
+    {
+      "path": "desktop/src/renderer/file-tree.css",
+      "bytes": 6357,
+      "sha256": "f9d1d474c3223485be36d283c90804da0783d8c134c781ad77c5afefc3c8d7b4"
+    },
+    {
+      "path": "desktop/src/renderer/floating-video.css",
+      "bytes": 1226,
+      "sha256": "12c88f5d826cee571d223ea2916eb308767439a6792ae0a85eef8a5ee26dbf6d"
+    },
+    {
+      "path": "desktop/src/renderer/graph.css",
+      "bytes": 5384,
+      "sha256": "430b1a556afcd237b1be658573c7e1d65728171ae7181a26aae300a4b4737e80"
+    },
+    {
+      "path": "desktop/src/renderer/home-dashboard.css",
+      "bytes": 20635,
+      "sha256": "44b313d36d3b5b184407940252d8a1954c7d13b2eb16b21334be583543f402f4"
+    },
+    {
+      "path": "desktop/src/renderer/i18n.ts",
+      "bytes": 8026,
+      "sha256": "82cfaadd0e5dca2149af5af48de26e6feab4fcef517487e0ad617413311774e1"
+    },
+    {
+      "path": "desktop/src/renderer/ink-replay-camera.ts",
+      "bytes": 5868,
+      "sha256": "7f1eed7da88f5460f8da9def21a679a271c14239954a7581861a9d0e424b90f3"
+    },
+    {
+      "path": "desktop/src/renderer/ink-replay.css",
+      "bytes": 4953,
+      "sha256": "6537480883af23888e4743c24cc20d591c15284841f30a23c0dc64643f8975db"
+    },
+    {
+      "path": "desktop/src/renderer/ink-replay.ts",
+      "bytes": 1727,
+      "sha256": "39addd5b685ce9548c6bcb43859663406aa113e40aa028cb6015e41a3cd64a1c"
+    },
+    {
+      "path": "desktop/src/renderer/knowledge-palace-math.ts",
+      "bytes": 2092,
+      "sha256": "9373d266a26d06142d301cde4b48ee5cf69a5bb8946b031a1be6d648c34a6e4b"
+    },
+    {
+      "path": "desktop/src/renderer/knowledge-space-metadata.ts",
+      "bytes": 3651,
+      "sha256": "a802cef77fe8fb4019647bbe565147ba3d9c504bfc770aed4add56aed9b88c75"
+    },
+    {
+      "path": "desktop/src/renderer/knowledge-space.css",
+      "bytes": 11531,
+      "sha256": "3827abcd30c0a7ac910bb835cc043748f422f7202e5d79ef61675745b9306f9f"
+    },
+    {
+      "path": "desktop/src/renderer/knowledge-walk-gl.ts",
+      "bytes": 12383,
+      "sha256": "de0c443b4b880650577d5718cefdb41c9e55e39d85df7b70326391c26921f63f"
+    },
+    {
+      "path": "desktop/src/renderer/knowledge-walk-math.ts",
+      "bytes": 9734,
+      "sha256": "e44762c477e7c826611ebb7e7d6503b9552c9a6cb0a1f86f5008cfa192630084"
+    },
+    {
+      "path": "desktop/src/renderer/knowledge-walk-renderer.ts",
+      "bytes": 13082,
+      "sha256": "c60e048b447c2e4836d346fe61a54b9b0bd5e8d2fa9c75c1e07754994d280a8f"
+    },
+    {
+      "path": "desktop/src/renderer/knowledge-walk.css",
+      "bytes": 6563,
+      "sha256": "83ad402bd7e1e9a353e3c787efa5ca2088335938d2aa6e2adae1a64ceb2bbf7e"
+    },
+    {
+      "path": "desktop/src/renderer/local-ocr-english.json",
+      "bytes": 1709,
+      "sha256": "7db56c7a2cd167d70e9812f95f91c6e7cb95a33443f7533efae91f3ad9f2ded8"
+    },
+    {
+      "path": "desktop/src/renderer/local-ocr.css",
+      "bytes": 1262,
+      "sha256": "bb1560a4a6fdb8cecd5897cdc1265e0044c1e04b4bcdef85e456c9721d9d103b"
+    },
+    {
+      "path": "desktop/src/renderer/main.tsx",
+      "bytes": 1151,
+      "sha256": "a79f0f1da06fc836496e4b91b3404a5a6d1785684dbef9acf13c1495e950acfb"
+    },
+    {
+      "path": "desktop/src/renderer/math-workbench.css",
+      "bytes": 861,
+      "sha256": "b537f226d80a89d22b9105cc7b248f167982131d48f7300e9f1b84634bd2bbb2"
+    },
+    {
+      "path": "desktop/src/renderer/media-editor-model.ts",
+      "bytes": 7377,
+      "sha256": "25b045721737569dfa294e5deac8e007c560e37fb7b0b52ec7af51143d1d9583"
+    },
+    {
+      "path": "desktop/src/renderer/media-editor.css",
+      "bytes": 6914,
+      "sha256": "277a4af55774039b5592aa736e6241eb64c7255097bde057f80c886ffdd938cb"
+    },
+    {
+      "path": "desktop/src/renderer/note-exchange.css",
+      "bytes": 3044,
+      "sha256": "5e7cee4ea650d1084361a29210a1bd3a65e5f20d1fd6de7116ad61805de09122"
+    },
+    {
+      "path": "desktop/src/renderer/notebook-actions.ts",
+      "bytes": 9146,
+      "sha256": "d12c36ae38923d0cec19c816c2b7f6e2d2a1dbbdddd532560750f4a9221b0f7c"
+    },
+    {
+      "path": "desktop/src/renderer/notebook-csv-export.css",
+      "bytes": 406,
+      "sha256": "f8fbd33505dec24aa1b6c19f3696ac90eed84d6c502f084cd8d8a689827bb70b"
+    },
+    {
+      "path": "desktop/src/renderer/notebook-document.css",
+      "bytes": 9783,
+      "sha256": "5e8afe3ef35feb145db594ad3abea21ea01d95d86c049ef877263a7cd66f1f14"
+    },
+    {
+      "path": "desktop/src/renderer/notebook-events.ts",
+      "bytes": 2068,
+      "sha256": "3583affcc8ac228c45dabeebf1cb0d25c0e8616ca9f9b15e35754fce90158abd"
+    },
+    {
+      "path": "desktop/src/renderer/notebook-html-format.css",
+      "bytes": 7834,
+      "sha256": "f49373359fe1b2ce90a426cc4cdc07ab53d07774e231d17b2034ecf04f36836e"
+    },
+    {
+      "path": "desktop/src/renderer/notebook-html-format.ts",
+      "bytes": 2747,
+      "sha256": "ba39116ca77527ffb89b02706da18b851b30e9839035f496bbbc101b33af1e07"
+    },
+    {
+      "path": "desktop/src/renderer/notebook-outline.css",
+      "bytes": 4258,
+      "sha256": "1ce010e91d64b29b5df1b938913251d2951fb0d3705fbc5e0eb63c13267eab66"
+    },
+    {
+      "path": "desktop/src/renderer/notebook-outline.ts",
+      "bytes": 4898,
+      "sha256": "189521c8ca371042893f29e40fa7c4985fe8d90811b0f950e580ca5363bb28af"
+    },
+    {
+      "path": "desktop/src/renderer/notebook-run-controller.ts",
+      "bytes": 6870,
+      "sha256": "56b5dd1de13bd95a459239089470e60ee104ea5df29d9b56b0896eb3d85b302c"
+    },
+    {
+      "path": "desktop/src/renderer/notebook-session.ts",
+      "bytes": 5784,
+      "sha256": "c44cb08a67196a62f79af70da363a1928aab0132138a983070ca662a595527a0"
+    },
+    {
+      "path": "desktop/src/renderer/notebook-word-selection.ts",
+      "bytes": 741,
+      "sha256": "b955474c3cfc19a771b91af6974bed66c31af5555c674503327d69bf5367d12c"
+    },
+    {
+      "path": "desktop/src/renderer/notebook.css",
+      "bytes": 9021,
+      "sha256": "857a49adae1e93c4b0643ddb91821b7b170145f9f4e4b1cc5feff7c944a2d9d2"
+    },
+    {
+      "path": "desktop/src/renderer/ocr-capture.ts",
+      "bytes": 1866,
+      "sha256": "1c1c59142b6563e63eeadc3c3aa1b28ecb5e8221eb75a5ecd57ef79e4067d9a6"
+    },
+    {
+      "path": "desktop/src/renderer/office-preparation-deadline.ts",
+      "bytes": 914,
+      "sha256": "d98fecc58d7cf6332f762d96f7e67b550218e5e83d27eaffaf2408c0643ccd42"
+    },
+    {
+      "path": "desktop/src/renderer/office-reading-labels.ts",
+      "bytes": 3813,
+      "sha256": "2d01232b9afcffb4ff3162f3ade5b5a90e978d89866042286cd6ebae4247578c"
+    },
+    {
+      "path": "desktop/src/renderer/office-text-selection.css",
+      "bytes": 2061,
+      "sha256": "04d76abe7fda99bc831d2a70ae02df8c64cacbed78c5d976b290500a422d440c"
+    },
+    {
+      "path": "desktop/src/renderer/panel-layout.css",
+      "bytes": 3142,
+      "sha256": "9ff876a631204babe888a0c59a9e2a544cd6145a929add0b42be5392f1ba1cc9"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-board-links.css",
+      "bytes": 503,
+      "sha256": "4c12ec1925edf191df51ebecbb818254958babc70b322c3bc6579b95074a8707"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-board-links.ts",
+      "bytes": 4175,
+      "sha256": "9ef6155598389d2145ac81996864b5f114ff599a6b4f59dbdb85bc005e9d4894"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-board-study.css",
+      "bytes": 2800,
+      "sha256": "54ff38e0842bf3084c83152b314d010813ee5d13a370cad6775ef7be56d844f6"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-extend.css",
+      "bytes": 2652,
+      "sha256": "a095d25bd11cdefac5ea44cd6305209936aeef448512e9774a0b13df092c14d5"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-reader-zoom.ts",
+      "bytes": 2154,
+      "sha256": "124ebc71df305b3eee4651bb43a4f285c1dfb40566451eea428302edc1ea8a78"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-reading-export.tsx",
+      "bytes": 17053,
+      "sha256": "f8e1c87762ba561b0b317bc6c152ff53f899aa8daac73d39d0299309351aad90"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-reading.css",
+      "bytes": 1569,
+      "sha256": "1ad985b7b63a1f395fdc1bd1a4eb57edc551056771781f0c9a13b0446e7fe9eb"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-selection-capture.ts",
+      "bytes": 3090,
+      "sha256": "bd008e0eb593a8e88f925731a4df2ce7f8eda7bc0d7bcc388e50928ca57316b3"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-text-selection.css",
+      "bytes": 829,
+      "sha256": "ea88b4bafe6f1f78b123173ae42c753b1e5a972ce2fe96120ea244396ef88951"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-toolbar-menu.css",
+      "bytes": 2390,
+      "sha256": "1c320ed4b4f424c7cc6c5f2e935cffd7b453546e728eebb9206e3e177c852f4a"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-translation.css",
+      "bytes": 2890,
+      "sha256": "84d6d9a2c713654d00867b9a26b9f7a1907878af1fe570aac3fa810f6ccb4272"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-visual-snapshot.ts",
+      "bytes": 1489,
+      "sha256": "cd1bacab7d72cea9e1608d325eb1b9df4206367f6bfb8d828025eb2c4bc9e106"
+    },
+    {
+      "path": "desktop/src/renderer/pdf-workspace.css",
+      "bytes": 8914,
+      "sha256": "81bd783e1b7484539d900744e26d331626fc132a348fe57ceb793000ced31045"
+    },
+    {
+      "path": "desktop/src/renderer/poetry-rewards.json",
+      "bytes": 4186,
+      "sha256": "0b291dc4a6760d18bb3dc80833a6cebcc787e3c88ce99de268dd3fe9e12bfc85"
+    },
+    {
+      "path": "desktop/src/renderer/preview-fixture.ts",
+      "bytes": 7094,
+      "sha256": "4defeaa2c94466a89491548fe7cf3766f26923bac3c95bb11854bd9d45a5b11f"
+    },
+    {
+      "path": "desktop/src/renderer/quick-notes.css",
+      "bytes": 4754,
+      "sha256": "711af420b18d26c58c7f73e8898cd8b47ceedb528c843de491fe0d5cec1342e3"
+    },
+    {
+      "path": "desktop/src/renderer/quick-notes.ts",
+      "bytes": 7202,
+      "sha256": "f12278a13a71882102fa84bd3bf4fdc2e7790b5776f6a29b9f044c6d592cf2d1"
+    },
+    {
+      "path": "desktop/src/renderer/reading-overlay-context.ts",
+      "bytes": 153,
+      "sha256": "2cd444d2e7e7f7bd14d59237ff35c6f4033c3353c03d2588eb529b0d6c13cb44"
+    },
+    {
+      "path": "desktop/src/renderer/reading-session-files.ts",
+      "bytes": 3082,
+      "sha256": "df068014333313e928896aa7b4775caa155f32aa2a2c3cdf172d5d7dec126f5d"
+    },
+    {
+      "path": "desktop/src/renderer/reading-session.ts",
+      "bytes": 2653,
+      "sha256": "2d60d6ee75ce3aab1a4878e4555136a0ce23740d97bc89deff3a57830fc0c694"
+    },
+    {
+      "path": "desktop/src/renderer/readonly-file-pane.css",
+      "bytes": 3614,
+      "sha256": "7b61fd9ddbaa62f9c88a7b21bb7e03f554d2e8f0396fd24f3ab23f6cf7504cef"
+    },
+    {
+      "path": "desktop/src/renderer/recent-files.ts",
+      "bytes": 3671,
+      "sha256": "e5d37fbe6bdd50b34c3611ffd2e954144e6d88883793b81905d0c1a82de23d0a"
+    },
+    {
+      "path": "desktop/src/renderer/replay-assets.ts",
+      "bytes": 2741,
+      "sha256": "14a9ff92b1cb23b495400a35ced7f4d750422fe9b5db48ca7cf897b23bd21901"
+    },
+    {
+      "path": "desktop/src/renderer/replay-display.css",
+      "bytes": 289,
+      "sha256": "738ce1cad4033e5d6a2e30988190a486be616587dfaa6e918286f8332337bf76"
+    },
+    {
+      "path": "desktop/src/renderer/replay-display.ts",
+      "bytes": 507,
+      "sha256": "f676c0971bbd163b899351e24521ff08d8c07055a7ddd912ef675caa36275fba"
+    },
+    {
+      "path": "desktop/src/renderer/replay-paint.ts",
+      "bytes": 1221,
+      "sha256": "9e6b85b14c6d9ebd8f1e221654cd945625e1d9e31e46cb71762c584de408047f"
+    },
+    {
+      "path": "desktop/src/renderer/reviews.css",
+      "bytes": 3955,
+      "sha256": "575d7b3fbb09da31dde0d5cf54f918072a0e7838ae32dae5168df1016c8b2c2d"
+    },
+    {
+      "path": "desktop/src/renderer/rich-text-math.ts",
+      "bytes": 6848,
+      "sha256": "84f69797dd48c3c1e5080fc25846e2553fa236082350e5f40d39bfcb5ad702b7"
+    },
+    {
+      "path": "desktop/src/renderer/study-content-blocks.css",
+      "bytes": 1829,
+      "sha256": "5cfcea562677ff531bc9f0408c1aaf25402e16124a9318c5007539d160930778"
+    },
+    {
+      "path": "desktop/src/renderer/study-outline.ts",
+      "bytes": 4008,
+      "sha256": "4c2fe4633cd3ad0ad99aa1cd0d6452814ff7421280053ad8959da0afa3f2be9f"
+    },
+    {
+      "path": "desktop/src/renderer/study-transfer.css",
+      "bytes": 1464,
+      "sha256": "ef8aa40798b7d7a955ce90ff5578233e504ab08754a2f238639488d311f2067d"
+    },
+    {
+      "path": "desktop/src/renderer/study.css",
+      "bytes": 6088,
+      "sha256": "2c31dadf82f82c7aba720cff9fdf6aa9783468faee63c7a01791d91fba1b86c0"
+    },
+    {
+      "path": "desktop/src/renderer/styles.css",
+      "bytes": 21282,
+      "sha256": "1e4fd3ff84fc1c8b3974891f45f9bbdf67d55e4d40e54d94c648a744f48fe3a6"
+    },
+    {
+      "path": "desktop/src/renderer/ui.tsx",
+      "bytes": 1330,
+      "sha256": "4324f3b49a12a14b996d4785b2060d01a500579bbdcd5b53258c926f92a75601"
+    },
+    {
+      "path": "desktop/src/renderer/useCalendarReminders.ts",
+      "bytes": 5309,
+      "sha256": "4b44998096fc438cc2237514f71160d4d514516a05b96059e8505679a8ccc389"
+    },
+    {
+      "path": "desktop/src/renderer/useDocumentZoom.ts",
+      "bytes": 3421,
+      "sha256": "5e7f4c794e83ead29db3b484b9a1a3af6c2f8f23a81725299bc1c0557d596b2a"
+    },
+    {
+      "path": "desktop/src/renderer/usePDFBoardLinks.tsx",
+      "bytes": 7969,
+      "sha256": "d7602a1895986ba89b506f5661ad5a0be8ab713967896793e5f0873942e6f233"
+    },
+    {
+      "path": "desktop/src/renderer/usePDFPinchZoom.ts",
+      "bytes": 3546,
+      "sha256": "7db31e8733149e90a865ea9461093df1339735cbe2d380d4c2fdf746ef3d8bbc"
+    },
+    {
+      "path": "desktop/src/renderer/usePDFReaderRegion.ts",
+      "bytes": 2504,
+      "sha256": "11c39fb718dbf9d0eec834640c09339b0b107ada354fbde8676d19e2e74341ca"
+    },
+    {
+      "path": "desktop/src/renderer/useVideoSubtitles.ts",
+      "bytes": 5051,
+      "sha256": "5c7a64705c6bec525240b39b60db23d59fb4c585eeb758665960b4e60aa1d331"
+    },
+    {
+      "path": "desktop/src/renderer/video-controls.ts",
+      "bytes": 4911,
+      "sha256": "3a5aa85e8f91d5371dc5561d2d519d513513a11115c1024c11c0e7c156024e0d"
+    },
+    {
+      "path": "desktop/src/renderer/video-player.css",
+      "bytes": 4604,
+      "sha256": "d02c7dd95db8be0c2d160e31a947b220840f044cd0a053ba7476df14c04abfdb"
+    },
+    {
+      "path": "desktop/src/renderer/video-subtitle-persistence.ts",
+      "bytes": 4192,
+      "sha256": "00009008415f08e7c16a0a09de02b30076c311c53698b01de48f94782fc0e8b1"
+    },
+    {
+      "path": "desktop/src/renderer/workspace-file-kinds.ts",
+      "bytes": 679,
+      "sha256": "0d06bdb81e0290897b437bbcbfee402664159546c7ffaf2ca0bdc3fb1134c2b3"
+    },
+    {
+      "path": "desktop/src/renderer/workspace-file-picker.css",
+      "bytes": 2031,
+      "sha256": "0d1120d50282d79c3534626dc2e8a1ca2f149545da66c70aa303c9693a459464"
+    },
+    {
+      "path": "desktop/src/renderer/workspace-theme.css",
+      "bytes": 3681,
+      "sha256": "cd2d37445200ec9af7b74107332b018d1d73ff94a34e61f27fcb6b39aa00a49d"
+    },
+    {
+      "path": "desktop/src/shared/board-pdf-owners.ts",
+      "bytes": 462,
+      "sha256": "bd853baa422305f01fda14ad8864ed54f8299e25f3784c45fa96b8666ed1eea5"
+    },
+    {
+      "path": "desktop/src/shared/desktop-api.ts",
+      "bytes": 30468,
+      "sha256": "fd059b18dcadeb058efe0fb3bcdaf71a60e349fb3eaff681395ddd23f7ea58e9"
+    },
+    {
+      "path": "desktop/src/shared/internal-file-links.ts",
+      "bytes": 1637,
+      "sha256": "e66bff2dfe75d2cd253c5b9ffc15f9289bbb41a4191633aa2c1c221c3b4ecaf9"
+    },
+    {
+      "path": "desktop/src/shared/media-editor.ts",
+      "bytes": 1034,
+      "sha256": "50b1bec7fc3ccdc75e2162b14c9b928e38fc0445690f65ec5d42f8f14aa9bb6f"
+    },
+    {
+      "path": "desktop/src/shared/notebook-format.ts",
+      "bytes": 17866,
+      "sha256": "6df2c30693c173d3191411adcfc2adc94c8dfef8bd2e70b611dc461eea81ea5c"
+    },
+    {
+      "path": "desktop/src/shared/pdf-extend.ts",
+      "bytes": 2273,
+      "sha256": "a800f354aff8c48bac5ba9390542793bcfa2963b5b66511fb327d2acb869f717"
+    },
+    {
+      "path": "desktop/src/shared/study-transfer.ts",
+      "bytes": 783,
+      "sha256": "159fae06af83dece21ee48006a77c8c5af0ceca0181b4922ede5e2791ea29233"
+    },
+    {
+      "path": "desktop/src/shared/study.ts",
+      "bytes": 900,
+      "sha256": "b0a1936ddfeb292c251afd3b293a7cbce2a05b3c1cb4432d84aed0dbafac8acb"
+    },
+    {
+      "path": "desktop/src/shared/video-playback.ts",
+      "bytes": 468,
+      "sha256": "acd942f17e788075da58e35aace986815172b208d091936550bb8a77f38f2af0"
+    },
+    {
+      "path": "desktop/src/vendor/excel/LICENSE-SheetJS.txt",
+      "bytes": 11355,
+      "sha256": "4d2a38ac35cda06a555c84074a819d413339cd3691b822cae50f8f322fe01f64"
+    },
+    {
+      "path": "desktop/src/vendor/excel/PROVENANCE.json",
+      "bytes": 436,
+      "sha256": "10ae69028281a1fa76160e1b4125ee65366456007886565cf2d5cf8de8dd47fa"
+    },
+    {
+      "path": "desktop/src/vendor/excel/reader.js",
+      "bytes": 5109,
+      "sha256": "aa0dde26366992f7af03d84fff7c2f4fde89c382f090a34b7f46fa23744c4eed"
+    },
+    {
+      "path": "desktop/src/vendor/excel/xlsx.full.min.js",
+      "bytes": 951904,
+      "sha256": "cc015130aa8521e7f088f88898eba949ccdcbfb38df0bd129b44b7273c3a6f41"
+    },
+    {
+      "path": "desktop/tests/ai-image-transfer.test.cjs",
+      "bytes": 70774,
+      "sha256": "312c181c369bbf96684f14faf34cf17322ef56d6c0c3532f31a51c9db361aeff"
+    },
+    {
+      "path": "desktop/tests/ai-media-permissions.test.cjs",
+      "bytes": 10469,
+      "sha256": "9a8d4e77380cb95b6277eb844576fcc24164396955b989bc7196a7167dfd790a"
+    },
+    {
+      "path": "desktop/tests/ai-page-health.test.cjs",
+      "bytes": 6873,
+      "sha256": "eb745b85c0d6eeae883666bc14c52703a9fc75db83fc670a661aac27df7cfeb6"
+    },
+    {
+      "path": "desktop/tests/ai-web-diagnostics.test.cjs",
+      "bytes": 13871,
+      "sha256": "b7fca4550a1950b40d12a9bab2cad99730fa2e7f2f8653909f7bfa078cce812c"
+    },
+    {
+      "path": "desktop/tests/app-shortcuts.test.cjs",
+      "bytes": 1664,
+      "sha256": "41ba9f126a7b0f99e03c8d50dcc319537216af2261ca4c277dd141716ce3b297"
+    },
+    {
+      "path": "desktop/tests/board-generated-assets.test.cjs",
+      "bytes": 8605,
+      "sha256": "64e10212a89bd980c40d226aa006e7ea611c96be08358f6f564021807d8cb4ce"
+    },
+    {
+      "path": "desktop/tests/board-merge-placement-undo.test.cjs",
+      "bytes": 19566,
+      "sha256": "78aad701bb30e497d6cda292345efbaa5ba7625a135aa7ca55746fd0c99058a4"
+    },
+    {
+      "path": "desktop/tests/board-merge-renderer-placement.test.cjs",
+      "bytes": 2660,
+      "sha256": "037669e23aa6a1419338f714f51b78e1daf3eb7e05576cae5586a0909f4541b9"
+    },
+    {
+      "path": "desktop/tests/board-merge-tabs.test.cjs",
+      "bytes": 2804,
+      "sha256": "5b8aa4dede30046d6c13d54194732bebc31a97f08090ed349793ca8a467dfa5c"
+    },
+    {
+      "path": "desktop/tests/board-merge.test.cjs",
+      "bytes": 18024,
+      "sha256": "d3ac360e43e6ed8941ed8dc19cc5edd23ee8c40e0c0c484e5db2d830ef26f114"
+    },
+    {
+      "path": "desktop/tests/board-pdf-owners.test.cjs",
+      "bytes": 3435,
+      "sha256": "4d9a50e09285b847807d3907d3ebeeddf96f42cfb3bf776e6d7a09b8c31c558f"
+    },
+    {
+      "path": "desktop/tests/board-pdf-progressive.test.cjs",
+      "bytes": 9284,
+      "sha256": "acde2ea8a1b360eb4c10bfe43a5dbc8d58b1373894068d2178302f270ebfe923"
+    },
+    {
+      "path": "desktop/tests/board-source-navigation.test.cjs",
+      "bytes": 2122,
+      "sha256": "97a9e7bf8de3a51dcd85c94fc99364108258f024fd882e3fa5237cc89fac5c68"
+    },
+    {
+      "path": "desktop/tests/browser-state.test.cjs",
+      "bytes": 16775,
+      "sha256": "a942a205faf1b78317af53899baa704f0d2d98ae088fb8fdb12b5534e9da6618"
+    },
+    {
+      "path": "desktop/tests/document-menu.test.cjs",
+      "bytes": 1625,
+      "sha256": "580239e8017d394995c24ede29850435e19fd2689c02b933945fe28583eb1862"
+    },
+    {
+      "path": "desktop/tests/document-zoom.test.cjs",
+      "bytes": 1132,
+      "sha256": "1c4347dafbe62dbc142fc19988540d5c46942513e119474df7e79267417ad2af"
+    },
+    {
+      "path": "desktop/tests/external-document-open.test.cjs",
+      "bytes": 9033,
+      "sha256": "b3323b04a322d00b5d196577969d67b2d0f2f2d7c271c0a8f59a869a6a14c53c"
+    },
+    {
+      "path": "desktop/tests/external-open-tabs.test.cjs",
+      "bytes": 1167,
+      "sha256": "fb3bef1ef0e3a932270be4d38135157a354262f2f47e5e1d8da755299e8c05e2"
+    },
+    {
+      "path": "desktop/tests/native-ink-merge.swift",
+      "bytes": 3382,
+      "sha256": "daffa910bbd1f4bf03ca23d0ffc2721ea829287d6f8f55f5bcd75e6716bac1fb"
+    },
+    {
+      "path": "desktop/tests/notebook-capacity.test.cjs",
+      "bytes": 8255,
+      "sha256": "910939d328729c4fb444e6e97574bc2a2aeab26e81d4d99f5703b3657ed0d49d"
+    },
+    {
+      "path": "desktop/tests/notebook-csv.test.cjs",
+      "bytes": 13591,
+      "sha256": "7ace9e21bdaae457fed6d3afb8b50abfdda36d329d60a835c876b9ff0f69eba2"
+    },
+    {
+      "path": "desktop/tests/notebook-data-picker.test.cjs",
+      "bytes": 10391,
+      "sha256": "9efcc4fe036805383a5c5eb678bd7478ea5f9eb6c9651d6dc9c5cb5f92b38134"
+    },
+    {
+      "path": "desktop/tests/notebook-excel-data.test.cjs",
+      "bytes": 13578,
+      "sha256": "8aa7ef29be40132032c09196e26df990de2020ed629ae88f2d5406207f9d4a6f"
+    },
+    {
+      "path": "desktop/tests/notebook-html-format.test.cjs",
+      "bytes": 4984,
+      "sha256": "5ea6e836e2987fc0624141a97a3ba24ec64fffb46fa6f7d6e5a84a20e445acff"
+    },
+    {
+      "path": "desktop/tests/notebook-outline.test.cjs",
+      "bytes": 6469,
+      "sha256": "4a536741d4c164229c4adeb7e72cba7f9de0324a8e19d151dedb2643533bf1f0"
+    },
+    {
+      "path": "desktop/tests/notebook-restart.test.cjs",
+      "bytes": 8269,
+      "sha256": "219b4de823d95eab2e009b2b84437ce23b08dfbc1404d7edc14ff571b2872a89"
+    },
+    {
+      "path": "desktop/tests/notebook-session-runtime.test.cjs",
+      "bytes": 10290,
+      "sha256": "dab19f8182301072ce1cdbe712504bc4f08d19228c760e724336ac5d7519cdb6"
+    },
+    {
+      "path": "desktop/tests/notebook-session.test.cjs",
+      "bytes": 6160,
+      "sha256": "21b461e21d71e3551c274d1ad84ee5c45b56f1997adcbdee55a1ab8f400d0d47"
+    },
+    {
+      "path": "desktop/tests/notebook-word-selection.test.cjs",
+      "bytes": 2457,
+      "sha256": "b246e085c0042c61a211b98ddf6ccf676b969bdc36e8f47d76ad677eb398b7ee"
+    },
+    {
+      "path": "desktop/tests/onenote-pdf-geometry.test.cjs",
+      "bytes": 9194,
+      "sha256": "5c3feac9f441445309a666ec0bc48714bfc53814c5492e44d52bf289d1a77a97"
+    },
+    {
+      "path": "desktop/tests/onenote-pdf.test.cjs",
+      "bytes": 4153,
+      "sha256": "23ee80852ddabf93f78499d9d818efb44ca5ecea4a259d48864c3d7e2329064e"
+    },
+    {
+      "path": "desktop/tests/onenote-publication.test.cjs",
+      "bytes": 25051,
+      "sha256": "2e35af887281628cee46794c8172a6777847da0ac93393a45834453aca5b4c12"
+    },
+    {
+      "path": "desktop/tests/pdf-reader-zoom.test.cjs",
+      "bytes": 4328,
+      "sha256": "953b2c772359f58617d23f428de3578684ce6b8f23736b37067b833c00d52e90"
+    },
+    {
+      "path": "desktop/tests/pdf-selection-capture.test.cjs",
+      "bytes": 4628,
+      "sha256": "10f270f2db860edfeb33ce8e26f69ca5f64ee45dc2aa88f8f400d81ae3b2bba1"
+    },
+    {
+      "path": "desktop/tests/quick-notes.test.cjs",
+      "bytes": 10404,
+      "sha256": "bb88d7c2b08419bb116e1ae67ba9025efcb309aed26c2b30155df176858ff90b"
+    },
+    {
+      "path": "desktop/tsconfig.json",
+      "bytes": 306,
+      "sha256": "71fd0a4588cffe6c7e93f6e9324d5525081ea3bb4c48c2c70cdf38884060b6c2"
+    },
+    {
+      "path": "desktop/vite.config.ts",
+      "bytes": 260,
+      "sha256": "78b992ba648147b35eadc4bedbbe1faef74c71654503b44a14016503bdcac7fd"
+    },
+    {
+      "path": "docs/desktop-build.md",
+      "bytes": 3167,
+      "sha256": "49837c5709bde5dbe5330e265d296be314895b3a237826abe28088d734fa7803"
+    },
+    {
+      "path": "docs/ios-build.md",
+      "bytes": 3074,
+      "sha256": "05ce1e9806f773cd71eb88db977086294f62a21d4dcb6870a89cf1984a4fb3f1"
+    },
+    {
+      "path": "docs/obsidian-build.md",
+      "bytes": 2762,
+      "sha256": "9a10725203bfaa877950bad7bd4c61ac1909bedaa3fc446eda7bb947cad6e8f3"
+    },
+    {
+      "path": "docs/privacy-check.md",
+      "bytes": 3252,
+      "sha256": "6bb0d2a5910ba55729f6a2e355fdd89a155619b606b3308e82f1de092b37636f"
+    },
+    {
+      "path": "docs/publishing.md",
+      "bytes": 1603,
+      "sha256": "7a30e04be894ee5cdc463eae299de74b7dd8ed0ef0be057e16436c62fa1c7b53"
+    },
+    {
+      "path": "docs/validation.md",
+      "bytes": 1311,
+      "sha256": "47e20807891b1aa2bd98af1ea50c8c97764ae2b942bfc83c136e6e4d6e09b4fc"
+    },
+    {
+      "path": "ios/InkSpace.xcodeproj/project.pbxproj",
+      "bytes": 92799,
+      "sha256": "ad2799d8effa5388e3aea0f53f8f997ed0f72ced187cf9ce1c3302de91eeb6d5"
+    },
+    {
+      "path": "ios/InkSpace.xcodeproj/xcshareddata/xcschemes/InkSpace.xcscheme",
+      "bytes": 2185,
+      "sha256": "93f2595d79813fbb68af8c04fcf9977f50d0e2309840b4c52ae008cf38502714"
+    },
+    {
+      "path": "ios/InkSpace/AI/AIClient.swift",
+      "bytes": 6638,
+      "sha256": "f181ab68016aebf77ef5b25d6f717def1f7d41207fd241adc5633491be113484"
+    },
+    {
+      "path": "ios/InkSpace/AI/AIWebProvider.swift",
+      "bytes": 3393,
+      "sha256": "e9f71c4abf7f7dc62c528896da1fb1e2b193d191f9b1614a4a28d09fe222630b"
+    },
+    {
+      "path": "ios/InkSpace/AI/AIWorkspaceView.swift",
+      "bytes": 9236,
+      "sha256": "cd9fc177a70d171bdcecf332a80bf346fb1a896c7cf430569c7d0756e72d8c29"
+    },
+    {
+      "path": "ios/InkSpace/AI/ChatGPT-Web-README.md",
+      "bytes": 1589,
+      "sha256": "e7b0ed130ec0a873427481fe2ee6a891bd9d8f8d3c52e13d12128b32fbc0705b"
+    },
+    {
+      "path": "ios/InkSpace/AI/ChatGPTWebPanel.swift",
+      "bytes": 10189,
+      "sha256": "8a30f414afdae6b5d4bc9f16ad5b8f08e30ba711bec41adca225c385ed6272d9"
+    },
+    {
+      "path": "ios/InkSpace/AI/ChatGPTWebSession.swift",
+      "bytes": 12506,
+      "sha256": "d28be85d5954bdded9ac36df152352777a11ad5feee0b174110e6d9a8899689f"
+    },
+    {
+      "path": "ios/InkSpace/AI/PDFTranslationClient.swift",
+      "bytes": 8738,
+      "sha256": "24cf816234522fadacb4d6fbbc83995675b41d255d9bff969bcd7687a91edc62"
+    },
+    {
+      "path": "ios/InkSpace/AI/PDFTranslationProvider.swift",
+      "bytes": 4461,
+      "sha256": "fbdad51df4fd89812f82836cfabe7f4d9e22bd1d3d089954fbc70f2eea7bc0c6"
+    },
+    {
+      "path": "ios/InkSpace/AI/PDFTranslationSession.swift",
+      "bytes": 7281,
+      "sha256": "90eb038b09b80b27f12047be6ea172c34b024688759b1b95d9b90f8941a08640"
+    },
+    {
+      "path": "ios/InkSpace/AI/PDFTranslationViews.swift",
+      "bytes": 12706,
+      "sha256": "81c283b5df503476beefd666d50e4459582943c73938de657179b7584b43b497"
+    },
+    {
+      "path": "ios/InkSpace/AI/TemporaryBoardCapture.swift",
+      "bytes": 10479,
+      "sha256": "b007dfba042c5e76831b078d9be564371b6380c9593f88b9dc6b578e581b7529"
+    },
+    {
+      "path": "ios/InkSpace/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+      "bytes": 880148,
+      "sha256": "69afca7d2621b9d3f0427320ecc8bca3745afa61948d9406d0dca41813eab0ee"
+    },
+    {
+      "path": "ios/InkSpace/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "bytes": 203,
+      "sha256": "852920cb36e95beb53771138a4b8195a16fcce1cc31250632f246081cc638f9a"
+    },
+    {
+      "path": "ios/InkSpace/Assets.xcassets/Contents.json",
+      "bytes": 60,
+      "sha256": "f5fb0e1f3a8142892ed092efb5955c1c2cc537003a89ad7bbdb9dade7fe8985f"
+    },
+    {
+      "path": "ios/InkSpace/Assets.xcassets/HomeAtelierArt.imageset/Contents.json",
+      "bytes": 151,
+      "sha256": "c635355b47fff33484d24ab3bbcc0c001427fff9c2e830354eff1e80eeda618a"
+    },
+    {
+      "path": "ios/InkSpace/Assets.xcassets/HomeAtelierArt.imageset/artwork.png",
+      "bytes": 2244945,
+      "sha256": "bd02e119c060484cf155ba1472449ec4cd398390ce910b8fe9a9732216fff197"
+    },
+    {
+      "path": "ios/InkSpace/Backup/BackupArchive.swift",
+      "bytes": 10620,
+      "sha256": "62cd08021c000f172028c02a58ff540fb62da2ac08328032cd3fb7b7e5ef4804"
+    },
+    {
+      "path": "ios/InkSpace/Backup/BackupMarkdownReferences.swift",
+      "bytes": 6690,
+      "sha256": "d0b1a94aef7ebd1e178d5508202e8114e1ac71249482114187f55687e2223458"
+    },
+    {
+      "path": "ios/InkSpace/Backup/BackupPDFSanitizer.swift",
+      "bytes": 3172,
+      "sha256": "02d5d63b9ad889d75614427ab20ec859e99080fb27f538dd5e597c43e13ea6fd"
+    },
+    {
+      "path": "ios/InkSpace/Backup/README.md",
+      "bytes": 4596,
+      "sha256": "3162ddcec466c721bdeed6ef65ba7f628525cd447b5736605a07111a8ffa7286"
+    },
+    {
+      "path": "ios/InkSpace/BoardStore.swift",
+      "bytes": 125062,
+      "sha256": "65b13021644b6cb6dd139142af37c1ab7d23f9a10679eb21b182e448661ac155"
+    },
+    {
+      "path": "ios/InkSpace/Browser/BrowserExtensionHost.swift",
+      "bytes": 15354,
+      "sha256": "ea1add5f1bd22f35691f12abe26ea3dd1874d1a3e495cd8ea1b6c7d1f6a6d65b"
+    },
+    {
+      "path": "ios/InkSpace/Browser/BrowserExtensionManagerView.swift",
+      "bytes": 6881,
+      "sha256": "d84fb324754e48e1994e43d83796a6c8e8112de1b112a78cb8da0802f2c09f10"
+    },
+    {
+      "path": "ios/InkSpace/Browser/BrowserWebClip.swift",
+      "bytes": 7612,
+      "sha256": "fbb8bfbc1771fccfa8b2b34059b07b0c86d8fa5b08d880d666ea9e0e0081462d"
+    },
+    {
+      "path": "ios/InkSpace/Browser/EmbeddedBrowserPanel.swift",
+      "bytes": 49710,
+      "sha256": "22a0cbe85272fdefa5f98bef7a8851fef7144405e4d5040ce2ceaa72dd243dca"
+    },
+    {
+      "path": "ios/InkSpace/Browser/WebDownloadStore.swift",
+      "bytes": 15772,
+      "sha256": "db2ccc9183cb9002f7a90d56af410bbab1f60adfb2564b79cb04ab66c0976299"
+    },
+    {
+      "path": "ios/InkSpace/Browser/WebDownloadsView.swift",
+      "bytes": 5385,
+      "sha256": "2ce2378820a88f5283602bb95acab5563bb6c3188f278327970b6339e7a23c0b"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/BoardBackdropView.swift",
+      "bytes": 38891,
+      "sha256": "407790e403540e11748b174c4941a150e430a300b6f44aff7c84893597b0a28d"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/BoardChildCanvasOverlay.swift",
+      "bytes": 19584,
+      "sha256": "faf8825e5569bc72a9e985529e94b4dfaee653784288bfba37920a6d5a81b00f"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/BoardDockedPaletteView.swift",
+      "bytes": 15836,
+      "sha256": "22d32b0593e099c754b217d9d1d1ed681fc523c5a01c638f146be9c03b236509"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/BoardInlineTextSelection.swift",
+      "bytes": 15127,
+      "sha256": "8c6bf3e825ad06fafdbfd16f54e0f1b91a2af32358915fe822a7c38cc0aebebe"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/BoardInteractionSurface.swift",
+      "bytes": 2646,
+      "sha256": "5de4bc459c2397fb0405a17296e4900d1b3080ea0c4fb695ea6b77df84c2a0e1"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/BoardLassoOverlay.swift",
+      "bytes": 37458,
+      "sha256": "e6156fc0948fab069ed2f88e426f00bbfce225307495fa6dc282221f824f05d7"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/BoardLassoSelection.swift",
+      "bytes": 42047,
+      "sha256": "11b33653bdf188db705d23ab71d40851fe67a8b3af96f93ab933b1c372e7a50d"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/BoardPencilArcPaletteView.swift",
+      "bytes": 5442,
+      "sha256": "12053fec01f956bf1dea058fcfba5fad0bf930587992b272d40c1e58ba4b20d3"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/BoardPreviewPipeline.swift",
+      "bytes": 26280,
+      "sha256": "d49299758a206f3ec11263e56157e6e9338d467f723389f78afb3521776a5cd9"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/BoardReadAloudHighlight.swift",
+      "bytes": 1609,
+      "sha256": "ece892bb3582cf1ea988b1664138129f0c34a8c28350c73533a5000d3621d3b1"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/BoardStyledDrawing.swift",
+      "bytes": 6019,
+      "sha256": "4838ad0fdbbecb95db6338f8ce513c65df4930cc97d2e7633ea1164b4a8d840a"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/BoardWritingAidOverlay.swift",
+      "bytes": 33207,
+      "sha256": "1df9c8dac1ccdd1bac42602038470d65c95c99111d49fd136da59323e67f9bb0"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/NativeBoardCanvas.swift",
+      "bytes": 233202,
+      "sha256": "d9f35dad05130b42722ae2e96c079b2b2792b68b9e4098c7c7f56330d863cfb6"
+    },
+    {
+      "path": "ios/InkSpace/Canvas/ReviewOverlayView.swift",
+      "bytes": 6821,
+      "sha256": "2f440ab037dc4e20c29d24e9d4640caacd09d91ff8cc60398a4958d3fcc46350"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardBackgroundRefreshController.swift",
+      "bytes": 15039,
+      "sha256": "5dc23cb51b17511e3613e385058356c19ddca514cf10839b040c4b8d1ec905f8"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardBackupController.swift",
+      "bytes": 9657,
+      "sha256": "843698a779be492c565157a9460f0cd57d9f17b4909f4c77ab4fb5254a5e5bf3"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardCatalogStore.swift",
+      "bytes": 29881,
+      "sha256": "c0cb4468ae9bc786d7902d3c6c718c29684e219f43558029170aee0f9de3e462"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardExportContent.swift",
+      "bytes": 6815,
+      "sha256": "80aa33d362b80a7b4d584bea88bb34288d3d9f59879fabdd17c9bf1f3f44a70c"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardHeldLineStroke.swift",
+      "bytes": 11877,
+      "sha256": "490d6a8855a6e6255182f7c2937919b2ababd632857f5e0b2319e41a95bb4421"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardHighlighterUnderlay.swift",
+      "bytes": 7873,
+      "sha256": "7d9806aa3095a45489b94d442bcd989ab5210e22f713d1d04af6d7cd0e6c6f08"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardImageResizing.swift",
+      "bytes": 7753,
+      "sha256": "df2c0f0fd06ebb99db3941dcf59082ed3c353411df49276ac50793eade955471"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardInkLocator.swift",
+      "bytes": 3192,
+      "sha256": "11540aed6ad0bdd78336a349514a70bbe6ec97649b75a2f1b0d78e4e89d9e52c"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardLassoClipboard.swift",
+      "bytes": 25036,
+      "sha256": "8ece096c5c4908c1e81d7fd12eb526701908fc65337d2c031a65baab5b2d5f8b"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardLassoMemoryProbe.swift",
+      "bytes": 15616,
+      "sha256": "4d405a9dc2ef27f558971d02d8d96c176b2ff846283175764e1d0e1b24a95858"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardMerge.swift",
+      "bytes": 63066,
+      "sha256": "2e1d70fa54c8d71784c9f5b668361db9d43a08bc45f7759bccbf6278744fabe2"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardPDFInkCoverage.swift",
+      "bytes": 1319,
+      "sha256": "e5a66c3030eaffc91a315376b4064b341a83e2314355b3002d66657423f751eb"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardPaletteDockSettings.swift",
+      "bytes": 2501,
+      "sha256": "1c926bf0776f4ae419865147b791a09ebdc78a0037ef3cb778c085919e67450f"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardPencilGestureSettings.swift",
+      "bytes": 19373,
+      "sha256": "2ed526ce976dbe32a4630a6747632c4c8df6d607b3a09cf8f686f3d8fda2b8c9"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardPrintExporter.swift",
+      "bytes": 40018,
+      "sha256": "e7776ab6f45b29c4f0d00bcad88426907144f5795fa93136cded8d27893c5d53"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardReadAloudController.swift",
+      "bytes": 23534,
+      "sha256": "b93ded2364f2939194da541a24e34dd7df0fb5abaf447596690d9e5ed6e79729"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardReadAloudOCR.swift",
+      "bytes": 4062,
+      "sha256": "ff86a949dbabf4aec9d8be9eed3f9a1167cf535221bfcd88931944ce80a71fa8"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardReadAloudPDF.swift",
+      "bytes": 7917,
+      "sha256": "864585a6d42f9cfca5f1c58c88553682b9dbf62805ad6b5906cdcc060ab4a7ca"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardReadAloudText.swift",
+      "bytes": 3116,
+      "sha256": "0e101ffb2726d47ab4c5cee6161da06995722ad587a71561f875474b5f65c4e6"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardReadLoader.swift",
+      "bytes": 5331,
+      "sha256": "9617099b9268162d75f071a3201515e7801d4893d808d45ff3d49406bdf674e6"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardReviewStore.swift",
+      "bytes": 12542,
+      "sha256": "b8180d0be533d3e84213a27c2b67fcf503bccd4d3425055e1e4f412678efe706"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardReviews.swift",
+      "bytes": 13739,
+      "sha256": "65896a53392200806c1dc28f51d2a071729845aa67a475b1dbd0ebdfee660691"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardSavePreparation.swift",
+      "bytes": 10466,
+      "sha256": "ec3045aafb98499a88a6d8cad3739c3ae746f7507cb4b891088c451787995f3b"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardStorageLocations.swift",
+      "bytes": 6637,
+      "sha256": "2898b47804e05c623eb5b56193d5add04df36d1ffcc08dfa6d44def4b774c423"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardStore+Merge.swift",
+      "bytes": 7022,
+      "sha256": "c7f2dd258a6a6ca87b3b0795cd35197038b9288ab40cc3faf0651dab2318426b"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardStore+Printing.swift",
+      "bytes": 4549,
+      "sha256": "7555a90036cd2d2cb373269a74b19ef535912a4a60e78a1cee2ceb4d309c9eb1"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardTextSelectionGeometry.swift",
+      "bytes": 5741,
+      "sha256": "0b9809d7f88fc41260d6d0a0b6c974fb6f746fdb59901414bd3d14a42deff38e"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardToolbarVisibility.swift",
+      "bytes": 3249,
+      "sha256": "13feb0d50c226692a4009d2c0def314d613615ffe000bd5b66a86d870fca0e46"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardWebClipPath.swift",
+      "bytes": 4382,
+      "sha256": "fb5eefeb557ff7e5b8353903f7338be69b8aa8073cdd02eee7de152d1e5b6011"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardWebExporter.swift",
+      "bytes": 10239,
+      "sha256": "026de1f5c0bba5dd74c6c1384add6c4d943eec000201bcb42a2b5f52dbc0efc7"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardWritingAid.swift",
+      "bytes": 6198,
+      "sha256": "4b3a15491b7a8d44e207264ba7ac3b0f983af23de40c97812d062001863fa296"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardWritingAidController.swift",
+      "bytes": 8175,
+      "sha256": "b566ed3f661bde6ad28ba3f6748afd2f2c5bc10a25aed6cc9ccb32f9e2fc4a94"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardWritingAidRepository.swift",
+      "bytes": 6008,
+      "sha256": "411113586a79f52fffd02dae63fc835cfbd7449f4f6878aee4574eeebf9bac77"
+    },
+    {
+      "path": "ios/InkSpace/Core/BoardWritingAidStrokes.swift",
+      "bytes": 10859,
+      "sha256": "a52299d20c228a2d86848efc4c7045890074ec11320f92df94583c6ca7bd093d"
+    },
+    {
+      "path": "ios/InkSpace/Core/DiagnosticsCenter.swift",
+      "bytes": 18543,
+      "sha256": "b913a93e0ab005fcfaa1172243d346c1a134b3cc41dee9fccf6e36f5769f63a9"
+    },
+    {
+      "path": "ios/InkSpace/Core/DocumentReadingLanguage.swift",
+      "bytes": 452,
+      "sha256": "0f54b5c994dae2a66d243c802f613743f725fcaaf1303e2e946a46c40503083f"
+    },
+    {
+      "path": "ios/InkSpace/Core/DraftTextHistory.swift",
+      "bytes": 1389,
+      "sha256": "fa783d07db2bba1bbde29d40a72c008ea758e0f4852165c746d63aa4fa7e265d"
+    },
+    {
+      "path": "ios/InkSpace/Core/InkReplay.swift",
+      "bytes": 9754,
+      "sha256": "4f6627949d891d8ec1c4d74de55d1a98bbb2874c3021588614752fd525294d2c"
+    },
+    {
+      "path": "ios/InkSpace/Core/InkReplayDisplayMode.swift",
+      "bytes": 909,
+      "sha256": "f641d6e3700398e3bffb7c050b1980b7f0c84621e45677fa4ee82624cb17b848"
+    },
+    {
+      "path": "ios/InkSpace/Core/LocalBoardBackupStore.swift",
+      "bytes": 46977,
+      "sha256": "b71df18d52b725f0374b437cb88c9b0abd1c7ebf16967430a5d586dc05f663ab"
+    },
+    {
+      "path": "ios/InkSpace/Core/LocalOCR.swift",
+      "bytes": 22830,
+      "sha256": "d2f58db5ff9ae845dcb8446ba319f6a83dbd30c33890a68a4cf3e713e7aeb029"
+    },
+    {
+      "path": "ios/InkSpace/Core/Models.swift",
+      "bytes": 28830,
+      "sha256": "376b69ecc06519f2a5128e56a39ee7b4d2f661352eb94a53060755dc9a6d136a"
+    },
+    {
+      "path": "ios/InkSpace/Core/NativePaletteSettings.swift",
+      "bytes": 6387,
+      "sha256": "c6c7c819ed57c9fc60235397c87d22f8300889c6dab2517fea9aa71cb71d6f29"
+    },
+    {
+      "path": "ios/InkSpace/Core/PageGrid.swift",
+      "bytes": 6449,
+      "sha256": "99e38981dee34a228cffbd4315a69c21452929472042c15fb5737816aa142a40"
+    },
+    {
+      "path": "ios/InkSpace/Core/PrintPageGeometry.swift",
+      "bytes": 7101,
+      "sha256": "becefbfc03587fdeba0f0ac7d2506db2f2b6a3b739e9da2bf5239f7cdf048d5f"
+    },
+    {
+      "path": "ios/InkSpace/Core/RecentBrowseStore.swift",
+      "bytes": 21163,
+      "sha256": "f9213c3bf950d261890b0355e49fb22e9b7d568375877fa244b6293f96d32623"
+    },
+    {
+      "path": "ios/InkSpace/Core/ReviewStrokeGeometry.swift",
+      "bytes": 3481,
+      "sha256": "07dacf8e5e25c8c0be98cd4675ff30ee95a0d532c2a45c278de3954cca29beff"
+    },
+    {
+      "path": "ios/InkSpace/Core/VaultFileIO.swift",
+      "bytes": 4379,
+      "sha256": "06d5d39e55d7e3b8440deca9f38f7387cb296b7bfd08b801f8028bf1c8e4e641"
+    },
+    {
+      "path": "ios/InkSpace/Core/WorkspaceSceneRegistry.swift",
+      "bytes": 1877,
+      "sha256": "845da74d3f0711f75d16591a369f39269630b203f2c0d505a6996a5c84be5fce"
+    },
+    {
+      "path": "ios/InkSpace/Core/WorkspaceWindowPersistence.swift",
+      "bytes": 6631,
+      "sha256": "a394712db750481417af4dbbba341f4553a622bf7db7f88dd4129967e40f93c3"
+    },
+    {
+      "path": "ios/InkSpace/CourseChecklist/CourseChecklistModel.swift",
+      "bytes": 8644,
+      "sha256": "d99906d769ec0d93696ae9fda7fe0582f31b7d994cabeca700ba1a217bdf5620"
+    },
+    {
+      "path": "ios/InkSpace/CourseChecklist/CourseChecklistStore.swift",
+      "bytes": 10524,
+      "sha256": "375665edccfe27006e8ef22fff72fef98ae901a678a4b2833dd467ec88cc7fe6"
+    },
+    {
+      "path": "ios/InkSpace/CourseChecklist/CourseChecklistView.swift",
+      "bytes": 19858,
+      "sha256": "a3ea82ca87ca4fda8211e00c1fb3ec64a082ae09c315246ef7b0bf9762e1af7a"
+    },
+    {
+      "path": "ios/InkSpace/Documents/BoardPDFAnnotationOwners.swift",
+      "bytes": 792,
+      "sha256": "dafe1b7a91f7feeeb5170f6d56b80d3afa083ca991b185d9d944325ff0057b54"
+    },
+    {
+      "path": "ios/InkSpace/Documents/BoardRichTextRenderer.swift",
+      "bytes": 10525,
+      "sha256": "9dbfe07727133747d51272b5401bc6a822cff4acbe6ab9e79062d19abb43117d"
+    },
+    {
+      "path": "ios/InkSpace/Documents/BoardViewportThumbnailWorker.swift",
+      "bytes": 14327,
+      "sha256": "5b2ec48545ff415c7af3f83b132bdefabceaba2a73d162f37a22cb1a739417f7"
+    },
+    {
+      "path": "ios/InkSpace/Documents/DocumentLibrary.swift",
+      "bytes": 62535,
+      "sha256": "b197575ebbe09c3bd790bb798e8327a9fe695e74b30a4c6911508b1df831d34a"
+    },
+    {
+      "path": "ios/InkSpace/Documents/ExcelDocumentRenderer.swift",
+      "bytes": 17652,
+      "sha256": "f77e8f9de821f6c2570fe44f39bfddb397b27715fb0c77b5328a014aa096514b"
+    },
+    {
+      "path": "ios/InkSpace/Documents/ExcelEmbeddedPictures.swift",
+      "bytes": 25674,
+      "sha256": "c02e04b564493732e9b91e6b8c797783521abb9201f955b7f133ca54151f6656"
+    },
+    {
+      "path": "ios/InkSpace/Documents/FormulaRenderer.swift",
+      "bytes": 10473,
+      "sha256": "ff9e73ee53be69204eb5589ac9cb4161c09d5d6a61d0c1b7e158e29ceec4548f"
+    },
+    {
+      "path": "ios/InkSpace/Documents/ImageDocumentRenderer.swift",
+      "bytes": 4442,
+      "sha256": "116e738d9c36e2eee395dcf32f69e1d943d7d4954a4bc939db07ed04c67ba01d"
+    },
+    {
+      "path": "ios/InkSpace/Documents/MarkdownDocumentRenderer.swift",
+      "bytes": 12799,
+      "sha256": "cbc0bd95d8d781b109e5cc78029a5577facdb25974caf29ffaf9f72606e50f60"
+    },
+    {
+      "path": "ios/InkSpace/Documents/MarkdownDocumentService.swift",
+      "bytes": 19064,
+      "sha256": "6c00bdc3bf33f8ea0def39daf4d814c82cd2d901a418453ba2c1f316342b0c7d"
+    },
+    {
+      "path": "ios/InkSpace/Documents/OfficeDocumentRenderer.swift",
+      "bytes": 13893,
+      "sha256": "2356e345d37a8294544965796f1de4f96dddee43a4297925cb6e0fe456a524ca"
+    },
+    {
+      "path": "ios/InkSpace/Documents/PDFAnnotationWritebackService.swift",
+      "bytes": 18217,
+      "sha256": "b5bd4edbf3e26a37ef49a7a4f42aa40d8a4f215ceceb37a3c92261de17c29fdf"
+    },
+    {
+      "path": "ios/InkSpace/Documents/PDFIncrementalInkWriter.swift",
+      "bytes": 38097,
+      "sha256": "9f529085a981f475eb73b9d6359f2a05248dab923619d997f1c00ffc1e161776"
+    },
+    {
+      "path": "ios/InkSpace/Documents/PDFInkProjection.swift",
+      "bytes": 18866,
+      "sha256": "e2b146d0f3f5bff51cd23438bbfc32d8c1d426aa1f9228fab58462f150fc887b"
+    },
+    {
+      "path": "ios/InkSpace/Documents/README.md",
+      "bytes": 15266,
+      "sha256": "a8243d9766c9caf8b84ccfea6b4f5af1c7353a1eb9ee18992104117103c58bd2"
+    },
+    {
+      "path": "ios/InkSpace/Documents/ScannedPDFExport.swift",
+      "bytes": 2924,
+      "sha256": "48bfab6b7e9b47c4828dd26e5ba9f3869f6f76d59c44abeb270d1c2d530cef51"
+    },
+    {
+      "path": "ios/InkSpace/Documents/SourceDocumentRenderStore.swift",
+      "bytes": 16655,
+      "sha256": "0129e04ef75cdb0e08c9d9a2a47909d57b93b8440291df666a8f9329909de1a6"
+    },
+    {
+      "path": "ios/InkSpace/Documents/SystemDocumentPicker.swift",
+      "bytes": 1784,
+      "sha256": "fbd1af857f3d74845e56d0310e0ec6d0c9d49574f8845d6a459bf7755aab8288"
+    },
+    {
+      "path": "ios/InkSpace/Documents/VaultDocumentPicker.swift",
+      "bytes": 37810,
+      "sha256": "b9b0d6510e3b9abbacd5ea6860da4cea31623156203f1da05e645e76b0273975"
+    },
+    {
+      "path": "ios/InkSpace/Documents/VaultPathResolver.swift",
+      "bytes": 1148,
+      "sha256": "1de9e9f50d2df671a7f66ac1a6de0bb8d8dc4700f7eda5c20a1fc35066e21d3a"
+    },
+    {
+      "path": "ios/InkSpace/Exchange/BoardStore+NoteExchange.swift",
+      "bytes": 3548,
+      "sha256": "cd4bbe503ec9a16413ca88031695c73b287b53ff307a8b1d030dc58859f9804e"
+    },
+    {
+      "path": "ios/InkSpace/Exchange/NoteExchange.swift",
+      "bytes": 13525,
+      "sha256": "f3c9de2674a2392f485c828197df7558d8c2c8e4396f526446e3245cd7b5cf89"
+    },
+    {
+      "path": "ios/InkSpace/Exchange/NoteExchangeView.swift",
+      "bytes": 17222,
+      "sha256": "b7834d816cbd1aa42cbce30db82dbbb25d6ec97d3b437b76e75a20e5e235f9ac"
+    },
+    {
+      "path": "ios/InkSpace/Exchange/NoteOutline.swift",
+      "bytes": 5872,
+      "sha256": "f442583c8eb653044b581636f6e76f217c057880ce27bf47ce15f8f8c7bb8c3b"
+    },
+    {
+      "path": "ios/InkSpace/FileManagement/FileManagementView.swift",
+      "bytes": 19370,
+      "sha256": "18c3b56232de3e281f618b8ce1d1a3487cdd6021410d5e5cd9cf4ae614d763b1"
+    },
+    {
+      "path": "ios/InkSpace/FileManagement/VaultFileManagement.swift",
+      "bytes": 54119,
+      "sha256": "be654d53c68dbb337b8d12d38558fe46d628029640df0644537a21b5e1ba35be"
+    },
+    {
+      "path": "ios/InkSpace/Info.plist",
+      "bytes": 2628,
+      "sha256": "e8652572142a8fc9d4e9065b245950aa030a9403d563f2b7395cb08036705ca2"
+    },
+    {
+      "path": "ios/InkSpace/InkSpaceApp.swift",
+      "bytes": 25879,
+      "sha256": "01b30fd3fa59e8f73a89623e0d7bfeba4abe9b42337d1afa46f2852a7a67e193"
+    },
+    {
+      "path": "ios/InkSpace/MediaEditor/MediaCaptionImporter.swift",
+      "bytes": 5721,
+      "sha256": "9373c2327ecabb26faa5bad2393c10ca41657c5be689943ed2eb2621ddb6ef1b"
+    },
+    {
+      "path": "ios/InkSpace/MediaEditor/MediaCompositionRenderer.swift",
+      "bytes": 17660,
+      "sha256": "46e71e251a1936431f7f1d8dbc2a3680adfb1cd21d5e007fe976c1326012db24"
+    },
+    {
+      "path": "ios/InkSpace/MediaEditor/MediaEditorSheets.swift",
+      "bytes": 11091,
+      "sha256": "0e41518f3902fcbce736080dc3719c0997a6042969d345cceba4f10b4dd07f61"
+    },
+    {
+      "path": "ios/InkSpace/MediaEditor/MediaEditorView.swift",
+      "bytes": 37992,
+      "sha256": "3068805a811b65d9d56d448d0b9d7d55d7186a3e6e882a3fa969627cb34d831e"
+    },
+    {
+      "path": "ios/InkSpace/MediaEditor/MediaEffectsEditor.swift",
+      "bytes": 13692,
+      "sha256": "e8eab6ce7ae7cbade6afd29b7498a56225ef7039d0bc85eefbc9fe01b424247d"
+    },
+    {
+      "path": "ios/InkSpace/MediaEditor/MediaExportService.swift",
+      "bytes": 15844,
+      "sha256": "a6d65054db6e9fd3033dbbb1ed8120d1cce80c22eaccba025d2a83d07d0516a5"
+    },
+    {
+      "path": "ios/InkSpace/MediaEditor/MediaProject.swift",
+      "bytes": 12467,
+      "sha256": "19fec9f031e0a5bb47ec2dd02dc2391d437493f58e18597004ac8ef9d3cfc6ab"
+    },
+    {
+      "path": "ios/InkSpace/MediaEditor/MediaSourceImporter.swift",
+      "bytes": 5780,
+      "sha256": "eac9ac77187cbd84b7ebc75383294e3c7439ab7acc32eb9da02f167f4dbd34b0"
+    },
+    {
+      "path": "ios/InkSpace/PDFExtension/PDFExtensionExporter.swift",
+      "bytes": 16014,
+      "sha256": "bd54acc429723061919ff49bbf2fc3f50ff6f029c05f5543395f5c7e9fda9c1a"
+    },
+    {
+      "path": "ios/InkSpace/PDFExtension/PDFExtensionGeometry.swift",
+      "bytes": 1715,
+      "sha256": "dfaddc874d6f24452e997f07dfc2b16dadcc1b51adfa963efd4c965bcdffdb19"
+    },
+    {
+      "path": "ios/InkSpace/PDFExtension/PDFExtensionModel.swift",
+      "bytes": 10996,
+      "sha256": "a07933f42c2e6746ccc79d62f5a87aad4ad49273b06ebc511f65d9ddccdce14e"
+    },
+    {
+      "path": "ios/InkSpace/PDFExtension/PDFExtensionReader.swift",
+      "bytes": 33156,
+      "sha256": "1386e05e38de957ddb2fa9c04422f478ce16578dc9adc6834d801c2481af5409"
+    },
+    {
+      "path": "ios/InkSpace/PDFExtension/PDFExtensionRendering.swift",
+      "bytes": 35207,
+      "sha256": "dd2e14ffe23e2f5fe5295a997a358b9b2aad51cd98a34c01894a89da8a50f800"
+    },
+    {
+      "path": "ios/InkSpace/PDFExtension/PDFExtensionRepository.swift",
+      "bytes": 24910,
+      "sha256": "3fa68897fa22cc749fc7bd1b19eb6e57f460bc381c1892519624eb24b89bf9bc"
+    },
+    {
+      "path": "ios/InkSpace/PDFExtension/PDFExtensionStore.swift",
+      "bytes": 3997,
+      "sha256": "9441b06c95edc797a3330ce9401e5d381b62d46489cdea088525922e618ff105"
+    },
+    {
+      "path": "ios/InkSpace/PDFExtension/PDFNativeInk.swift",
+      "bytes": 4018,
+      "sha256": "8d2aca24d018e84368c4c035a31118e70781b4e723cd2d8b6da4c135c833a401"
+    },
+    {
+      "path": "ios/InkSpace/PDFExtension/PDFNativeInkArchive.swift",
+      "bytes": 745,
+      "sha256": "43246d41ab9a06c366bd610f8ad5d3074af390a404956b58d643e010bb8463f9"
+    },
+    {
+      "path": "ios/InkSpace/PDFExtension/PDFOutlineView.swift",
+      "bytes": 5008,
+      "sha256": "04f193f40c86c1f358b3e32505dc60069c2dea959ebaaa3311df1c67cf70095b"
+    },
+    {
+      "path": "ios/InkSpace/PDFExtension/PDFSourceReference.swift",
+      "bytes": 4289,
+      "sha256": "4feb3660e8b45fe231150c2eda662478add5f6245995840fd8982cf6b1e6a1ca"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/BoardPDFWorkspaceView.swift",
+      "bytes": 3127,
+      "sha256": "c2b7375b481df347ce8e55e4318eaada8ec669d29b948725f0365620dffeef04"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFFileExportView.swift",
+      "bytes": 9225,
+      "sha256": "2b396bf0ea6f4656a74d09c85252a44f0fec369e3c49b500e35d5d580a19b307"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFImageExcerpt.swift",
+      "bytes": 12720,
+      "sha256": "c14ed3195bf7aac85e47687c680b357992289e1be2bab250a765e3a23d6f0451"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFInkPenMenu.swift",
+      "bytes": 1104,
+      "sha256": "310b19fb6574cd07f3e229b91d1ec461494cedb4b8f35eb4f5e9caf1a5f09b24"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFReadAloudControls.swift",
+      "bytes": 5350,
+      "sha256": "88fae5918dc6f2e0c259080e05d63ce7d26f6258f446c092e5c761cb85bcb9b5"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFReadingHighlight.swift",
+      "bytes": 1389,
+      "sha256": "1fb5c7320864359845236dedf0b9155f9375ab861545ce9b57606a3e2c53faec"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFWorkspaceControls.swift",
+      "bytes": 18462,
+      "sha256": "ab1c4fa8048e7b51c5362abfb0993fa236fa1a663e0eed1d68b37725f6fc1783"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFWorkspaceEvent.swift",
+      "bytes": 12295,
+      "sha256": "7855e792aa3ae4fc8ed85a4a2fc87e8e49f636f6cea2b7ab946b0422b8169f63"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFWorkspaceOverlayGeometry.swift",
+      "bytes": 767,
+      "sha256": "fc1658e09a88f2388d8a3a8367a3293a41d4c09c159fce735eb7ae8c50161102"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFWorkspacePane.swift",
+      "bytes": 21615,
+      "sha256": "d5dd93f31aa48c4e0af346876fa63165cc79b50b69dd1b7a2549914dababc2d7"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFWorkspaceReader.swift",
+      "bytes": 36474,
+      "sha256": "d710cbb53a81c2711c381a23010af21ce082bb019096dc58e0b1405c45c2d159"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFWorkspaceRepository.swift",
+      "bytes": 23637,
+      "sha256": "1be4f9e16435901d60f4faf216d2108bda8108bb4cd13ab2a6b58af2901df14e"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFWorkspaceTranslationExport.swift",
+      "bytes": 11550,
+      "sha256": "74a1c1a96c86401a86570d0b865b0653c0e4e2bb4a0b6f2b07a6694db9ae47ee"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFWorkspaceTranslationJob.swift",
+      "bytes": 5984,
+      "sha256": "156dd55a25abb2c7447a3ba95de178e028d4452431dba8658a7a52678ecc6fd1"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PDFWorkspaceView.swift",
+      "bytes": 20950,
+      "sha256": "b004484c50db2f8b906c438da8fd3c4d6f4dab6a0d591ba750c569abf6356b61"
+    },
+    {
+      "path": "ios/InkSpace/PDFWorkspace/PhonePDFReader.swift",
+      "bytes": 29741,
+      "sha256": "70389ecc4f63ad08fe213ed2dcbe8178a9c09062ca03496f65d764ef4e3d2680"
+    },
+    {
+      "path": "ios/InkSpace/Resources/CourseChecklist/poetry-rewards.json",
+      "bytes": 4186,
+      "sha256": "0b291dc4a6760d18bb3dc80833a6cebcc787e3c88ce99de268dd3fe9e12bfc85"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Excel/LICENSE-SheetJS.txt",
+      "bytes": 11355,
+      "sha256": "4d2a38ac35cda06a555c84074a819d413339cd3691b822cae50f8f322fe01f64"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Excel/PROVENANCE.json",
+      "bytes": 436,
+      "sha256": "10ae69028281a1fa76160e1b4125ee65366456007886565cf2d5cf8de8dd47fa"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Excel/index.html",
+      "bytes": 369,
+      "sha256": "e639f7d836a8895c1d64a16ff896c88d946021ad4834290546f3394908fc8bbd"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Excel/reader.js",
+      "bytes": 5109,
+      "sha256": "aa0dde26366992f7af03d84fff7c2f4fde89c382f090a34b7f46fa23744c4eed"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Excel/xlsx.full.min.js",
+      "bytes": 951904,
+      "sha256": "cc015130aa8521e7f088f88898eba949ccdcbfb38df0bd129b44b7273c3a6f41"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Markdown/MARKED-LICENSE.md",
+      "bytes": 2942,
+      "sha256": "8e3a3f82f59a60958f56ca08f445647c32a4733dc7ca6c2c46f6eb898471ab9c"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Markdown/README.md",
+      "bytes": 2824,
+      "sha256": "ba7b08f3241562472be8c5d13a89c4862e0581a124b1b3d0f892e9c1619d94bb"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Markdown/index.html",
+      "bytes": 670,
+      "sha256": "72107ad9b858dae10e03f62d804003ab32ecd1bf24f90430125aa363597a1b61"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Markdown/marked.umd.js",
+      "bytes": 42540,
+      "sha256": "0db7abc826b5ac76f6ed11951ae34074ba50438ce6ea8d52889203779e5cbbad"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Markdown/reader.css",
+      "bytes": 1704,
+      "sha256": "026175f09c0a287775800f34d653dd2e46f3dd59b011003c211ca53a724b5121"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Markdown/reader.js",
+      "bytes": 4480,
+      "sha256": "32fd9782d8b827425efe24ec6fe35d3c7ad5d3959dbc0578d257311a88b8f35b"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/LICENSE-KaTeX.txt",
+      "bytes": 1107,
+      "sha256": "766ccc1f306c885aa45542a9846bbd0a505b27a0374f146778171c2254ce18e3"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/PROVENANCE.json",
+      "bytes": 307,
+      "sha256": "1e5312fda5baf32ab3776c5f5fd6ebf3273fbbcc1f30b170bdd1fd7c02fb8aaa"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/RichText/LICENSE-Marked.md",
+      "bytes": 2942,
+      "sha256": "8e3a3f82f59a60958f56ca08f445647c32a4733dc7ca6c2c46f6eb898471ab9c"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/RichText/PROVENANCE.json",
+      "bytes": 398,
+      "sha256": "47d0e38fe0b094072385aaf2e6a67235ee26f0c83167979a2039f9312138dc98"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/RichText/index.html",
+      "bytes": 598,
+      "sha256": "727542319b8e548cc6002d041ed47675954d8bb93b31f546b6159548a53ab9e7"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/RichText/rich-text.css",
+      "bytes": 1077,
+      "sha256": "9beb9fe72424cdd888771a5160827ec4c9a4f34cc736d8146353f01f0f234d36"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/RichText/rich-text.js",
+      "bytes": 319440,
+      "sha256": "4a2f3829dd4a62384617f2f9036d88326f90387658740a37740724264de62300"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_AMS-Regular.ttf",
+      "bytes": 63632,
+      "sha256": "68534840bcfdd2bffb6f0e8deb48684dd01e7f04ea2813267577afb906de1d13"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_AMS-Regular.woff",
+      "bytes": 33516,
+      "sha256": "30da91e84c893f875e252689faebdc590b2871145e8adc7f9a9d4dbd8ce0b251"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_AMS-Regular.woff2",
+      "bytes": 28076,
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Caligraphic-Bold.ttf",
+      "bytes": 12368,
+      "sha256": "07d8e303ce4fc12b4bb54f1004170dd190a1f3db45d400fe68060df3e0897268"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Caligraphic-Bold.woff",
+      "bytes": 7716,
+      "sha256": "1ae6bd7475590e97e7f145a89e09ccde322f7a6bc0b91607b1c8b8ee28290fed"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "bytes": 6912,
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Caligraphic-Regular.ttf",
+      "bytes": 12344,
+      "sha256": "ed0b74372feefcbb9c0666b2e210da37b7e49fa7fbbf3eeb11db5f693dacfbb7"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Caligraphic-Regular.woff",
+      "bytes": 7656,
+      "sha256": "3398dd02302557a793f2863f88e02d96ce10df2abffa07c8e9fa90775116e65c"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "bytes": 6908,
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Fraktur-Bold.ttf",
+      "bytes": 19584,
+      "sha256": "9163df9c7122432e6495b4229fa9071cf9ae86a758ae5efc4924ec2e1a6dbce1"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Fraktur-Bold.woff",
+      "bytes": 13296,
+      "sha256": "9be7ceb88004ab8ad124082246fbfcca4091e36385d4ec6ed1df67375dad50fb"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Fraktur-Bold.woff2",
+      "bytes": 11348,
+      "sha256": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Fraktur-Regular.ttf",
+      "bytes": 19572,
+      "sha256": "1e6f9579e90e2cac37f8f60a597c436e075c114385652b7cbeb0dec0421291b3"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Fraktur-Regular.woff",
+      "bytes": 13208,
+      "sha256": "5e28753be717dac97f559f49bc10be9cf3c124ddcabda6659d11cb68febc6463"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Fraktur-Regular.woff2",
+      "bytes": 11316,
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Main-Bold.ttf",
+      "bytes": 51336,
+      "sha256": "138ac28d1663b3037e9c5f52371fa5c63d8324f4a38d22cd573e6ea3a3fd0cf8"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Main-Bold.woff",
+      "bytes": 29912,
+      "sha256": "c76c5d696297d51b9cb1639c7da4334f0e7dec81b42b11213b5e25ef671bb822"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Main-Bold.woff2",
+      "bytes": 25324,
+      "sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Main-BoldItalic.ttf",
+      "bytes": 32968,
+      "sha256": "70ee1f64a20f2048c21940ef46d0144fd215baa953ca69afd1e31e98544f708f"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Main-BoldItalic.woff",
+      "bytes": 19412,
+      "sha256": "a6f7ec0d846ac7ad975adb8959c37ed49b94acbc4ae436db9ce9e20287e4a64c"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Main-BoldItalic.woff2",
+      "bytes": 16780,
+      "sha256": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Main-Italic.ttf",
+      "bytes": 33580,
+      "sha256": "0d85ae7cc30f23790a7f1a58c4a112fdca8aae769b6ba11429af1d98b1b6cb3a"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Main-Italic.woff",
+      "bytes": 19676,
+      "sha256": "f1d6ef86f3b11a528bd5185199bd2443ecb2b0dead96d88674b5a2c12be24bdf"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Main-Italic.woff2",
+      "bytes": 16988,
+      "sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Main-Regular.ttf",
+      "bytes": 53580,
+      "sha256": "d0332f52868370fd83ae7fa46470f90c8f2eab2fcf12bc4f88080b340c95a830"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Main-Regular.woff",
+      "bytes": 30772,
+      "sha256": "c6368d87e8a1a3a5d337623d83d8dc4b868f242a9ad476237d6f8d1e0f168cdc"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Main-Regular.woff2",
+      "bytes": 26272,
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Math-BoldItalic.ttf",
+      "bytes": 31196,
+      "sha256": "f9377ab0271cda59af24bcffbd46a4d0c8a3572ffafdbb38de2ad5ea7b0d5ee5"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Math-BoldItalic.woff",
+      "bytes": 18668,
+      "sha256": "850c0af5c2238497febaf5e461d880bf458c341f42f4f330f1b1ab5698b1998e"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Math-BoldItalic.woff2",
+      "bytes": 16400,
+      "sha256": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Math-Italic.ttf",
+      "bytes": 31308,
+      "sha256": "08ce98e51b04d58945a301e639e02b6998af29fdfd61a7b8afdd07bbfc479d4a"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Math-Italic.woff",
+      "bytes": 18748,
+      "sha256": "8a8d244581371912b8f3f5a23e2437cb2a59cd9bcaebb0346e722c05737a2571"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Math-Italic.woff2",
+      "bytes": 16440,
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_SansSerif-Bold.ttf",
+      "bytes": 24504,
+      "sha256": "1ece03f79f95277d57dc7f6b435a74e1379b0d46104a8530286b60ff49369ea0"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_SansSerif-Bold.woff",
+      "bytes": 14408,
+      "sha256": "ece03cfd83e22c212cdef66feb8442d25a083beb988db3f1883f3f9738d750ba"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_SansSerif-Bold.woff2",
+      "bytes": 12216,
+      "sha256": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_SansSerif-Italic.ttf",
+      "bytes": 22364,
+      "sha256": "3931dd81faed86ba021bb2bbdc36f5bed9a38d6b4f4077aca59b265aa1b02083"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_SansSerif-Italic.woff",
+      "bytes": 14112,
+      "sha256": "91ee67500cc0129aa0ace3ac5c61ff1692102f0f31d02b69347fba35dcb75bf2"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_SansSerif-Italic.woff2",
+      "bytes": 12028,
+      "sha256": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_SansSerif-Regular.ttf",
+      "bytes": 19436,
+      "sha256": "f36ea897e19f4a2e571d1e900e4e3710e438deb05a842486045ba0a3e616a4ad"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_SansSerif-Regular.woff",
+      "bytes": 12316,
+      "sha256": "11e4dc8a6471ff6d6ee561d53d10fde8f7489e798257ff449c5d37c197435605"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_SansSerif-Regular.woff2",
+      "bytes": 10344,
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Script-Regular.ttf",
+      "bytes": 16648,
+      "sha256": "1c67f068fea8bb09bf099c088b1cf64bd27516a6e07f4684344873564bb66a67"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Script-Regular.woff",
+      "bytes": 10588,
+      "sha256": "d96cdf2b3bdd4d64a8fd5f74a4c467f123a8a73931cd435889f08ffaf9bf947a"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Script-Regular.woff2",
+      "bytes": 9644,
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Size1-Regular.ttf",
+      "bytes": 12228,
+      "sha256": "95b6d2f1a50173bfedb8c63e1d1c99b10427d0a4df4201cb44513b226951a22b"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Size1-Regular.woff",
+      "bytes": 6496,
+      "sha256": "c943cc986384f59e86bea5fd7dc50a9c4dfe567a7c05eb40d6790720dead97c9"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Size1-Regular.woff2",
+      "bytes": 5468,
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Size2-Regular.ttf",
+      "bytes": 11508,
+      "sha256": "a6b2099fb555c60e3a0db3a08842ebf1d732c6eb4e4bf44913613bed4fc4e39b"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Size2-Regular.woff",
+      "bytes": 6188,
+      "sha256": "2014c523c3210bcc166648c4d4cc57f05b747df07a24277bf71c51e67dc79e3d"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Size2-Regular.woff2",
+      "bytes": 5208,
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Size3-Regular.ttf",
+      "bytes": 7588,
+      "sha256": "500e04d54f0d51666332c9d2089aa803be22aa878eca539e59fa53c6e522b082"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Size3-Regular.woff",
+      "bytes": 4420,
+      "sha256": "6ab6b62e9b62dae2c00dd90f791bd10950be0ecc3490d7d6045f51c2e8fe0949"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Size3-Regular.woff2",
+      "bytes": 3624,
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Size4-Regular.ttf",
+      "bytes": 10364,
+      "sha256": "c647367d1dd4e162468717d020e1fc0f1dc5c26ebfdffbe55261713bf88c5877"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Size4-Regular.woff",
+      "bytes": 5980,
+      "sha256": "99f9c6750b489c9462bf04900bd3f939df9b829339daaaaa99ef5495cdddea58"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Size4-Regular.woff2",
+      "bytes": 4928,
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Typewriter-Regular.ttf",
+      "bytes": 27556,
+      "sha256": "f01f3e87d9c6a61c0c081ceb577abd864eb00a612f7ac1620dd6915fad2ef5aa"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Typewriter-Regular.woff",
+      "bytes": 16028,
+      "sha256": "e14fed02b1aba7ce9f5afd5844b5d0321b22351febc720e0de8b8723527609f7"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/fonts/KaTeX_Typewriter-Regular.woff2",
+      "bytes": 13568,
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/index.html",
+      "bytes": 605,
+      "sha256": "ffddc8d96eab88ddf38cf3b9160425b6bbf95e3e947dbde0669c1b6eacb084e5"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/katex.min.css",
+      "bytes": 24788,
+      "sha256": "50d9c78e03da144a021001b7de679133355179bcb06fd11e9e309223056a03dd"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/katex.min.js",
+      "bytes": 272715,
+      "sha256": "10a91b479cd927446ceb60409fb0d72b5d0d05eaf446c9e52fafd64058c84540"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/renderer.css",
+      "bytes": 182,
+      "sha256": "c77baec2318fd88a27692be5f38df27f72a9f2d4019bd67fadf7cf52b0e78f8b"
+    },
+    {
+      "path": "ios/InkSpace/Resources/Math/renderer.js",
+      "bytes": 1758,
+      "sha256": "bb6231fb44e26f492a74f2bbb1ee446fa8e7c63396dc65c75399ca441cecc831"
+    },
+    {
+      "path": "ios/InkSpace/Resources/MathLab/app.js",
+      "bytes": 53758,
+      "sha256": "ee44926959543c65e3a4f98c5c3dc8b7c06c55bcffea1fe59f532451ea5d384d"
+    },
+    {
+      "path": "ios/InkSpace/Resources/MathLab/engine.js",
+      "bytes": 35866,
+      "sha256": "f4b1fe5f46f6891c87364c66d35fe3316377bcb7ea3a2fd318ae2332be4cd9b7"
+    },
+    {
+      "path": "ios/InkSpace/Resources/MathLab/index.html",
+      "bytes": 799,
+      "sha256": "1d41c9a18b3ac0b903fd77747a8ca1019c272439aa2c33e73844c59fc885aeae"
+    },
+    {
+      "path": "ios/InkSpace/Resources/MathLab/simple-core.js",
+      "bytes": 19849,
+      "sha256": "4ec15e82bb70838cc68e08d69845a77482273e5419de96e63655e23549f66492"
+    },
+    {
+      "path": "ios/InkSpace/Resources/MathLab/simple.css",
+      "bytes": 8486,
+      "sha256": "edeed86a4c2f9876e31f5cfd553e6c369c38faed53078e5e190e4b89fd6e5b82"
+    },
+    {
+      "path": "ios/InkSpace/Resources/MathLab/simple.html",
+      "bytes": 4218,
+      "sha256": "e8cdf5e62f4944af8222d2d38e558a974117be63736f0085f2453287663c5443"
+    },
+    {
+      "path": "ios/InkSpace/Resources/MathLab/simple.js",
+      "bytes": 41736,
+      "sha256": "800bb55ca753b2b055ce586f715c2e25f8b769bb7acae2647dbedb9b16cb8063"
+    },
+    {
+      "path": "ios/InkSpace/Resources/MathLab/style.css",
+      "bytes": 7661,
+      "sha256": "428ef30a6a03c04dc30fd746d514258232636d95744922f110bd5181f71bc7d6"
+    },
+    {
+      "path": "ios/InkSpace/Study/BoardStore+StudyImport.swift",
+      "bytes": 1011,
+      "sha256": "c3df032b740aa5686a7a2ad062ae48307d5ec641e2b8cf41d92f753034cb86f0"
+    },
+    {
+      "path": "ios/InkSpace/Study/StudyCSV.swift",
+      "bytes": 7374,
+      "sha256": "f5a805d86971ae5ca1f44c867540a4c170579fe0f93b2b755e23f170beef3ee7"
+    },
+    {
+      "path": "ios/InkSpace/Study/StudyCardEditor.swift",
+      "bytes": 5893,
+      "sha256": "569342c44db912147705125d379317f8957febdfffbe483ea1f8794dfd5e5d96"
+    },
+    {
+      "path": "ios/InkSpace/Study/StudyCardExportView.swift",
+      "bytes": 7792,
+      "sha256": "34657c65f3271f9e8ed7bc305ec3caee5d16dede8bdeec5e41e8f8f34c148311"
+    },
+    {
+      "path": "ios/InkSpace/Study/StudyContentViews.swift",
+      "bytes": 11174,
+      "sha256": "f932e14880a414e938c4a47593cf188d2383ea8b51b514007b5c1cf03c0dae98"
+    },
+    {
+      "path": "ios/InkSpace/Study/StudyImageAnswer.swift",
+      "bytes": 19354,
+      "sha256": "cb22c84d6647a6a6274a11d99bfefb96f1ea8568b8186dbfb3bff802e42df3e0"
+    },
+    {
+      "path": "ios/InkSpace/Study/StudyImportSession.swift",
+      "bytes": 8980,
+      "sha256": "8c15813046551707b7cac527a3b89e8c934885600f042b6f3f30f6d399d15f18"
+    },
+    {
+      "path": "ios/InkSpace/Study/StudyModel.swift",
+      "bytes": 13060,
+      "sha256": "231248f9368b34b68ffb1be91930e68cb15eef16950fad300941073f02e311e1"
+    },
+    {
+      "path": "ios/InkSpace/Study/StudyPanel.swift",
+      "bytes": 18324,
+      "sha256": "3b8b1babcfaa04efd832e17ff25e4673f5951e7f41968cc579443b9477ea73ad"
+    },
+    {
+      "path": "ios/InkSpace/Study/StudyRepository.swift",
+      "bytes": 12993,
+      "sha256": "8e97d8a76100f0e7d06202f7070e6241dadadb22f95f6c95bdab73c1e1ff86d0"
+    },
+    {
+      "path": "ios/InkSpace/Study/StudyRichContent.swift",
+      "bytes": 2624,
+      "sha256": "56cbf42cc45ddff5ad9e720fbe3aea9d2617173ee82b08cf74a4ab090fb150d6"
+    },
+    {
+      "path": "ios/InkSpace/Study/StudySession.swift",
+      "bytes": 8778,
+      "sha256": "ba532401b503ace12456e530371507cc1a82e1e2dbb46d8907329698941c73fd"
+    },
+    {
+      "path": "ios/InkSpace/Study/StudyTransferView.swift",
+      "bytes": 13199,
+      "sha256": "f3979fbbd0b6625a5341bb765f923ab42009d5511a16e33cb68d70964ea18fc6"
+    },
+    {
+      "path": "ios/InkSpace/UI/AppSettingsView.swift",
+      "bytes": 6820,
+      "sha256": "c442eecb48a71f7b29b4aae9a24878bcef8dd6d68e07487becce60ec1e73360f"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardBackupSettingsView.swift",
+      "bytes": 8518,
+      "sha256": "afaa19547e88ceba8edd556f1fefdb4b500a6c06102a7c9c45dfc13204640d07"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardClipboardRequest.swift",
+      "bytes": 13989,
+      "sha256": "a7818f0ebf4afef77845bd5d2d10e07491452f619503860e971a4f21cc3fe154"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardExportView.swift",
+      "bytes": 14121,
+      "sha256": "de38ca6de66ba56dfd6d68d3aa851f6e9ce05bd0d2951071e5a06122ec165320"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardLibraryView.swift",
+      "bytes": 19455,
+      "sha256": "638e97e5b8d59396161a000bb15df4653958ed8c929239c5c418b4a19ebb4415"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardMergeView.swift",
+      "bytes": 11074,
+      "sha256": "15e2c905fda15c694853967a78af780f6c931dbfb6d83d10571de1f778bb7e1b"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardPasteView.swift",
+      "bytes": 17134,
+      "sha256": "1937bcc137e2365a74f390465dff48cbf773312050886fbfc2eb76efe83b6b7a"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardPrintPagesView.swift",
+      "bytes": 7120,
+      "sha256": "f9d9f32f3607b8e8ef6d89d0ba2ff830707c87d815c69bff379c9b3c014c8eef"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardReadAloudControls.swift",
+      "bytes": 6400,
+      "sha256": "fdc5a9675b129995c7134de404d52bc56da80f829e2f5b0b3ad9847b0192c745"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardReadingContentsView.swift",
+      "bytes": 6916,
+      "sha256": "75c956a179c472d98b5c5e266f7c3cc83c5e7b149641c25834b1f0d992e44e0e"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardReviewViews.swift",
+      "bytes": 15591,
+      "sha256": "9ef8ab9aa8ed05e93e2e44a3f42fce689cb27869c73bcf7b1d7e93eaee5159ed"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardRichTextEditor.swift",
+      "bytes": 5959,
+      "sha256": "cbb20223b3478d6a76fcef6378d2bf43df276189d0cc91050bce4a73609b6879"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardSaveDirectoryPicker.swift",
+      "bytes": 3936,
+      "sha256": "1b005405ae8d5ed8c343d920657cd5ab17585671dcd8173063605b7e43dcf3a7"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardSheets.swift",
+      "bytes": 66535,
+      "sha256": "ec2eef8efae881b00aa7e56a1b75470cdd8a667e3af78bdb0a88a596101f38c9"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardToolbarCustomizationView.swift",
+      "bytes": 4302,
+      "sha256": "09585e7207bbc5e602e909a9c3f4bbfe375270241dd321478585817af00947d0"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardWritingAidScribbleView.swift",
+      "bytes": 9696,
+      "sha256": "55da3a0cbae321ff9bc04d7cf456f4281b3628157da61f3c0a6f527d4ed2b397"
+    },
+    {
+      "path": "ios/InkSpace/UI/BoardWritingAidSettingsView.swift",
+      "bytes": 7218,
+      "sha256": "b01a17dd5545654639529757173cd39eb71c0f1ddbf9cf7f2f74937bd3e7ea84"
+    },
+    {
+      "path": "ios/InkSpace/UI/ChildBoardsSheet.swift",
+      "bytes": 8280,
+      "sha256": "de51c1f10ca59e57fd109e8f8be98bdf8336c27d174f98c583a80d92b2c76606"
+    },
+    {
+      "path": "ios/InkSpace/UI/DiagnosticsCenterView.swift",
+      "bytes": 10919,
+      "sha256": "a9c3448d5538cfc04a09d2c89d9d98ab1ec6fa37730bd46c2cf860a444e3b47f"
+    },
+    {
+      "path": "ios/InkSpace/UI/DocumentExpansionSheet.swift",
+      "bytes": 4138,
+      "sha256": "fb8545a47a56111fc53fb20dcd152d318a00f6195ef7cfaa1ab48087833e5183"
+    },
+    {
+      "path": "ios/InkSpace/UI/DocumentScannerView.swift",
+      "bytes": 13360,
+      "sha256": "2ad9cf499082a8ee52999925eea8cd712535ef9e521703cc93e993767c07f761"
+    },
+    {
+      "path": "ios/InkSpace/UI/ExcelPicturesReadingView.swift",
+      "bytes": 11736,
+      "sha256": "39671787fd7d6af896ad5bce381a8b774cc809b66a6bd1bca87cd6bc926f7745"
+    },
+    {
+      "path": "ios/InkSpace/UI/FloatingCalculatorOverlay.swift",
+      "bytes": 4023,
+      "sha256": "0f98cb234d0b83bed4d5bb1908ba52b131ca22e4eed0313c9677c247ee2b662b"
+    },
+    {
+      "path": "ios/InkSpace/UI/InkReplayBackdrop.swift",
+      "bytes": 11799,
+      "sha256": "d76c772de75d4f629fc0feec291cd168c2b102030bf1ee251a80d97d3ae25a6c"
+    },
+    {
+      "path": "ios/InkSpace/UI/InkReplayCanvas.swift",
+      "bytes": 11002,
+      "sha256": "2522610c62ed62f7d6f4cfb672328da571d611c3e1f234da4095baf0c7793518"
+    },
+    {
+      "path": "ios/InkSpace/UI/InkReplayView.swift",
+      "bytes": 10493,
+      "sha256": "052b07f872d2347fd88b32d4222343e14fa488fa45a27af066be7dbef0a6c8da"
+    },
+    {
+      "path": "ios/InkSpace/UI/InkSpaceWorkspaceView.swift",
+      "bytes": 137765,
+      "sha256": "092a0b88c22d36ceb7336b051a1a4e240b789081d041b23d3389d357bc943e44"
+    },
+    {
+      "path": "ios/InkSpace/UI/InlineImageReadingView.swift",
+      "bytes": 21925,
+      "sha256": "eb08d563689cb9fb5e4706db82d0f02a1be79b746cb7de95503ade44f389da74"
+    },
+    {
+      "path": "ios/InkSpace/UI/LocalOCRView.swift",
+      "bytes": 15207,
+      "sha256": "fe3e8306e1f8566d71c1d436a51cc8a8aefbef1aa7fc11dd745d76c0b693d288"
+    },
+    {
+      "path": "ios/InkSpace/UI/MarkdownDocumentView.swift",
+      "bytes": 22669,
+      "sha256": "f225f8b741bf5aa78faedabfc546eb82129853fadd74457d80ec0112a05f80ce"
+    },
+    {
+      "path": "ios/InkSpace/UI/MathWorkbenchView.swift",
+      "bytes": 10218,
+      "sha256": "8c408cdb3da56c245406a5033ffad0a42eb8ef79f578ecee5541aaa1af863e77"
+    },
+    {
+      "path": "ios/InkSpace/UI/NativeFileSavePicker.swift",
+      "bytes": 3747,
+      "sha256": "c366114993eea19b5180b6102de2662eb22dd4e45e2c343a883d9cf93c7fe1f7"
+    },
+    {
+      "path": "ios/InkSpace/UI/OfficeReadingTranslationView.swift",
+      "bytes": 3055,
+      "sha256": "8ad045b49471c29568640cb1b8e0fed5b14c392f745ef405a2d38321870b1b3c"
+    },
+    {
+      "path": "ios/InkSpace/UI/PDFSourceView.swift",
+      "bytes": 5342,
+      "sha256": "e4bda4a759ca0ead707c75b2afae10fbe239e7a81f8b88dce2c26baa964a34df"
+    },
+    {
+      "path": "ios/InkSpace/UI/PadKnowledgeHomeView.swift",
+      "bytes": 39601,
+      "sha256": "24df24c9df49acea646434671e418ea95be87f7eed40bb633e0b76ed92ea0714"
+    },
+    {
+      "path": "ios/InkSpace/UI/PadReviewSidebarView.swift",
+      "bytes": 8252,
+      "sha256": "29450e05cf8f25058b0681baf7dfe3ac7a0820f6681abb16afc1bdcba95cf559"
+    },
+    {
+      "path": "ios/InkSpace/UI/PadVaultSidebar.swift",
+      "bytes": 29250,
+      "sha256": "c73b8999a6dc281a367fe034932f428d9974c4c21729c0efa404cb583fa01e64"
+    },
+    {
+      "path": "ios/InkSpace/UI/PadWorkspacePanelLayout.swift",
+      "bytes": 902,
+      "sha256": "e274dbb260955c7921d6a488b1db4bac6da77c64d7e81ec11c78f9ee89241132"
+    },
+    {
+      "path": "ios/InkSpace/UI/PhoneBoardControls.swift",
+      "bytes": 8179,
+      "sha256": "0163bd46d8629299d092c2cdb1cac18f6616cb034ba8571813e69ce01ee7c6f2"
+    },
+    {
+      "path": "ios/InkSpace/UI/RecentBrowseSection.swift",
+      "bytes": 6592,
+      "sha256": "c3a6a0573dce01a02994fffc6da8c51f1fa074ad79668703473b8c0c06d3abfc"
+    },
+    {
+      "path": "ios/InkSpace/UI/ScannedPageEditor.swift",
+      "bytes": 10874,
+      "sha256": "c188000dc7847883566b827d064cf2223b85b13afbaa7ebbb94acaec44228cd6"
+    },
+    {
+      "path": "ios/InkSpace/UI/VaultFolderPicker.swift",
+      "bytes": 1420,
+      "sha256": "f7076938826641296dc398d0eb26ff6ce64b6e4ba4d029c29228958362bf79c0"
+    },
+    {
+      "path": "ios/InkSpace/UI/WorkspaceSceneLifetimeAnchor.swift",
+      "bytes": 2374,
+      "sha256": "74eb5b21c85a5322a5705b90dbe30d23e4a73731536dd2d25330f78e638ac451"
+    },
+    {
+      "path": "ios/InkSpace/Video/BoardSubtitleAppearance.swift",
+      "bytes": 11717,
+      "sha256": "f529405727beaed6989db1e4a1a5b36c5ef76c89c0ddbecc92f84c948fe4c8e0"
+    },
+    {
+      "path": "ios/InkSpace/Video/BoardSubtitleAssociationStore.swift",
+      "bytes": 19173,
+      "sha256": "2a94c286f6d643b51cbf39407d2572e5a830d7b12f6c3175ed0b2f6362cd5988"
+    },
+    {
+      "path": "ios/InkSpace/Video/BoardVideoCanvasOverlay.swift",
+      "bytes": 8725,
+      "sha256": "4535e9b42fa92537225e1fb8d71c7b8c0b590721efa72087a6ae17c498c3af1d"
+    },
+    {
+      "path": "ios/InkSpace/Video/BoardVideoPlayback.swift",
+      "bytes": 13204,
+      "sha256": "8404caaea49fec7b55b7f16008706de1746cf4035a3fcb0f2d8ac2e7b505fade"
+    },
+    {
+      "path": "ios/InkSpace/Video/BoardVideoPlayerView.swift",
+      "bytes": 30552,
+      "sha256": "8e1d1e6927162824785cdc072a97039d8ad27a074eeab897e2a7d89778c8b3a9"
+    },
+    {
+      "path": "ios/InkSpace/Video/BoardVideoSubtitles.swift",
+      "bytes": 23264,
+      "sha256": "a58957b8de42dfe9a49e1fdff7079d1bc6c5a3e7c2ef62a9ef198fcd5bae4b30"
+    },
+    {
+      "path": "ios/InkSpace/en.lproj/InfoPlist.strings",
+      "bytes": 234,
+      "sha256": "b3a8481c8c53d7e7b75605177fd80fd4435be5ce5c654dc3d6e2b6f91b1b9f02"
+    },
+    {
+      "path": "ios/InkSpace/en.lproj/Localizable.strings",
+      "bytes": 215791,
+      "sha256": "56d823988bf86f9fb148d568c9202f0894cafe9f731dbd76867cb06e1c436809"
+    },
+    {
+      "path": "ios/InkSpace/zh-Hans.lproj/InfoPlist.strings",
+      "bytes": 217,
+      "sha256": "05e37e79384b7e0697092b6a0abb6811ba6b998a09a0dc7e4eae43ae3e6e566c"
+    },
+    {
+      "path": "ios/InkSpace/zh-Hans.lproj/Localizable.strings",
+      "bytes": 201860,
+      "sha256": "4a11444c48091a57902c796f858ea09e4dcdaf567e2a895c80ce4e106114c5c6"
+    },
+    {
+      "path": "ios/OptionalShareExtension/ClipPreprocessor.js",
+      "bytes": 501,
+      "sha256": "7271b86febb148fe33104aedec90ae9755febfe5a96ba0518ee37ea6102020e5"
+    },
+    {
+      "path": "ios/OptionalShareExtension/Info.plist",
+      "bytes": 1344,
+      "sha256": "e1a64762bde2b8d89242723d968cc92be1c61d34fa262dd2550b7e6c5ae8d0d0"
+    },
+    {
+      "path": "ios/OptionalShareExtension/README.md",
+      "bytes": 2295,
+      "sha256": "4f3423c392abe8743dfabddb5b4ea0d8716c4088eac1974ad91397a2f53b67e3"
+    },
+    {
+      "path": "ios/OptionalShareExtension/ShareClipViewController.swift",
+      "bytes": 6832,
+      "sha256": "fe79a820fc545b0e52f1a4b3ad59e18ff40de38a39a829c8769b968e9e651fab"
+    },
+    {
+      "path": "ios/generate_project.py",
+      "bytes": 19336,
+      "sha256": "51dcc3735052c054a9fefb9b2b6a117dbb20dd15947c4f83903b96273993919f"
+    },
+    {
+      "path": "ios/publication-allowlist.json",
+      "bytes": 17547,
+      "sha256": "d4ba6ca3143c5afeae726c458cfd7d80a9eb1ae1eef9d42a85e29dabbedc0d24"
+    },
+    {
+      "path": "obsidian/inkspace-companion/README.md",
+      "bytes": 17115,
+      "sha256": "859955e792c0bb495fba6563e092357ae14dc0ac6d3b9cf7e85355c733130c28"
+    },
+    {
+      "path": "obsidian/inkspace-companion/main.js",
+      "bytes": 67157,
+      "sha256": "a6a64e471e3fe51ff574b5c6aecbf46fead79fd3e8f46ebd92a7a213312ac96e"
+    },
+    {
+      "path": "obsidian/inkspace-companion/manifest.json",
+      "bytes": 319,
+      "sha256": "127bd0be0c75f251a70bffcae5a6d2bd6c796c580f495517a68acaa9e4505287"
+    },
+    {
+      "path": "obsidian/inkspace-companion/styles.css",
+      "bytes": 2996,
+      "sha256": "ca7dd967f3d2d06f3fd639c115bb0c001f24f44b10d47d5233a7cfcc17561e0a"
+    },
+    {
+      "path": "obsidian/tests/companion.test.cjs",
+      "bytes": 52888,
+      "sha256": "22716d3ed58a4cd3d57a34b31d029772c0babfcc3152196dae8b652c3f15eb3a"
+    },
+    {
+      "path": "scripts/check-publication.py",
+      "bytes": 13589,
+      "sha256": "b065e5cce74ca6cfdcdf15cbfdf03502eff4f48c0254f8035bd323eaf0b627da"
+    }
+  ],
+  "archive": "InkSpace-source-2026-10-24.zip",
+  "archiveSha256": "ccdb8ffdce0ca7a68ed089145fae432a9e4991716e752e3696a42cb4d0baf5ae"
+}
