@@ -104,7 +104,7 @@
 "Paste text, images and supported files. Attachments are saved in the current library. Code never runs automatically." = "Paste text, images and supported files. Attachments are saved in the current library. Code never runs automatically.";
 "Python" = "Python";
 "Resize calculator" = "Resize calculator";
-"Safari 分享菜单中选择“人生赢家”，保存剪藏文件后在此导入。保留标题、来源链接与选中文字；不自动读取整页内容。浏览器扩展仅在此内置浏览器运行，点击右上角拼图管理。" = "Choose life'winner in the Safari share menu, save the clip, then import it here. Clips keep the title, source link and selected text; the full page is not read automatically. Extensions run only in this built-in browser. Manage them with the puzzle button at the top right.";
+"Safari 分享菜单中选择“人生赢家”，保存剪藏文件后在此导入。保留标题、来源链接与选中文字；不自动读取整页内容。浏览器扩展仅在此内置浏览器运行，点击右上角拼图管理。" = "Choose Life's winner in the Safari share menu, save the clip, then import it here. Clips keep the title, source link and selected text; the full page is not read automatically. Extensions run only in this built-in browser. Manage them with the puzzle button at the top right.";
 "Text / table" = "Text / table";
 "Text format" = "Text format";
 "Word 使用适合阅读的排版，可能与 Office 中的分页不同。原文更新后重新添加并展开，可生成新版本；已有页面和批注保留。" = "Word uses a reading layout that may paginate differently from Office. After editing the original, add and expand it again for a new version. Existing pages and annotations are preserved.";
@@ -124,7 +124,7 @@
 "上移" = "Move up";
 "下一页" = "Next page";
 "下移" = "Move down";
-"不是有效的人生赢家剪藏文件。" = "This is not a valid life'winner web clip.";
+"不是有效的人生赢家剪藏文件。" = "This is not a valid Life's winner web clip.";
 "不能在白板内部再次展开它自身。" = "A board cannot expand inside itself.";
 "不要把答案写进问题；默认使用中性提示。" = "Keep the answer out of the question. A neutral prompt is used by default.";
 "不请求额外浏览器权限" = "No additional browser permissions requested";
@@ -143,13 +143,13 @@
 "为所选文字加批注" = "Add a Note to Selected Text";
 "为表格软件转义公式开头（会改变文本）" = "Escape formula prefixes for spreadsheets (changes text)";
 "书写" = "Draw";
-"书写与摆放资料，把想法整理到白板。" = "Write and arrange your materials on the board. May everyone using these open-source features become their own life'winner.";
+"书写与摆放资料，把想法整理到白板。" = "Write and arrange your materials on the board. May everyone using these open-source features become their own Life's winner.";
 "事件代码" = "Event Code";
 "交叉引用条目无效" = "Invalid cross-reference entry";
 "交叉引用流" = "Cross-reference stream";
 "交换左右" = "Swap Sides";
 "交换的是独立副本，不自动双向同步。原生笔记档案保留给来源应用；可读副本可在这里阅读与继续批注。" = "Exchanged files are separate copies, without automatic two-way sync. Keep native archives for the source app; readable copies can be read and annotated here.";
-"人生赢家" = "life'winner";
+"人生赢家" = "Life's winner";
 "仅 Apple Pencil 书写，手指浏览" = "Apple Pencil writes; fingers navigate";
 "仅临时显示，不写入原文或白板。" = "Temporary display; the source and board stay unchanged.";
 "仅删除此设备的问题列表，不改变白板、资料或备份。已手动导出的报告不受影响。" = "This only removes the problem list on this device. Boards, documents, backups, and previously exported reports are unaffected.";
@@ -1102,7 +1102,7 @@
 "无法访问本机密钥（%d）。" = "Unable to access the key on this device (%d).";
 "无法访问本机密钥，请解锁设备后重试。" = "Unable to access the local key. Unlock this device and retry.";
 "无法访问此课程文件夹，请重新选择资料库或文件夹。" = "This course folder is unavailable. Select the library or folder again.";
-"无法识别这个人生赢家链接" = "This life'winner link is not recognized";
+"无法识别这个人生赢家链接" = "This Life's winner link is not recognized";
 "无法读取 OCR 原文件，请确认文件已下载且仍可访问。" = "The OCR source could not be read. Make sure it is downloaded and still accessible.";
 "无法读取 PDF。请确认文件已下载完整且未损坏。" = "Could not read the PDF. Make sure it has downloaded completely and is not damaged.";
 "无法读取文件夹：%@" = "Could not read the folder: %@";
@@ -1805,7 +1805,7 @@
 "请输入 http 或 https 网页地址，或输入搜索词。" = "Enter an http or https web address, or search terms.";
 "请输入不重复的分类名称（最多 80 个字符）。" = "Enter a unique category name, up to 80 characters.";
 "请输入完整、不含账号密码的 http / https 地址。" = "Enter a complete http or https address without a username or password.";
-"请输入完整的网页、Obsidian 或人生赢家链接。" = "Enter a complete web, Obsidian, or life'winner link.";
+"请输入完整的网页、Obsidian 或人生赢家链接。" = "Enter a complete web, Obsidian, or Life's winner link.";
 "请输入有效页码范围，每次最多 50 页。" = "Enter a valid range of up to 50 pages.";
 "请选择 25%–200% 的图片比例。" = "Choose an image scale between 25% and 200%.";
 "请选择 Obsidian 仓库文件夹" = "Choose an Obsidian vault folder";

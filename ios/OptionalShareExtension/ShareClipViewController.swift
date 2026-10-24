@@ -15,7 +15,7 @@ final class ShareClipViewController: UIViewController, UIDocumentPickerDelegate 
         let title = UILabel(); title.text = "人生赢家剪藏 · Web Clip"; title.font = .preferredFont(forTextStyle: .title2)
         summary.numberOfLines = 0; summary.text = "正在读取分享内容… / Reading shared content…"
         let explanation = UILabel(); explanation.numberOfLines = 0
-        explanation.text = "保存剪藏文件后，打开人生赢家的浏览器面板 → 导入 Safari 剪藏文件。仅保存标题、来源链接和选中文字。\nSave this clip to Files, then import it from the life'winner in-app browser. Only the title, source link, and selected text are included."
+        explanation.text = "保存剪藏文件后，打开人生赢家的浏览器面板 → 导入 Safari 剪藏文件。仅保存标题、来源链接和选中文字。\nSave this clip to Files, then import it from the Life's winner in-app browser. Only the title, source link, and selected text are included."
         explanation.font = .preferredFont(forTextStyle: .footnote); explanation.textColor = .secondaryLabel
         saveButton.setTitle("保存剪藏文件 / Save Clip", for: .normal); saveButton.isEnabled = false
         saveButton.addTarget(self, action: #selector(saveClip), for: .touchUpInside)

@@ -1,4 +1,4 @@
-# 人生赢家 / InkSpace 桌面版
+# 人生赢家 / Life's winner 桌面版
 
 本地笔记、白板、PDF、Office 文档、知识整理与 Python Notebook 的开发源码。
 

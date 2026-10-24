@@ -91,7 +91,7 @@ class NoteExchange{
    }
    results.push({name,path:exported,status:'exported',readable:true,bytes,sha256,sourceSHA256:snapshot.sha256,note});
   }catch(error){results.push({name,status:'failed',readable:false,error:publicError(error)});}finally{await diskSnapshot?.dispose();}}
-  const report={schemaVersion:1,createdAt:new Date().toISOString(),target:request.target,mode:request.mode,limits:LIMITS,notes:["PDF originals retain annotations already embedded in the PDF. Independent life'winner layers/reviews, audio timing, and source-app editing objects are not flattened into these copies.",'Node outlines contain titles and tree hierarchy only; no handwriting, layout, rich text, media or attached files.','Source-app native formats are archived unchanged, not decoded or converted in this version. ZIP archives are not extracted.'],results};
+  const report={schemaVersion:1,createdAt:new Date().toISOString(),target:request.target,mode:request.mode,limits:LIMITS,notes:["PDF originals retain annotations already embedded in the PDF. Independent Life's winner layers/reviews, audio timing, and source-app editing objects are not flattened into these copies.",'Node outlines contain titles and tree hierarchy only; no handwriting, layout, rich text, media or attached files.','Source-app native formats are archived unchanged, not decoded or converted in this version. ZIP archives are not extracted.'],results};
   await createUnique(output,'exchange-manifest.json',Buffer.from(JSON.stringify(report,null,2)));return{cancelled:false,folderName:path.basename(output),results};
  }
 }

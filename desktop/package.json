@@ -3,7 +3,7 @@
   "productName": "人生赢家",
   "version": "0.8.5",
   "private": false,
-  "description": "life'winner desktop: local notes, boards, documents and Python. May everyone using these open-source features become their own life'winner.",
+  "description": "Life's winner desktop: local notes, boards, documents and Python. May everyone using these open-source features become their own Life's winner.",
   "author": "InkSpace contributors",
   "license": "MIT",
   "main": "src/main/main.cjs",
