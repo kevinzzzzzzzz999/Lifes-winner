@@ -1,4 +1,6 @@
-# InkSpace · 人生赢家
+# life'winner · 人生赢家
+
+希望每一个使用我开源功能的人，都是各自的 life'winner。
 
 **Local-first notes, handwriting, whiteboards, PDF and notebooks for macOS, iPad and iPhone.**
 
@@ -15,11 +17,15 @@
 | 代码与计算 | 代码编辑、本地Python、Jupyter Notebook、表格数据交换与数学工作台 |
 | 学习与计划 | 搜索与笔记关联、学习卡片、间隔复习、任务清单、日历与ICS |
 | 网页与媒体 | 网页剪藏、AI接口、字幕、播放与非破坏式媒体编辑；外部服务/引擎按需配置 |
-| 开发者复用 | 19个Node库、16个Swift产品、React组件和独立集成，可只下载需要的功能 |
+| 开发者复用 | 20个Node库、18个Swift产品、React组件和独立集成，可只下载需要的功能 |
+
+## iPhone / iPad 主屏幕工具
+
+书写画板、偏好方案和文档工作台另有分别添加到主屏幕的轻量网页适配。正式入口、安装说明和公开验收状态以[移动工具说明](https://github.com/kevinzzzzzzzz999/inkspace-modules/blob/main/MOBILE-APPS.md)为准；正式链接验证前，源码不能视为已经可安装的成品。
 
 ## 下载与开始 / Get started
 
-[**下载完整软件源码（ZIP）**](InkSpace-source-2026-10-24.zip?raw=1)
+[**下载完整软件源码（ZIP）**](life-winner-source-2026-10-24-r2.zip?raw=1)
 
 源码也已按目录提供，可直接阅读、克隆和比较改动。下载包内含可编辑源文件、工程、测试、通用资源及许可；清单与SHA256见[source-manifest.json](source-manifest.json)。
 
@@ -47,3 +53,7 @@ iPad约两万笔的大范围套索仍有已知稳定性问题。iCloud、真实A
 发布内容只含审查过的软件源码与通用资源，不附带个人笔记、课件、账号、凭据、设备记录或签名。后续完成版本会经隐私与相关构建检查后更新源码与模块。
 
 项目原创代码使用[MIT License](LICENSE)，允许使用、修改、分发及商业使用，保留许可和版权声明即可；第三方组件保持[原有许可](THIRD_PARTY_NOTICES.md)。
+
+## 对外名称与兼容
+
+英文产品名称现统一为 **life'winner**。旧仓库地址、工程与库的技术名称、文档格式、协议和存储标记保留兼容；不会因为改名迁移或读取任何用户资料。历史源码包保留，不改写旧发行。

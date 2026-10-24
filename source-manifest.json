@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-24",
+  "version": "2026-10-24-r2",
   "sourceFiles": [
     {
       "path": ".gitignore",
@@ -13,8 +13,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 3492,
-      "sha256": "6e0d1a593f43ea80e43ce063fe5f7d4a9255b07ad8b5e479330f8b1c19ee9bc4"
+      "bytes": 3887,
+      "sha256": "1e11cbedf2ee5bc45eeac4542133e33200d73e58d4d2e676502efe220a66f679"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -48,8 +48,8 @@
     },
     {
       "path": "desktop/index.html",
-      "bytes": 254,
-      "sha256": "30ff0b9a579794ed4399518b587859c03fa407bbab211a801b4a94b0b8d0ac57"
+      "bytes": 269,
+      "sha256": "e0b90be553f6b6846f72021aff7d4f3e0f657c4dccaf3d0bb4d33ef577fb72c6"
     },
     {
       "path": "desktop/package-lock.json",
@@ -58,13 +58,13 @@
     },
     {
       "path": "desktop/package.json",
-      "bytes": 2859,
-      "sha256": "f250d62c03326bb0e09112875001e2d3e470422cd85f49e3aeca2753a1b09b13"
+      "bytes": 2925,
+      "sha256": "c01800ce67deb2b063d3c92abbb06e53f6e6654e0bdeafc6d5b5e2cae7b747de"
     },
     {
       "path": "desktop/public/math-lab/app.js",
       "bytes": 53758,
-      "sha256": "ee44926959543c65e3a4f98c5c3dc8b7c06c55bcffea1fe59f532451ea5d384d"
+      "sha256": "859e5c1973edeb851175fb46e52ca437027d84e060f816d806c05d9aef2fd49e"
     },
     {
       "path": "desktop/public/math-lab/engine.js",
@@ -498,8 +498,8 @@
     },
     {
       "path": "desktop/src/main/main.cjs",
-      "bytes": 38867,
-      "sha256": "8ccfea7f7ccac7cd0f5f3c56051bf0b85bcd3a1bc3b1cdcb85b5f6c85c2e27c4"
+      "bytes": 38931,
+      "sha256": "e7906368ba9551d966f38d62997b1a50c6e6dc879f62ce82eadc6a9ca3870cbf"
     },
     {
       "path": "desktop/src/main/math-export.cjs",
@@ -528,8 +528,8 @@
     },
     {
       "path": "desktop/src/main/note-exchange.cjs",
-      "bytes": 15090,
-      "sha256": "6981eb02ee680c3d0acaca53b776146642bf2d3e3a3a30403ccac9df9bc8c883"
+      "bytes": 15093,
+      "sha256": "ba947550cb2f64dbd55d7b3a0a93934feec285e5dda1f2bea7141e11cc59ac03"
     },
     {
       "path": "desktop/src/main/note-outline.cjs",
@@ -568,8 +568,8 @@
     },
     {
       "path": "desktop/src/main/onenote-pdf.cjs",
-      "bytes": 19975,
-      "sha256": "bf120cbabaed8713f7e8511f17de27b61eade81eaffaf29635dbb6e8d0e37b79"
+      "bytes": 19981,
+      "sha256": "6474938471a9a1ae4827cc05e3b206265d42c40c1beaf378ad99b936aa42d66a"
     },
     {
       "path": "desktop/src/main/onenote-publication.cjs",
@@ -748,8 +748,8 @@
     },
     {
       "path": "desktop/src/native/build-helper.py",
-      "bytes": 1426,
-      "sha256": "960adb9e783f8a89671ffb0a009d5e7f73610518f825156be66da53ad462cfc5"
+      "bytes": 1429,
+      "sha256": "0ba4dbd75ac36146cb2c054da43566efc3e90b93497eea8a3f554dd8caee1408"
     },
     {
       "path": "desktop/src/native/native-ink-bridge.cjs",
@@ -783,8 +783,8 @@
     },
     {
       "path": "desktop/src/renderer/AIPanel.tsx",
-      "bytes": 20834,
-      "sha256": "274f59648791158d2959627692fcd8cb00ccec7ecfcb245d4fa6d8c703bc43a9"
+      "bytes": 20849,
+      "sha256": "2eba03aff42e39a7c30fcbab5e64c37e68ee09237ecd0c31b0c2bde612ceafd5"
     },
     {
       "path": "desktop/src/renderer/AIWebSettings.tsx",
@@ -793,8 +793,8 @@
     },
     {
       "path": "desktop/src/renderer/App.tsx",
-      "bytes": 152212,
-      "sha256": "d0f1f008c314bfd749e4d380bebb4015c8c70015b2249b85c6f42abd7b0f9529"
+      "bytes": 152265,
+      "sha256": "df28e4a9db139e254b993c249e3115d39c5305fff58d22a96b6000732e7424a2"
     },
     {
       "path": "desktop/src/renderer/BoardArrangeToolbar.tsx",
@@ -1018,8 +1018,8 @@
     },
     {
       "path": "desktop/src/renderer/NoteExchange.tsx",
-      "bytes": 20382,
-      "sha256": "e95a131d1274ed4463a4999b1bd87af929270f43813c618488aa79bd5d8d7323"
+      "bytes": 20391,
+      "sha256": "b7250b973a1dc4bb82ed5bdfe5d8e7241a3921b5af62e85bf567f73a11a4b582"
     },
     {
       "path": "desktop/src/renderer/NotebookCSVExport.tsx",
@@ -1478,8 +1478,8 @@
     },
     {
       "path": "desktop/src/renderer/i18n.ts",
-      "bytes": 8026,
-      "sha256": "82cfaadd0e5dca2149af5af48de26e6feab4fcef517487e0ad617413311774e1"
+      "bytes": 8102,
+      "sha256": "998bb463e0702ff9ea0c73a95ead6c269e18d33bb2eaac6a217c940b52d9edf9"
     },
     {
       "path": "desktop/src/renderer/ink-replay-camera.ts",
@@ -1543,8 +1543,8 @@
     },
     {
       "path": "desktop/src/renderer/main.tsx",
-      "bytes": 1151,
-      "sha256": "a79f0f1da06fc836496e4b91b3404a5a6d1785684dbef9acf13c1495e950acfb"
+      "bytes": 1166,
+      "sha256": "c4849799e204e2428eb646df26dc3f3a9d61cc97a5882988131e7d6a5c12aca0"
     },
     {
       "path": "desktop/src/renderer/math-workbench.css",
@@ -3379,7 +3379,7 @@
     {
       "path": "ios/InkSpace/Resources/MathLab/app.js",
       "bytes": 53758,
-      "sha256": "ee44926959543c65e3a4f98c5c3dc8b7c06c55bcffea1fe59f532451ea5d384d"
+      "sha256": "859e5c1973edeb851175fb46e52ca437027d84e060f816d806c05d9aef2fd49e"
     },
     {
       "path": "ios/InkSpace/Resources/MathLab/engine.js",
@@ -3728,13 +3728,13 @@
     },
     {
       "path": "ios/InkSpace/en.lproj/InfoPlist.strings",
-      "bytes": 234,
-      "sha256": "b3a8481c8c53d7e7b75605177fd80fd4435be5ce5c654dc3d6e2b6f91b1b9f02"
+      "bytes": 239,
+      "sha256": "68d565128e02897be77ec2898d51d97808210a65240a268bb58c46d01b022f4e"
     },
     {
       "path": "ios/InkSpace/en.lproj/Localizable.strings",
-      "bytes": 215791,
-      "sha256": "56d823988bf86f9fb148d568c9202f0894cafe9f731dbd76867cb06e1c436809"
+      "bytes": 215850,
+      "sha256": "69c72dc3ff2c52a50262350b721a1f941b35c3bc61753c7c6cd4c6ddc1af9997"
     },
     {
       "path": "ios/InkSpace/zh-Hans.lproj/InfoPlist.strings",
@@ -3758,13 +3758,13 @@
     },
     {
       "path": "ios/OptionalShareExtension/README.md",
-      "bytes": 2295,
-      "sha256": "4f3423c392abe8743dfabddb5b4ea0d8716c4088eac1974ad91397a2f53b67e3"
+      "bytes": 2307,
+      "sha256": "f0e163d7e4dcf36062802d1e3bf17bb87a63d891308a497a66399b7690ad8f6a"
     },
     {
       "path": "ios/OptionalShareExtension/ShareClipViewController.swift",
-      "bytes": 6832,
-      "sha256": "fe79a820fc545b0e52f1a4b3ad59e18ff40de38a39a829c8769b968e9e651fab"
+      "bytes": 6844,
+      "sha256": "43e6c72155a2f19ab700007d6588d1707feeef18fe3f97e72b628d1b5c2e5a14"
     },
     {
       "path": "ios/generate_project.py",
@@ -3778,18 +3778,18 @@
     },
     {
       "path": "obsidian/inkspace-companion/README.md",
-      "bytes": 17115,
-      "sha256": "859955e792c0bb495fba6563e092357ae14dc0ac6d3b9cf7e85355c733130c28"
+      "bytes": 17301,
+      "sha256": "d6731c02244e15ef5f6215c972b9a17862ec905b4b4725586dc07e5514929bb7"
     },
     {
       "path": "obsidian/inkspace-companion/main.js",
-      "bytes": 67157,
-      "sha256": "a6a64e471e3fe51ff574b5c6aecbf46fead79fd3e8f46ebd92a7a213312ac96e"
+      "bytes": 67147,
+      "sha256": "abcf0d2623d33214076ba233602f97f3656de5a1d0d2be9676b4737cabab99f2"
     },
     {
       "path": "obsidian/inkspace-companion/manifest.json",
-      "bytes": 319,
-      "sha256": "127bd0be0c75f251a70bffcae5a6d2bd6c796c580f495517a68acaa9e4505287"
+      "bytes": 333,
+      "sha256": "69f217294f928a45e35d14da91f8e095a46152beba9770e3b4e8f67354e1c2cf"
     },
     {
       "path": "obsidian/inkspace-companion/styles.css",
@@ -3798,8 +3798,8 @@
     },
     {
       "path": "obsidian/tests/companion.test.cjs",
-      "bytes": 52888,
-      "sha256": "22716d3ed58a4cd3d57a34b31d029772c0babfcc3152196dae8b652c3f15eb3a"
+      "bytes": 52850,
+      "sha256": "e9c83af2ac4401f7a08c085ff2933edbcbc04d16cc77484f7c32bc1b364a689a"
     },
     {
       "path": "scripts/check-publication.py",
@@ -3807,10 +3807,12 @@
       "sha256": "b065e5cce74ca6cfdcdf15cbfdf03502eff4f48c0254f8035bd323eaf0b627da"
     }
   ],
-  "archive": "InkSpace-source-2026-10-24.zip",
-  "archiveSha256": "ccdb8ffdce0ca7a68ed089145fae432a9e4991716e752e3696a42cb4d0baf5ae",
+  "archive": "life-winner-source-2026-10-24-r2.zip",
+  "archiveSha256": "57f1462b9a30aea0a9e7c72ece5c03e16d67826d35be8cdbf002c5f3fd4a79e7",
   "browsableSource": {
     "readme": "SOURCE_README.md",
     "publication": "verified archive expanded by repository workflow"
-  }
+  },
+  "displayBrand": "life'winner",
+  "compatibility": "Existing bundle IDs, file formats, storage keys, source API names and repository URLs are retained."
 }
