@@ -26,6 +26,7 @@ PROFILES = {
                   'VALIDATION.md', 'NODE-VALIDATION.md', 'coverage-audit.json'},
     },
 }
+PROFILE_ALIASES = {'Lifes-winner': 'inkspace', 'Lifes-winner-modules': 'inkspace-modules'}
 FORBIDDEN = {'.git', '.github', '.codex', '.agents', 'node_modules', '__pycache__', '.build', '.swiftpm', 'dist',
              'DerivedData', 'publisher', '.env', 'vault', 'private', 'xcuserdata'}
 STATE = '.source-tree-state.json'
@@ -60,11 +61,11 @@ def safe_target(root, name):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--profile', choices=PROFILES, required=True)
+    parser.add_argument('--profile', choices=[*PROFILES, *PROFILE_ALIASES], required=True)
     parser.add_argument('--write', action='store_true')
     args = parser.parse_args()
     root = Path.cwd().resolve()
-    profile = PROFILES[args.profile]
+    profile = PROFILES[PROFILE_ALIASES.get(args.profile, args.profile)]
     manifest = json.loads((root / profile['manifest']).read_text())
     prefix = manifest.get('archivePrefix', profile['prefix'])
     if prefix not in profile['allowedPrefixes']:
