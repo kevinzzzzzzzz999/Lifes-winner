@@ -1,0 +1,9 @@
+{
+  "sharedSourceSHA256": {
+    "src/renderer/clipboard-rich-text.ts": "0c65905715e67150774cab0c813cd691e5bb24c615e0cf1bfdf2b7647c082ff3",
+    "src/renderer/rich-text-math.ts": "84f69797dd48c3c1e5080fc25846e2553fa236082350e5f40d39bfcb5ad702b7"
+  },
+  "marked": "18.0.13",
+  "katex": "0.18.7",
+  "note": "Bundled from installed desktop dependencies; KaTeX license/fonts in parent Math directory."
+}

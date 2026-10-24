@@ -1,0 +1,2 @@
+.replay-display-control{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px}
+.replay-display-control select{min-height:34px;max-width:100%;padding:5px 8px;border:1px solid var(--border,#cbd5d1);border-radius:8px;background:var(--surface,#fff);color:inherit;font:inherit}

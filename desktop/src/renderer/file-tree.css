@@ -1,0 +1,67 @@
+.hierarchical-sidebar .tree-heading { padding-left: 0; gap: 0; }
+.tree-root { display: flex; align-items: center; min-width: 0; flex: 1; gap: 7px; border: 0; background: transparent; border-radius: 5px; padding: 7px 5px; text-align: left; font-size: 13px; font-weight: 600; }
+.tree-root > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tree-root > svg { width: 16px; height: 16px; }
+.tree-root:hover { background: #e5ebed; }
+.tree-target-label { color: #54736c; font-size: 10px; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 6px; min-height: 15px; }
+.hierarchical-sidebar .file-filter { margin-bottom: 0; }
+.sidebar-tools { flex-shrink: 0; min-width: 0; }
+.sidebar-tools-toggle.button { width: 100%; justify-content: flex-start; gap: 10px; background: transparent; border-color: transparent; text-align: left; }
+.sidebar-tools-toggle:hover { background: #e5ebed; }
+.sidebar-tools-toggle > span { flex: 1; }
+.sidebar-tools-toggle .sidebar-tools-chevron { width: 16px; height: 16px; transition: transform .12s; }
+.sidebar-tools-toggle[aria-expanded="true"] .sidebar-tools-chevron { transform: rotate(90deg); }
+.sidebar-tools-toggle:focus-visible { outline: 2px solid #448a80; outline-offset: -2px; }
+.sidebar-tools-content { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; padding-left: 8px; border-left: 1px solid #ccd7d8; max-height: min(240px, 28vh); overflow-y: auto; overscroll-behavior: contain; }
+.sidebar-tools-content[hidden] { display: none; }
+.sidebar-tools-content > .button { flex-shrink: 0; width: 100%; min-height: 34px; margin: 0; font-size: 13px; padding: 7px 10px; }
+@media(prefers-reduced-motion: reduce) { .sidebar-tools-toggle .sidebar-tools-chevron { transition: none; } }
+.file-tree { overscroll-behavior: contain; padding: 1px 0 8px; }
+.file-tree ul { list-style: none; padding: 0; margin: 0; }
+.file-tree .tree-children { margin-left: 11px; padding-left: 9px; border-left: 1px solid #ccd7d8; }
+.file-tree li { position: relative; min-width: 0; }
+.file-tree .tree-children > li::before { content: ''; position: absolute; top: 17px; left: -10px; width: 10px; border-top: 1px solid #ccd7d8; pointer-events: none; }
+.file-tree .tree-row { font-size: 12px; gap: 6px; padding: 6px 5px 6px 2px; min-height: 32px; margin: 1px 0; border-radius: 5px; }
+.file-tree .tree-row > svg { width: 15px; height: 15px; }
+.file-tree .tree-row .tree-chevron { width: 12px; flex: 0 0 12px; display: flex; overflow: visible; color: #87959b; }
+.file-tree .tree-chevron svg { width: 12px; height: 12px; transition: transform .12s; }
+.file-tree .tree-chevron.expanded svg { transform: rotate(90deg); }
+.file-tree .tree-row .tree-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 20px; }
+.file-tree .tree-row .tree-format { flex: 0 0 auto; max-width: 53px; padding: 2px 4px; border-radius: 3px; background: #e6e9ec; color: #697980; font-size: 8px; line-height: 1.2; letter-spacing: .2px; font-weight: 550; }
+.file-tree .tree-row .tree-format-pdf { color: #a25355; background: #f1e3e3; }
+.file-tree .tree-row .tree-format-md, .file-tree .tree-row .tree-format-board { color: #3e7775; background: #dfedeb; }
+.file-tree .tree-row .tree-format-py { color: #5774a0; background: #e1e9f2; }
+.tree-target-dot { color: #197a6d !important; width: 11px !important; height: 11px !important; flex: 0 0 11px; }
+.tree-root.tree-target { color: #176b60; }
+.file-tree .tree-row.tree-target:not(.selected) { background: #e5efec; color: #286458; }
+.file-tree .tree-row.selected { background: #d0e7e4; color: #116e65; }
+.file-tree .tree-row:focus-visible { outline: 2px solid #448a80; outline-offset: -2px; }
+.file-tree-message { display: flex; gap: 5px; align-items: center; padding: 6px 4px 6px 15px; font-size: 10px; line-height: 1.5; color: #7b898e; }
+.file-tree-message svg { width: 12px; height: 12px; }
+.file-tree-message.tree-error { flex-wrap: wrap; color: #9d624d; }
+.file-tree-message button { background: none; border: 0; padding: 2px 4px; text-decoration: underline; font-size: 10px; color: #437b70; }
+.tree-more { display: flex; gap: 5px; align-items: center; padding: 6px 10px; margin: 4px 0; width: 100%; background: #f8faf9; border: 1px dashed #d0ddda; border-radius: 4px; color: #50796f; font-size: 10px; text-align: left; }
+.tree-more span { opacity: .6; }
+.tree-filter-hint { margin: 0; padding: 2px 6px; color: #7a8589; font-size: 10px; line-height: 1.5; }
+.tree-spinner { animation: file-tree-spin 1s linear infinite; }
+@keyframes file-tree-spin { to { transform: rotate(360deg); } }
+@media(prefers-reduced-motion: reduce) { .tree-spinner { animation: none; } .file-tree .tree-chevron svg { transition: none; } }
+
+.file-tree .tree-row{position:relative}
+.file-tree .tree-row.tree-drop-inside{background:#d8eee5!important;outline:2px solid #168466;outline-offset:-2px;color:#125843}
+.file-tree .tree-row.tree-drop-before::before,.file-tree .tree-row.tree-drop-after::after{content:'';position:absolute;left:2px;right:2px;height:3px;background:#14846d;border-radius:3px;pointer-events:none;z-index:3}
+.file-tree .tree-row.tree-drop-before::before{top:-2px}.file-tree .tree-row.tree-drop-after::after{bottom:-2px}
+.file-tree .tree-row.tree-drop-invalid{outline:1px dashed #b3775f;outline-offset:-1px}
+.tree-drop-status{pointer-events:none;flex-shrink:0;height:40px;min-height:40px;margin:0;overflow:hidden;line-height:15px;overflow-wrap:anywhere;padding:5px 7px!important;border-radius:4px}.tree-drop-status.active{color:#176b55;background:#edf7f0}
+
+/* Keep the folder chooser discoverable while a document is open. */
+.app .hierarchical-sidebar .button.sidebar-open-folder {
+  width: 100%; min-height: 56px; flex-shrink: 0; padding: 12px 16px;
+  gap: 11px; margin-bottom: 5px; border-radius: 12px;
+  background: var(--work-forest, #284f43); border-color: var(--work-forest, #284f43);
+  color: #fff; font-size: 17px; font-weight: 650; line-height: 1.35;
+  box-shadow: 0 3px 9px #163e2414;
+}
+.app .hierarchical-sidebar .button.sidebar-open-folder > svg { width: 25px; height: 25px; flex-shrink: 0; }
+.app .hierarchical-sidebar .button.sidebar-open-folder:hover { filter: brightness(1.12); }
+.app .hierarchical-sidebar .button.sidebar-open-folder:focus-visible { outline: 3px solid var(--work-gold, #a17c42); outline-offset: 3px; }

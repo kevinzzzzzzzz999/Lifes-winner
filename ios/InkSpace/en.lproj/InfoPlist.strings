@@ -1,0 +1,4 @@
+/* The user-approved brand is preserved in every language. */
+"CFBundleDisplayName" = "人生赢家";
+"CFBundleName" = "人生赢家";
+"NSCameraUsageDescription" = "Use the camera to scan paper documents and save them as PDF files.";

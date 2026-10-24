@@ -1,0 +1,14 @@
+import {Modal} from './ui';
+import type {Language} from './i18n';
+const rows=[
+ ['Esc / Ctrl+M','切换到命令模式','Enter command mode'],['Enter','命令模式下进入编辑','Enter edit mode'],
+ ['Shift+Enter','运行并选下一格；末尾自动新增','Run and select next; add a cell at the end'],['Ctrl/⌘+Enter','运行，停留当前格','Run and stay in this cell'],['Alt/Option+Enter','运行并在下方新增代码格','Run and insert a code cell below'],
+ ['↑ / K · ↓ / J','选择上一格／下一格','Select previous / next cell'],['Shift+↑ / Shift+↓','连续选择多个单元格','Extend cell selection'],['Ctrl/⌘+A','命令模式下全选单元格','Select all cells in command mode'],
+ ['A / B','在上方／下方新增代码格','Insert a code cell above / below'],['Y / M / R','代码／Markdown／原始文本','Code / Markdown / raw cell'],['1–6','转为对应级别的 Markdown 标题','Convert to a Markdown heading'],
+ ['C / X','复制／剪切选中的单元格','Copy / cut selected cells'],['V / Shift+V','在下方／上方粘贴单元格','Paste cells below / above'],['D, D','连续按两次 D 删除单元格','Press D twice to delete cells'],['Z / Shift+Z','撤销／重做单元格修改','Undo / redo cell changes'],
+ ['Shift+M','合并选中的格；单选时合并下一格','Merge selected cells, or the next cell'],['Ctrl/⌘+Shift+-','在编辑光标处分割单元格','Split the cell at the editing cursor'],
+ ['I, I','连续按两次 I 中断运行','Press I twice to interrupt'],['0, 0','打开重启环境确认','Open restart confirmation'],['S / Ctrl/⌘+S','保存 Notebook','Save the Notebook'],
+ ['L / Shift+L','切换当前／全部单元格行号','Toggle selected / all cell line numbers'],['O / Shift+O','显示隐藏输出／切换输出滚动','Toggle output visibility / scrolling'],
+ ['Tab / Shift+Tab','编辑时补全；没有候选时缩进／减少缩进','Complete; indent when there are no suggestions / reduce indent'],['Ctrl/⌘+/','编辑时注释／取消注释代码','Toggle code comments in the editor'],['H / ?','打开这个快捷键表','Open this shortcut reference'],
+];
+export function NotebookShortcutHelp({language,onClose}:{language:Language;onClose:()=>void}){const zh=language==='zh';return <Modal title={zh?'Notebook 快捷键':'Notebook shortcuts'} onClose={onClose}><div className="notebook-shortcut-help" data-testid="notebook-shortcut-help"><p>{zh?'字母快捷键在命令模式使用。先按 Esc，再按字母；输入代码时字母仍正常输入。Mac 的 ⌘M 保留为系统最小化；Ctrl＋K 保留编辑器删除到行尾，⌘K 搜索文件。':'Letter shortcuts work in command mode. Press Esc first; letters still type normally while editing. On Mac, ⌘M minimizes the window; Ctrl+K deletes to the end of the line and ⌘K searches files.'}</p><table><thead><tr><th>{zh?'按键':'Key'}</th><th>{zh?'操作':'Action'}</th></tr></thead><tbody>{rows.map(([key,cn,en])=><tr key={key}><td><kbd>{key}</kbd></td><td>{zh?cn:en}</td></tr>)}</tbody></table><p className="muted">{zh?'采用 Jupyter Notebook／JupyterLab 常用默认键位。不同学校的 JupyterHub 可以自定义键位；服务器管理、调试器和内核运行时补全尚未提供。单元格复制暂保存在本次软件会话中；编辑器补全基于当前文本。':'Uses common Jupyter Notebook / JupyterLab defaults. Your school’s JupyterHub may customize them. Server administration, debugger and runtime kernel completion are not included. Cell copies stay within this app session; editor completion uses the current text.'}</p></div></Modal>;}

@@ -1,0 +1,5 @@
+import { CheckCircle2, Square } from 'lucide-react';
+import { Button } from './ui';
+import { type Language,tr,type TextKey } from './i18n';
+export type ConsoleState={output:string;running:boolean;status:TextKey;seconds?:number;file?:string};
+export default function PythonConsole({language,state,onStop,onClear}:{language:Language;state:ConsoleState;onStop:()=>void;onClear:()=>void}) {const t=(key:TextKey)=>tr(language,key);return <section className="console" aria-label={t('output')}><header><span className="console-tab">{t('output')}</span>{state.file&&<span className="muted console-file">{state.file}</span>}<div className="spacer"/><Button onClick={onClear} disabled={state.running}>{t('clear')}</Button><Button onClick={onStop} disabled={!state.running}><Square/>{t('stop')}</Button></header><pre className={state.output?'':'muted'} role="log" aria-live="polite">{state.output||t('noOutput')}</pre><div className="console-status">{state.status!=='noOutput'&&<CheckCircle2/>}{state.status!=='noOutput'&&t(state.status)}{state.seconds!==undefined&&` · ${state.seconds.toFixed(2)}s`}</div></section>;}

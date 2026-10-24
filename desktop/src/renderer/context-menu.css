@@ -1,0 +1,10 @@
+.context-menu{position:fixed;z-index:12000;min-width:216px;max-width:min(320px,calc(100vw - 16px));max-height:calc(100vh - 16px);overflow-y:auto;padding:6px;border:1px solid #ccd8d5;border-radius:11px;background:rgba(252,254,253,.98);box-shadow:0 12px 38px #132e2828,0 2px 8px #132e2814;color:#253c36;font:13px/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overscroll-behavior:contain;user-select:none}
+.context-menu-title{padding:6px 9px 8px;color:#738780;font-size:11px;font-weight:600;max-width:290px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.context-menu button{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;min-height:30px;padding:6px 10px;border:0;border-radius:6px;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.context-menu button:not(:disabled):hover,.context-menu button:focus-visible{background:#087f7a;color:white;outline:none}
+.context-menu button:disabled{opacity:.38;cursor:default}
+.context-menu button.context-menu-danger{color:#b23b38}.context-menu button.context-menu-danger:not(:disabled):hover,.context-menu button.context-menu-danger:focus-visible{background:#b23b38;color:white}
+.context-menu kbd{font:11px -apple-system,BlinkMacSystemFont,sans-serif;opacity:.7;white-space:nowrap}
+.context-menu-separator{height:1px;background:#dde5e1;margin:5px 6px}
+.rename-name-row{display:flex;align-items:center;gap:6px;margin-top:8px}.rename-name-row input{min-width:0;flex:1}.rename-name-row>span{color:#738780;font-size:12px;white-space:nowrap}
+@media print{.context-menu{display:none!important}}

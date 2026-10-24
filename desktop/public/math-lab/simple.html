@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="simple.css">
+</head>
+<body>
+<main>
+  <nav aria-label="计算器模式">
+    <div class="tabs" role="tablist">
+      <button type="button" id="calcTab" role="tab" aria-selected="true" class="active">科学计算</button>
+      <button type="button" id="graphTab" role="tab" aria-selected="false">函数绘图</button>
+    </div>
+    <select id="angle" aria-label="角度单位"><option value="rad">RAD</option><option value="deg">DEG</option></select>
+  </nav>
+  <form id="form">
+    <div class="expression-heading"><label id="expressionLabel" for="expression">输入算式</label><span id="angleHint">弧度</span></div>
+    <div class="expression-row"><input id="expression" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="2048" placeholder="50ln(42) / (ln(42) + 1)" aria-describedby="message"><button type="submit" id="draw" hidden>绘图</button></div>
+    <div id="answerRow"><span id="answerLabel">结果</span><output id="result" aria-live="polite">0</output></div>
+    <div id="resultActions"><button type="button" id="copyResult" disabled>复制结果</button></div>
+    <p id="actionStatus" class="action-status" role="status" aria-live="polite"></p>
+    <p id="message" class="message" role="status" aria-live="polite"></p>
+    <section id="graphControls" aria-label="函数图像" hidden>
+      <div class="function-heading"><span id="functionsTitle">函数对照 · 最多 4 条</span><button type="button" id="addFunction">添加函数</button></div>
+      <div id="functionList" aria-label="函数列表"></div>
+      <div class="graph-toolbar">
+        <button type="button" id="zoomOut" aria-label="缩小">−</button><button type="button" id="zoomIn" aria-label="放大">+</button>
+        <button type="button" id="resetView">复位</button><button type="button" id="fitY">适合高度</button>
+        <button type="button" id="toggleKeys" aria-expanded="false">键盘</button>
+      </div>
+      <div class="export-toolbar"><button type="button" id="exportGraph" disabled>导出函数图 PNG</button><span id="exportHint">包含当前坐标与图例</span></div>
+      <div id="plotFrame"><svg id="plot" viewBox="0 0 600 360" tabindex="0" aria-label="函数图像；拖动平移，滚轮或双指缩放，方向键平移" role="img"></svg><div id="graphEmpty">输入函数，然后绘图</div></div>
+      <div id="graphLegend" aria-label="图例"></div><div class="plot-caption"><span id="plottedExpression"></span><output id="trace" aria-live="off">x — · y —</output></div>
+      <p id="graphHelp">拖动平移 · 滚轮或双指缩放 · 轻点查看坐标</p>
+      <details id="rangeDetails"><summary id="rangeTitle">坐标范围</summary><div class="ranges"><label>x min<input id="xmin" type="number" step="any" value="-10"></label><label>x max<input id="xmax" type="number" step="any" value="10"></label><label>y min<input id="ymin" type="number" step="any" value="-10"></label><label>y max<input id="ymax" type="number" step="any" value="10"></label></div><button type="button" id="applyRange">应用范围</button></details>
+    </section>
+    <section id="keypad" aria-label="计算器键盘"><div class="keypad-heading"><button type="button" id="inverse" aria-pressed="false">2nd</button><span id="keyHint">可省略乘号 · % = ÷100</span></div><div id="keys"></div></section>
+    <details id="historyDetails"><summary><span id="historyTitle">计算记录</span><span id="historyCount"></span></summary><div class="history-heading"><span id="historyHelp">点按记录，再次使用算式</span><button type="button" id="clearHistory">清空</button></div><ol id="history"></ol><p id="historyEmpty">还没有计算记录</p></details>
+  </form>
+</main>
+<script src="engine.js"></script><script src="simple-core.js"></script><script src="simple.js"></script>
+</body>
+</html>

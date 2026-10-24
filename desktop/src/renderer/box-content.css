@@ -1,0 +1,23 @@
+.box-content{min-width:0;max-width:100%;line-height:1.45;overflow-wrap:anywhere;text-align:left;color:inherit;font:inherit}.box-content p{margin:.35em 0;white-space:normal}.box-content>*:first-child{margin-top:0}.box-content>*:last-child{margin-bottom:0}.box-content h1,.box-content h2,.box-content h3,.box-content h4,.box-content h5,.box-content h6{line-height:1.25;margin:.45em 0 .25em;font-weight:650;color:inherit}.box-content h1{font-size:1.55em}.box-content h2{font-size:1.35em}.box-content h3{font-size:1.15em}.box-content h4,.box-content h5,.box-content h6{font-size:1em}.box-content ul,.box-content ol{padding-left:1.3em;margin:.35em 0}.box-content li{margin:.1em 0}.box-content blockquote{margin:.4em 0;padding-left:.6em;border-left:.2em solid currentColor;opacity:.85}.box-content code,.box-content pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}.box-content pre{white-space:pre-wrap;overflow-wrap:anywhere;margin:.4em 0;padding:.4em;background:rgba(127,127,127,.09);border-radius:.2em}.box-content table{border-collapse:collapse;font-size:.9em;max-width:100%}.box-content th,.box-content td{border:1px solid rgba(127,127,127,.35);padding:.2em .35em}.box-content hr{border:0;border-top:1px solid rgba(127,127,127,.35)}.box-plain,.box-python{white-space:pre-wrap}.box-python{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;margin:0;background:rgba(127,127,127,.07);padding:.35em;border-radius:.25em}.box-python code{font:inherit}.box-latex .katex-display{margin:.2em 0;text-align:left}.box-latex .katex{font-size:1.1em}
+
+.box-content table{width:max-content;min-width:0;max-width:100%;table-layout:auto;background:transparent}.box-content table p{margin:.15em 0}.box-content td,.box-content th{min-width:2em;white-space:pre-wrap;vertical-align:top;overflow-wrap:anywhere}.box-content th{font-weight:650}.box-content caption{text-align:left;font-weight:600;margin-bottom:.25em}.box-content sup,.box-content sub{font-size:.75em;line-height:0}.box-richText{overflow:auto}
+
+.box-content a{color:#087e86;text-decoration:underline;text-underline-offset:.15em;cursor:pointer;overflow-wrap:anywhere}.box-content a:focus-visible{outline:2px solid #087e86;outline-offset:3px}.box-link-error{margin:.35em 0;padding:.3em;font-size:12px;color:#994d32;white-space:normal;overflow-wrap:anywhere}
+
+/* Formula layout is generated only for reading. Keep each formula intact and
+   let an existing narrow card scroll instead of squeezing its table cells. */
+.box-content table{font-size:1em;min-width:100%;max-width:none;line-height:1.5}
+.box-content th,.box-content td{padding:.55em .65em;min-width:4em;white-space:normal;overflow-wrap:break-word;vertical-align:middle}
+.box-content th{background:rgba(127,127,127,.07)}
+.box-richText,.box-markdown{overflow:auto}
+.box-content .box-math{white-space:nowrap;overflow-wrap:normal;word-break:normal;font-weight:normal}
+.box-content .box-math-inline{display:inline-block;max-width:none;margin:.12em .08em;vertical-align:baseline}
+.box-content .box-math-display{display:block;margin:.6em 0}
+.box-content .box-math .katex{font-size:1.1em;text-align:initial}
+.box-content .box-math .katex-display{margin:.25em 0;text-align:left}
+.box-content .box-math .katex *{overflow-wrap:normal;word-break:normal}
+.board-item:has(>.box-content table){display:flex;flex-direction:column}
+.board-item:has(>.box-content table)>strong{flex-shrink:0}
+.board-item:has(>.box-content table)>.box-content{min-height:0;flex:1;overflow:auto;overscroll-behavior:contain}
+.board-item .box-content strong{display:inline;padding:0;font-weight:650}
+.board-item .box-content p{font-size:inherit;white-space:normal;margin:.35em 0}

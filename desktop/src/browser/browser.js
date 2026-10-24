@@ -1,0 +1,26 @@
+'use strict';
+const $=id=>document.getElementById(id),api=window.browserControls;
+let latest=null;
+async function action(action,value,id){const result=await api.action({action,...(value!==undefined?{value}:{}),...(id?{id}:{})});if(!result.ok){$('status').textContent=result.error.message;return;}if(result.value?.tabs)render(result.value);}
+function button(label,run,className){const element=document.createElement('button');element.textContent=label;if(className)element.className=className;element.addEventListener('click',run);return element;}
+function render(state){
+ latest=state;$('tabs').replaceChildren();
+ for(const tab of state.tabs){const row=document.createElement('div');row.className='tab';row.setAttribute('role','tab');row.setAttribute('aria-selected',String(state.active===tab.id));const title=button((tab.loading?'◌ ':'')+tab.title,()=>action('selectTab',undefined,tab.id),'tab-title');title.title=tab.title;row.append(title);const close=button('×',()=>action('closeTab',undefined,tab.id),'tab-close');close.setAttribute('aria-label','关闭 '+tab.title);row.append(close);$('tabs').append(row);}
+ if(document.activeElement!==$('address'))$('address').value=state.url;
+ $('back').disabled=!state.canGoBack;$('forward').disabled=!state.canGoForward;$('capture').disabled=state.busy||!state.url;$('capture').textContent=state.busy?'保存中…':'剪藏';$('chooseTarget').disabled=state.busy;
+ $('target').textContent=state.target?.label||'未选择资料夹';$('target').title=state.target?.label||'未选择资料夹';$('folderOnly').hidden=!state.target?.board;$('status').textContent=state.status;
+ $('reopen').disabled=!state.canReopenTab;$('new').disabled=state.tabs.length>=20;const zoom=Math.round((state.zoom||1)*100);$('zoomReset').textContent=zoom+'%';$('zoomOut').disabled=zoom<=25;$('zoomIn').disabled=zoom>=500;const finding=!!state.find?.open&&!state.management;$('findBar').hidden=!finding;document.body.classList.toggle('with-find',finding);if(document.activeElement!==$('findText'))$('findText').value=state.find?.text||'';$('findCount').textContent=state.find?.text?(state.find.active+' / '+state.find.matches):'';$('findPrevious').disabled=!state.find?.text;$('findNext').disabled=!state.find?.text;$('status').classList.toggle('session-warning',!!state.sessionWarning);if(state.sessionWarning){$('status').textContent=state.sessionWarning+' '+state.status;$('status').title=state.sessionWarning;}else $('status').removeAttribute('title');
+ $('manager').hidden=!state.management;$('start').hidden=state.management||!!state.url;
+ const list=$('extensionList');list.replaceChildren();
+ if(!state.extensions.length){const empty=document.createElement('p');empty.className='empty';empty.textContent='尚未安装扩展。普通网页浏览和剪藏无需扩展。';list.append(empty);}
+ for(const extension of state.extensions){const row=document.createElement('article');row.className='extension';const head=document.createElement('div');head.className='extension-head';const name=document.createElement('strong');name.textContent=extension.name+' · '+extension.version;head.append(name,button(extension.enabled?'停用':'启用',()=>action('toggleExtension',undefined,extension.key)),button('移除',()=>action('removeExtension',undefined,extension.key)));row.append(head);const note=document.createElement('p');note.textContent=extension.error||(extension.enabled?'已启用。刷新网页使网页脚本生效。':'已停用。');row.append(note);const permissions=document.createElement('details');const summary=document.createElement('summary');summary.textContent='权限与兼容性';const text=document.createElement('pre');text.textContent=[...(extension.permissions||[]),...(extension.warnings||[])].join('\n')||'未声明额外权限';permissions.append(summary,text);row.append(permissions);list.append(row);}
+}
+$('navigate').addEventListener('submit',event=>{event.preventDefault();$('address').blur();void action('navigate',$('address').value);});
+for(const [id,name] of [['new','newTab'],['reopen','reopenTab'],['find','openFind'],['findClose','closeFind'],['back','back'],['forward','forward'],['reload','reload'],['chooseTarget','chooseTarget'],['folderOnly','targetFolder'],['import','importClip'],['install','installExtension'],['systemBrowser','systemBrowser']])$(id).addEventListener('click',()=>void action(name));
+$('capture').addEventListener('click',()=>void action('capture',$('kind').value));$('extensions').addEventListener('click',()=>void action('extensions',!latest?.management));$('closeManager').addEventListener('click',()=>void action('extensions',false));
+for(const [id,value] of [['zoomOut','out'],['zoomReset','reset'],['zoomIn','in']])$(id).addEventListener('click',()=>void action('zoom',value));
+function search(next=false,forward=true){void action('find',{text:$('findText').value,next,forward});}
+$('findText').addEventListener('input',()=>search());$('findBar').addEventListener('submit',event=>{event.preventDefault();search(true);});$('findPrevious').addEventListener('click',()=>search(true,false));$('findNext').addEventListener('click',()=>search(true));
+$('findText').addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();void action('closeFind');}else if(event.key==='Enter'&&event.shiftKey){event.preventDefault();search(true,false);}});
+api.onFocus(id=>{const field=$(id);field.focus();field.select();});
+api.onState(render);void action('state');

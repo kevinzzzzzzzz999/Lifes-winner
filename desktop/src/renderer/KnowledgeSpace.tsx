@@ -1,0 +1,73 @@
+import {useEffect,useMemo,useRef,useState} from 'react';
+import {Box,ChevronRight,FileText,Folder,Layers,Map as MapIcon,RefreshCw,RotateCcw,X} from 'lucide-react';
+import type {DirectoryListing,VaultEntry} from '../shared/desktop-api';
+import type {Language} from './i18n';
+import {Button} from './ui';
+import './knowledge-space.css';
+import KnowledgePalace from './KnowledgePalace';
+import KnowledgeWalkthrough from './KnowledgeWalkthrough';
+import {limitedDirectoryRead,scanFolderStats,type SpaceStat} from './knowledge-space-metadata';
+import {formatBytes} from './knowledge-palace-math';
+
+// Directory space helpers: only actual listed direct children become rooms.
+export const SPACE_PAGE_SIZE=24;
+export const SPACE_DIRECTORY_LIMIT=32;
+export const SPACE_ENTRY_LIMIT=50_000;
+export function spaceAncestors(path:string):string[]{const parts=path.split('/').filter(Boolean);return ['',...parts.map((_,i)=>parts.slice(0,i+1).join('/'))];}
+export function spaceListing(listing:DirectoryListing,path:string):DirectoryListing{
+ if(listing.path!==path||!Array.isArray(listing.entries))throw Error('Invalid directory response');
+ const collator=new Intl.Collator(undefined,{numeric:true,sensitivity:'base'}),seen=new Set<string>();
+ const entries=listing.entries.filter(e=>typeof e.path==='string'&&typeof e.name==='string'&&e.path!==path&&e.path.split('/').slice(0,-1).join('/')===path&&!seen.has(e.path)&&!!seen.add(e.path));
+ entries.sort((a,b)=>Number(b.kind==='folder')-Number(a.kind==='folder')||collator.compare(a.name,b.name)||a.path.localeCompare(b.path));
+ return {...listing,entries};
+}
+export function spacePage(entries:VaultEntry[],query:string,page:number){
+ const needle=query.trim().toLocaleLowerCase(),matches=needle?entries.filter(e=>e.name.toLocaleLowerCase().includes(needle)):entries;
+ const total=matches.length,pages=Math.max(1,Math.ceil(total/SPACE_PAGE_SIZE)),index=Math.max(0,Math.min(pages-1,page));
+ return {entries:matches.slice(index*SPACE_PAGE_SIZE,(index+1)*SPACE_PAGE_SIZE),total,pages,index};
+}
+export function spaceBadge(entry:VaultEntry):string {return entry.kind==='folder'?'':entry.kind==='board'?'BOARD':entry.name.includes('.')?entry.name.split('.').at(-1)!.toUpperCase().slice(0,8):'FILE';}
+export function spaceLayerBounds(count:number,rotation:number,tilt:number,spacing:number){
+ const r=rotation*Math.PI/180,t=tilt*Math.PI/180,points=[] as {x:number;y:number}[];
+ for(let i=0;i<Math.max(1,count);i++)for(const x of [0,780])for(const y of [0,480]){
+  const z=(i-count+1)*spacing,rx=x*Math.cos(r)-y*Math.sin(r),ry=x*Math.sin(r)+y*Math.cos(r);
+  points.push({x:rx,y:ry*Math.cos(t)-z*Math.sin(t)});
+ }
+ return {minX:Math.min(...points.map(p=>p.x)),maxX:Math.max(...points.map(p=>p.x)),minY:Math.min(...points.map(p=>p.y)),maxY:Math.max(...points.map(p=>p.y))};
+}
+// Directory space UI. A new vault gets fresh navigation and cache state.
+
+export type KnowledgeSpaceProps={vaultId:string;language:Language;onOpen:(path:string)=>void;onClose?:()=>void;revision?:string|number};
+export default function KnowledgeSpace(props:KnowledgeSpaceProps){return <DirectorySpace key={props.vaultId} {...props}/>;}
+function DirectorySpace({vaultId,language,onOpen,onClose,revision}:KnowledgeSpaceProps){
+ const zh=language==='zh',word=(a:string,b:string)=>zh?a:b;
+ const[path,setPath]=useState(''),[route,setRoute]=useState(['']),[threeD,setThreeD]=useState(false),[walking,setWalking]=useState(false),[overview,setOverview]=useState(false),[query,setQuery]=useState(''),[page,setPage]=useState(0),[refresh,setRefresh]=useState(0),[arranging,setArranging]=useState(false),[orders,setOrders]=useState<Record<string,string[]>>({});
+ const[listing,setListing]=useState<DirectoryListing|null>(null),[floorListings,setFloorListings]=useState<DirectoryListing[]>([]),[stats,setStats]=useState<Record<string,SpaceStat>>({}),[loading,setLoading]=useState(false),[error,setError]=useState(false),[size,setSize]=useState({width:1000,height:650});
+ const [orderMessage,setOrderMessage]=useState(''),[orderBusy,setOrderBusy]=useState(false);const orderWrite=useRef(false),orderVersion=useRef(0);
+ const stage=useRef<HTMLDivElement>(null),cache=useRef(new Map<string,DirectoryListing>()),epoch=useRef(0),rows=useRef(new Map<string,HTMLButtonElement>());
+ const ancestors=useMemo(()=>spaceAncestors(path),[path]);const ordered=useMemo(()=>spaceOrdered(listing?.entries||[],orders[path]),[listing,orders,path]);const view=useMemo(()=>spacePage(ordered,query,page),[ordered,query,page]);
+ const read=async(target:string,signal:AbortSignal)=>{const hit=cache.current.get(target);if(hit)return hit;const token=epoch.current,value=spaceListing(await limitedDirectoryRead(vaultId,target,signal),target);if(signal.aborted||epoch.current!==token)throw Error('Stale directory');if(value.entries.length>10000)throw Error('Directory limit');while(cache.current.size>=64||[...cache.current.values()].reduce((n,v)=>n+v.entries.length,0)+value.entries.length>SPACE_ENTRY_LIMIT)cache.current.delete(cache.current.keys().next().value!);cache.current.set(target,value);return value;};
+ useEffect(()=>{const element=stage.current;if(!element)return;const observer=new ResizeObserver(()=>setSize({width:element.clientWidth,height:element.clientHeight}));observer.observe(element);setSize({width:element.clientWidth,height:element.clientHeight});return()=>observer.disconnect();},[]);
+ useEffect(()=>{epoch.current++;cache.current.clear();setStats({});},[vaultId,revision,refresh]);
+ useEffect(()=>{const controller=new AbortController();setLoading(true);setError(false);setListing(null);void read(path,controller.signal).then(value=>{if(!controller.signal.aborted)setListing(value);}).catch(()=>{if(!controller.signal.aborted)setError(true);}).finally(()=>{if(!controller.signal.aborted)setLoading(false);});return()=>controller.abort();},[path,vaultId,revision,refresh]);
+ useEffect(()=>{const controller=new AbortController();if(listing)void scanFolderStats(view.entries,target=>read(target,controller.signal),controller.signal,value=>setStats(old=>({...old,...value})));return()=>controller.abort();},[listing,view.entries,vaultId,revision,refresh]);
+ useEffect(()=>{const controller=new AbortController();if(!threeD||!overview){setFloorListings([]);return;}void Promise.all(route.slice(-8).map(p=>read(p,controller.signal).catch(()=>null))).then(values=>{if(!controller.signal.aborted)setFloorListings(values.filter((v):v is DirectoryListing=>!!v));});return()=>controller.abort();},[threeD,overview,route,vaultId,revision,refresh]);
+ useEffect(()=>{let stopped=false;const version=orderVersion.current;if(window.desktop.getFolderOrder&&!orderWrite.current)void window.desktop.getFolderOrder({vaultId,path}).then(result=>{if(!stopped&&version===orderVersion.current&&result.ok)setOrders(old=>({...old,[path]:result.value.paths}));}).catch(()=>{});return()=>{stopped=true;};},[vaultId,path,revision,refresh,orderBusy]);
+ const saveOrder=async(paths:string[])=>{if(orderWrite.current)return;orderWrite.current=true;orderVersion.current++;setOrderBusy(true);setOrderMessage('');const parent=path;try{const result=await window.desktop.setFolderOrder({vaultId,path:parent,paths});if(!result.ok)throw Error(result.error.message);setOrders(old=>({...old,[parent]:result.value.paths}));window.dispatchEvent(new CustomEvent('inkspace-folder-order',{detail:{vaultId}}));}catch{setOrderMessage(word('摆放顺序未保存，请重试。','Could not save the order. Please retry.'));}finally{orderWrite.current=false;setOrderBusy(false);}};
+ const go=(target:string,keepRoute=false)=>{setPath(target);if(!keepRoute)setRoute(spaceAncestors(target));setOverview(false);setQuery('');setPage(0);};
+ const activate=(entry:VaultEntry)=>entry.kind==='folder'?go(entry.path):onOpen(entry.path);
+ const reorder=(from:string,to:string)=>{if(from===to)return;const paths=ordered.map(e=>e.path),a=paths.indexOf(from),b=paths.indexOf(to);if(a<0||b<0)return;[paths[a],paths[b]]=[paths[b],paths[a]];void saveOrder(paths);};
+ const metric=(entry:VaultEntry)=>{const value=stats[entry.path];return entry.kind==='folder'?value?.known?`${value.scanning||!value.complete?'≥ ':''}${formatBytes(value.bytes)} · ${value.directories} ${word('子目录','folders')}`:word('容量待统计','Size not counted'):formatBytes(entry.bytes);};
+ const floors=overview?floorListings.map(v=>({path:v.path,entries:spacePage(spaceOrdered(v.entries,orders[v.path]),'',0).entries})):[{path,entries:view.entries}];
+ return <section className="knowledge-space" data-testid="knowledge-space" data-current-path={path} data-mode={walking?'walk':threeD?'3d':'plan'} aria-label={word('知识空间','Knowledge space')}>
+  <header className="space-header"><div className="space-heading"><span className="space-mark"><Layers size={23}/></span><div><h2>{word('知识空间','Knowledge space')}</h2><p>{word('让真实资料成为可以走进去的地方','A place to explore your real knowledge')}</p></div></div><div className="space-view-toggle"><Button data-testid="space-plan" aria-pressed={!threeD} onClick={()=>{setThreeD(false);setWalking(false);}}><MapIcon size={17}/>{word('平面','Floor plan')}</Button><Button data-testid="space-3d" aria-pressed={threeD&&!walking} onClick={()=>{setThreeD(true);setWalking(false);}}><Box size={17}/>{word('记忆宫殿','Memory palace')}</Button><Button data-testid="space-city" aria-pressed={walking} onClick={()=>{setThreeD(true);setWalking(true);setOverview(false);setArranging(false);}}>{word('走进去','Walk inside')}</Button></div><Button data-testid="space-refresh" aria-label={word('刷新当前文件夹','Refresh current folder')} onClick={()=>setRefresh(v=>v+1)}><RefreshCw size={17}/></Button>{onClose&&<Button onClick={onClose}><X/></Button>}</header>
+  <nav className="space-breadcrumbs" aria-label={word('文件夹路径','Folder path')}>{ancestors.map((p,i)=><span key={p}>{i>0&&<ChevronRight size={13}/>}<button data-testid={'space-crumb-'+i} aria-current={p===path?'location':undefined} onClick={()=>go(p,true)}>{p.split('/').at(-1)||word('资料根目录','Vault root')}</button></span>)}</nav>
+  <div className="space-controls"><label className="space-filter"><span>{word('本层筛选','Filter this folder')}</span><input aria-label={word('筛选当前层','Filter current level')} value={query} onChange={e=>{setQuery(e.target.value);setPage(0);}}/></label><span className="space-count">{view.total} {word('项','items')}</span><Button data-testid="space-arrange" aria-pressed={arranging} disabled={overview||walking||orderBusy} onClick={()=>setArranging(v=>!v)}>{arranging?word('完成摆放','Finish arranging'):word('手动摆放','Arrange')}</Button><Button data-testid="space-auto-layout" disabled={walking||orderBusy} onClick={()=>{void saveOrder([]);setArranging(false);}}>{word('自动排列','Auto layout')}</Button><p className="space-size-key">{arranging?word('拖动同层建筑交换位置；顺序与左侧文件列表一起保存到资料文件夹。','Drag siblings to swap positions. The order is saved with the file list in your vault.'):word(walking?'楼高＝容量与文件数 · 占地＝子目录数量；外观按文件夹地址保持稳定':'高度＝容量的对数刻度 · 占地＝直接子目录数量；标 ≥ 为部分统计',walking?'Height = size & file count · Footprint = subfolders; appearance follows the folder address':'Height = log capacity · Footprint = direct subfolder count; ≥ means partial')}</p></div>
+  {orderMessage&&<p role="alert">{orderMessage}</p>}<div className="space-stage-shell" ref={stage}>
+   {loading?<div className="space-state" role="status">{word('正在打开这一层…','Opening this floor…')}</div>:error?<div className="space-state" role="alert">{word('无法读取；原文件保持不变。','Unable to read; originals are unchanged.')}<Button onClick={()=>setRefresh(v=>v+1)}>{word('重试','Retry')}</Button></div>:walking?<KnowledgeWalkthrough key={vaultId+':'+path+':'+view.index+':'+query} entries={view.entries} stats={stats} current={path} width={size.width} height={size.height} zh={zh} onActivate={activate} onParent={()=>go(ancestors[Math.max(0,ancestors.length-2)])} onExit={()=>setWalking(false)}/>:threeD?<KnowledgePalace key={vaultId} floors={floors} route={route} current={path} stats={stats} width={size.width} height={size.height} zh={zh} arranging={arranging&&!overview&&!orderBusy} onReorder={reorder} onFloor={p=>p===null?setOverview(true):go(p,true)} onActivate={activate}/>:<div className="space-stage space-flat"><section className="space-floor" data-space-floor={path}><div className="space-floor-heading"><strong>{path.split('/').at(-1)||word('资料根目录','Vault root')}</strong><span>{word('目录层级','Folder level')} {ancestors.length-1}</span></div><div className="space-rooms">{view.entries.map((entry,i)=><button ref={node=>{if(node)rows.current.set(entry.path,node);else rows.current.delete(entry.path);}} key={entry.path} className={'space-room '+(entry.kind==='folder'?'is-folder':'is-file')} data-space-entry={entry.path} aria-label={entry.name} draggable={arranging&&!orderBusy} onDragStart={e=>e.dataTransfer.setData('text/inkspace-room',entry.path)} onDragOver={e=>{if(arranging)e.preventDefault();}} onDrop={e=>{e.preventDefault();if(arranging)reorder(e.dataTransfer.getData('text/inkspace-room'),entry.path);}} onClick={()=>{if(!arranging)activate(entry);}} onKeyDown={e=>{const columns=e.currentTarget.parentElement?getComputedStyle(e.currentTarget.parentElement).gridTemplateColumns.split(' ').length:4;let next=i;if(e.key==='ArrowRight')next++;else if(e.key==='ArrowLeft')next--;else if(e.key==='ArrowDown')next+=columns;else if(e.key==='ArrowUp')next-=columns;else return;e.preventDefault();if(arranging&&e.shiftKey)reorder(entry.path,view.entries[clampIndex(next,view.entries.length)]?.path);else rows.current.get(view.entries[clampIndex(next,view.entries.length)]?.path)?.focus();}}>{entry.kind==='folder'?<Folder size={23}/>:<FileText size={21}/>}<span className="space-room-name">{entry.name}</span><small>{metric(entry)}</small><span className="space-room-format">{spaceBadge(entry)}</span></button>)}</div>{!view.entries.length&&<div className="space-state">{word('本层没有匹配资料','No matching items on this floor')}</div>}</section></div>}
+  </div>
+  <footer className="space-footer"><span>{word('仅按需统计当前页资料：最多48目录／12,000条目／4并发；隐藏目录不计，未完成会标注。','On-demand count: up to 48 folders / 12,000 entries / 4 requests. Hidden folders excluded; incomplete counts are marked.')}</span><div className="space-pagination"><Button disabled={view.index===0} onClick={()=>setPage(p=>p-1)}>{word('上一页','Previous')}</Button><span>{view.index+1} / {view.pages}</span><Button disabled={view.index+1>=view.pages} onClick={()=>setPage(p=>p+1)}>{word('下一页','Next')}</Button></div></footer>
+ </section>;
+}
+function clampIndex(value:number,length:number){return Math.max(0,Math.min(length-1,value));}
+export function spaceOrdered(entries:VaultEntry[],order?:string[]){if(!order)return entries;const rank=new Map(order.map((p,i)=>[p,i]));return [...entries].sort((a,b)=>(rank.get(a.path)??Infinity)-(rank.get(b.path)??Infinity));}

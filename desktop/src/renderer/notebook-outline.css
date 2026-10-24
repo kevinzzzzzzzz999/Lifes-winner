@@ -1,0 +1,30 @@
+/* Opt-in only: this never changes normal document readers or the App file sidebar. */
+.notebook-workspace[data-outline-open] {--notebook-outline-width:238px}
+.notebook-workspace[data-outline-open]>.notebook-outline{position:sticky;top:0;height:0;width:0;z-index:5;pointer-events:none;overflow:visible}
+.notebook-workspace .notebook-outline button{font:inherit;cursor:pointer;box-shadow:none}
+.notebook-workspace .notebook-outline button:focus-visible{outline:2px solid #4f81b4;outline-offset:-2px}
+.notebook-workspace .notebook-outline svg{width:17px;height:17px;flex:none}
+.notebook-workspace .notebook-outline-panel{pointer-events:auto;width:var(--notebook-outline-width);height:calc(100vh - 205px);min-height:180px;max-height:820px;display:flex;flex-direction:column;background:#fafbfc;border-right:1px solid #dce3e8;color:#34444f;border-bottom:1px solid #dce3e8}
+.notebook-workspace .notebook-outline-header{display:flex;align-items:center;gap:8px;padding:12px 10px;min-height:48px;font-size:13px;border-bottom:1px solid #e4e9ed}
+.notebook-workspace .notebook-outline-header>span{font-size:11px;color:#7b8791;margin-left:auto;font-variant-numeric:tabular-nums}
+.notebook-workspace .notebook-outline-header button{display:flex;padding:5px;border:0;background:transparent;color:#61717e}
+.notebook-workspace .notebook-outline-actions{display:flex;gap:9px;padding:7px 10px}
+.notebook-workspace .notebook-outline-actions button{border:0;padding:3px 0;background:transparent;font-size:11px;color:#5d7486}
+.notebook-workspace .notebook-outline-actions button:disabled{color:#a8b0b8;cursor:default}
+.notebook-workspace .notebook-outline-list{list-style:none;padding:3px 0 18px;margin:0;overflow:auto;overscroll-behavior:contain;min-height:0;scrollbar-gutter:stable}
+.notebook-workspace .notebook-outline-item{display:flex;align-items:stretch;margin:0;padding-block:1px;padding-inline-end:7px;min-height:32px}
+.notebook-workspace .notebook-outline-fold,.notebook-workspace .notebook-outline-fold-space{width:23px;flex:0 0 23px}
+.notebook-workspace .notebook-outline-fold{display:flex;align-items:center;justify-content:center;background:transparent;border:0;padding:0;color:#7b8995;border-radius:4px}
+.notebook-workspace .notebook-outline-fold:hover{background:#e8edf1;color:#2e5268}
+.notebook-workspace .notebook-outline-link{display:flex;align-items:center;gap:8px;min-width:0;flex:1;background:transparent;border:0;border-radius:4px;padding:6px 7px;text-align:start;color:#425360;font-size:12px;line-height:1.45}
+.notebook-workspace .notebook-outline-link>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.notebook-workspace .notebook-outline-link>small{flex:none;margin-inline-start:auto;color:#87939d;font-size:10px;font-variant-numeric:tabular-nums}
+.notebook-workspace .notebook-outline-link:hover{background:#edf1f4}
+.notebook-workspace .notebook-outline-link[aria-current="location"]{background:#e6f0ec;color:#16594c;font-weight:600}
+.notebook-workspace .notebook-outline-empty{font-size:12px;line-height:1.65;padding:12px 16px;color:#7a8790}
+.notebook-workspace .notebook-outline-show{pointer-events:auto;display:flex;align-items:center;justify-content:center;position:relative;top:12px;left:10px;width:34px;height:32px;border:1px solid #d7e0e6;background:#fafbfc;color:#566c7d;border-radius:5px;padding:5px}
+.notebook-workspace[data-outline-open="false"]>.notebook-toolbar{padding-inline-start:57px}
+.notebook-workspace[data-outline-open="true"]>:is(.notebook-toolbar,.notebook-context,.notebook-cells,.notebook-warnings,.notebook-add-toolbar,.form-error,.preview-notice,.notebook-json){margin-inline-start:var(--notebook-outline-width)}
+.notebook-workspace[data-outline-open="true"]>.notebook-cells{max-width:1280px}
+@media(max-width:800px){.notebook-workspace[data-outline-open]{--notebook-outline-width:200px}.notebook-workspace .notebook-outline-panel{height:calc(100vh - 175px)}.notebook-workspace .notebook-outline-item{padding-inline-end:3px}}
+@media print{.notebook-workspace>.notebook-outline{display:none!important}.notebook-workspace[data-outline-open="true"]>:is(.notebook-toolbar,.notebook-context,.notebook-cells,.notebook-warnings,.notebook-add-toolbar,.form-error,.preview-notice,.notebook-json){margin-inline-start:0}}

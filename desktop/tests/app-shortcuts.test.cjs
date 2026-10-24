@@ -1,0 +1,8 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');
+const {isQuickOpenShortcut,isSaveShortcut}=require('../src/renderer/app-shortcuts.ts');
+const event=(key,extra={})=>({key,metaKey:false,ctrlKey:false,altKey:false,shiftKey:false,...extra});
+test('Mac leaves Ctrl+K with the editor and uses Command+K for quick open',()=>{assert.equal(isQuickOpenShortcut(event('k',{ctrlKey:true}),'MacIntel'),false);assert.equal(isQuickOpenShortcut(event('k',{metaKey:true}),'MacIntel'),true);});
+test('Windows and Linux use Ctrl+K',()=>{for(const platform of ['Win32','Linux x86_64']){assert.equal(isQuickOpenShortcut(event('k',{ctrlKey:true}),platform),true);assert.equal(isQuickOpenShortcut(event('k',{metaKey:true}),platform),false);}});
+test('already consumed editor keys never trigger application actions',()=>{assert.equal(isQuickOpenShortcut(event('k',{metaKey:true,defaultPrevented:true}),'MacIntel'),false);assert.equal(isSaveShortcut(event('s',{metaKey:true,defaultPrevented:true})),false);});
+test('IME composition, extra modifiers and repeat do not save or navigate',()=>{for(const extra of [{isComposing:true},{keyCode:229},{altKey:true},{shiftKey:true},{repeat:true},{ctrlKey:true}]){const e=event('s',{metaKey:true,...extra});assert.equal(isSaveShortcut(e),false);assert.equal(isQuickOpenShortcut({...e,key:'k'},'MacIntel'),false);}});
+test('plain Ctrl/Command+S save while normal typing does not',()=>{assert.equal(isSaveShortcut(event('s',{metaKey:true})),true);assert.equal(isSaveShortcut(event('S',{ctrlKey:true})),true);assert.equal(isSaveShortcut(event('s')),false);assert.equal(isSaveShortcut(event('k',{metaKey:true})),false);});

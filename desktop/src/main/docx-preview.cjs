@@ -1,0 +1,16 @@
+'use strict';
+const zlib=require('node:zlib'); const {fail}=require('./errors.cjs');
+// Validate the actual decompressed entries before giving a bounded DOCX to Mammoth.
+function validateZip(data,requiredParts=['word/document.xml']){
+ let end=-1;for(let i=data.length-22;i>=Math.max(0,data.length-65557);i--)if(data.readUInt32LE(i)===0x06054b50&&i+22+data.readUInt16LE(i+20)===data.length){end=i;break;}
+ if(end<0||data.readUInt16LE(end+4)!==0||data.readUInt16LE(end+6)!==0)fail('INVALID_DOCX');
+ const count=data.readUInt16LE(end+10),length=data.readUInt32LE(end+12),offset=data.readUInt32LE(end+16);if(!count||count>4096||data.readUInt16LE(end+8)!==count||offset+length!==end)fail('INVALID_DOCX');let pos=offset,total=0;const names=new Set();
+ for(let i=0;i<count;i++){
+  if(pos+46>end||data.readUInt32LE(pos)!==0x02014b50)fail('INVALID_DOCX');const flags=data.readUInt16LE(pos+8),method=data.readUInt16LE(pos+10),compressed=data.readUInt32LE(pos+20),size=data.readUInt32LE(pos+24),nl=data.readUInt16LE(pos+28),el=data.readUInt16LE(pos+30),cl=data.readUInt16LE(pos+32),local=data.readUInt32LE(pos+42);if(flags&1||![0,8].includes(method)||local===0xffffffff||compressed===0xffffffff||size===0xffffffff||pos+46+nl+el+cl>end)fail('INVALID_DOCX');
+  const name=data.subarray(pos+46,pos+46+nl).toString('utf8');if(!name||name.startsWith('/')||name.includes('\\')||name.includes('\0')||name.split('/').some(p=>p==='..')||names.has(name))fail('INVALID_DOCX');names.add(name);total+=size;if(size>24*1024*1024||total>48*1024*1024)fail('TOO_LARGE');
+  if(local+30>offset||data.readUInt32LE(local)!==0x04034b50||data.readUInt16LE(local+8)!==method)fail('INVALID_DOCX');const start=local+30+data.readUInt16LE(local+26)+data.readUInt16LE(local+28);if(start+compressed>offset)fail('INVALID_DOCX');const bytes=data.subarray(start,start+compressed);let plain;try{plain=method===0?bytes:zlib.inflateRawSync(bytes,{maxOutputLength:24*1024*1024});}catch{fail('INVALID_DOCX');}if(plain.length!==size)fail('INVALID_DOCX');pos+=46+nl+el+cl;
+ }
+ if(pos!==end||!names.has('[Content_Types].xml')||requiredParts.some(name=>!names.has(name)))fail('INVALID_DOCX');return {entries:count,uncompressedBytes:total};
+}
+async function previewDocx(data){validateZip(data);const mammoth=require('mammoth');let imageBytes=0,skipped=false;try{const result=await mammoth.convertToHtml({buffer:data},{externalFileAccess:false,convertImage:mammoth.images.imgElement(async image=>{if(!['image/png','image/jpeg'].includes(image.contentType)){skipped=true;return {src:'',alt:'Unsupported image omitted'};}const encoded=await image.read('base64');const size=Math.floor(encoded.length*3/4);if(size>2*1024*1024||imageBytes+size>8*1024*1024){skipped=true;return {src:'',alt:'Large image omitted'};}imageBytes+=size;return {src:'data:'+image.contentType+';base64,'+encoded};})});if(Buffer.byteLength(result.value)>12*1024*1024)fail('TOO_LARGE');return {html:result.value,warnings:[...(result.messages.length?['Some Word formatting could not be reproduced.']:[]),...(skipped?['Some images were omitted because their format or size is unsupported.']:[])]};}catch(e){if(e.code)throw e;fail('INVALID_DOCX');}}
+module.exports={validateZip,previewDocx};

@@ -1,0 +1,13 @@
+{
+  "OCR 在本机识别中英文，不上传文件。数学公式、手写和复杂排版可能不准确，请核对原文。": "OCR recognizes Chinese and English on this device without uploading files. Math, handwriting, and complex layouts may be inaccurate; check the original.",
+  "本机 OCR 仅支持 PDF 和可读取的图片。": "Local OCR supports PDFs and readable images only.",
+  "无法读取 OCR 原文件，请确认文件已下载且仍可访问。": "The OCR source could not be read. Make sure it is downloaded and still accessible.",
+  "文件超过本机 OCR 处理上限：PDF 256 MB、图片 64 MB 或 8000 万像素。": "The file exceeds local OCR limits: 256 MB for PDFs, or 64 MB and 80 megapixels for images.",
+  "请选择有效页码，每次 OCR 最多识别 50 页。": "Choose valid page numbers. OCR supports up to 50 pages per run.",
+  "这份 PDF 已加密，请先使用可阅读的未加密副本。": "This PDF is encrypted. Use a readable, unencrypted copy.",
+  "这一页的尺寸无效，无法生成 OCR 图像。": "This page has invalid dimensions and cannot be rendered for OCR.",
+  "本机中英文 OCR 暂不可用，请稍后重试。": "Local Chinese and English OCR is temporarily unavailable. Try again later.",
+  "这一页的 OCR 文字已达到输出上限，请缩小范围后重试。": "This page reached the OCR text limit. Try a smaller range.",
+  "这一页未识别到文字；请检查清晰度、方向和原文内容。": "No text was recognized on this page. Check its clarity, orientation, and content.",
+  "这一页 OCR 失败，已保留其他页的识别结果。": "OCR failed on this page. Results from other pages have been kept."
+}

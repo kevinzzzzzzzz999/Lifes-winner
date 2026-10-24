@@ -1,0 +1,113 @@
+{
+  "name": "inkspace-desktop",
+  "productName": "人生赢家",
+  "version": "0.8.5",
+  "private": false,
+  "description": "人生赢家 desktop candidate: local notes, boards, documents and Python",
+  "author": "InkSpace contributors",
+  "license": "MIT",
+  "main": "src/main/main.cjs",
+  "engines": {
+    "node": ">=24.15.0"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5178",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "start": "electron .",
+    "pack:mac": "node scripts/packaging/package.mjs mac",
+    "pack:win": "node scripts/packaging/package.mjs win",
+    "licenses": "node scripts/packaging/collect-licenses.mjs",
+    "verify:artifacts": "node scripts/packaging/verify-artifacts.mjs",
+    "test": "node --test tests/*.test.cjs",
+    "prebuild": "node scripts/prepare-pdf-assets.mjs"
+  },
+  "dependencies": {
+    "mammoth": "1.12.3",
+    "pdf-lib": "1.17.1"
+  },
+  "devDependencies": {
+    "@codemirror/lang-javascript": "6.2.5",
+    "@codemirror/lang-json": "6.0.2",
+    "@codemirror/lang-markdown": "6.5.2",
+    "@codemirror/lang-python": "6.2.1",
+    "@codemirror/language": "6.12.4",
+    "@codemirror/legacy-modes": "6.5.4",
+    "@types/katex": "0.16.8",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@uiw/react-codemirror": "4.25.11",
+    "@vitejs/plugin-react": "6.1.1",
+    "dompurify": "3.4.15",
+    "electron": "44.3.0",
+    "electron-builder": "26.15.3",
+    "katex": "0.18.7",
+    "lucide-react": "1.45.0",
+    "marked": "18.0.13",
+    "pdfjs-dist": "6.3.289",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.0"
+  },
+  "build": {
+    "mac": {
+      "fileAssociations": [
+        {
+          "name": "Jupyter Notebook",
+          "ext": [
+            "ipynb"
+          ],
+          "role": "Editor",
+          "rank": "Alternate"
+        },
+        {
+          "name": "Inkspace Board and JSON Document",
+          "ext": [
+            "json"
+          ],
+          "role": "Editor",
+          "rank": "Alternate"
+        },
+        {
+          "name": "Text and Source Document",
+          "ext": [
+            "md",
+            "markdown",
+            "tex",
+            "py",
+            "js",
+            "ts",
+            "txt",
+            "html",
+            "htm",
+            "csv",
+            "tsv"
+          ],
+          "role": "Editor",
+          "rank": "Alternate"
+        },
+        {
+          "name": "Office, Image, PDF, and Video Document",
+          "ext": [
+            "pdf",
+            "png",
+            "jpg",
+            "jpeg",
+            "doc",
+            "docx",
+            "pptx",
+            "xls",
+            "xlsx",
+            "xlsm",
+            "mp4",
+            "mov",
+            "m4v"
+          ],
+          "role": "Viewer",
+          "rank": "Alternate"
+        }
+      ]
+    }
+  }
+}

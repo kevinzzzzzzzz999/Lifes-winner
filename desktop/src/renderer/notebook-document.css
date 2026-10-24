@@ -1,0 +1,80 @@
+/* Classic Jupyter document proportions measured from the supplied Lecture 3 PDF.
+   These rules belong only to Notebook surfaces; application chrome stays unchanged. */
+:is(.notebook-workspace[class],.readonly-notebook[class]){--notebook-prompt-width:80px;--notebook-text-font:"Helvetica Neue",Helvetica,Arial,"PingFang SC",sans-serif;--notebook-code-font:Menlo,Monaco,Consolas,"Liberation Mono",monospace;background:#fff;color:#000}
+.notebook-workspace[class] .notebook-cells{max-width:1140px;padding:10px 20px 36px;margin:0 auto}
+.notebook-workspace[class] .notebook-cell{position:relative;gap:0;margin:5px 0;border-radius:2px;box-shadow:none}
+.notebook-workspace[class] .notebook-cell-gutter{position:relative;width:var(--notebook-prompt-width);flex-basis:var(--notebook-prompt-width);align-items:stretch;padding:5px 8px 0 0;gap:5px;font:14px/17px var(--notebook-code-font);text-align:right;color:#303f9f}
+.notebook-workspace[class] .notebook-cell-content{padding:0 8px 0 0}
+.notebook-workspace[class] .notebook-cell-gutter>span{white-space:nowrap}
+.notebook-workspace[class] .notebook-cell[data-cell-type="code"]:is(:hover,.selected,.editing,:focus-within) .notebook-cell-gutter>span{visibility:hidden}
+.notebook-workspace[class] .notebook-cell-gutter>button{position:absolute;top:3px;right:5px;min-height:24px;width:25px;padding:3px;opacity:0;pointer-events:none}
+.notebook-workspace[class] .notebook-cell:is(:hover,.selected,.editing,:focus-within) .notebook-cell-gutter>button{opacity:1;pointer-events:auto}
+.notebook-workspace[class] .notebook-source-read,.readonly-notebook[class] .readonly-notebook-code{font:14px/17px var(--notebook-code-font);color:#000;white-space:pre;overflow-wrap:normal;tab-size:4;margin:0;padding:5px 4px;background:#f7f7f7;border:1px solid #cfcfcf;border-radius:2px;overflow:auto}
+.notebook-workspace[class] .notebook-source{border-color:#cfcfcf;border-radius:2px}
+.notebook-workspace[class] .notebook-source .cm-editor{font-size:14px!important}
+.notebook-workspace[class] .notebook-source .text-edit-actions{min-height:24px}
+.notebook-workspace[class] .notebook-output pre,.readonly-notebook[class] .readonly-notebook-output>pre{font:14px/17px var(--notebook-code-font);color:#000;padding:5px 4px}
+.notebook-workspace[class] .notebook-error-output pre,.readonly-notebook[class] .readonly-notebook-output.has-error>pre{color:#982f26}
+.notebook-workspace[class] .notebook-outputs{margin-top:5px;padding-top:0;border:0}
+:is(.notebook-workspace[class] .notebook-markdown,.readonly-notebook[class] .readonly-notebook-cell) .document-preview{padding:0;background:#fff;overflow:visible;min-height:0}
+:is(.notebook-markdown,.readonly-notebook-cell) .document-preview .paper{min-height:0;max-width:none;margin:0;padding:7px 6px;border:0;box-shadow:none;background:#fff;color:#000;font:14px/20px var(--notebook-text-font);overflow-wrap:break-word}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper :is(h1,h2,h3,h4,h5,h6){font-family:inherit;font-weight:700;line-height:1;color:#000;letter-spacing:normal;margin-bottom:0}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper h1{font-size:26px;margin-top:1.08em}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper h2{font-size:22px;margin-top:1.27em}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper h3{font-size:18px;margin-top:1.55em}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper h4{font-size:14px;margin-top:2em}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper h5{font-size:12px;margin-top:2.33em}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper h6{font-size:12px;font-style:italic;margin-top:2.33em}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper>div:first-child>:first-child{margin-top:.5em}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper>div:first-child>h1:first-child{margin-top:.538em}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper>div:first-child>h2:first-child{margin-top:.636em}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper>div:first-child>h3:first-child{margin-top:.777em}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper>div:last-child>:last-child{margin-bottom:0}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper p{margin:1em 0 0}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper :is(ul,ol){margin:1em 0 0;padding-left:28px}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper li{margin:0;padding-left:0}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper li>p{margin:0}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper strong{font-weight:700}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper a{color:#337ab7;text-decoration:underline}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper a:hover{color:#23527c}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper blockquote{margin:1em 2em;padding:0 1em;border-left:5px solid #eee;color:#000}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper :not(pre)>code{padding:1px 5px;border-radius:3px;background:#f7f7f7;font:14px/20px var(--notebook-code-font);color:#000;white-space:pre-wrap}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper pre{margin:1em 0;padding:5px 4px;border:1px solid #cfcfcf;border-radius:2px;background:#f7f7f7;font:14px/17px var(--notebook-code-font);white-space:pre;overflow:auto;overflow-wrap:normal}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper pre code{font:inherit}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper table{font:12px/15px var(--notebook-text-font);color:#000;margin:1em auto;border-collapse:collapse;max-width:100%;overflow:auto}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper :is(td,th){padding:6px;border:0;text-align:right;white-space:nowrap}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper thead{border-bottom:1px solid #000}
+:is(.notebook-markdown,.readonly-notebook-cell) .paper tbody tr:nth-child(odd){background:#f5f5f5}
+.notebook-python{font:inherit;color:inherit}
+.notebook-python .tok-keyword{color:#008000;font-weight:700}
+.notebook-python .tok-comment{color:#408080;font-style:italic}
+.notebook-python :is(.tok-string,.tok-string2){color:#ba2121}
+.notebook-python .tok-number{color:#008000}
+.notebook-python :is(.tok-bool,.tok-null){color:#008000;font-weight:700}
+.notebook-python :is(.tok-definition,.tok-className){color:#0000d0}
+.notebook-python .tok-operator{color:#666}
+.notebook-python .tok-meta{color:#aa22ff}
+.notebook-python .tok-invalid{color:#a00;text-decoration:underline wavy}
+/* Every cell uses the same stable gutter menu. Opening it never moves the text. */
+.notebook-workspace[class] .notebook-cell[data-cell-type="markdown"]{margin:1px 0;overflow:visible}
+.notebook-workspace[class] .notebook-cell .notebook-cell-gutter>span:not(:first-child),.notebook-workspace[class] .notebook-cell[data-cell-type="markdown"] .notebook-cell-gutter>span{display:none}
+.notebook-markdown-actions{position:absolute;top:3px;left:14px;z-index:3;opacity:0}
+.notebook-cell[data-cell-type="markdown"] .notebook-markdown-actions{top:9px;left:42px}
+.notebook-cell:is(:hover,.selected,.editing,:focus-within) .notebook-markdown-actions,.notebook-markdown-actions[open]{opacity:1}
+.notebook-markdown-actions>summary{list-style:none;cursor:pointer;width:24px;height:24px;border-radius:3px;color:#66717b;text-align:center;line-height:21px;font-size:22px}
+.notebook-markdown-actions>summary::-webkit-details-marker{display:none}
+.notebook-markdown-actions>summary:is(:hover,:focus-visible){background:#edf2f8;outline:2px solid #7c9fc1;outline-offset:1px}
+.notebook-markdown-actions:not([open]) .notebook-cell-header{display:none}
+.notebook-markdown-actions[open] .notebook-cell-header{position:absolute;top:0;left:28px;display:flex;flex-wrap:wrap;width:180px;padding:7px;border:1px solid #d6dfe5;border-radius:6px;background:#fff;box-shadow:0 4px 16px #1e2f4220}
+.notebook-cell:has(.notebook-markdown-actions[open]){content-visibility:visible;overflow:visible;z-index:3}
+/* Read-only panes retain the same prompt gutter and document metrics. */
+.readonly-notebook[class]{padding:10px 20px 30px}
+.readonly-notebook[class] .readonly-notebook-cell{position:relative;padding-left:var(--notebook-prompt-width);border-color:transparent;border-radius:2px;box-shadow:none;margin:5px auto;max-width:1100px;overflow:visible}
+.readonly-notebook[class] .readonly-notebook-cell[data-cell-type="markdown"]{margin-top:1px;margin-bottom:1px}
+.readonly-notebook[class] .readonly-notebook-cell>header{position:absolute;left:0;top:5px;width:var(--notebook-prompt-width);justify-content:flex-end;padding:0 8px 0 0;border:0;background:transparent;color:#303f9f;font:14px/17px var(--notebook-code-font)}
+.readonly-notebook[class] .readonly-notebook-cell[data-cell-type="markdown"]>header{display:none}
+.readonly-notebook[class] .readonly-notebook-output{border:0;margin-top:5px}
+.readonly-notebook[class] .readonly-notebook-html{height:auto;min-height:0;max-height:none;resize:none;overflow:visible}
+:is(.notebook-workspace[class] .notebook-rich-output,.readonly-notebook[class] .readonly-notebook-html) .data-html-preview-notebook iframe{min-height:40px}
+@media(max-width:700px){:is(.notebook-workspace[class],.readonly-notebook[class]){--notebook-prompt-width:68px}.notebook-workspace[class] .notebook-cells{padding:8px 5px 28px}.readonly-notebook[class]{padding:8px 5px 28px}.notebook-cell[data-cell-type="markdown"] .notebook-markdown-actions{left:30px}.notebook-markdown-actions{left:2px}}
+@media print{.notebook-markdown-actions,.notebook-cell-gutter>button{display:none!important}.notebook-workspace[class] .notebook-source-read,.readonly-notebook[class] .readonly-notebook-code{background:#fff}.notebook-python span{color:#000!important}.notebook-workspace[class] .notebook-cell{break-inside:avoid}.notebook-workspace[class] .notebook-cells{max-width:none}}

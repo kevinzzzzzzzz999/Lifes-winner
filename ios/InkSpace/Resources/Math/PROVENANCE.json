@@ -1,0 +1,8 @@
+{
+  "package": "katex",
+  "version": "0.18.7",
+  "tarball": "https://registry.npmjs.org/katex/-/katex-0.18.7.tgz",
+  "integrity": "sha512-h+UCwkZ+4Jz8WQ7MLGfj7UVFrRCizGb912fwF4luGdYsC5paYG1vx+jy+KRcC/XkpjGva/P7nAWuxNnPzRvzHw==",
+  "shasum": "972327a0c0f83be54423c8cc50d0bc3693523fa7",
+  "copiedFiles": 63
+}

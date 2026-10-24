@@ -1,0 +1,5 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');
+const {clampDocumentZoom,documentWheelZoom,documentZoomShift}=require('../src/renderer/document-zoom.ts');
+test('document pinch zooms in and out, including page/line wheel units',()=>{assert.ok(documentWheelZoom(1,-100,0,600)>1);assert.ok(documentWheelZoom(1,100,0,600)<1);assert.equal(documentWheelZoom(1,-1,1,600),documentWheelZoom(1,-16,0,600));assert.equal(documentWheelZoom(1,1,2,200),documentWheelZoom(1,200,0,200));});
+test('limits and invalid deltas cannot poison a document scale',()=>{assert.equal(clampDocumentZoom(Infinity),1);assert.equal(clampDocumentZoom(0),.25);assert.equal(clampDocumentZoom(100),4);assert.equal(documentWheelZoom(4,-1000,0,600),4);assert.equal(documentWheelZoom(.25,1000,0,600),.25);assert.equal(documentWheelZoom(1.5,NaN,0,600),1.5);});
+test('scroll correction keeps the document point under the pinch anchor',()=>{const a={x:100,y:200,clientX:250,clientY:350};const s=documentZoomShift(a,{left:100,top:100},2);assert.deepEqual(s,{x:50,y:150});assert.deepEqual(documentZoomShift(a,{left:150,top:150},1),{x:0,y:0});});

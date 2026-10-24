@@ -1,0 +1,19 @@
+.board-web-card{display:flex;flex-direction:column;width:100%;height:100%;min-height:0;background:#fbfaf6;color:#233c35;overflow:hidden;pointer-events:auto}
+.board-web-card>header{padding:7px 10px;display:flex;align-items:center;gap:10px;min-height:34px;border-bottom:1px solid #ccd5cc}
+.board-web-card>header strong{font-size:14px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;min-width:0;flex:1}
+.board-web-card>header>span{font-size:11px;max-width:45%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#596860}
+.board-web-tools{display:flex;flex-wrap:wrap;gap:5px;padding:5px 8px;background:#eaece5}
+.board-web-tools button{border:1px solid #bac8bd;background:#fbfaf6;color:#244a3b;border-radius:6px;min-height:34px;padding:5px 9px;font-size:12px}
+.board-web-tools button:focus-visible{outline:3px solid #244a3b;outline-offset:1px}
+.board-web-content{position:relative;flex:1;min-height:0;background:white}
+.board-web-content>iframe{display:block;border:0;width:100%;height:100%;background:white}
+.board-web-paused{display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:16px;overflow:auto}
+.board-web-paused p{max-width:420px;font-size:13px;line-height:1.6;color:#596860}
+.board-web-card>footer{flex-shrink:0;padding:6px 10px;font-size:11px;line-height:1.45;color:#596860;border-top:1px solid #ccd5cc;max-height:72px;overflow:auto}
+.board-text-link-choices{display:flex;gap:8px;flex-wrap:wrap;padding:8px;background:#fbfaf6;border:1px solid #bac8bd;border-radius:6px;font-size:12px;pointer-events:auto}
+.board-text-link-choices button{min-height:34px;border:1px solid #bac8bd;background:#fff;padding:4px 9px;border-radius:5px}
+.box-link-entry{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px;background:#eef2ed}
+.box-link-entry label{display:flex;gap:5px;align-items:center;font-size:12px}.box-link-entry input{min-width:120px;max-width:100%}.box-link-entry p{width:100%;margin:0}
+
+/* An activated page stays clickable where cards overlap, below the ink layer. */
+.board-item:has(>.board-web-card[data-active="true"]){z-index:2}

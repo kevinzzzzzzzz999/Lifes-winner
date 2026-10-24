@@ -1,0 +1,39 @@
+import {useEffect,useRef,useState} from 'react';
+import type {BoardTextFormat} from '../shared/desktop-api';
+import type {Language} from './i18n';
+import BoxContent,{sanitizedBoxHTML} from './BoxContent';
+import EditorPane from './EditorPane';
+import {normalizeClipboard,plainTextToRichHTML} from './clipboard-rich-text';
+import {Button} from './ui';
+import {webLinkHTML} from './board-web-links';
+import './board-web-card.css';
+import './document-editing.css';
+
+export type BoxDraft={text:string;textFormat:BoardTextFormat;richTextHTML?:string};
+/** Initialize once per mode mount so React updates never reset the editing caret. */
+function RichInput({value,onChange,language}:{value:BoxDraft;onChange:(v:BoxDraft)=>void;language:Language}){
+ const ref=useRef<HTMLDivElement>(null);const initial=useRef(value);const zh=language==='zh';const [pasteNotice,setPasteNotice]=useState('');
+ useEffect(()=>{if(ref.current)ref.current.innerHTML=sanitizedBoxHTML(initial.current.richTextHTML||plainTextToRichHTML(initial.current.text),'richText');},[]);
+ const [linkOpen,setLinkOpen]=useState(false),[linkLabel,setLinkLabel]=useState(''),[linkURL,setLinkURL]=useState(''),[linkError,setLinkError]=useState('');const linkRange=useRef<Range|null>(null);
+ const startLink=()=>{const selection=window.getSelection();const range=selection?.rangeCount?selection.getRangeAt(0):null;linkRange.current=range&&ref.current?.contains(range.commonAncestorContainer)?range.cloneRange():null;setLinkLabel(linkRange.current?.toString()||'');setLinkURL('');setLinkError('');setLinkOpen(true);};
+ const insertLink=()=>{const html=webLinkHTML(linkLabel,linkURL);if(!html){setLinkError(zh?'请输入完整、不含账号密码的 http / https 地址。':'Enter a complete http / https URL without embedded credentials.');return;}const node=ref.current;if(!node)return;node.focus();const selection=window.getSelection();const saved=linkRange.current;if(saved&&node.contains(saved.commonAncestorContainer)){selection?.removeAllRanges();selection?.addRange(saved);}else{const range=document.createRange();range.selectNodeContents(node);range.collapse(false);selection?.removeAllRanges();selection?.addRange(range);}document.execCommand('insertHTML',false,html);publish();setLinkOpen(false);};
+ const publish=()=>{const node=ref.current;if(!node)return;const html=sanitizedBoxHTML(node.innerHTML,'richText');onChange({...value,text:node.innerText.replace(/\r\n/g,'\n'),richTextHTML:html});};
+ const command=(name:string,arg?:string)=>{ref.current?.focus();document.execCommand(name,false,arg);publish();};
+ return <div className="rich-input"><div className="rich-tools" role="toolbar" aria-label={zh?'文字排版':'Text formatting'}>{[
+  ['bold',zh?'粗体':'Bold','B'],['italic',zh?'斜体':'Italic','I'],['underline',zh?'下划线':'Underline','U'],['insertUnorderedList',zh?'项目列表':'Bullet list','•'],['insertOrderedList',zh?'编号列表':'Numbered list','1.'],
+ ].map(([cmd,label,text])=><Button key={cmd} type="button" title={label} aria-label={label} onMouseDown={e=>e.preventDefault()} onClick={()=>command(cmd)}>{text}</Button>)}
+ <Button type="button" onMouseDown={e=>e.preventDefault()} onClick={()=>command('formatBlock','h2')}>{zh?'标题':'Heading'}</Button><Button type="button" onMouseDown={e=>e.preventDefault()} onClick={()=>command('formatBlock','p')}>{zh?'正文':'Paragraph'}</Button>
+ <Button type="button" onMouseDown={e=>e.preventDefault()} onClick={()=>command('justifyLeft')}>{zh?'左对齐':'Align left'}</Button><Button type="button" onMouseDown={e=>e.preventDefault()} onClick={()=>command('justifyCenter')}>{zh?'居中':'Center'}</Button>
+ <Button type="button" onMouseDown={e=>e.preventDefault()} onClick={startLink} data-testid="box-insert-link">{zh?'插入链接':'Insert link'}</Button>
+ </div>{linkOpen&&<div className="box-link-entry"><label>{zh?'显示文字':'Label'}<input value={linkLabel} onChange={e=>setLinkLabel(e.target.value)} maxLength={1000}/></label><label>{zh?'网页地址':'Web URL'}<input type="url" value={linkURL} onChange={e=>setLinkURL(e.target.value)} placeholder="https://…" maxLength={8192} data-testid="box-link-url"/></label><Button type="button" onClick={insertLink}>{zh?'插入':'Insert'}</Button><Button type="button" onClick={()=>setLinkOpen(false)}>{zh?'取消':'Cancel'}</Button>{linkError&&<p role="alert">{linkError}</p>}</div>}<div className="rich-editable" ref={ref} contentEditable suppressContentEditableWarning role="textbox" aria-multiline="true" aria-label={zh?'普通文字内容':'Rich text content'} onInput={publish} onClick={event=>{if((event.target as Element).closest('a')){event.preventDefault();event.stopPropagation();}}} onPaste={event=>{event.preventDefault();event.stopPropagation();try{const content=normalizeClipboard({html:event.clipboardData.getData('text/html'),text:event.clipboardData.getData('text/plain')});if(content){command(content.kind==='plain'?'insertText':'insertHTML',content.kind==='plain'?content.text:content.richTextHTML);setPasteNotice(content.warnings.length?(zh?'已保留文字和表格，内嵌图片请单独复制到白板。':'Text and tables retained; copy embedded images separately onto the board.'):content.hasTable?(zh?'表格已粘贴，可直接编辑单元格；Tab / Shift+Tab 切换单元格。':'Table pasted. Edit cells directly; Tab / Shift+Tab moves between cells.'):'');}else setPasteNotice(zh?'没有可粘贴的文字或表格。':'No text or table to paste.');}catch(error){setPasteNotice(error instanceof Error?error.message:String(error));}}}
+ onKeyDown={event=>{if(event.key!=='Tab')return;const selection=window.getSelection(),anchor=selection?.anchorNode,cell=(anchor instanceof Element?anchor:anchor?.parentElement)?.closest('td,th');if(!cell||!ref.current?.contains(cell))return;const table=cell.closest('table');if(!table)return;const cells=Array.from(table.querySelectorAll('td,th')).filter(c=>c.closest('table')===table),index=cells.indexOf(cell),next=cells[index+(event.shiftKey?-1:1)];if(next){event.preventDefault();event.stopPropagation();const range=document.createRange();range.selectNodeContents(next);range.collapse(true);selection?.removeAllRanges();selection?.addRange(range);}}} onDrop={event=>event.preventDefault()}/>{pasteNotice&&<p className="rich-paste-notice" role="status">{pasteNotice}</p>}</div>;
+}
+export default function TextBoxEditor({value,onChange,language}:{value:BoxDraft;onChange:(v:BoxDraft)=>void;language:Language}){
+ const zh=language==='zh';const limit=value.text.length>100000||(value.richTextHTML?.length||0)>300000;
+ return <section className="text-box-editor"><label className="form-label">{zh?'这个文本框的输入模式':'Input mode for this text box'}<select data-testid="box-format" value={value.textFormat} onChange={e=>onChange({text:value.text,textFormat:e.target.value as BoardTextFormat,richTextHTML:''})}>
+ <option value="richText">{zh?'普通文字 · 直接排版':'Rich text · direct formatting'}</option><option value="markdown">Markdown</option><option value="latex">LaTeX</option><option value="python">Python</option></select></label>
+ {value.textFormat==='richText'?<RichInput key="rich" value={value} onChange={onChange} language={language}/>:<div className="box-source"><EditorPane key={value.textFormat} path={'text-box.'+({markdown:'md',latex:'tex',python:'py'}[value.textFormat])} value={value.text} onChange={text=>onChange({...value,text,richTextHTML:''})}/></div>}
+ {value.textFormat!=='richText'&&<details className="box-preview" open={value.textFormat==='latex'}><summary>{zh?'预览':'Preview'}</summary><BoxContent {...value}/></details>}
+ <p className={limit?'form-error':'muted small'}>{limit?(zh?'内容超过文本框上限，请拆成多个文本框。':'This box is too long. Split it into multiple boxes.'):value.textFormat==='python'?(zh?'这里展示代码。运行程序请使用独立的 Python 文件。':'Code is displayed here. Run programs in a standalone Python file.'):value.textFormat==='latex'?(zh?'这里显示数学公式；整篇 LaTeX 文档请新建 .tex 文件。':'This box displays math. Create a .tex file for a full LaTeX document.'):(zh?'仅影响这个文本框。切换模式会保留文字，重新应用对应排版。':'Only this box is affected. Switching modes retains the text and applies the selected formatting.')}</p>
+ </section>;
+}
