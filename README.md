@@ -1,59 +1,73 @@
-# life'winner · 人生赢家
+# 人生赢家 / Life's winner
 
-希望每一个使用我开源功能的人，都是各自的 life'winner。
+希望每一个使用我开源功能的人，都是各自的 Life's winner。
 
-**Local-first notes, handwriting, whiteboards, PDF and notebooks for macOS, iPad and iPhone.**
+I hope everyone who uses my open-source tools can be their own Life's winner.
 
-面向 Mac、iPad 和 iPhone 的开源本地笔记、手写白板与文档工作空间。把资料、批注、思维结构和学习工具放在自己的文件夹中；Obsidian伴侣可查看已有白板。
+面向 Mac、iPad、iPhone 的本地笔记、手写白板与文档工作空间；另有可独立使用的工具、模块与 Obsidian 伴侣。
 
-[浏览Mac源码](desktop/) · [浏览iPad/iPhone源码](ios/) · [独立模块与组件](https://github.com/kevinzzzzzzzz999/inkspace-modules) · [功能覆盖与边界](https://github.com/kevinzzzzzzzz999/inkspace-modules/blob/main/FEATURES.md)
+A local-first workspace for notes, handwriting, whiteboards and documents on Mac, iPad and iPhone, with standalone tools, reusable modules and an Obsidian companion.
 
-## 能用它做什么 / What you can do
+[Mac 源码 / Source](desktop/) · [iPad/iPhone 源码 / Source](ios/) · [独立功能 / Standalone modules](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules) · [功能边界 / Feature limits](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules/blob/main/FEATURES.md)
 
-| 场景 | 功能 |
+## 直接使用 / Ready-to-use tools
+
+| 设备 / Device | 入口与安装 / Open and install |
 | --- | --- |
-| 阅读与批注 | PDF、Office、图片和Markdown阅读，旁注、原文关联、摘录与导出 |
-| 手写与整理 | 白板、PencilKit手写、文字/公式卡片、节点连接、子白板、合并和历史 |
-| 代码与计算 | 代码编辑、本地Python、Jupyter Notebook、表格数据交换与数学工作台 |
-| 学习与计划 | 搜索与笔记关联、学习卡片、间隔复习、任务清单、日历与ICS |
-| 网页与媒体 | 网页剪藏、AI接口、字幕、播放与非破坏式媒体编辑；外部服务/引擎按需配置 |
-| 开发者复用 | 20个Node库、18个Swift产品、React组件和独立集成，可只下载需要的功能 |
+| iPhone / iPad | [三个主屏幕工具 / Three home-screen tools](https://kevinzzzzzzzz999.github.io/Lifes-winner-modules/)：书写、偏好、文档分别打开；Safari → 分享 → 添加到主屏幕。<br>Open Writing, Preferences or Documents separately; Safari → Share → Add to Home Screen. |
+| Mac | [已验证应用下载 / Verified app downloads](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules/blob/main/DESKTOP-APPS.md)：下载 ZIP、解压、将 `.app` 拖入“应用程序”。<br>Download a ZIP, extract it and move the `.app` to Applications. |
+| 只取一项功能 / Reuse one feature | [独立模块库 / Module catalog](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules)：20 个 Node 包、18 个 Swift 产品、React 与集成源码。<br>20 Node packages, 18 Swift products, React and integration source. |
 
-## iPhone / iPad 主屏幕工具
+普通工具无需 Xcode、Node.js 或完整版。主屏幕工具首次联网，等“可离线使用”，各自支持中文 / English。Mac 需要 macOS 13+，当前 ad-hoc 签名、未经过 Apple 公证，首次打开可能需要系统确认。准确入口、用途与公开验收见[移动说明](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules/blob/main/MOBILE-APPS.md)和[Mac 说明](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules/blob/main/DESKTOP-APPS.md)。
 
-书写画板、偏好方案和文档工作台另有分别添加到主屏幕的轻量网页适配。正式入口、安装说明和公开验收状态以[移动工具说明](https://github.com/kevinzzzzzzzz999/inkspace-modules/blob/main/MOBILE-APPS.md)为准；正式链接验证前，源码不能视为已经可安装的成品。
+These tools need no Xcode, Node.js or full application. Open home-screen tools online once and wait for Ready for offline use; each offers 中文 / English. Mac requires macOS 13+; apps use ad-hoc signing and are not Apple-notarized, so first opening may need system approval. See the mobile and Mac guides for exact availability and scope.
 
-## 下载与开始 / Get started
+## 完整软件源码 / Integrated application source
 
-[**下载完整软件源码（ZIP）**](life-winner-source-2026-10-24-r2.zip?raw=1)
+[**下载源码 ZIP / Download source ZIP**](Lifes-winner-source-2026-10-24-r3.zip?raw=1) · [SHA256 与文件清单 / Hashes and manifest](source-manifest.json)
 
-源码也已按目录提供，可直接阅读、克隆和比较改动。下载包内含可编辑源文件、工程、测试、通用资源及许可；清单与SHA256见[source-manifest.json](source-manifest.json)。
+源码已按目录展开，可以直接浏览、克隆和比较改动；包含工程、测试、通用资源与许可。
 
-| 平台 | 要求与步骤 |
+Source is also expanded into repository directories for browsing, cloning and comparing changes, including projects, tests, generic resources and licenses.
+
+| 平台 / Platform | 构建与安装 / Build and install |
 | --- | --- |
-| Mac | Node.js 24.15+；按[桌面构建说明](desktop-build.md)准备依赖、构建并运行Electron |
-| iPad / iPhone | macOS与Xcode；按[iOS说明](ios-build.md)构建，真机安装使用自己的Apple签名 |
-| Obsidian | 按[伴侣说明](obsidian-build.md)安装插件 |
-| 只用某项功能 | 到[模块库](https://github.com/kevinzzzzzzzz999/inkspace-modules)选择带示例、依赖和测试的独立源码包 |
+| Mac | Node.js 24.15+；[桌面构建 / Desktop build](desktop-build.md)，可选 OCR、原生书写和 Python 另有要求。<br>Follow the desktop guide; optional OCR, native handwriting and Python have extra requirements. |
+| iPad / iPhone | macOS、Xcode 与自己的 Apple 签名；[iOS 指南 / iOS guide](ios-build.md)。<br>Requires macOS, Xcode and your own Apple signing setup. |
+| Obsidian | [伴侣安装 / Companion installation](obsidian-build.md) |
 
-这是开发中的源码发行。完整公众安装包、公证和全部可选运行组件仍有各自准备要求。
+完整软件仍是开发源码发行，不提供个人签名 IPA；源码 ZIP 不是可直接安装的手机应用。
 
-## 状态与已知边界
+The integrated application remains a development source release, without a personally signed IPA. A source ZIP is not an installable iPhone/iPad application.
 
-完整软件首次快照为2026-10-24：Mac第105轮、原生第106.3轮基础、Obsidian 0.6.0。模块库已单独复查并修正下载/类型/遗漏问题，最新结果见其[独立使用验证](https://github.com/kevinzzzzzzzz999/inkspace-modules/blob/main/VALIDATION.md)。
+## 功能 / Features
 
-iPad约两万笔的大范围套索仍有已知稳定性问题。iCloud、真实Apple Pencil及全部设备流程不能由编译或组件测试替代；完整源快照的实际检查见[validation.md](validation.md)。可选AI、OCR、Python、TeX和媒体引擎需满足各自条件。
+| 场景 / Area | 功能 / Capabilities |
+| --- | --- |
+| 阅读与批注 / Reading | PDF、Office、图片、Markdown、旁注与摘录 / PDF, Office, images, Markdown, margin notes and excerpts |
+| 手写整理 / Handwriting | 白板、PencilKit、卡片、连接、子白板与历史 / Boards, PencilKit, cards, links, child boards and history |
+| 代码计算 / Code | 本地 Python、Notebook、表格交换与数学 / Local Python, notebooks, tabular exchange and mathematics |
+| 学习计划 / Study | 搜索、复习卡片、任务、日历与 ICS / Search, review cards, tasks, calendars and ICS |
+| 网页媒体 / Web and media | 剪藏、AI 适配、字幕与媒体工程 / Clips, AI adapters, subtitles and media projects |
 
-## 参与改进 / Contribute
+## 状态与边界 / Status and limits
 
-欢迎用Issue反馈可复现问题、文档建议或明确的模块需求。请附平台、源码/下载版本、操作步骤和合成样例，避免提交私人笔记、课件、账号或密钥。模块提取的逐项范围公开在功能审计中，便于选择能直接复用的部分。
+首次源码基于 Mac 第 105 轮、原生第 106.3 轮基础与 Obsidian 0.6.0。iPad 约两万笔的大范围套索仍有已知稳定性问题；iCloud、真实 Apple Pencil 和全部设备流程不能由构建或组件测试代替。先用测试文件并备份重要资料。完整实际检查见 [validation.md](validation.md)；独立模块的[最新验收](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules/blob/main/VALIDATION.md)另行记录。
 
-## 隐私与许可证
+The initial source is based on Mac round 105, native round 106.3 foundations and Obsidian 0.6.0. Large iPad lasso selections of about 20,000 strokes still have a known stability issue. Builds and component tests do not establish iCloud, physical Apple Pencil or every device workflow. Start with test files and back up important work. Integrated and standalone checks are documented separately.
 
-发布内容只含审查过的软件源码与通用资源，不附带个人笔记、课件、账号、凭据、设备记录或签名。后续完成版本会经隐私与相关构建检查后更新源码与模块。
+## 隐私、每月更新与参与 / Privacy, monthly updates and contribution
 
-项目原创代码使用[MIT License](LICENSE)，允许使用、修改、分发及商业使用，保留许可和版权声明即可；第三方组件保持[原有许可](THIRD_PARTY_NOTICES.md)。
+发布排除个人笔记、课件、账号、密钥、设备记录、私人路径、个人签名和开发日志。每月检查已完成变更，经过隐私、许可与相关验证后同步完整源码、功能包和已验证应用。个人草稿不会因发布自动跨设备同步。网页托管方仍收到普通页面请求。
 
-## 对外名称与兼容
+Releases exclude personal notes, course materials, accounts, secrets, device records, private paths, personal signing materials and development logs. Completed changes are reviewed monthly and synchronized across the integrated source, modules and verified apps after privacy, license and relevant validation checks. Publishing never synchronizes personal drafts between devices. Static hosts still receive ordinary page requests.
 
-英文产品名称现统一为 **life'winner**。旧仓库地址、工程与库的技术名称、文档格式、协议和存储标记保留兼容；不会因为改名迁移或读取任何用户资料。历史源码包保留，不改写旧发行。
+欢迎提交可复现问题与文档建议，附平台、版本、步骤和合成样例；不要在 Issue 上传私人笔记、账号或密钥。
+
+Issues and documentation suggestions are welcome. Include the platform, version, steps and a synthetic example; do not upload private notes, accounts or secrets.
+
+## 许可与名称 / License and naming
+
+项目自有代码采用 [MIT License](LICENSE)，允许使用、修改、分发及商用，保留版权和许可；[第三方组件](THIRD_PARTY_NOTICES.md)保留原许可。显示名称为 **人生赢家 / Life's winner**，技术 API、格式、协议、存储键和兼容文件名保留，历史发行不改写。
+
+Original code is MIT-licensed: use, modify, redistribute or use commercially while retaining copyright/license notices. Third-party components retain their licenses. The display name is **人生赢家 / Life's winner**; technical APIs, formats, protocols, storage keys and compatible filenames remain unchanged. Historical releases are retained.

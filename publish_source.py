@@ -14,19 +14,19 @@ import zipfile
 
 PROFILES = {
     'inkspace': {
-        'manifest': 'source-manifest.json', 'prefix': 'inkspace/',
+        'manifest': 'source-manifest.json', 'prefix': 'inkspace/', 'allowedPrefixes': {'inkspace/', 'Lifes-winner/'},
         'directories': {'desktop', 'ios', 'obsidian', 'docs', 'scripts'},
         'files': {'.gitignore', '.gitattributes', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'README.md'},
     },
     'inkspace-modules': {
-        'manifest': 'source-tree-manifest.json', 'prefix': 'inkspace-modules/',
-        'directories': {'packages', 'swift', 'ui', 'integrations', 'scripts'},
+        'manifest': 'source-tree-manifest.json', 'prefix': 'inkspace-modules/', 'allowedPrefixes': {'inkspace-modules/', 'Lifes-winner-modules/'},
+        'directories': {'packages', 'swift', 'ui', 'integrations', 'scripts', 'samples'},
         'files': {'.gitignore', '.gitattributes', 'LICENSE', 'README.md', 'Package.swift', 'package.json',
                   'package-lock.json', 'modules.json', 'swift-modules.json', 'FEATURES.md',
                   'VALIDATION.md', 'NODE-VALIDATION.md', 'coverage-audit.json'},
     },
 }
-FORBIDDEN = {'.git', '.github', 'node_modules', '__pycache__', '.build', '.swiftpm', 'dist',
+FORBIDDEN = {'.git', '.github', '.codex', '.agents', 'node_modules', '__pycache__', '.build', '.swiftpm', 'dist',
              'DerivedData', 'publisher', '.env', 'vault', 'private', 'xcuserdata'}
 STATE = '.source-tree-state.json'
 MAX_TOTAL = 128 * 1024 * 1024
@@ -66,6 +66,9 @@ def main():
     root = Path.cwd().resolve()
     profile = PROFILES[args.profile]
     manifest = json.loads((root / profile['manifest']).read_text())
+    prefix = manifest.get('archivePrefix', profile['prefix'])
+    if prefix not in profile['allowedPrefixes']:
+        raise ValueError('Unexpected source archive prefix')
     archive_name = manifest['archive']
     if PurePosixPath(archive_name).name != archive_name or not archive_name.endswith('.zip'):
         raise ValueError('Invalid source archive name')
@@ -94,9 +97,9 @@ def main():
             raise ValueError('Source archive member count mismatch')
         seen = set()
         for member in members:
-            if not member.filename.startswith(profile['prefix']):
+            if not member.filename.startswith(prefix):
                 raise ValueError('Unexpected source archive root')
-            path = str(relative_path(member.filename[len(profile['prefix']):]))
+            path = str(relative_path(member.filename[len(prefix):]))
             if path not in expected or path in seen or member.is_dir() or stat.S_ISLNK(member.external_attr >> 16):
                 raise ValueError('Invalid source archive member')
             total += member.file_size

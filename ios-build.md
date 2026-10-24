@@ -1,6 +1,6 @@
 # iPad / iPhone 源码构建
 
-这是 InkSpace（人生赢家）的开发版主应用源码，支持 iOS / iPadOS 18.0 及以上。需要 macOS、Xcode 和 Python 3；本次构建使用 Xcode 27.1。仓库不包含开发者签名证书、描述文件或已签名安装包。
+这是 Life's winner（人生赢家）的开发版主应用源码，支持 iOS / iPadOS 18.0 及以上。需要 macOS、Xcode 和 Python 3；本次构建使用 Xcode 27.1。仓库不包含开发者签名证书、描述文件或已签名安装包。
 
 ## 在模拟器构建
 
