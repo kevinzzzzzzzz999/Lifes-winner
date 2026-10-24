@@ -405,13 +405,13 @@ function visibleText(node) { return descendants(node).map(value => value.textCon
 
 test("public app language chooses Simplified Chinese or English with complete messages and safe placeholders", () => {
   const manifest = require("../inkspace-companion/manifest.json");
-  assert.equal(manifest.version, "0.6.0"); assert.equal(manifest.minAppVersion, "1.8.7"); assert.equal(manifest.id, "inkspace-companion"); assert.equal(manifest.name, "人生赢家");
+  assert.equal(manifest.version, "0.6.0"); assert.equal(manifest.minAppVersion, "1.8.7"); assert.equal(manifest.id, "inkspace-companion"); assert.equal(manifest.name, "life'winner");
   for (const language of ["zh", "zh-CN", "zh_SG", "zh-Hans", "zh-Hans-CN"]) { obsidianLanguage=language; assert.equal(h.getLocale(),"zh"); }
   for (const language of ["en", "en-CA", "fr", "zh-TW", "", undefined, null, 12]) { obsidianLanguage=language; assert.equal(h.getLocale(),"en"); }
   languageUnavailable=true; assert.equal(h.getLocale(),"en"); languageUnavailable=false;
   assert.deepEqual(Object.keys(h.MESSAGES.zh).sort(),Object.keys(h.MESSAGES.en).sort());
   for (const [key, value] of Object.entries(h.MESSAGES.en)) {
-    assert.ok(value.length>0,key); assert.doesNotMatch(value.replaceAll("人生赢家",""),/\p{Script=Han}/u,key);
+    assert.ok(value.length>0,key); assert.doesNotMatch(value,/\p{Script=Han}/u,key);
     assert.deepEqual((value.match(/\{[a-zA-Z]+\}/g)||[]).sort(),(h.MESSAGES.zh[key].match(/\{[a-zA-Z]+\}/g)||[]).sort(),key);
   }
   const source = "课程/原文 {page} $& <script>😀.md";
@@ -425,14 +425,14 @@ test("English commands, chooser, Markdown embed errors and menu labels retain st
     assert.deepEqual(env.commands.map(({id,name})=>({id,name})),[
       {id:"open-board",name:"Choose board"},{id:"preview-current-board",name:"Preview current .inkspace.json"}
     ]);
-    assert.equal(env.ribbons[0][1],"Open 人生赢家 board");
+    assert.equal(env.ribbons[0][1],"Open life'winner board");
     const chooser=new h.BoardChooser(env.app,()=>{}); assert.equal(chooser.placeholder,"Search board names or paths (.inkspace.json)");
     assert.equal(chooser.getItemText(env.files.get("InkSpace/test.inkspace.json")),"InkSpace/test.inkspace.json");
     env.app.workspace.getActiveFile=()=>null; env.commands[1].callback(); assert.equal(notices.at(-1),'Select an .inkspace.json file first, or use “Choose board”.');
     assert.deepEqual([...env.processors.keys()],["inkspace"]);
-    const host=new FakeNode("div"); env.processors.get("inkspace")("{partial",host,{}); assert.equal(host.children[0].textContent,"人生赢家: The board embed is not valid JSON.");
+    const host=new FakeNode("div"); env.processors.get("inkspace")("{partial",host,{}); assert.equal(host.children[0].textContent,"life'winner: The board embed is not valid JSON.");
     const file=env.files.get("InkSpace/test.inkspace.json"), source=env.files.get("课程/讲义 #[A]%20.pdf");
-    assert.equal(env.menuFor(file)[0].title,"Preview in 人生赢家"); assert.equal(env.menuFor(source)[0].title,"New 人生赢家 board");
+    assert.equal(env.menuFor(file)[0].title,"Preview in life'winner"); assert.equal(env.menuFor(source)[0].title,"New life'winner board");
     assert.deepEqual(env.launches,[]); assert.deepEqual(env.writes,[]);
   } finally { env.close(); }
 });
@@ -441,8 +441,8 @@ test("English folder and source actions encode non-ASCII user paths once and rep
   obsidianLanguage="en"; const env=await sourceMenuEnvironment(); notices.length=0;
   try {
     const folder=new TFolder("课程/选择白板 & #+%2F 😀"); env.files.set(folder.path,folder);
-    const entry=env.menuFor(folder)[0]; assert.equal(entry.title,"New 人生赢家 board in this folder"); entry.click();
-    assert.equal(notices.at(-1),"Use this feature in Obsidian on an iPad with 人生赢家 installed."); assert.equal(env.launches.length,0);
+    const entry=env.menuFor(folder)[0]; assert.equal(entry.title,"New life'winner board in this folder"); entry.click();
+    assert.equal(notices.at(-1),"Use this feature in Obsidian on an iPad with life'winner installed."); assert.equal(env.launches.length,0);
     Platform.isIosApp=true; Platform.isMobileApp=true; entry.click();
     const folderURL=new URL(env.launches[0][0]); assert.equal(folderURL.searchParams.get("folder"),folder.path); assert.equal(folderURL.searchParams.get("vault"),env.app.vault.getName()); assert.equal(folderURL.searchParams.has("source"),false);
     const source=env.files.get("课程/讲义 #[A]%20.pdf"); env.menuFor(source)[0].click();
@@ -465,7 +465,7 @@ test("English board panel localizes navigation, counts, accessibility and source
   const plugin={app:env.app,panels:new Set(),chooseBoard(){},openBoard(){}};
   const host=new FakeNode("div"), panel=new h.BoardPanel(plugin,host,"InkSpace/test.inkspace.json",{embedded:true});
   try {
-    await tick(); assert.equal(panel.heading.textContent,value.title); assert.equal(panel.native.textContent,"Write in 人生赢家");
+    await tick(); assert.equal(panel.heading.textContent,value.title); assert.equal(panel.native.textContent,"Write in life'winner");
     assert.equal(panel.native.href,h.nativeDeepLink("InkSpace/test.inkspace.json"));
     assert.equal(panel.capacity.textContent,"Objects: 2 · Connections: 0 · Web strokes: 1 · 1.0 KB"); assert.match(panel.status.textContent,/^Read-only · saved /);
     assert.equal(panel.search.placeholder,"Search names, text, and file paths"); assert.equal(panel.search.attributes["aria-label"],panel.search.placeholder);

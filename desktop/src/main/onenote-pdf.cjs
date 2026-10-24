@@ -147,7 +147,7 @@ async function compose(data,{columns=2}={}){
  // image/path-only tight crop would silently lose typed notes in blank tiles.
  const outWidth=pitch*(columns-1)+Math.max(width,...rowBodies.map(b=>b[2]));
  if(!Number.isFinite(outWidth)||!Number.isFinite(outHeight)||outWidth<=0||outHeight<=0||outHeight>14400||outWidth>14400)refuse('The continuous canvas exceeds this PDF size. Import fewer rows.','TOO_LARGE');
- const output=await PDFDocument.create();output.setTitle(`${source.getTitle()||'OneNote'} - continuous canvas`);output.setCreator('InkSpace OneNote canvas importer');output.setProducer('InkSpace (original vector PDF objects)');
+ const output=await PDFDocument.create();output.setTitle(`${source.getTitle()||'OneNote'} - continuous canvas`);output.setCreator("life'winner OneNote canvas importer");output.setProducer("life'winner (original vector PDF objects)");
  const page=output.addPage([outWidth,outHeight]),pageMappings=[],placements=[],boundingBoxes=[];
  let recoveredEdge=0;
  for(const tile of tiles){

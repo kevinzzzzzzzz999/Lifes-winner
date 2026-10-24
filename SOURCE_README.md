@@ -1,8 +1,14 @@
-# InkSpace · 人生赢家
+# life'winner · 人生赢家
+
+希望每一个使用我开源功能的人，都是各自的 life'winner。
 
 An open-source workspace for local notes, handwriting, whiteboards and documents.
 
 面向 Mac、iPad、iPhone 和 Obsidian 的本地笔记、手写白板与文档工作空间。
+
+## iPhone / iPad 主屏幕工具
+
+书写画板、偏好方案和文档工作台另有分别添加到主屏幕的轻量网页适配。正式入口、安装说明和公开验收状态以`inkspace-modules` 仓库中的 `MOBILE-APPS.md`为准；正式链接验证前，源码不能视为已经可安装的成品。
 
 ## 使用与开发 / Getting started
 
@@ -10,7 +16,7 @@ An open-source workspace for local notes, handwriting, whiteboards and documents
 | --- | --- | --- |
 | [Mac 桌面端](desktop/) | Electron、React、白板、文档与 Notebook | [构建说明](docs/desktop-build.md) |
 | [iPad / iPhone](ios/) | SwiftUI、PencilKit、PDF 与文件夹工作空间 | [Xcode 构建与签名](docs/ios-build.md) |
-| [Obsidian 伴侣](obsidian/inkspace-companion/) | 在 Obsidian 中连接 InkSpace 文件与白板 | [安装说明](docs/obsidian-build.md) |
+| [Obsidian 伴侣](obsidian/inkspace-companion/) | 在 Obsidian 中连接 life'winner 文件与白板 | [安装说明](docs/obsidian-build.md) |
 
 下载源码后请按对应平台的说明运行。iPad / iPhone 版需要使用自己的 Apple 开发签名；此仓库不提供个人签名的安装包。Mac 的可选 OCR、原生书写和完整 Python 运行环境有额外构建要求，见桌面端说明。
 

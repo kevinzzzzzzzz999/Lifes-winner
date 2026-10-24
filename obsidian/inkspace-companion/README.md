@@ -1,4 +1,4 @@
-# 人生赢家 Obsidian Companion 0.6.0
+# life'winner Obsidian Companion 0.6.0
 
 此目录为可直接安装、可编辑的 JavaScript 插件源码；无需 TypeScript 编译或下载额外依赖。手动安装说明见下文，开发与验证步骤见 [伴侣构建说明](../../docs/obsidian-build.md)。项目代码按仓库根目录的 [MIT 开源许可证](../../LICENSE) 发布。Obsidian 主程序及其 API 由各自权利人提供，不包含在本仓库中。
 
@@ -6,17 +6,17 @@ This directory contains the editable JavaScript plugin and its installable files
 
 ## English
 
-Browse 人生赢家 boards in the same Obsidian vault: pan and zoom through handwriting, PDF pages, text, LaTeX, connections, and pins. The companion reads board files; drawing and editing the board take place in the native iPad app. It does not upload your documents or translate their contents.
+Browse life'winner boards in the same Obsidian vault: pan and zoom through handwriting, PDF pages, text, LaTeX, connections, and pins. The companion reads board files; drawing and editing the board take place in the native iPad app. It does not upload your documents or translate their contents. May everyone using these open-source features become their own life'winner.
 
-**Language and installation.** Obsidian **1.8.7 or later** is required. The plugin follows Obsidian’s configured language using the public [`getLanguage()` API](https://github.com/obsidianmd/obsidian-api/blob/master/obsidian.d.ts). Simplified Chinese uses the Chinese interface; English and other languages use the English interface. Traditional Chinese is not translated in this release and falls back to English. The app name stays **人生赢家**. After changing Obsidian’s language, restart Obsidian or disable and re-enable the plugin to refresh existing controls and commands.
+**Language and installation.** Obsidian **1.8.7 or later** is required. The plugin follows Obsidian’s configured language using the public [`getLanguage()` API](https://github.com/obsidianmd/obsidian-api/blob/master/obsidian.d.ts). Simplified Chinese uses the Chinese interface; English and other languages use the English interface. Traditional Chinese is not translated in this release and falls back to English. The plugin is listed as **life'winner**; its Simplified Chinese interface keeps the Chinese name **人生赢家**. After changing Obsidian’s language, restart Obsidian or disable and re-enable the plugin to refresh existing controls and commands.
 
-Place `main.js`, `manifest.json`, and `styles.css` in your vault’s plugin directory, normally `.obsidian/plugins/inkspace-companion/`, and enable **人生赢家** in Community plugins. Update those three files together. No additional runtime packages are needed.
+Place `main.js`, `manifest.json`, and `styles.css` in your vault’s plugin directory, normally `.obsidian/plugins/inkspace-companion/`, and enable **life'winner** in Community plugins. Update those three files together. No additional runtime packages are needed.
 
-**Open a board.** Give the native iPad app access to the same actual vault folder as Obsidian. Open the `.md` entry generated beside a board, use the ribbon’s **Open 人生赢家 board** action, run **Choose board**, or select **Preview in 人生赢家** from an `.inkspace.json` file’s menu. The companion does not take over ordinary `.json` files. **Write in 人生赢家** opens the native app; **Open full view** opens an embedded board in its own tab.
+**Open a board.** Give the native iPad app access to the same actual vault folder as Obsidian. Open the `.md` entry generated beside a board, use the ribbon’s **Open life'winner board** action, run **Choose board**, or select **Preview in life'winner** from an `.inkspace.json` file’s menu. The companion does not take over ordinary `.json` files. **Write in life'winner** opens the native app; **Open full view** opens an embedded board in its own tab.
 
-**Create a board on iPad.** Long-press a course folder and choose **New 人生赢家 board in this folder**. The native app creates the board in that directory, beside folders such as `Week 01`; no source PDF is required. The vault root is also a valid location. Alternatively, long-press a source file and choose **New 人生赢家 board** to start beside that file. This launches native only after your menu click. The native app checks the authorized vault name; two folders with the same name must still be the same actual vault. The companion never creates the board JSON itself. Desktop and Android show an iPad guidance message instead of launching native.
+**Create a board on iPad.** Long-press a course folder and choose **New life'winner board in this folder**. The native app creates the board in that directory, beside folders such as `Week 01`; no source PDF is required. The vault root is also a valid location. Alternatively, long-press a source file and choose **New life'winner board** to start beside that file. This launches native only after your menu click. The native app checks the authorized vault name; two folders with the same name must still be the same actual vault. The companion never creates the board JSON itself. Desktop and Android show an iPad guidance message instead of launching native.
 
-Supported source extensions are `.pdf`, `.doc`, `.docx`, `.xls`, `.xlsx`, `.ppt`, `.pptx`, `.md`, `.markdown`, `.png`, `.jpg`, and `.jpeg`. In the native app, PNG/JPG images become writable pages directly. Other documents start as cards and can be expanded manually, vertically by default, with direction and scale options. Use 人生赢家 0.5.0 or later for these formats; 0.6.0 adds the bilingual interface. Word, PowerPoint, Excel, Markdown, and images use associated reading PDFs for handwriting. Their original source files are retained. Excel uses a cell reading layout and saved formula results, not a faithful reproduction of charts, merged cells, or all formatting. Export a PDF from the original app when faithful layout is needed or content cannot be converted reliably.
+Supported source extensions are `.pdf`, `.doc`, `.docx`, `.xls`, `.xlsx`, `.ppt`, `.pptx`, `.md`, `.markdown`, `.png`, `.jpg`, and `.jpeg`. In the native app, PNG/JPG images become writable pages directly. Other documents start as cards and can be expanded manually, vertically by default, with direction and scale options. Use life'winner 0.5.0 or later for these formats; 0.6.0 adds the bilingual interface. Word, PowerPoint, Excel, Markdown, and images use associated reading PDFs for handwriting. Their original source files are retained. Excel uses a cell reading layout and saved formula results, not a faithful reproduction of charts, merged cells, or all formatting. Export a PDF from the original app when faithful layout is needed or content cannot be converted reliably.
 
 **Navigate and open sources.** Drag to pan, pinch to zoom, or use **−**, **+**, **Overview**, and **Saved view**. On a desktop, scroll to pan or hold Control/Command while scrolling to zoom. A focused board also supports arrow keys and `+`/`−`. The directory supports **Search files, items, and pins**, **Locate on board**, **Open original source**, and **Open annotated PDF**. Original Markdown opens in Obsidian’s editor without a PDF page fragment. Clicking a PDF page opens the exact annotated PDF page. Filenames containing Unicode, `#`, `%`, `&`, or spaces are preserved.
 
@@ -40,11 +40,11 @@ Run the synthetic regression suite with Node.js: `node --test tests/companion.te
 
 ## 简体中文
 
-0.6.0 新增英文界面，按 Obsidian 的语言设置自动选择：简体中文显示中文，英文及其他语言回退英文。最低 Obsidian 版本升为 1.8.7，以使用公开语言接口；切换语言后请重启 Obsidian 或重新启用插件。品牌“人生赢家”、用户标题、正文、文件路径、协议和 JSON 标识保持原样，应用不会翻译或改写笔记内容。本版本已通过下述 35 项模拟公开 API 回归，0.6.0 实际设备界面与性能仍待验收。
+0.6.0 新增英文界面，按 Obsidian 的语言设置自动选择：简体中文显示中文，英文及其他语言回退英文。最低 Obsidian 版本升为 1.8.7，以使用公开语言接口；切换语言后请重启 Obsidian 或重新启用插件。中文名“人生赢家”保留，对外英文名为 life'winner；用户标题、正文、文件路径、协议和 JSON 标识保持原样，应用不会翻译或改写笔记内容。本版本已通过下述 35 项模拟公开 API 回归，0.6.0 实际设备界面与性能仍待验收。
 
 在 Obsidian 中平移、缩放浏览同仓库的人生赢家白板：网页手写、PDF 页面、文字、LaTeX、连线和定位点。插件只读 JSON，书写仍在 iPad 原生应用中完成，不发送文件到网络。
 
-将 `main.js`、`manifest.json`、`styles.css` 放入仓库配置目录的 `plugins/inkspace-companion/`，默认是 `.obsidian/plugins/inkspace-companion/`，然后在第三方插件设置中启用「人生赢家」。更新后重新启用插件或重启 Obsidian。
+将 `main.js`、`manifest.json`、`styles.css` 放入仓库配置目录的 `plugins/inkspace-companion/`，默认是 `.obsidian/plugins/inkspace-companion/`，然后在第三方插件设置中启用「life'winner」。更新后重新启用插件或重启 Obsidian。
 
 iPad 与 Obsidian 选择同一仓库。打开人生赢家生成的同名 `.md` 文件即可浏览；也可使用侧边图标、命令「选择白板」或 JSON 右键「在人生赢家中预览」。不接管普通 `.json` 扩展；Obsidian 不能直接打开 JSON 时，用 Markdown 入口或上述命令。
 

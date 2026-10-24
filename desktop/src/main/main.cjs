@@ -181,7 +181,8 @@ function cancelWindowJobs(context){
  const notebooks=context.services.get('notebooks');if(notebooks){void notebooks.dispose();context.services.delete('notebooks');}
 }
 function createWindow(initialVault=null){
- const win=new BrowserWindow({width:1420,height:960,minWidth:900,minHeight:620,title:initialVault?'人生赢家 · '+initialVault.name:'人生赢家',backgroundColor:'#ffffff',show:false,frame:true,resizable:true,minimizable:true,maximizable:true,fullscreenable:true,webPreferences:{backgroundThrottling:false,preload:path.join(__dirname,'..','preload','preload.cjs'),contextIsolation:true,sandbox:true,nodeIntegration:false,webSecurity:true,webviewTag:false,allowRunningInsecureContent:false}});
+ const brand=localized("life'winner",'人生赢家');
+ const win=new BrowserWindow({width:1420,height:960,minWidth:900,minHeight:620,title:initialVault?brand+' · '+initialVault.name:brand,backgroundColor:'#ffffff',show:false,frame:true,resizable:true,minimizable:true,maximizable:true,fullscreenable:true,webPreferences:{backgroundThrottling:false,preload:path.join(__dirname,'..','preload','preload.cjs'),contextIsolation:true,sandbox:true,nodeIntegration:false,webSecurity:true,webviewTag:false,allowRunningInsecureContent:false}});
  const context=windows.add(win,initialVault);
  require('./editable-context-menu.cjs').installEditableContextMenu(win,{Menu,localized});
  win.webContents.setWindowOpenHandler(()=>({action:'deny'}));win.webContents.on('will-navigate',event=>event.preventDefault());win.webContents.on('will-attach-webview',event=>event.preventDefault());
@@ -235,6 +236,6 @@ app.whenReady().then(async()=>{
  await registerProtocols();installIPC();aiPanels=require('./ai-panel.cjs').installAIPanel({app,getWindow:ownerWindow,handler,diagnostics});
  if(!externalDocuments.pending.length)createWindow();await externalDocuments.configure({vaults,windows,recentVaults,createWindow,reveal:revealMainWindow});if(!windows.focused())createWindow();app.on('activate',()=>revealMainWindow());
  installDocumentMenu();
-}).catch(error=>{diagnostics?.record('startup',error);dialog.showErrorBox('人生赢家',publicError(error).message);app.quit();});
+}).catch(error=>{diagnostics?.record('startup',error);dialog.showErrorBox(localized("life'winner",'人生赢家'),publicError(error).message);app.quit();});
 app.on('will-quit',()=>{for(const context of [...windows.windows.values()]){cancelWindowJobs(context);windows.remove(context);}aiPanels?.close();calendarReminders?.dispose();translations?.dispose();});
 app.on('window-all-closed',()=>{if(process.platform!=='darwin')app.quit();});
