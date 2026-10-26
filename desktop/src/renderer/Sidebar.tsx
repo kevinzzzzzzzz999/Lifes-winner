@@ -155,11 +155,11 @@ export function FileIcon({ path, kind }: { path: string; kind: string }) {
 export type SidebarProps = {
   language: Language; setLanguage: (value: Language) => void; vault: Vault | null; listing: DirectoryListing | null; active: string | null;
   onHome?: () => void; onChecklist?: (folder?:string) => void; onBrowser?: () => void; onImportClip?: () => void; onMath?: () => void; onMedia?:()=>void; onChoose: () => void; onOpen: (entry: VaultEntry) => void; onFolder: (path: string) => void; onRefresh: () => void; onNew: (parentPath?:string) => void;
-  onManage?: (action:FileAction)=>void; onShare?: (paths:string[])=>void; onNewBoard?:(parentPath?:string)=>void; onExternalOpen?:(path:string,application:'default'|'choose')=>void; onReveal?:(path:string)=>void; onCopyReference?:(path:string,kind:'path'|'link')=>void; actionsDisabled?:boolean; onDiagnostics: () => void; onSettings?: () => void; onSearch: () => void; onGraph: () => void;
+  onOrganizeBoardImages?:(path:string)=>void;onStudyCapture?:(path:string,category:'focus'|'question')=>void;onManage?: (action:FileAction)=>void; onShare?: (paths:string[])=>void; onNewBoard?:(parentPath?:string)=>void; onExternalOpen?:(path:string,application:'default'|'choose')=>void; onReveal?:(path:string)=>void; onCopyReference?:(path:string,kind:'path'|'link')=>void; actionsDisabled?:boolean; onDiagnostics: () => void; onSettings?: () => void; onSearch: () => void; onGraph: () => void;
   /** Increment for an arrived vault change; refreshes only folders already loaded in this tree. */
   revision?: string | number; managementRevision?:number; managementRequest?:number;
 };
-export default function Sidebar({ language, setLanguage, vault, listing, active, onChoose, onHome, onChecklist, onBrowser, onImportClip, onMath, onMedia, onOpen, onFolder, onRefresh, onNew, onDiagnostics, onSettings, onSearch, onGraph, revision, onManage, onShare, onNewBoard, onExternalOpen, onReveal, onCopyReference, actionsDisabled=false, managementRevision, managementRequest }: SidebarProps) {
+export default function Sidebar({ language, setLanguage, vault, listing, active, onChoose, onHome, onChecklist, onBrowser, onImportClip, onMath, onMedia, onOpen, onFolder, onRefresh, onNew, onDiagnostics, onSettings, onSearch, onGraph, revision, onOrganizeBoardImages,onStudyCapture, onManage, onShare, onNewBoard, onExternalOpen, onReveal, onCopyReference, actionsDisabled=false, managementRevision, managementRequest }: SidebarProps) {
   const zh = language === 'zh', t = (key: Parameters<typeof tr>[1]) => tr(language, key);
   const store = useMemo(() => new FileTreeDirectoryStore(path => vault ? window.desktop.listDirectory({ vaultId: vault.id, path }) : Promise.resolve({ ok: false, error: { code: 'NO_VAULT', message: '' } })), [vault?.id]);
   const [tick, setTick] = useState(0), [query, setQuery] = useState('');
@@ -248,6 +248,8 @@ export default function Sidebar({ language, setLanguage, vault, listing, active,
     const items:ContextMenuItem[]=[];
     const add=(id:string,cn:string,en:string,action:()=>void,extra:Partial<ContextMenuItem>={})=>items.push({id,label:zh?cn:en,action,disabled:actionsDisabled,...extra});
     if(entry&&single){
+      if(entry.kind==='board'&&onOrganizeBoardImages)add('organize-board-images','整理白板PNG图片…','Organize board PNG images…',()=>onOrganizeBoardImages(entry.path));
+      if(!folder&&entry.kind!=='unsupported'&&onStudyCapture){add('study-focus','记为重点…','Record focus…',()=>onStudyCapture(entry.path,'focus'));add('study-question','记录问题…','Record question…',()=>onStudyCapture(entry.path,'question'));}
       add('open',folder?(expanded.has(entry.path)?'收起文件夹':'展开文件夹'):'打开',folder?(expanded.has(entry.path)?'Collapse folder':'Expand folder'):'Open',()=>activate(entry));
       if(!folder&&/\.(xlsx?|xlsm|csv|docx?|pptx?|pdf|png|jpe?g|md|markdown|tex|txt|mp4|mov|m4v)$/i.test(entry.path)&&onExternalOpen){
         add('open-default','使用默认应用打开','Open in default app',()=>onExternalOpen(entry.path,'default'));

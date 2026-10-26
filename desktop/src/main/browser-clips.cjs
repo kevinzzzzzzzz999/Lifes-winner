@@ -3,6 +3,8 @@ const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('n
 const {fail}=require('./errors.cjs');
 const {object,normalizeClip,clipText,fileStem,MAX_CLIP_BYTES}=require('./browser-security.cjs');
 const {normalizeImage}=require('./board-clipboard.cjs');
+const {recordClipSource}=require('./browser-clip-records.cjs');
+async function rememberSource(vaults,target,clip,result,extra={}){try{await recordClipSource(vaults,target.vaultId,{format:'inkspace-clip-source',version:1,clipKind:clip.kind,title:clip.title,url:clip.url,capturedAt:clip.capturedAt,sourcePath:result.path,...extra});}catch{return{...result,warning:[result.warning,'剪藏已保存，来源索引暂未保存；原内容保留。'].filter(Boolean).join(' ') };}return result;}
 async function validateTarget(vaults,value={}){
  object(value,['vaultId','parentPath','boardPath']);
  if(typeof value.vaultId!=='string'||typeof value.parentPath!=='string')fail('INVALID_REQUEST');
@@ -25,20 +27,20 @@ async function saveClip(vaults,target,input,{nativeImage}={}){
   const request={vaultId:target.vaultId,path:target.boardPath};const current=await vaults.readFile(request);
   const position=boardPosition(current.board,640,clip.imageDataURL?940:260);
   const result=await require('./board-paste.cjs').pasteBoardContent(vaults,{...request,expectedSHA256:current.sha256,...position,content:{text:{title:clip.title,text:content,width:480,height:260},...(clip.imageDataURL?{images:[{dataURL:clip.imageDataURL,title:clip.title}]}:{})}},{nativeImage});
-  return {path:result.path,kind:'board'};
+  const items=result.board.items.filter(v=>result.selectedIDs.includes(v.id)),image=items.find(v=>v.kind==='document');return rememberSource(vaults,target,clip,{path:result.path,kind:'board'},{itemID:items[0].id,...(image?{imagePath:image.sourcePath}:{})});
  }
  const image=clip.imageDataURL?normalizeImage(clip.imageDataURL,nativeImage):null;
  const name=fileStem(clip.title)+'-'+crypto.randomUUID().slice(0,8);
  // Notes use plain text so webpage HTML/Markdown cannot create executable content.
  const note=await vaults.createTextFile({vaultId:target.vaultId,parentPath:target.parentPath,name:name+'.txt',content});
- if(image){try{const asset=await vaults.createData(target.vaultId,target.parentPath,name+'.png',image.data,{backup:false});return{path:note.path,imagePath:asset.path,kind:'text'};}catch{return {path:note.path,kind:'text',warning:'文字和来源已保存，图片保存失败；请重试图片剪藏。'};}}
- return {path:note.path,kind:'text'};
+ if(image){try{const asset=await vaults.createData(target.vaultId,target.parentPath,name+'.png',image.data,{backup:false});return rememberSource(vaults,target,clip,{path:note.path,imagePath:asset.path,kind:'text'},{sourceSHA256:note.sha256,imagePath:asset.path,imageSHA256:asset.sha256});}catch{return {path:note.path,kind:'text',warning:'文字和来源已保存，图片保存失败；请重试图片剪藏。'};}}
+ return rememberSource(vaults,target,clip,{path:note.path,kind:'text'},{sourceSHA256:note.sha256});
 }
-async function savePDF(vaults,target,data,title){
+async function savePDF(vaults,target,data,title,source){
  await validateTarget(vaults,target);if(!Buffer.isBuffer(data)||data.length>128*1024*1024||data.subarray(0,5).toString()!=='%PDF-')fail('INVALID_REQUEST');
  const file=await vaults.createData(target.vaultId,target.parentPath,fileStem(title)+'-'+crypto.randomUUID().slice(0,8)+'.pdf',data,{backup:false});
- if(target.boardPath){try{const request={vaultId:target.vaultId,path:target.boardPath},current=await vaults.readFile(request);await vaults.addBoardFileCard({...request,expectedSHA256:current.sha256,sourcePath:file.path,...boardPosition(current.board,360,180)});}catch{return {path:file.path,kind:'media',warning:'PDF 已保存到资料夹；白板发生变化，未添加卡片。'};}}
- return {path:file.path,kind:'media'};
+ if(target.boardPath){try{const request={vaultId:target.vaultId,path:target.boardPath},current=await vaults.readFile(request);await vaults.addBoardFileCard({...request,expectedSHA256:current.sha256,sourcePath:file.path,...boardPosition(current.board,360,180)});}catch{const result={path:file.path,kind:'media',warning:'PDF 已保存到资料夹；白板发生变化，未添加卡片。'};return source?rememberSource(vaults,target,{kind:'pdf',title,url:source.url,capturedAt:source.capturedAt},result,{sourceSHA256:file.sha256}):result;}}
+ const result={path:file.path,kind:'media'};return source?rememberSource(vaults,target,{kind:'pdf',title,url:source.url,capturedAt:source.capturedAt},result,{sourceSHA256:file.sha256}):result;
 }
 async function readClipFile(file){
  const handle=await fs.open(file,require('node:fs').constants.O_RDONLY|(require('node:fs').constants.O_NOFOLLOW||0));

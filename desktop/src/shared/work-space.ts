@@ -1,0 +1,21 @@
+import type {WorkWordAnnotationReference} from './word-annotations';
+import type {WorkPDFAnnotationReference} from './pdf-annotations';
+import type {Vault} from './desktop-api';
+export type WorkMailReference={accountID:string;accountAddress?:string;provider:'gmail'|'icloud'|'qq';uidValidity:string;uid:string;subject:string;sender:string;receivedAt?:string;messageID?:string;excerpt:string};
+export type WorkStudyReference={sourceID:string;path:string;kind:'file'|'board'|'pdf';title:string;category:'focus'|'question';excerpt?:string;pdfAnnotation?:WorkPDFAnnotationReference;wordAnnotation?:WorkWordAnnotationReference;boardID?:string;nodeID?:string;page?:number};
+export type WorkStudyPreview={token:string;reference:WorkStudyReference;suggestedText?:string};
+export type WorkEvent={startAt:string;endAt:string};
+export type WorkItem={id:string;text:string;noteOrder?:number;isTask:boolean;done:boolean;dueDate?:string;createdAt:string;updatedAt:string;completedAt?:string;archivedAt?:string;mailReference?:WorkMailReference;studyReference?:WorkStudyReference;event?:WorkEvent;reminderAt?:string};
+export type WorkSourceTask={id:string;text:string;section:string;done:boolean;dueDate?:string};
+export type WorkSourceDocument={path:string;id:string;title:string;sha256:string;tasks:WorkSourceTask[];available?:boolean};
+export type WorkSource={id:string;name:string;status:'cached'|'ready'|'partial'|'unavailable';createdAt:string;checkedAt?:string;updatedAt?:string;issue?:string;documents:WorkSourceDocument[]};
+export type WorkSnapshot={version:1|2|3|4|5;items:WorkItem[];sources:WorkSource[];revision:string|null;readOnly:boolean;issue?:string;warning?:string};
+export type WorkOperation={type:'addNote'|'addTask';id:string;text:string;dueDate?:string}|{type:'update';id:string;expectedUpdatedAt:string;text?:string;done?:boolean;dueDate?:string|null}|{type:'toTask';id:string;expectedUpdatedAt:string;dueDate:string}|{type:'moveNote';id:string;direction:-1|1}|{type:'setSchedule';id:string;expectedUpdatedAt:string;event:WorkEvent|null;reminderAt:string|null;dueDate?:string|null}|{type:'archive'|'restore';id:string;expectedUpdatedAt:string};
+export type WorkSourceOpen={sourceId:string;vault:Vault;path:string;documentID:string;taskId:string};
+
+export type MailAccount={id:string;provider:'gmail'|'icloud'|'qq';address:string;createdAt:string};
+export type MailRow={accountID:string;provider:'gmail'|'icloud'|'qq';uidValidity:string;uid:string;subject:string;sender:string;receivedAt?:string;messageID?:string;unread:boolean};
+export type MailPage={account:MailAccount;rows:MailRow[];nextBeforeSequence?:number;total:number;uidValidity:string};
+export type MailMessage={row:MailRow;bodyText:string;truncated:boolean};
+export type WorkMailPreview={token:string;accountAddress?:string;message:MailMessage;excerpt:string;excerptLimited:boolean};
+export type WorkNotificationStatus={authorization:'notDetermined'|'authorized'|'provisional'|'denied'|'unsupported';pending:number;limited:boolean};

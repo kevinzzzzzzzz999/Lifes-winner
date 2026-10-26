@@ -1,4 +1,4 @@
-# 人生赢家 desktop local services — 0.8.0 candidate
+# Life's Winner / 人生赢家 desktop local services
 
 The renderer uses only `window.desktop` from `src/shared/desktop-api.ts`. Every call returns `{ok,value}` or `{ok:false,error:{code,message}}`; Python output arrives through a removable subscription. All file paths are relative to the vault root, including native whiteboard `sourcePath`. A Markdown reference must first be resolved against that Markdown file's parent; escaping the vault is rejected.
 
@@ -65,3 +65,8 @@ PDF expansion reads only metadata through pdf-lib, honors crop dimensions and qu
 Changed native ink invalidates the cached board screenshot and PDF-export digest declarations. `getAssetUrl({...,hideBoardID})` creates a distinct read-only token. The in-memory PDF view removes only annotations owned by that board; other annotations and the original file are retained. SHA values still identify the original source. Filtered bytes use an eight-entry/64 MiB cache, with bounded simultaneous conversions, and ranged responses refer to the filtered bytes. This preview is not a claim that the original PDF has been saved with the new ink.
 
 Targeted tests: `test/backend-board-operations.test.cjs`, `test/backend-native-management.test.cjs`, `test/backend-board-preview-assets.test.cjs`. The committed native fixture contains only synthetic strokes generated with macOS PencilKit. These tests do not read devices or user vaults.
+
+
+## Display name and compatibility
+
+The English product name is **Life's Winner** (ASCII apostrophe); Chinese is **人生赢家**. `app-brand.cjs` pins the existing `userData`, `sessionData` and logs paths before changing Electron's display name. The `inkspace` app/bundle IDs, storage keys, URI schemes, `.inkspace.json` files and embedded `application: 'InkSpace'` integrity envelopes remain compatibility identifiers, not alternate display names.

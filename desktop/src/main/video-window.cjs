@@ -2,6 +2,7 @@
 // One independent, framed video window. Its renderer receives only a capability
 // for the exact selected video and may revoke only tokens issued to that window.
 const path=require('node:path');
+const {displayBrand,appLocale}=require('./app-brand.cjs');
 const {fail,publicError}=require('./errors.cjs');
 const {relativePath}=require('./vault-path.cjs');
 const {safeDevURL,validateSender}=require('./security.cjs');
@@ -18,6 +19,7 @@ function localSubtitles(value){fields(value,['name','enabled','data']);if(typeof
 }
 function playback(value){if(value===undefined)return undefined;fields(value,['time','rate','paused','volume','muted','subtitles','subtitleStyle']);if(!Number.isFinite(value.time)||value.time<0||value.time>1e8||!RATES.has(value.rate)||typeof value.paused!=='boolean')fail('INVALID_REQUEST');const result={time:value.time,rate:value.rate,paused:value.paused};if(value.volume!==undefined){if(!Number.isFinite(value.volume)||value.volume<0||value.volume>1)fail('INVALID_REQUEST');result.volume=value.volume;}if(value.muted!==undefined){if(typeof value.muted!=='boolean')fail('INVALID_REQUEST');result.muted=value.muted;}if(value.subtitles!==undefined)result.subtitles=localSubtitles(value.subtitles);if(value.subtitleStyle!==undefined)result.subtitleStyle=subtitleStyle(value.subtitleStyle);return result;}
 class VideoWindowManager{
+ refreshBrand(){const entry=this.entry;if(entry&&!entry.window.isDestroyed())entry.window.setTitle(path.posix.basename(entry.path)+' — '+displayBrand(appLocale(this.app)));}
  constructor({app,videos,videoSubtitles,devURL,diagnostics,electron}={}){const runtime=electron||require('electron');this.BrowserWindow=runtime.BrowserWindow;this.ipcMain=runtime.ipcMain;this.app=app;this.videos=videos;this.videoSubtitles=videoSubtitles;this.devURL=app.isPackaged?undefined:safeDevURL(devURL);this.diagnostics=diagnostics;this.entry=null;this.epoch=0;this.closed=false;this.pinned=false;this.channels=[];this.installIPC();}
  url(){const target=new URL(this.devURL||'inkspace-app://ui/index.html');target.searchParams.set('playerWindow','1');return target.href;}
  owns(contents){return !!contents&&!!this.entry&&!this.entry.window.isDestroyed()&&this.entry.window.webContents===contents;}
@@ -37,7 +39,7 @@ class VideoWindowManager{
   const opened=await this.videos.opened({vaultId:request.vaultId,path:request.path});await opened.handle.close();if(this.closed||epoch!==this.epoch)fail('CANCELLED');
   const old=this.entry;if(old&&!old.window.isDestroyed()&&old.vaultId===request.vaultId&&old.path===request.path&&initialPlayback===undefined){if(old.window.isMinimized())old.window.restore();old.window.show();old.window.focus();return{opened:true};}
   const bounds=old&&!old.window.isDestroyed()?old.window.getBounds():null;if(old&&!old.window.isDestroyed())old.window.close();if(this.closed||epoch!==this.epoch)fail('CANCELLED');
-  const window=new this.BrowserWindow({...((bounds&&{...bounds})||{width:880,height:680}),minWidth:320,minHeight:260,title:path.posix.basename(request.path)+' — 人生赢家',backgroundColor:'#10191d',show:false,frame:true,resizable:true,minimizable:true,maximizable:true,fullscreenable:true,closable:true,autoHideMenuBar:true,webPreferences:{preload:path.join(this.app.getAppPath(),'src','preload','video-window.cjs'),contextIsolation:true,sandbox:true,nodeIntegration:false,webSecurity:true,webviewTag:false,allowRunningInsecureContent:false,backgroundThrottling:false}});
+  const window=new this.BrowserWindow({...((bounds&&{...bounds})||{width:880,height:680}),minWidth:320,minHeight:260,title:path.posix.basename(request.path)+' — '+displayBrand(appLocale(this.app)),backgroundColor:'#10191d',show:false,frame:true,resizable:true,minimizable:true,maximizable:true,fullscreenable:true,closable:true,autoHideMenuBar:true,webPreferences:{preload:path.join(this.app.getAppPath(),'src','preload','video-window.cjs'),contextIsolation:true,sandbox:true,nodeIntegration:false,webSecurity:true,webviewTag:false,allowRunningInsecureContent:false,backgroundThrottling:false}});
   const entry={window,vaultId:request.vaultId,path:request.path,playback:initialPlayback,urls:new Set(),generation:0};this.entry=entry;window.setAlwaysOnTop(this.pinned,'floating');window.setMenuBarVisibility(false);
   window.webContents.setWindowOpenHandler(()=>({action:'deny'}));window.webContents.on('will-navigate',event=>event.preventDefault());window.webContents.on('will-attach-webview',event=>event.preventDefault());window.webContents.on('did-start-navigation',(_event,_url,_inPlace,isMainFrame)=>{if(isMainFrame)this.clearTokens(entry);});
   window.webContents.on('render-process-gone',()=>{this.clearTokens(entry);if(!window.isDestroyed())window.close();});

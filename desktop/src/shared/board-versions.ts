@@ -1,0 +1,5 @@
+export type BoardVersionSummary={title:string;revision:number;items:number;edges:number;pins:number;webStrokes:number;nativeInk:boolean;paper:string};
+export type BoardVersionEntry={sha256:string;current:boolean;available:boolean;bytes:number;recordedAt:string|null};
+export type BoardVersionList={path:string;expectedSHA256:string;summary:BoardVersionSummary;entries:BoardVersionEntry[];warnings:string[];localOnly:true};
+export type BoardVersionChange={kind:'items'|'edges'|'pins';change:'added'|'removed'|'changed';id:string;title:string;fields:string[];beforeText:string;afterText:string;textPreviewLimited:boolean};
+export type BoardVersionDiff={before:BoardVersionSummary;after:BoardVersionSummary;items:{added:number;removed:number;changed:number};edges:{added:number;removed:number;changed:number};pins:{added:number;removed:number;changed:number};nativeInkChanged:boolean;webInkChanged:boolean;paperChanged:boolean;viewportChanged:boolean;titleChanged:boolean;otherFields:string[];details:BoardVersionChange[];detailsLimited:boolean;fromSHA256:string;toSHA256:string;expectedSHA256:string};

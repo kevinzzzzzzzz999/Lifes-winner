@@ -1,4 +1,6 @@
+import type {PNGOrganizationPreview,PNGOrganizationHistory,PNGOrganizationResult} from './png-organization';
 export type AIWebProviderID = 'chatgpt'|'deepseek'|'claude'|'gemini';
+import type {BoardVersionList,BoardVersionDiff} from './board-versions';
 export type AIWebProvider = {id:AIWebProviderID;label:string;url:string;pasteMode:'composer'|'manual'};
 export type AIWebSettings = {provider:AIWebProviderID;providers:AIWebProvider[];storageIssue:boolean};
 export type AIWebStatus = {audioPermission?:'prompting'|'granted'|'system-denied'|'system-restricted'|'cancelled'|'unavailable';provider:AIWebProviderID;label:string;pasteMode:'composer'|'manual';visible:boolean;loading:boolean;loadError:boolean;loadTimedOut?:boolean;pageState?:'idle'|'loading'|'ready'|'failed'|'closed'|'crashed'|'unresponsive';url:string;download?:{id:string;state:'saving'|'completed'|'cancelled'|'failed';filename:string}};
@@ -21,8 +23,9 @@ export type PDFTranslationExportRequest={vaultId:string;path:string;sourceSHA256
 import type {VideoPlaybackState} from './video-playback';
 export type ApiResult<T> = { ok: true; value: T } | { ok: false; error: { code: string; message: string } };
 export type Vault = { id: string; name: string; recentId?: string };
-export type ExternalOpenRequest={id:string;vault:Vault;path:string;error?:never}|{id:string;error:{code:string;message:string};vault?:never;path?:never};
+export type ExternalOpenRequest={id:string;vault:Vault;path:string;expectedBoardID?:string;page?:number;expectedSourceSHA256?:string;sourceFocus?:import('./pdf-extend').PDFSourceReference;error?:never}|{id:string;error:{code:string;message:string};vault?:never;path?:never};
 export type RecentVault = { id: string; name: string; lastOpenedAt: string };
+export type RecentRelinkPreview={previewId:string;id:string;name:string;previousPath:string;candidatePath:string;identityMatch:'same-directory'|'confirmation-required'};
 export type FileKind = 'folder' | 'board' | 'text' | 'media' | 'docx' | 'pptx' | 'spreadsheet' | 'video' | 'unsupported';
 export type VaultEntry = { name: string; path: string; kind: FileKind; bytes: number };
 export type DirectoryListing = { path: string; parent: string | null; entries: VaultEntry[]; warnings: string[] };
@@ -71,7 +74,12 @@ export type BoardRelinkPreview={id:string;field:'sourcePath'|'originalSourcePath
 export type BoardSourceResolution={path:string;match:'direct'|'root-prefix'|'board-relative';sha256?:string;fingerprintMatched:boolean};
 export type BoardElementStyle = { fillColor: string; strokeColor: string; textColor: string; fontSize: number; shape: 'rectangle' | 'rounded' | 'ellipse'; strokeWidth: number };
 export type BoardItemPatch = { id: string; x?: number; y?: number; width?: number; height?: number; title?: string; text?: string; url?: string; textFormat?: BoardTextFormat|'web'; style?: Partial<BoardElementStyle> | null };
+export type BoardPaperBackground={version:1;kind:'plain'|'ruled'|'grid'|'dots';color:string;lineColor:string;spacing:number;lineWidth:number;opacity:number};
 export type BoardOperation =
+  | {type:'insertLibrary';groupID:string;presetID:string;rect:import('./board-library').BoardLibraryRect;title:string;colors:import('./board-library').BoardLibraryColors;addPin:boolean;addPrintFrame:boolean}
+  | {type:'transformLibrary';groupID:string;rect:import('./board-library').BoardLibraryRect}
+  | {type:'removeLibrary';groupID:string}
+  | {type:'setBackground';background:BoardPaperBackground|null}
   | {type:'relinkSource';id:string;field:'sourcePath'|'originalSourcePath';oldPath:string;candidatePath:string;candidateSHA256:string;confirmed:true;requestId:string}
   | {type:'remove';ids:string[]}
   | {type:'setChildBoards';id:string;links:BoardChildLink[]}
@@ -100,6 +108,8 @@ export type ReviewRecord = {
   sourceSHA256?: string;
 };
 export type ReviewListResponse = { reviews: ReviewRecord[]; warnings: string[]; truncated: boolean };
+export type ReviewQueueRequest = { vaultId: string; folderPath: string; requestId: string };
+export type ReviewQueueResponse = ReviewListResponse & { folderPath: string };
 export type BoardTextFormat = 'richText' | 'markdown' | 'latex' | 'python';
 export type EditableDocumentBlock = { kind: 'paragraph' | 'heading' | 'bullet'; text: string };
 export type EditableDocumentModel = {
@@ -123,7 +133,87 @@ export type CalendarReminderOpen={vaultId:string;vault?:Vault;eventId:string;occ
 export type NoteExchangeApp='boardnotes'|'goodnotes'|'notability'|'onenote'|'other';
 export type NoteExchangeItem={name:string;path?:string;status:'imported'|'archive'|'exported'|'failed';readable:boolean;bytes?:number;sha256?:string;sourceSHA256?:string;archivePath?:string;manifestPath?:string;report?:{currentStrokes:number;historyFiles:number;assets:number;objects?:number;notes?:string[];unsupported?:string[]};recovery?:{id:string;phase?:string;reason?:string;rollback?:string;committed:boolean;recordSaved:boolean;recordPath?:string;retainedTemporaryDirectory?:string};note?:string;error?:{code:string;message:string}};
 export type NoteExchangeResult={cancelled:boolean;results:NoteExchangeItem[];folderName?:string};
+export type VoiceProfileEntry={id:string;phrase:string;source:'manual'|'confirmed-correction';createdAt:string;updatedAt:string;confirmations:number;originalText?:string;correctedText?:string};
+export type PersonalVoiceProfile={schemaVersion:1;kind:'quick-note-voice-profile';id:string;enabled:boolean;updatedAt:string;entries:VoiceProfileEntry[]};
+export type VoiceProfileSnapshot={profile:PersonalVoiceProfile;sha256:string|null;readOnly:boolean;warning:string};
+export type VoiceProfileUpdate={expectedSHA256:string|null;action:'setEnabled'|'add'|'remember'|'edit'|'delete'|'clear'|'import';enabled?:boolean;phrase?:string;id?:string;originalText?:string;correctedText?:string;profile?:PersonalVoiceProfile};
+export type QuickNoteDictationEvent={sessionId:string;sequence:number;kind:'state'|'result'|'complete'|'cancelled'|'error'|'authorized';engine:'dictation'|'analyzer'|'local-system';phase?:'preparing'|'downloading'|'arming'|'listening'|'finishing';audioReady?:true;text?:string;code?:string;notice?:'fallback-local'|'range-pending'|'range-review'|'range-recovered'};
 export interface DesktopAPI {
+  prepareBoardRegionCard(request:import('./board-region-study').BoardRegionCardRequest):Promise<ApiResult<import('./board-region-study').BoardRegionCardPreview>>;
+  commitBoardRegionCard(request:import('./board-region-study').BoardRegionCardCommit):Promise<ApiResult<import('./board-region-study').BoardRegionCardResult>>;
+  cancelBoardRegionCard(request:{requestId?:string;token?:string}):Promise<ApiResult<{cancelled:boolean}>>;
+  studyLayoutPackageSelect(request:FileRequest):Promise<ApiResult<import('./study-layout-package').StudyLayoutPackagePreview|null>>;
+  studyLayoutPackageCommit(request:FileRequest&{token:string}):Promise<ApiResult<import('./study-layout-package').StudyLayoutPackageResult>>;
+  studyLayoutPackageCancel(request:FileRequest&{token:string}):Promise<ApiResult<{cancelled:true}>>;
+  studyLayoutPackageExport(request:FileRequest):Promise<ApiResult<import('./study-layout-package').StudyLayoutPackageExportResult>>;
+  wordAnnotationsScan(request:{vaultId:string;folderPath:string;requestId:string}):Promise<ApiResult<import('./word-annotations').WordAnnotationScan>>;
+  wordAnnotationsCancel(request:{requestId?:string;token?:string}):Promise<ApiResult<{cancelled:boolean}>>;
+  wordAnnotationsResolve(request:{scanToken:string;resultId:string}):Promise<ApiResult<import('./word-annotations').WordAnnotationTarget>>;
+  workWordAnnotationPrepare(request:{requestId:string;scanToken:string;resultId:string;category:'focus'|'question'}):Promise<ApiResult<import('./work-space').WorkStudyPreview>>;
+  pdfAnnotationsScan(request:{vaultId:string;folderPath:string;requestId:string}):Promise<ApiResult<import('./pdf-annotations').PDFAnnotationScan>>;
+  pdfAnnotationsCancel(request:{requestId?:string;token?:string}):Promise<ApiResult<{cancelled:boolean}>>;
+  pdfAnnotationsResolve(request:{scanToken:string;resultId:string}):Promise<ApiResult<import('./pdf-annotations').PDFAnnotationTarget>>;
+  workPDFAnnotationPrepare(request:{requestId:string;scanToken:string;resultId:string;category:'focus'|'question'}):Promise<ApiResult<import('./work-space').WorkStudyPreview>>;
+  workMailOpenWebsite(request:{provider:'qq'|'gmail'|'outlook-personal'|'outlook-work'}):Promise<ApiResult<{opened:boolean}>>;
+  workStudyPrepare(request:{requestId:string;vaultId:string;path:string;category:'focus'|'question';excerpt?:string}):Promise<ApiResult<import('./work-space').WorkStudyPreview>>;
+  workStudyCommit(request:{token:string;revision:string|null;id:string;text:string;category:'focus'|'question';asTask?:boolean;dueDate?:string}):Promise<ApiResult<{snapshot:import('./work-space').WorkSnapshot;itemId:string;reused?:boolean}>>;
+  workStudyCancel(request:{requestId?:string;token?:string}):Promise<ApiResult<{cancelled:boolean}>>;
+  workStudyOpen(request:{itemId:string}):Promise<ApiResult<{opened:boolean}>>;
+
+  workNotificationOpenPending():Promise<ApiResult<{itemId:string}|null>>;
+  workNotificationOpenClaim(request:{itemId:string}):Promise<ApiResult<{claimed:boolean}>>;
+  onWorkNotificationOpen(callback:(value:{itemId:string})=>void):()=>void;
+
+  workMailAccounts():Promise<ApiResult<import('./work-space').MailAccount[]>>;
+  workMailConnect(request:{requestId:string;provider:'gmail'|'icloud'|'qq';address:string;password:string}):Promise<ApiResult<import('./work-space').MailAccount>>;
+  workMailDisconnect(request:{accountID:string}):Promise<ApiResult<unknown>>;
+  workMailInbox(request:{requestId:string;accountID:string;beforeSequence?:number}):Promise<ApiResult<import('./work-space').MailPage>>;
+  workMailMessage(request:{requestId:string;accountID:string;uidValidity:string;uid:string}):Promise<ApiResult<import('./work-space').WorkMailPreview>>;
+  workMailCancel(request:{requestId?:string;token?:string}):Promise<ApiResult<{cancelled:boolean}>>;
+  workMailCommit(request:{token:string;revision:string|null;id:string;text:string;role:'note'|'task'|'event';event?:import('./work-space').WorkEvent;reminderAt?:string;dueDate?:string;confirmed:true}):Promise<ApiResult<{snapshot:import('./work-space').WorkSnapshot;itemId:string;reused:boolean}>>;
+  workMailOpen(request:{requestId:string;itemId:string}):Promise<ApiResult<{message:import('./work-space').MailMessage;unavailable:boolean}>>;
+  workNotificationStatus():Promise<ApiResult<import('./work-space').WorkNotificationStatus>>;
+  workNotificationRequest():Promise<ApiResult<import('./work-space').WorkNotificationStatus>>;
+
+  workSpaceSnapshot():Promise<ApiResult<import('./work-space').WorkSnapshot>>;
+  workSpaceMutate(request:{revision:string|null;operation:import('./work-space').WorkOperation}):Promise<ApiResult<import('./work-space').WorkSnapshot>>;
+  workSourceRegister(request:{vaultId:string}):Promise<ApiResult<{sourceId:string;snapshot:import('./work-space').WorkSnapshot}>>;
+  workSourceRefresh(request:{sourceId:string}):Promise<ApiResult<import('./work-space').WorkSnapshot>>;
+  workSourceOpen(request:{sourceId:string;path:string;documentID:string;taskId:string}):Promise<ApiResult<import('./work-space').WorkSourceOpen>>;
+  onWorkSpaceChanged(callback:(event:{revision:string|null})=>void):()=>void;
+  recognitionRecordingInfo():Promise<ApiResult<import('./recognition-samples').RecognitionRecordingInfo>>;
+  recognitionRecordingStart(request:{sessionId:string}):Promise<ApiResult<{started:boolean;sessionId:string}>>;
+  recognitionRecordingStop(request:{sessionId:string}):Promise<ApiResult<{stopping:boolean}>>;
+  recognitionRecordingCancel(request:{sessionId:string}):Promise<ApiResult<{cancelled:true}>>;
+  onRecognitionRecordingEvent(callback:(event:import('./recognition-samples').RecognitionRecordingEvent)=>void):()=>void;
+  recognitionPackagePlan(request:import('./recognition-sample-package').SamplePackageExportRequest):Promise<ApiResult<import('./recognition-sample-package').SamplePackageExportPlan>>;
+  recognitionPackageExport(request:import('./recognition-sample-package').SamplePackageExportRequest):Promise<ApiResult<{saved:boolean;warning?:string;plan:import('./recognition-sample-package').SamplePackageExportPlan}>>;
+  recognitionPackageSelect():Promise<ApiResult<import('./recognition-sample-package').SamplePackagePreview|null>>;
+  recognitionPackageMedia(request:{token:string;id:string}):Promise<ApiResult<{dataURL:string;sha256:string}>>;
+  recognitionPackageCommit(request:{token:string;revision:string|null;acknowledgeLabels:true}):Promise<ApiResult<import('./recognition-sample-package').SamplePackageImportResult>>;
+  recognitionPackageCancel(request?:{token?:string}):Promise<ApiResult<{cancelled:boolean;committing?:boolean}>>;
+  recognitionSamplesList():Promise<ApiResult<import('./recognition-samples').RecognitionSnapshot>>;
+  recognitionSamplesSelect(request:{kind:import('./recognition-samples').RecognitionKind}):Promise<ApiResult<import('./recognition-samples').RecognitionDraft|null>>;
+  recognitionSamplesCancelOCR(request:{requestId:string}):Promise<ApiResult<{cancelled:boolean}>>;
+  recognitionSamplesFromOCR(request:{vaultId:string;path:string;resultId:string;page?:number;requestId?:string}):Promise<ApiResult<import('./recognition-samples').RecognitionDraft>>;
+  recognitionSamplesCancelDraft():Promise<ApiResult<{cancelled:true}>>;
+  recognitionSamplesCommit(request:import('./recognition-samples').RecognitionCommit):Promise<ApiResult<{sample:import('./recognition-samples').RecognitionSample;snapshot:import('./recognition-samples').RecognitionSnapshot}>>;
+  recognitionSamplesUpdate(request:import('./recognition-samples').RecognitionUpdate):Promise<ApiResult<import('./recognition-samples').RecognitionSnapshot>>;
+  recognitionSamplesMedia(request:{id:string;sha256:string}):Promise<ApiResult<{dataURL:string;sha256:string}>>;
+  recognitionSamplesClean(request:{revision:string|null;confirmed:true}):Promise<ApiResult<import('./recognition-samples').RecognitionSnapshot>>;
+
+  setInterfaceLanguage(request:{language:'zh'|'en'}):Promise<ApiResult<{name:string;language:'zh'|'en'}>>;
+  clipCatalogList(request:{vaultId:string;folderPath:string;query:string;requestId:string}):Promise<ApiResult<import('./browser-clips').BrowserClipList>>;
+  clipCatalogCancel(request:{requestId:string}):Promise<ApiResult<{cancelled:boolean}>>;
+  clipCatalogInspect(request:{vaultId:string;ref:import('./browser-clips').BrowserClipReference}):Promise<ApiResult<import('./browser-clips').BrowserClipInspection>>;
+  clipCatalogPlace(request:{vaultId:string;ref:import('./browser-clips').BrowserClipReference;targetPath:string;expectedSHA256:string;contentSHA256:string;x:number;y:number}):Promise<ApiResult<BoardMutationResult>>;
+
+  listCourseWorkspaces():Promise<ApiResult<import('./course-workspaces').CourseWorkspaceList>>;
+  saveCourseWorkspace(request:{vaultId:string;name:string;layout:import('./course-workspaces').CourseWorkspaceLayout;revision:string|null}):Promise<ApiResult<import('./course-workspaces').CourseWorkspaceList>>;
+  renameCourseWorkspace(request:{id:string;name:string;revision:string|null}):Promise<ApiResult<import('./course-workspaces').CourseWorkspaceList>>;
+  deleteCourseWorkspace(request:{id:string;revision:string|null}):Promise<ApiResult<import('./course-workspaces').CourseWorkspaceList>>;
+  prepareCourseWorkspace(request:{id:string}):Promise<ApiResult<{entry:import('./course-workspaces').CourseWorkspaceSummary;layout:import('./course-workspaces').CourseWorkspaceLayout;vault:Vault}>>;
+
  importNoteExchange(request:{vaultId:string;parentPath:string;source:NoteExchangeApp}):Promise<ApiResult<NoteExchangeResult>>;
  exportNoteExchange(request:{vaultId:string;paths:string[];target:NoteExchangeApp;mode:'original'|'outline'}):Promise<ApiResult<NoteExchangeResult>>;
  importNoteOutline(request:FileRequest&{expectedSHA256:string}):Promise<ApiResult<{path:string;nodeCount:number}>>;
@@ -164,6 +254,14 @@ export interface DesktopAPI {
  setVideoWindowPinned(request:{pinned:boolean}):Promise<ApiResult<{pinned:boolean}>>;
   openOriginal(request:FileRequest&{application:"default"|"choose"}):Promise<ApiResult<{opened:boolean}>>;
   boardHistoryState(request:FileRequest):Promise<ApiResult<BoardHistoryState>>;
+  pngOrganizationPreview(request:FileRequest&{requestId:string}):Promise<ApiResult<PNGOrganizationPreview>>;
+  pngOrganizationCancel(request:{requestId:string;token?:string}):Promise<ApiResult<{cancelled:boolean}>>;
+  pngOrganizationCommit(request:{token:string}):Promise<ApiResult<PNGOrganizationResult>>;
+  pngOrganizationHistory(request:{vaultId:string}):Promise<ApiResult<PNGOrganizationHistory>>;
+  pngOrganizationUndo(request:{vaultId:string;id:string}):Promise<ApiResult<PNGOrganizationResult>>;
+  boardVersionsList(request:FileRequest&{expectedSHA256:string}):Promise<ApiResult<BoardVersionList>>;
+  boardVersionsCompare(request:FileRequest&{expectedSHA256:string;fromSHA256:string;toSHA256:string}):Promise<ApiResult<BoardVersionDiff>>;
+  boardVersionsRestoreCopy(request:FileRequest&{expectedSHA256:string;versionSHA256:string;name:string}):Promise<ApiResult<OpenedFile&{sourceSHA256:string;sourceUnchanged:true;independentRecordsNotCopied:true}>>;
   undoBoard(request:FileRequest&{expectedSHA256:string}):Promise<ApiResult<BoardMutationResult>>;
   redoBoard(request:FileRequest&{expectedSHA256:string}):Promise<ApiResult<BoardMutationResult>>;
   getFolderOrder(request:FileRequest):Promise<ApiResult<{paths:string[]}>>;
@@ -186,6 +284,16 @@ export interface DesktopAPI {
   resolveBoardSource(request:{vaultId:string;boardPath:string;expectedBoardSHA256:string;sourcePath:string}):Promise<ApiResult<BoardSourceResolution>>;
   getBoardRelinkProgress(request:{vaultId:string;requestId:string}):Promise<ApiResult<BoardRelinkProgress>>;
   cancelBoardRelink(request:{vaultId:string;requestId:string}):Promise<ApiResult<{cancelled:boolean}>>;
+  readVoiceProfile():Promise<ApiResult<VoiceProfileSnapshot>>;
+  updateVoiceProfile(request:VoiceProfileUpdate):Promise<ApiResult<VoiceProfileSnapshot>>;
+  exportVoiceProfile():Promise<ApiResult<{saved:boolean}>>;
+  importVoiceProfile(request:{expectedSHA256:string|null}):Promise<ApiResult<VoiceProfileSnapshot|null>>;
+  onVoiceProfileChanged(callback:(event:{changed:true})=>void):()=>void;
+  quickNoteDictationInfo():Promise<ApiResult<{available:boolean;engine:'apple-on-device';locales:string[];recordingSaved:false}>>;
+  startQuickNoteDictation(request:{sessionId:string;locale:'zh-CN'|'en-US';contextWords:string[]}):Promise<ApiResult<{started:boolean;sessionId?:string;permissionPrepared?:boolean;reason?:string}>>;
+  stopQuickNoteDictation(request:{sessionId:string}):Promise<ApiResult<{stopping:boolean}>>;
+  cancelQuickNoteDictation(request:{sessionId:string}):Promise<ApiResult<{cancelled:true}>>;
+  onQuickNoteDictationEvent(callback:(event:QuickNoteDictationEvent)=>void):()=>void;
   setBoardSpeechActive(request:{active:boolean}):Promise<ApiResult<{active:boolean}>>;
   recognizeBoardText(request:{requestId:string;imageDataURL:string;customWords?:string[]}):Promise<ApiResult<LocalOCRResult>>;
   copyBoardText(request:{text:string}):Promise<ApiResult<{copied:boolean}>>;
@@ -206,6 +314,8 @@ export interface DesktopAPI {
   addBoardFileCard(request: FileRequest & { expectedSHA256: string; sourcePath: string; x: number; y: number }): Promise<ApiResult<OpenedFile & { backupId: string; itemId: string }>>;
 
   listReviews(request: FileRequest): Promise<ApiResult<ReviewListResponse>>;
+  listReviewQueue(request: ReviewQueueRequest): Promise<ApiResult<ReviewQueueResponse>>;
+  cancelReviewQueue(request: { requestId: string }): Promise<ApiResult<{ cancelled: boolean }>>;
   deleteReview(request: { vaultId: string; id: string }): Promise<ApiResult<{ deleted: true; id: string }>>;
   createReview(request: { vaultId: string; review: ReviewRecord }): Promise<ApiResult<{ review: ReviewRecord; backupId: string }>>;
 
@@ -234,6 +344,11 @@ export interface DesktopAPI {
   exportStudyCards(request:FileRequest&{delimiter:StudyDelimiter;formulaProtection:boolean}):Promise<ApiResult<StudyExportResult>>;
   createPDFVisualExcerpt(request:FileRequest&{boardID:string;expectedSHA256:string;itemID:string;title:string;sourceReference:import('./pdf-extend').PDFSourceReference;dataURL:string;x:number;y:number}):Promise<ApiResult<BoardMutationResult>>;
   readStudyImage(request:FileRequest&{boardID:string;itemID?:string;sourcePath?:string}):Promise<ApiResult<{dataURL:string;sha256:string;width:number;height:number;sourcePath:string}>>;
+  prepareStudyDraft(request:FileRequest&{nodeIDs:string[];kind:import('./study-draft').StudyDraftKind}):Promise<ApiResult<import('./study-draft').StudyDraftPreview>>;
+  commitStudyDraft(request:import('./study-draft').StudyDraftCommit):Promise<ApiResult<import('./study-draft').StudyDraftResult>>;
+  cancelStudyDraft(request:{token:string}):Promise<ApiResult<{cancelled:boolean}>>;
+  readStudyLayout(request:FileRequest&{itemID:string}):Promise<ApiResult<import('./study-layout').StudyLayoutSnapshot>>;
+  saveStudyLayout(request:FileRequest&{itemID:string;expectedRevision:string|null;layout:import('./study-layout').StudyCardLayout;replaceStale?:boolean}):Promise<ApiResult<import('./study-layout').StudyLayoutSnapshot>>;
   readStudy(request:FileRequest):Promise<ApiResult<StudyProjection>>;
   appendStudy(request:FileRequest&{event:StudyEvent}):Promise<ApiResult<StudyProjection>>;
   readPDFExtend(request:FileRequest):Promise<ApiResult<ExtendProjection>>;
@@ -251,12 +366,19 @@ export interface DesktopAPI {
   moveExternalOpenToNewWindow(request:{id:string}):Promise<ApiResult<{opened:boolean}>>;
   onExternalOpenRequests(callback:()=>void):()=>void;
   listRecentVaults(): Promise<ApiResult<{ entries: RecentVault[]; storageIssue: boolean }>>;
+  recentRelinkPreview(request:{id:string}):Promise<ApiResult<RecentRelinkPreview|null>>;
+  recentRelinkConfirm(request:{previewId:string;confirmed:true}):Promise<ApiResult<Vault>>;
   reopenRecentVault(request: { id: string }): Promise<ApiResult<Vault>>;
   forgetRecentVault(request: { id: string }): Promise<ApiResult<{ forgotten: boolean }>>;
   listDirectory(request: FileRequest): Promise<ApiResult<DirectoryListing>>;
   knowledgeGraph(request: { vaultId: string }): Promise<ApiResult<KnowledgeGraphResponse>>;
   createBoard(request: { vaultId: string; parentPath: string; name: string }): Promise<ApiResult<OpenedFile & { backupId: string }>>;
   saveBoardElements(request: FileRequest & { expectedSHA256: string; items: Array<Record<string, unknown>>; edges: Array<Record<string, unknown>> }): Promise<ApiResult<OpenedFile & { backupId: string }>>;
+  unifiedSearchStatus(request:{vaultId:string}):Promise<ApiResult<import('./unified-search').UnifiedSearchStatus>>;
+  unifiedSearchStart(request:{vaultId:string;continuePending:boolean}):Promise<ApiResult<{started:boolean;id:string}>>;
+  unifiedSearchCancel(request:{vaultId:string}):Promise<ApiResult<{cancelled:boolean}>>;
+  unifiedSearchQuery(request:{vaultId:string;query:string;kind:string;offset:number}):Promise<ApiResult<import('./unified-search').UnifiedSearchResponse>>;
+  unifiedSearchResolve(request:{vaultId:string;resultId:string}):Promise<ApiResult<import('./unified-search').UnifiedSearchTarget>>;
   searchNotes(request: { vaultId: string; query: string }): Promise<ApiResult<NoteSearchResponse>>;
   noteLinks(request: FileRequest): Promise<ApiResult<NoteLinksResponse>>;
   readFile(request: FileRequest): Promise<ApiResult<OpenedFile>>;

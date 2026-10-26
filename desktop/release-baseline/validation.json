@@ -1,0 +1,68 @@
+{
+  "packaging": {
+    "mac": {
+      "target": "mac",
+      "filename": "Lifes-Winner-0.8.5-mac-arm64-rebuilt.zip",
+      "sha256": "78ff60681752582c4f49d6d633cc3da68c86fc684bf01c11ad21dabd768fc5b0",
+      "bytes": 257899187,
+      "appASARSHA256": "9a55dfbf6987e35cf819accaa12817911274ac8b2cf9c28c275712aa04e185e1",
+      "applicationFilesCompared": 2830,
+      "runtimeExecuted": false,
+      "functionalAcceptancePassed": false,
+      "runtimeSourceFilesCompared": 4,
+      "strictSignatureVerified": true,
+      "archiveRoundTripVerified": true,
+      "notarized": false
+    },
+    "windows": {
+      "target": "win",
+      "filename": "Lifes-Winner-0.8.5-Windows-x64-Setup.exe",
+      "sha256": "94e78da8ffdf35f1425607a13e961449d518a411c52692a9c09eaca0d12cf2a2",
+      "bytes": 149794163,
+      "appASARSHA256": "9a55dfbf6987e35cf819accaa12817911274ac8b2cf9c28c275712aa04e185e1",
+      "applicationFilesCompared": 2830,
+      "runtimeExecuted": false,
+      "functionalAcceptancePassed": false,
+      "runtimeSourceFilesCompared": 4,
+      "containerIntegrityPassed": true,
+      "windowsExecutablesX64": true,
+      "checkedTeXCacheFiles": 286,
+      "installerExecuted": false,
+      "signed": false
+    },
+    "nativeHelpersBuilt": [
+      "ink",
+      "ocr",
+      "pdf-info",
+      "dictation",
+      "recorder",
+      "mail"
+    ],
+    "helpersExecuted": false,
+    "installed": false,
+    "windowsHostBuildTested": false
+  },
+  "sourceBaseline": {
+    "originalRendererFiles": 72,
+    "matchedRendererFiles": 72,
+    "allFrozenProductionInputsMatched": true
+  },
+  "freshInstall": {
+    "npm": "11.6.2",
+    "packages": 366,
+    "typecheck": true,
+    "productionBuild": true,
+    "tests": {
+      "total": 766,
+      "pass": 765,
+      "fail": 0,
+      "skip": 1
+    }
+  },
+  "developmentLauncher": {
+    "actualElectronStartupVerified": true,
+    "emptySyntheticVaultVerified": true,
+    "userDataSessionLogsIsolated": true,
+    "mailHelperAndNotificationsDisabled": true
+  }
+}

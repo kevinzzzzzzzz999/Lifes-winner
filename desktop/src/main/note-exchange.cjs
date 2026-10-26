@@ -42,7 +42,7 @@ async function createUnique(directory,name,data,revalidate=async()=>{}){
  try{await revalidate();const current=await fs.lstat(directory);if(!current.isDirectory()||current.isSymbolicLink()||current.dev!==first.dev||current.ino!==first.ino)fail('CONFLICT');for(let n=0;n<1000;n++){const candidate=numbered(name,n);try{await fs.link(temp,path.join(directory,candidate));return candidate;}catch(error){if(error.code!=='EEXIST')throw error;}}fail('EXISTS');}finally{await fs.unlink(temp).catch(()=>{});}
 }
 class NoteExchange{
- constructor(vaults,{imageDecoder,diagnosticsDirectory,onError}={}){this.vaults=vaults;this.imageDecoder=imageDecoder;this.diagnosticsDirectory=diagnosticsDirectory;this.onError=onError;this.busy=false;}
+ constructor(vaults,{imageDecoder,diagnosticsDirectory,onError,applicationName=()=>"Life's Winner"}={}){this.vaults=vaults;this.imageDecoder=imageDecoder;this.diagnosticsDirectory=diagnosticsDirectory;this.onError=onError;this.applicationName=applicationName;this.busy=false;}
  async recordFailure(error,name,parentPath){
   this.onError?.('importNoteExchange',error);
   const input=error?.diagnostic;if(!input||input.operation!=='boardnotes-import')return undefined;
@@ -81,7 +81,7 @@ class NoteExchange{
  }
  async exportSelected(request,directory){
   app(request.target);const canonical=await fs.realpath(directory),stat=await fs.lstat(directory);if(stat.isSymbolicLink()||!stat.isDirectory())fail('PATH_DENIED');
-  const label='人生赢家-'+request.target+'-'+new Date().toISOString().replace(/[:.]/g,'-');let output;for(let n=0;n<1000;n++){const candidate=path.join(canonical,label+(n?' ('+(n+1)+')':''));try{await fs.mkdir(candidate,{mode:0o700});output=candidate;break;}catch(e){if(e.code!=='EEXIST')throw e;}}if(!output)fail('EXISTS');
+  const label=this.applicationName()+'-'+request.target+'-'+new Date().toISOString().replace(/[:.]/g,'-');let output;for(let n=0;n<1000;n++){const candidate=path.join(canonical,label+(n?' ('+(n+1)+')':''));try{await fs.mkdir(candidate,{mode:0o700});output=candidate;break;}catch(e){if(e.code!=='EEXIST')throw e;}}if(!output)fail('EXISTS');
   const results=[];let total=0;
   for(const rel of request.paths){const name=path.posix.basename(rel);let diskSnapshot;try{let data,snapshot,outName=name,note='original-copy',exported,bytes,sha256;
    if(request.mode==='outline'){snapshot=await this.vaults.snapshot({vaultId:request.vaultId,path:rel},64*1024*1024);if(!rel.toLowerCase().endsWith('.inkspace.json'))fail('UNSUPPORTED');let board;try{board=JSON.parse(snapshot.data);}catch{fail('INVALID_BOARD');}data=Buffer.from(require('./note-outline.cjs').exportOutline(board).text);outName=name.slice(0,-'.inkspace.json'.length)+'.节点纲要.md';note='titles-only';bytes=data.length;if(total+bytes>LIMITS.batchBytes)fail('TOO_LARGE');total+=bytes;sha256=digest(data);
@@ -91,7 +91,7 @@ class NoteExchange{
    }
    results.push({name,path:exported,status:'exported',readable:true,bytes,sha256,sourceSHA256:snapshot.sha256,note});
   }catch(error){results.push({name,status:'failed',readable:false,error:publicError(error)});}finally{await diskSnapshot?.dispose();}}
-  const report={schemaVersion:1,createdAt:new Date().toISOString(),target:request.target,mode:request.mode,limits:LIMITS,notes:["PDF originals retain annotations already embedded in the PDF. Independent Life's winner layers/reviews, audio timing, and source-app editing objects are not flattened into these copies.",'Node outlines contain titles and tree hierarchy only; no handwriting, layout, rich text, media or attached files.','Source-app native formats are archived unchanged, not decoded or converted in this version. ZIP archives are not extracted.'],results};
+  const report={schemaVersion:1,createdAt:new Date().toISOString(),target:request.target,mode:request.mode,limits:LIMITS,notes:['PDF originals retain annotations already embedded in the PDF. Independent Life\'s Winner layers/reviews, audio timing, and source-app editing objects are not flattened into these copies.','Node outlines contain titles and tree hierarchy only; no handwriting, layout, rich text, media or attached files.','Source-app native formats are archived unchanged, not decoded or converted in this version. ZIP archives are not extracted.'],results};
   await createUnique(output,'exchange-manifest.json',Buffer.from(JSON.stringify(report,null,2)));return{cancelled:false,folderName:path.basename(output),results};
  }
 }

@@ -48,7 +48,7 @@ async function native(vaults,board,next,operation){
  let result;try{result=await vaults.nativeInkBridge.apply({board,operation});}catch(error){if(['INK_CROSSES_BOUNDARY','COLLAPSE_HAS_CONTENT','INK_RUNTIME_UNAVAILABLE','INK_TRANSFORM_FAILED','NO_INK_SELECTED','BUSY','CANCELLED','TOO_LARGE'].includes(error?.code))fail(error.code);fail('INK_TRANSFORM_FAILED');}
  return mergeNative(board,next,result,operation);
 }
-async function transformElements(vaults,board,next){next=require('./board-child-links.cjs').translatePresentations(board,next);validateBoard(next);const kinds=new Map(board.items.map(item=>[key(item.id),item.kind]));const changed=geometryChanged(board,next).filter(item=>['pdfPage','inkGroup'].includes(kinds.get(key(item.id))));if(!changed.length||!hasInk(board))return next;return (await native(vaults,board,next,{type:'patchItems',items:changed})).board;}
+async function transformElements(vaults,board,next){next=require('./board-library.cjs').reconcile(board,next);next=require('./board-child-links.cjs').translatePresentations(board,next);validateBoard(next);const kinds=new Map(board.items.map(item=>[key(item.id),item.kind]));const changed=geometryChanged(board,next).filter(item=>['pdfPage','inkGroup'].includes(kinds.get(key(item.id))));if(!changed.length||!hasInk(board))return next;return (await native(vaults,board,next,{type:'patchItems',items:changed})).board;}
 function pageLayout(sizes,{x,y,direction,scale,columns=4},world){
  if(!sizes.length||sizes.length>2000||!['vertical','horizontal','grid'].includes(direction)||!Number.isFinite(scale)||scale<0.25||scale>2||!Number.isInteger(columns)||columns<1||columns>24||![x,y].every(Number.isFinite))fail('INVALID_REQUEST');
  const width=720*scale,gap=48,layout=[];let cx=x,cy=y,rowHeight=0;
@@ -63,9 +63,13 @@ async function pdfSizes(data){
 async function operation(vaults,request,board,writerID,publications=[]){
  const op=request.operation;if(!object(op)||typeof op.type!=='string')fail('INVALID_REQUEST');let next=revised(board,writerID),selection=[],sourceChecks=[],warnings=[],revalidate;
  switch(op.type){
+ case 'insertLibrary':{const result=require('./board-library.cjs').insert(board,next,op);next=result.board;selection=result.selectedIDs;break;}
+ case 'transformLibrary':{const result=require('./board-library.cjs').transform(board,next,op);next=result.board;selection=result.selectedIDs;break;}
+ case 'removeLibrary':{const result=require('./board-library.cjs').remove(board,next,op);next=result.board;selection=result.selectedIDs;break;}
+ case 'setBackground':{fields(op,['type','background']);const validate=require('./board-paper.cjs').validatedBackground;if(board.background!=null)validate(board.background,true);const value=validate(op.background);if(value===null){if(board.background&&Object.keys(board.background).some(k=>!['version','kind','color','lineColor','spacing','lineWidth','opacity'].includes(k)))fail('UNSUPPORTED');delete next.background;}else next.background={...(board.background||{}),...value};break;}
  case 'relinkSource':return require('./board-relink.cjs').apply(vaults,request,board,next);
  case 'remove':{
-  fields(op,['type','ids']);const initial=selected(board,op.ids),removed=new Set(initial.map(i=>key(i.id))),cards=new Set(initial.filter(i=>i.kind==='document').map(i=>key(i.id)));
+  fields(op,['type','ids']);const initial=selected(board,require('./board-library.cjs').expandIDs(board,op.ids)),removed=new Set(initial.map(i=>key(i.id))),cards=new Set(initial.filter(i=>i.kind==='document').map(i=>key(i.id)));
   for(const item of board.items)if(item.sourceCardID&&cards.has(key(item.sourceCardID))){if(item.kind!=='pdfPage')fail('INVALID_BOARD');removed.add(key(item.id));}
   if(removed.size>20000)fail('TOO_LARGE');const targets=board.items.filter(i=>removed.has(key(i.id))),pages=targets.filter(i=>i.kind==='pdfPage');
   if(pages.length&&hasInk(board)){if(!vaults.nativeInkBridge)fail('INK_RUNTIME_UNAVAILABLE');try{await vaults.nativeInkBridge.apply({board,operation:{type:'collapseCheck',ids:pages.map(i=>i.id)}});}catch(error){if(['INK_RUNTIME_UNAVAILABLE','BUSY','CANCELLED','TOO_LARGE'].includes(error?.code))fail(error.code);throw Object.assign(Error('Frame or move the handwriting away before removing this page.'),{code:'REMOVE_PAGE_HAS_INK'});}}
@@ -91,7 +95,7 @@ async function operation(vaults,request,board,writerID,publications=[]){
   }
   next.items=board.items.map(item=>items.get(key(item.id)));selection=[...new Set(op.updates.map(update=>items.get(key(update.id)).id))];break;
  }
- case 'move':{fields(op,['type','ids','dx','dy']);const items=selected(board,op.ids);if(!Number.isFinite(op.dx)||!Number.isFinite(op.dy))fail('INVALID_REQUEST');next.items=normalizePatch(board,items.map(i=>({id:i.id,x:i.x+op.dx,y:i.y+op.dy})));validateBoard(next);next=await transformElements(vaults,board,next);selection=items.map(i=>i.id);break;}
+ case 'move':{fields(op,['type','ids','dx','dy']);const items=selected(board,require('./board-library.cjs').expandIDs(board,op.ids));if(!Number.isFinite(op.dx)||!Number.isFinite(op.dy))fail('INVALID_REQUEST');next.items=normalizePatch(board,items.map(i=>({id:i.id,x:i.x+op.dx,y:i.y+op.dy})));validateBoard(next);next=await transformElements(vaults,board,next);selection=items.map(i=>i.id);break;}
  case 'patchItems':{fields(op,['type','items']);const items=normalizePatch(board,op.items);next=applyElements(board,items,board.edges,writerID,{manageProtected:true});next=await transformElements(vaults,board,next);selection=op.items.map(i=>i.id);break;}
  case 'frameInk':{fields(op,['type','rect','title']);rect(op.rect,board.canvasWidth);if(op.title!=null&&(typeof op.title!=='string'||op.title.length>1000||op.title.includes('\0')))fail('INVALID_REQUEST');const value=await native(vaults,board,next,op);next=value.board;selection=value.selectedIDs;break;}
  case 'unpackInk':{fields(op,['type','ids']);const items=selected(board,op.ids);if(items.some(i=>i.kind!=='inkGroup'))fail('INVALID_REQUEST');if(board.edges.some(e=>op.ids.some(value=>key(e.from)===key(value)||key(e.to)===key(value))))fail('COLLAPSE_HAS_CONTENT');const value=await native(vaults,board,next,{...op,ids:items.map(i=>i.id)});next=value.board;selection=value.selectedIDs;break;}
@@ -152,7 +156,7 @@ async function operation(vaults,request,board,writerID,publications=[]){
  }
  default: fail('INVALID_REQUEST');
  }
- validateBoard(next);const contentBefore={...board,revision:0,writerID:'',updatedAt:''},contentAfter={...next,revision:0,writerID:'',updatedAt:''};
+ next=require('./board-library.cjs').reconcile(board,next);validateBoard(next);const contentBefore={...board,revision:0,writerID:'',updatedAt:''},contentAfter={...next,revision:0,writerID:'',updatedAt:''};
  return {board:next,selectedIDs:selection,sourceChecks,warnings,...(revalidate?{revalidate}:{}),unchanged:isDeepStrictEqual(contentBefore,contentAfter)};
 }
 module.exports={operation,transformElements,pageLayout,pdfSizes,geometryChanged,mergeNative};

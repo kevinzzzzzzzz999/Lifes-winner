@@ -1,0 +1,16 @@
+import {createRoot} from 'react-dom/client';
+import App from '../../src/renderer/App';
+import {installPreviewFixture} from '../../src/renderer/preview-fixture';
+import '../../src/renderer/styles.css';
+import '../../src/renderer/panel-layout.css';
+import '../../src/renderer/workspace-theme.css';
+installPreviewFixture();
+const qa=window as any;qa.apiCalls=[];qa.notebookCloseCount=0;
+const names=['workSpaceSnapshot','workSpaceMutate','workSourceRegister','workSourceRefresh','workSourceOpen','workStudyPrepare','workStudyCommit','workStudyCancel','workStudyOpen','workMailOpenWebsite','initialWindowVault','chooseVault','listDirectory','readFile','saveText'];
+for(const name of names)(window.desktop as any)[name]=async(request:any)=>{qa.apiCalls.push(name);return qa.workBridge(name,request);};
+const changed=new Set<()=>void>();window.desktop.onWorkSpaceChanged=cb=>{const fn=()=>cb({revision:null});changed.add(fn);return()=>changed.delete(fn);};qa.emitWorkChange=()=>changed.forEach(fn=>fn());
+window.desktop.notebookInfo=async()=>({ok:true,value:{available:true,version:'synthetic-test-only',packages:{}}} as any);
+let notebookEvent:(event:any)=>void=()=>{};window.desktop.onNotebookEvent=cb=>{notebookEvent=cb;return()=>{notebookEvent=()=>{};};};
+window.desktop.runNotebookCells=async request=>{qa.apiCalls.push('runNotebookCells');setTimeout(()=>{for(const event of[{kind:'cell-start',cellIndex:0},{kind:'cell-end',cellIndex:0,executionCount:1},{kind:'run-end',kernelAlive:true,reason:'completed'}])notebookEvent({...request,kernelId:'synthetic-kernel',...event});},50);return{ok:true,value:{kernelId:'synthetic-kernel'}} as any;};
+window.desktop.closeNotebook=async()=>{qa.notebookCloseCount++;return{ok:true,value:{closed:true}} as any;};
+createRoot(document.getElementById('root')!).render(<App/>);

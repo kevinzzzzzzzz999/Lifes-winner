@@ -1,8 +1,10 @@
+import {inspectLibraryGroups,isLibraryDecoration} from '../shared/board-library';
 export type StudyNode = Record<string, unknown> & {id:string;title:string;text?:string;kind:string};
 export type OutlineRow = {node:StudyNode;depth:number;parentID:string|null;hasChildren:boolean};
 const key=(v:unknown)=>String(v||'').toLowerCase();
 export function studyNodes(board:Record<string,unknown>):StudyNode[]{
- return (Array.isArray(board.items)?board.items:[]).filter((n):n is StudyNode=>!!n&&typeof n==='object'&&typeof n.id==='string'&&typeof n.title==='string'&&['text','formula','inkGroup','pdfPage','document','link'].includes(n.kind));
+ const items=Array.isArray(board.items)?board.items:[],groups=items.some(n=>n&&typeof n==='object'&&'libraryGroup' in n)?inspectLibraryGroups(board):[];
+ return items.filter((n):n is StudyNode=>!!n&&typeof n==='object'&&typeof n.id==='string'&&typeof n.title==='string'&&['text','formula','inkGroup','pdfPage','document','link'].includes(n.kind)&&!isLibraryDecoration(n,board,groups));
 }
 // A cycle or a second parent never makes a card disappear from the outline.
 export function studyOutline(board:Record<string,unknown>):OutlineRow[]{

@@ -1,54 +1,83 @@
+# 当前桌面维护源码：build142
+
+已同步与 `v0.8.5-build142-desktop-preview` 安装包对应的完整桌面源码、测试及可搬迁构建脚本。另一台电脑上的 Codex 请先阅读 [维护交接说明](docs/BUILD142-MAINTENANCE.md) 和 [AGENTS.md](AGENTS.md)，从 `desktop/` 开始。
+
+[下载已发布安装包](https://github.com/kevinzzzzzzzz999/Lifes-winner/releases/tag/v0.8.5-build142-desktop-preview) · [构建与平台限制](desktop/scripts/release/README.md) · [源码匹配验证](desktop/release-baseline/VALIDATION.md)
+
+仓库内2026-10-24的压缩源码归档是历史快照。原安装包标签的自动源码ZIP不移动；请使用当前仓库或同一Release附加的 `Lifes-Winner-0.8.5-build142-source.zip`。本次未更新移动端及Obsidian历史源码。
+
+---
+
 # 人生赢家 / Life's winner
 
 希望每一个使用我开源功能的人，都是各自的 Life's winner。
 
 I hope everyone who uses my open-source tools can be their own Life's winner.
 
-面向 Mac、iPad、iPhone 与 Obsidian 的本地笔记、手写白板和文档工作空间。
+面向 Mac、iPad、iPhone 的本地笔记、手写白板与文档工作空间；另有可独立使用的工具、模块与 Obsidian 伴侣。
 
-An open-source workspace for local notes, handwriting, whiteboards and documents on Mac, iPad, iPhone and Obsidian.
+A local-first workspace for notes, handwriting, whiteboards and documents on Mac, iPad and iPhone, with standalone tools, reusable modules and an Obsidian companion.
 
-## 下载与开始 / Download and start
+[Mac 源码 / Source](desktop/) · [iPad/iPhone 源码 / Source](ios/) · [独立功能 / Standalone modules](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules) · [功能边界 / Feature limits](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules/blob/main/FEATURES.md)
 
-| 部分 / Part | 内容 / Contents | 运行与安装 / Setup |
-| --- | --- | --- |
-| [Mac](desktop/) | Electron、React、白板、文档与 Notebook / Boards, documents and notebooks | [构建说明 / Build guide](docs/desktop-build.md) |
-| [iPad / iPhone](ios/) | SwiftUI、PencilKit、PDF 与文件夹 / PDF and folder workspaces | [Xcode 与签名 / Xcode and signing](docs/ios-build.md) |
-| [Obsidian](obsidian/inkspace-companion/) | 查看与连接白板 / View and connect boards | [安装 / Installation](docs/obsidian-build.md) |
-| 独立工具与组件 / Standalone tools and components | 同一账号的 `Lifes-winner-modules` 仓库 / The companion `Lifes-winner-modules` repository | 按需下载应用或单个功能 / Download an app or individual feature |
+## 直接使用 / Ready-to-use tools
 
-这是完整软件的开发源码。下载源码 ZIP 或克隆后，按平台说明运行；Mac 需 Node.js 24.15+，可选 OCR、原生书写及完整 Python 环境有额外要求。iOS 真机安装需自己的 Apple 开发签名；不提供个人签名 IPA。
+| 设备 / Device | 入口与安装 / Open and install |
+| --- | --- |
+| iPhone / iPad | [三个主屏幕工具 / Three home-screen tools](https://kevinzzzzzzzz999.github.io/Lifes-winner-modules/)：书写、偏好、文档分别打开；Safari → 分享 → 添加到主屏幕。<br>Open Writing, Preferences or Documents separately; Safari → Share → Add to Home Screen. |
+| Mac | [已验证应用下载 / Verified app downloads](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules/blob/main/DESKTOP-APPS.md)：下载 ZIP、解压、将 `.app` 拖入“应用程序”。<br>Download a ZIP, extract it and move the `.app` to Applications. |
+| 只取一项功能 / Reuse one feature | [独立模块库 / Module catalog](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules)：20 个 Node 包、18 个 Swift 产品、React 与集成源码。<br>20 Node packages, 18 Swift products, React and integration source. |
 
-This is the integrated application's development source. Download its source ZIP or clone it, then follow the platform guide. Mac requires Node.js 24.15+; optional OCR, native handwriting and the full Python runtime need extra setup. Installing native iOS builds requires your own Apple signing setup; no personally signed IPA is supplied.
+普通工具无需 Xcode、Node.js 或完整版。主屏幕工具首次联网，等“可离线使用”，各自支持中文 / English。Mac 需要 macOS 13+，当前 ad-hoc 签名、未经过 Apple 公证，首次打开可能需要系统确认。准确入口、用途与公开验收见[移动说明](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules/blob/main/MOBILE-APPS.md)和[Mac 说明](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules/blob/main/DESKTOP-APPS.md)。
 
-不想安装开发工具时，可在 `Lifes-winner-modules` 首页选择独立 Mac 应用，或三个 iPhone/iPad 主屏幕工具：书写画板、偏好方案和文档工作台。主屏幕工具使用 Safari → 分享 → 添加到主屏幕；首次联网，等待“可离线使用”。各工具可切换中文 / English。正式入口与验收以模块仓库首页及 `MOBILE-APPS.md`、`DESKTOP-APPS.md` 为准。
+These tools need no Xcode, Node.js or full application. Open home-screen tools online once and wait for Ready for offline use; each offers 中文 / English. Mac requires macOS 13+; apps use ad-hoc signing and are not Apple-notarized, so first opening may need system approval. See the mobile and Mac guides for exact availability and scope.
 
-For tools without developer setup, use the standalone Mac apps or the Writing, Preferences and Documents home-screen tools listed in `Lifes-winner-modules`. On iPhone/iPad, use Safari → Share → Add to Home Screen, open online once and wait for Ready for offline use. Tools offer 中文 / English. Published links and verified availability are listed on that repository's home page and in `MOBILE-APPS.md` / `DESKTOP-APPS.md`.
+## 完整软件源码 / Integrated application source
+
+[**下载 build142 完整源码 ZIP / Download build142 source ZIP**](Lifes-Winner-0.8.5-build142-reviewed-source.zip?raw=1) · [SHA256 与文件清单 / Hashes and manifest](source-manifest.json)
+
+源码已按目录展开，可以直接浏览、克隆和比较改动；包含工程、测试、通用资源与许可。
+
+Source is also expanded into repository directories for browsing, cloning and comparing changes, including projects, tests, generic resources and licenses.
+
+| 平台 / Platform | 构建与安装 / Build and install |
+| --- | --- |
+| Mac | Node.js 24.15+；[桌面构建 / Desktop build](desktop-build.md)，可选 OCR、原生书写和 Python 另有要求。<br>Follow the desktop guide; optional OCR, native handwriting and Python have extra requirements. |
+| iPad / iPhone | macOS、Xcode 与自己的 Apple 签名；[iOS 指南 / iOS guide](ios-build.md)。<br>Requires macOS, Xcode and your own Apple signing setup. |
+| Obsidian | [伴侣安装 / Companion installation](obsidian-build.md) |
+
+完整软件仍是开发源码发行，不提供个人签名 IPA；源码 ZIP 不是可直接安装的手机应用。
+
+The integrated application remains a development source release, without a personally signed IPA. A source ZIP is not an installable iPhone/iPad application.
+
+## 功能 / Features
+
+| 场景 / Area | 功能 / Capabilities |
+| --- | --- |
+| 阅读与批注 / Reading | PDF、Office、图片、Markdown、旁注与摘录 / PDF, Office, images, Markdown, margin notes and excerpts |
+| 手写整理 / Handwriting | 白板、PencilKit、卡片、连接、子白板与历史 / Boards, PencilKit, cards, links, child boards and history |
+| 代码计算 / Code | 本地 Python、Notebook、表格交换与数学 / Local Python, notebooks, tabular exchange and mathematics |
+| 学习计划 / Study | 搜索、复习卡片、任务、日历与 ICS / Search, review cards, tasks, calendars and ICS |
+| 网页媒体 / Web and media | 剪藏、AI 适配、字幕与媒体工程 / Clips, AI adapters, subtitles and media projects |
 
 ## 状态与边界 / Status and limits
 
-首次公开源码整理于 2026-10-24，基于 Mac 第 105 轮、原生第 106.3 轮基础与 Obsidian 伴侣 0.6.0。iPad 约两万笔的大范围套索仍有已知崩溃；跨设备、云同步和全部压力流程尚未完成验收。Mac 测试不能代表 iPad/iPhone 的稳定性。先用独立测试文件，并备份重要笔记。
+首次源码基于 Mac 第 105 轮、原生第 106.3 轮基础与 Obsidian 0.6.0。iPad 约两万笔的大范围套索仍有已知稳定性问题；iCloud、真实 Apple Pencil 和全部设备流程不能由构建或组件测试代替。先用测试文件并备份重要资料。完整实际检查见 [validation.md](validation.md)；独立模块的[最新验收](https://github.com/kevinzzzzzzzz999/Lifes-winner-modules/blob/main/VALIDATION.md)另行记录。
 
-The first public source snapshot was prepared on 2026-10-24 from Mac round 105, native round 106.3 foundations and Obsidian companion 0.6.0. Large iPad lasso operations involving about 20,000 strokes still have a known crash. Cross-device behavior, cloud sync and complete stress workflows remain under development; Mac results do not establish iPad/iPhone stability. Start with test files and back up important notes.
+The initial source is based on Mac round 105, native round 106.3 foundations and Obsidian 0.6.0. Large iPad lasso selections of about 20,000 strokes still have a known stability issue. Builds and component tests do not establish iCloud, physical Apple Pencil or every device workflow. Start with test files and back up important work. Integrated and standalone checks are documented separately.
 
-[实际验证 / Actual validation](docs/validation.md)
+## 隐私、每月更新与参与 / Privacy, monthly updates and contribution
 
-## 独立复用 / Reusable modules
+发布排除个人笔记、课件、账号、密钥、设备记录、私人路径、个人签名和开发日志。每月检查已完成变更，经过隐私、许可与相关验证后同步完整源码、功能包和已验证应用。个人草稿不会因发布自动跨设备同步。网页托管方仍收到普通页面请求。
 
-`Lifes-winner-modules` 提供 20 个 Node 包、18 个 Swift 产品、React 组件、独立 Obsidian 伴侣和 Safari 扩展源，记录 63 个功能组的来源、用法和平台依赖。可只下载所需功能，或接入自己的软件；每个包按自己的 README 准备依赖。
+Releases exclude personal notes, course materials, accounts, secrets, device records, private paths, personal signing materials and development logs. Completed changes are reviewed monthly and synchronized across the integrated source, modules and verified apps after privacy, license and relevant validation checks. Publishing never synchronizes personal drafts between devices. Static hosts still receive ordinary page requests.
 
-`Lifes-winner-modules` provides 20 Node packages, 18 Swift products, React components, an Obsidian companion and Safari extension source, recording 63 feature groups with provenance, usage and platform dependencies. Download only what you need or integrate it into your own software; follow each package's README.
+欢迎提交可复现问题与文档建议，附平台、版本、步骤和合成样例；不要在 Issue 上传私人笔记、账号或密钥。
 
-## 隐私与每月同步 / Privacy and monthly updates
+Issues and documentation suggestions are welcome. Include the platform, version, steps and a synthetic example; do not upload private notes, accounts or secrets.
 
-发布只含经过检查的软件源码、通用资源、测试与文档，不附带个人笔记、课件、账号、凭据、设备记录、私人路径、个人签名和开发日志。每月检查已完成变更，经过隐私、许可与相关验证后更新完整软件及模块；临时实验不会自动公开。主屏幕草稿不跨设备自动同步，重要内容请导出。
+## 许可与名称 / License and naming
 
-Public releases include reviewed source, generic assets, tests and documentation, excluding personal notes, course materials, accounts, credentials, device records, private paths, personal signing materials and development logs. Completed changes are reviewed monthly and synchronized to the integrated source and modules after privacy, license and relevant validation checks. Experiments are not published automatically. Home-screen drafts do not sync between devices; export important work.
+项目自有代码采用 [MIT License](LICENSE)，允许使用、修改、分发及商用，保留版权和许可；[第三方组件](THIRD_PARTY_NOTICES.md)保留原许可。显示名称为 **人生赢家 / Life's winner**，技术 API、格式、协议、存储键和兼容文件名保留，历史发行不改写。
 
-[发布规则 / Publication rules](docs/publishing.md)
-
-## 许可与兼容 / License and compatibility
-
-项目自有代码采用 [MIT License](LICENSE)，可使用、修改、分发及商用，保留版权与许可声明。第三方组件保持[原许可](THIRD_PARTY_NOTICES.md)。英文显示名为 **Life's winner**；技术包名、API、文档格式、协议与存储键保持兼容，历史发行不改写。
-
-Original code is MIT-licensed: use, modify, redistribute or use commercially while keeping copyright/license notices. Third-party components retain their licenses. The display name is **Life's winner**; technical package names, APIs, formats, protocols and storage keys remain compatible. Historical releases are retained.
+Original code is MIT-licensed: use, modify, redistribute or use commercially while retaining copyright/license notices. Third-party components retain their licenses. The display name is **人生赢家 / Life's winner**; technical APIs, formats, protocols, storage keys and compatible filenames remain unchanged. Historical releases are retained.

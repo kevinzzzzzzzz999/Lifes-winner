@@ -94,6 +94,11 @@ export function usePanelLayout() {
   };
   const style = { '--left-pane-width': `${leftOpen ? leftWidth : 0}px`, '--ai-pane-width': `${rightWidth}px`, '--ai-reserved-width': `${aiOpen && !compact ? rightWidth : 0}px` } as CSSProperties;
   return { leftOpen, aiOpen, aiEverOpened, leftWidth, rightWidth, compact, dragging, style, range,
+    snapshot:()=>({leftOpen,aiOpen,leftWidth:current.current.leftWidth,rightWidth:current.current.rightWidth}),
+    restore:(value:{leftOpen:boolean;aiOpen:boolean;leftWidth:number;rightWidth:number})=>{
+      finish();const next={version:1 as const,leftOpen:value.leftOpen,leftWidth:clamp(value.leftWidth,200,520),rightWidth:clamp(value.rightWidth,320,960)};current.current=next;setPreferences(next);remember(next);
+      setAIOpen(value.aiOpen);if(value.aiOpen)setAIEverOpened(true);setCompactLeftOpen(compact&&value.leftOpen&&!value.aiOpen);
+    },
     revision: `${viewport}:${leftWidth}:${rightWidth}:${leftOpen}:${aiOpen}`,
     toggleLeft: () => setLeftOpen(!leftOpen), toggleAI: () => setAIVisible(!aiOpen), closeAI: () => {
       setAIVisible(false);

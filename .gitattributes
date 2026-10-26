@@ -1,0 +1,11 @@
+# Preserve the audited build142 byte hashes across Windows/macOS checkouts.
+* -text
+*.pdf binary
+*.wav binary
+*.docx binary
+*.pptx binary
+*.xlsx binary
+*.zip binary
+*.png binary
+*.ico binary
+*.icns binary

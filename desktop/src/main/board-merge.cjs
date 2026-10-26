@@ -92,6 +92,7 @@ async function buildMerged(vaults,r,target,source,extra={}){
  out.edges.push(...source.edges.map(edge=>({...structuredClone(edge),id:fresh(),from:map.get(key(edge.from)),to:map.get(key(edge.to))})));
  out.pins.push(...source.pins.map(pin=>({...structuredClone(pin),id:fresh(),x:pin.x+dx,y:pin.y+dy})));
  if(source.printFrames?.length)out.printFrames=[...out.printFrames||[],...source.printFrames.map(frame=>({...structuredClone(frame),id:fresh(),x:frame.x+dx,y:frame.y+dy}))];
+ require('./board-library-model.cjs').remapMergedGroups(source,out,map,fresh,target.pins.length,(target.printFrames||[]).length);
  const movedWeb=translateWeb(source.webInk,dx,dy),web={version:1,strokes:[...target.webInk?.strokes||[],...movedWeb?.strokes||[]]};validateWebInk(web);out.webInk=web;
  const webOnlyA=targetNative.nativeStrokeCount===0&&(target.webInk?.strokes.length||0)>0,webOnlyB=sourceNative.nativeStrokeCount===0&&(source.webInk?.strokes.length||0)>0;
  if((targetNative.nativeStrokeCount>0&&webOnlyB)||(sourceNative.nativeStrokeCount>0&&webOnlyA))fail('BOARD_MERGE_UNSUPPORTED');

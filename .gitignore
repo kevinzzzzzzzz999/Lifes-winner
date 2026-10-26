@@ -35,3 +35,19 @@ desktop/public/pdfjs/
 !desktop/build/icon.png
 !desktop/build/icon.ico
 !desktop/build/icon.icns
+
+# Local source-maintenance outputs; never user data or downloaded runtimes
+desktop/runtime/
+desktop/.release/
+desktop/.development/
+desktop/.cache/
+desktop/.release-work/
+
+# Release source scripts are maintained code, unlike generated release/ output
+!desktop/scripts/release/
+!desktop/scripts/release/**
+
+# Also ignore local dependency symlinks
+node_modules
+desktop/runtime
+desktop/build/WorkMailHelper.app

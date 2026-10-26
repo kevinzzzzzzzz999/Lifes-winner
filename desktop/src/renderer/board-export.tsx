@@ -1,3 +1,4 @@
+import {inspectLibraryGroups,isLibraryDecoration} from '../shared/board-library';
 import {boardPDFOwnerIDs} from '../shared/board-pdf-owners';
 import {boardFileSourceResolver} from './board-source';
 import {renderToStaticMarkup} from 'react-dom/server';
@@ -6,6 +7,7 @@ import {renderPDFPageImage} from './PDFViewer';
 import {inkSegmentIntersectsRegion,type ExportRegion} from './export-view';
 import {renderBoardExportInk} from './board-export-ink';
 import {boardInkStrokeBounds} from './board-ink-clip';
+import {paperExportSVG} from './board-paper';
 import type {OpenedFile} from '../shared/desktop-api';
 export type ExportSheet={html:string;width:number;height:number};
 const esc=(s:unknown)=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
@@ -35,14 +37,18 @@ export async function boardExportSheet(file:OpenedFile,vaultId:string,signal:Abo
  const build=async(owner:OpenedFile,board:any,ancestors:string[]):Promise<{html:string;bounds:ReturnType<typeof boardBounds>}>=>{
   check();if(++boards>200)throw Error('子白板过多，请分组导出。 / Too many child boards for one export.');if(!board.webInk&&(board.drawing||(board.items||[]).some((i:any)=>i.inkData)))throw Error('此旧白板缺少完整笔迹预览。请在 iPad 保存一次后再导出。 / Save this legacy board on iPad to include all ink.');
   const bounds=ancestors.length===1&&region?region:boardBounds(board),rect=(i:any)=>`left:${i.x-bounds.x}px;top:${i.y-bounds.y}px;width:${i.width}px;height:${i.height}px;`,pieces:string[]=[];
+  pieces.push(paperExportSVG(board.background,bounds,`board-paper-${boards}`));
   const items=board.items||[];count+=items.length;if(count>2000)throw Error('白板超过 2,000 个对象，请分白板导出。 / Export boards with at most 2,000 items separately.');
+  const groups=items.some((i:any)=>i&&'libraryGroup' in i)?inspectLibraryGroups(board):[],libraryMembers=new Set(groups.filter(g=>g.valid).flatMap(g=>g.itemIDs)),decorations=new Set(items.filter((i:any)=>isLibraryDecoration(i,board,groups)));
   const svg:string[]=[];const byID=new Map<string,any>(items.map((i:any)=>[i.id.toLowerCase(),i]));
   for(const e of board.edges||[]){const a=byID.get(e.from.toLowerCase()),b=byID.get(e.to.toLowerCase());if(!a||!b)continue;const s=e.style||{},dx=b.x+b.width/2-a.x-a.width/2,dy=b.y+b.height/2-a.y-a.height/2;const endpoint=(item:any,sign:number)=>{const factor=item.style?.shape==='ellipse'?1/Math.sqrt((dx/(item.width/2))**2+(dy/(item.height/2))**2):Math.min(Math.abs(item.width/(2*dx)),Math.abs(item.height/(2*dy)));const offset=Number.isFinite(factor)?factor:0;return{x:item.x+item.width/2+sign*dx*offset-bounds.x,y:item.y+item.height/2+sign*dy*offset-bounds.y};};const start=endpoint(a,1),end=endpoint(b,-1);svg.push(`<line x1="${start.x}" y1="${start.y}" x2="${end.x}" y2="${end.y}" stroke="${color(s.strokeColor,'#8bada8')}" stroke-width="${Math.max(1,Math.min(12,s.strokeWidth||1))}" opacity="${s.opacity??1}" stroke-dasharray="${s.dash==='dashed'?'10 6':s.dash==='dotted'?'2 5':s.dash==='dashDot'?'10 5 2 5':''}" ${s.arrow==='both'?'marker-start="url(#export-arrow)"':''} ${['both','end'].includes(s.arrow)?'marker-end="url(#export-arrow)"':''}/>`);}
   pieces.push(`<svg style="position:absolute;inset:0;width:${bounds.width}px;height:${bounds.height}px" width="${bounds.width}" height="${bounds.height}"><defs><marker id="export-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="context-stroke"/></marker></defs>${svg.join('')}</svg>`);
-  for(let n=0;n<items.length;n++){
-   check();const i=items[n];if(i.kind==='pdfPage'&&!i.sourcePath)throw Error('PDF 页面缺少来源，未生成不完整导出。 / Missing PDF source.');progress(`正在准备白板对象 ${n+1}/${items.length} / Preparing board items`);
+  const ordered=[...items.filter((i:any)=>decorations.has(i)),...items.filter((i:any)=>!decorations.has(i))];
+  for(let n=0;n<ordered.length;n++){
+   check();const i=ordered[n];if(decorations.has(i)){const s=i.style||{};pieces.push(`<div class="export-library-decoration" style="position:absolute;box-sizing:border-box;${rect(i)}background:${color(s.fillColor,'#ffffff')};border-radius:${s.shape==='ellipse'?'50%':s.shape==='rounded'?'16px':'0'};"></div>`);continue;}if(i.kind==='pdfPage'&&!i.sourcePath)throw Error('PDF 页面缺少来源，未生成不完整导出。 / Missing PDF source.');progress(`正在准备白板对象 ${n+1}/${items.length} / Preparing board items`);
    let body='',style=i.style||{},image=false;
    if(i.sourcePath&&(i.kind==='pdfPage'||/\.(png|jpe?g|pdf)$/i.test(i.sourcePath))){image=true;const pdf=/\.pdf$/i.test(i.sourcePath);const url=await asset(owner,i.sourcePath,pdf?(i.page||1):undefined,pdf?boardPDFOwnerIDs(board):undefined);totalBytes+=url.length;if(totalBytes>160*1024*1024)throw Error('导出图片总量过大，请分白板导出。 / Export image budget exceeded.');body=`<img src="${esc(url)}" style="width:100%;height:100%;object-fit:${pdf||i.boardNotesObject?'fill':'contain'};display:block"/>`;}
+   else if(libraryMembers.has(String(i.id).toLowerCase())){body=esc(i.text||i.title);}
    else if(i.kind==='text'||i.kind==='formula'){body=`<strong>${esc(i.title)}</strong>`+renderToStaticMarkup(<BoxContent text={i.text||''} textFormat={i.textFormat} richTextHTML={i.richTextHTML} fallbackKind={i.kind}/>);}
    else {body=`<strong>${esc(i.title)}</strong><p>${esc(i.text||i.url||i.sourcePath||'')}</p>`;}
    if(i.kind!=='inkGroup')pieces.push(`<div class="export-board-item" style="${rect(i)}${image?'padding:0;border:0;':`padding:10px;border:${Math.max(1,Math.min(8,style.strokeWidth||1))}px solid ${color(style.strokeColor,'#cbd6d2')};background:${color(style.fillColor,'#ffffff')};`}color:${color(style.textColor,'#233c36')};font-size:${Math.max(8,Math.min(72,style.fontSize||16))}px;border-radius:${style.shape==='ellipse'?'50%':style.shape==='rounded'?'16px':'0'}">${body}</div>`);

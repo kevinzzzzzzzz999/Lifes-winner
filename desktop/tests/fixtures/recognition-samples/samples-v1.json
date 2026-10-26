@@ -1,0 +1,33 @@
+{
+  "kind" : "personal-recognition-samples",
+  "samples" : [
+    {
+      "byteCount" : 370,
+      "confirmedText" : "QA117 corrected image",
+      "createdAt" : "2026-10-24T23:42:51Z",
+      "enabled" : true,
+      "id" : "7BECFDFA-8E39-47E3-AC05-2D0D6867923E",
+      "kind" : "handwriting",
+      "locale" : "zh-CN",
+      "mediaFileName" : "7becfdfa-8e39-47e3-ac05-2d0d6867923e.png",
+      "sha256" : "f68f1fb1188f06d99f7079ec7c4e3105ce846bb12a8ef2b7fc9447a0b90177ab",
+      "source" : "imported-image",
+      "updatedAt" : "2026-10-24T23:42:51Z"
+    },
+    {
+      "byteCount" : 32044,
+      "confirmedText" : "QA117 synthetic tone label",
+      "createdAt" : "2026-10-24T23:42:51Z",
+      "durationSeconds" : 1,
+      "enabled" : true,
+      "id" : "CEE2CE56-70C5-4536-B47A-CEE09CE42865",
+      "kind" : "speech",
+      "locale" : "en-US",
+      "mediaFileName" : "cee2ce56-70c5-4536-b47a-cee09ce42865.wav",
+      "sha256" : "f8f19de95a869c262acc1ae2b7259d540d1b7fbc8d97bf8035fa75ea97fd527a",
+      "source" : "imported-audio",
+      "updatedAt" : "2026-10-24T23:42:51Z"
+    }
+  ],
+  "version" : 1
+}

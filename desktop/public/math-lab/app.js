@@ -90,7 +90,7 @@
     return html;
   }
   function renderShell(){
-    document.documentElement.lang=state.language==='en'?'en':'zh-Hans';document.title=T('数学工作台 · 人生赢家',"Math workspace · Life's winner");
+    document.documentElement.lang=state.language==='en'?'en':'zh-Hans';document.title=T('数学工作台 · 人生赢家','Math workspace · Life Winner');
     $('math-lab').innerHTML=`<header class="topbar"><div><h1>${T('数学工作台','Math workspace')}</h1><p>${T('画图、计算与分析 · 本机离线运行','Plot, calculate and analyze · Runs locally offline')}</p></div><div class="actions"><button type="button" data-action="import">${T('导入工作表','Import worksheet')}</button><button type="button" data-action="worksheet">${T('导出工作表','Export worksheet')}</button><button type="button" data-action="language" aria-label="${T('切换为英语','Switch to Chinese')}">${T('English','中文')}</button></div></header><nav class="tabs" role="tablist" aria-label="${T('计算工具','Calculation tools')}">${keys.map((key,i)=>`<button type="button" class="tab" role="tab" id="tab-${key}" aria-controls="workspace" aria-selected="${state.activeTab===key}" data-tab="${key}">${labels()[i]}</button>`).join('')}</nav><p class="status" id="status" role="status" aria-live="polite"></p><main id="workspace" class="workspace" role="tabpanel" aria-labelledby="tab-${state.activeTab}"></main><input class="file-hidden" id="worksheet-file" type="file" accept=".json,application/json"><input class="file-hidden" id="csv-file" type="file" accept=".csv,text/csv,text/plain">`;
     renderPane();
   }

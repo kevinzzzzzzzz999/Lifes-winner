@@ -1,3 +1,4 @@
+import {inspectLibraryGroups,isLibraryDecoration} from '../shared/board-library';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent, ReactNode } from 'react';
 import { Plus, Minus, Maximize2, Undo2, Redo2, Search, Trash2, Link2, ArrowRight, ArrowDown } from 'lucide-react';
@@ -50,7 +51,8 @@ export function edgeStyle(value: unknown): EdgeStyle {
 export function readMindModel(board: Record<string, unknown>): Model {
  const valid = board.schemaVersion === 1 && Array.isArray(board.items) && Array.isArray(board.edges) && board.items.every(object) && board.edges.every(object);
  const allItems = valid ? board.items as Record<string, unknown>[] : [], allEdges = valid ? board.edges as Record<string, unknown>[] : [];
- const editable = allItems.filter(i => eligible(i) && typeof i.id === 'string' && typeof i.title === 'string' && [i.x, i.y, i.width, i.height].every(finite) && (i.width as number) > 0 && (i.height as number) > 0) as MindNode[];
+ const groups=allItems.some(i=>'libraryGroup' in i)?inspectLibraryGroups(board):[];
+ const editable = allItems.filter(i => !isLibraryDecoration(i,board,groups)&&eligible(i) && typeof i.id === 'string' && typeof i.title === 'string' && [i.x, i.y, i.width, i.height].every(finite) && (i.width as number) > 0 && (i.height as number) > 0) as MindNode[];
  const nodes = editable.slice(0, GRAPH_LIMIT), ids = new Set(nodes.map(i => lower(i.id)));
  const edges = allEdges.filter(e => typeof e.id === 'string' && ids.has(lower(e.from)) && ids.has(lower(e.to))).slice(0, GRAPH_EDGE_LIMIT) as MindEdge[];
  return { nodes, edges, allItems, allEdges, total: editable.length, valid };

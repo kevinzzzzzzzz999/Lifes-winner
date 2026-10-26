@@ -1,4 +1,4 @@
-# Native editable ink helper (Mac)
+# Life's Winner native editable ink helper (Mac)
 
 This helper uses macOS PencilKit directly. It reads one bounded JSON request from stdin and emits one JSON response; it does not read or write vault files, show a window, or contact a server. The JavaScript caller performs conflict checks, backups and atomic board publication separately.
 
@@ -31,3 +31,8 @@ Fixed error codes include `INK_RUNTIME_UNAVAILABLE`, `INK_TRANSFORM_FAILED`, `IN
 ## Verification scope
 
 Synthetic tests run the production Swift core using native macOS PencilKit and the actual spawned bridge. They cover frame/move/unpack serialization, group/page scaling, masked pressure/tilt ink, boundary/ownership refusal, cancellation, timeout and invalid child exit. They do not claim a real iPad round trip, iCloud sync, or PDF annotation write-back. The core follows the same item-local normalization and world translation as the iPad implementation.
+
+
+The visible helper name is **Life's Winner Ink Helper** in English and **人生赢家手写组件** in Chinese. The `InkSpaceInkHelper.app` directory, executable basename, bundle identifier and request protocol remain unchanged for compatibility. Branding metadata/localization changes do not rebuild or rename the native executable.
+
+The existing internal CFBundleName values stay stable. Only CFBundleDisplayName is localized; localized CFBundleName is intentionally omitted so native runtime discovery cannot be redirected by a display translation.

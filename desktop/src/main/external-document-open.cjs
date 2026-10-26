@@ -61,7 +61,7 @@ class ExternalDocumentOpen {
  async moveToNewWindow(context,id){
   if(typeof id!=='string')fail('INVALID_REQUEST');const request=this.mailbox(context).requests.find(value=>value.id===id);if(!request?.vault)fail('INVALID_REQUEST');
   const {vaults,windows,createWindow,reveal}=this.dependencies;await vaults.resolve(request.vault.id,request.path);
-  const target=createWindow(request.vault);windows.grant(request.vault,target);this.deliver(reveal(target),{vault:request.vault,path:request.path});return {opened:true};
+  const target=createWindow(request.vault);windows.grant(request.vault,target);this.deliver(reveal(target),{vault:request.vault,path:request.path,...(request.expectedBoardID?{expectedBoardID:request.expectedBoardID}:{}),...(request.page!==undefined?{page:request.page}:{}),...(request.expectedSourceSHA256?{expectedSourceSHA256:request.expectedSourceSHA256}:{}),...(request.sourceFocus?{sourceFocus:request.sourceFocus}:{})});return {opened:true};
  }
  reset(context){const mailbox=this.mailboxes.get(context.id);if(mailbox)mailbox.ready=false;}
  remove(context){this.mailboxes.delete(context.id);}

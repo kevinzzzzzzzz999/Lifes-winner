@@ -2,10 +2,10 @@
   "name": "inkspace-desktop",
   "productName": "人生赢家",
   "version": "0.8.5",
-  "private": false,
-  "description": "Life's winner desktop: local notes, boards, documents and Python. May everyone using these open-source features become their own Life's winner.",
-  "author": "InkSpace contributors",
-  "license": "MIT",
+  "private": true,
+  "description": "Life's Winner desktop: local notes, boards, documents and Python",
+  "author": "Life's Winner contributors",
+  "license": "UNLICENSED",
   "main": "src/main/main.cjs",
   "engines": {
     "node": ">=24.15.0"
@@ -15,12 +15,16 @@
     "build": "vite build",
     "typecheck": "tsc --noEmit",
     "start": "electron .",
-    "pack:mac": "node scripts/packaging/package.mjs mac",
-    "pack:win": "node scripts/packaging/package.mjs win",
-    "licenses": "node scripts/packaging/collect-licenses.mjs",
-    "verify:artifacts": "node scripts/packaging/verify-artifacts.mjs",
-    "test": "node --test tests/*.test.cjs",
-    "prebuild": "node scripts/prepare-pdf-assets.mjs"
+    "pack:mac": "node scripts/release/package.mjs mac",
+    "pack:win": "node scripts/release/package.mjs win",
+    "licenses": "node scripts/release/licenses.mjs",
+    "verify:artifacts": "node scripts/release/verify.mjs",
+    "prebuild": "node scripts/prepare-pdf-assets.mjs",
+    "test": "node scripts/test.mjs",
+    "prepare:runtime": "node scripts/release/prepare.mjs",
+    "dev:safe": "node scripts/dev-safe.mjs",
+    "verify:source": "node scripts/verify-source.mjs",
+    "build:native": "node scripts/release/build-native.mjs"
   },
   "dependencies": {
     "mammoth": "1.12.3",
@@ -62,7 +66,7 @@
           "rank": "Alternate"
         },
         {
-          "name": "Inkspace Board and JSON Document",
+          "name": "Life's Winner Board and JSON Document",
           "ext": [
             "json"
           ],

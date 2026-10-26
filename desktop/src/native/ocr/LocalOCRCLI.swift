@@ -7,6 +7,13 @@ enum LocalOCRCLI {
     static func main() async {
         do {
             let args = CommandLine.arguments
+            if args.count == 5, args[1] == "--learning-page" {
+                guard let page = Int(args[3]), page >= 1, page <= 100_000 else { throw LocalOCR.Failure.invalidPageRange }
+                let result = try LocalOCR.learningPage(url: URL(fileURLWithPath: args[2]), page: page)
+                try result.pngData.write(to: URL(fileURLWithPath: args[4]), options: .withoutOverwriting)
+                FileHandle.standardOutput.write(try JSONEncoder().encode(result.metadata))
+                return
+            }
             guard [4, 5].contains(args.count), let start = Int(args[2]), let end = Int(args[3]),
                   start >= 1, end >= start, end - start < 10, end <= 100_000 else {
                 throw LocalOCR.Failure.invalidPageRange

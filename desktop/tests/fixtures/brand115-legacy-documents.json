@@ -1,0 +1,64 @@
+{
+  "syntheticOnly": true,
+  "generatedFrom": "frozen debug112 source",
+  "baselineASARSHA256": "fec13c7e3dc38c79bf2812c20c0c9fcd750cb7af69a629a4e432afd72c8f269d",
+  "records": [
+    {
+      "file": "brand115-legacy-document.docx",
+      "format": "docx",
+      "model": {
+        "version": 1,
+        "format": "docx",
+        "title": "Legacy synthetic O'Brien",
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "Synthetic legacy content stays editable."
+          }
+        ]
+      },
+      "sha256": "b8432c604450a2180ad83cb0e2c48ab4dfb9b93daf73553c0aa8ef27b6663870",
+      "originalModuleSHA256": "d84b227d0247d3d58f28f7a2d2e3bd6a2ac24a2410f3049cc1326e7279f99037"
+    },
+    {
+      "file": "brand115-legacy-document.pptx",
+      "format": "pptx",
+      "model": {
+        "version": 1,
+        "format": "pptx",
+        "title": "Legacy synthetic O'Brien",
+        "blocks": [],
+        "slides": [
+          {
+            "title": "Old slide",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Synthetic legacy slide."
+              }
+            ]
+          }
+        ]
+      },
+      "sha256": "b4475a8bdd4f3e597ffe74347c3df5c43077d494665f6867607d79d4ab0c89d8",
+      "originalModuleSHA256": "d84b227d0247d3d58f28f7a2d2e3bd6a2ac24a2410f3049cc1326e7279f99037"
+    },
+    {
+      "file": "brand115-legacy-document.pdf",
+      "format": "pdf",
+      "model": {
+        "version": 1,
+        "format": "pdf",
+        "title": "Legacy synthetic O'Brien",
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "Synthetic legacy content stays editable."
+          }
+        ]
+      },
+      "sha256": "eb5d3d5c08b3a863af596d901e2e445ba497a49f82d9517f1b2cdad46fac0086",
+      "originalModuleSHA256": "03494a74050d58d00cd43063ca5fc8216b74518b0fdc28a781348fd566f0495d"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "path": "board-child-links.cjs",
+    "sha256": "02e577e158f2cf7dfdbc01b3da2e805b16f2ffe06707600660550dcabd4701e7",
+    "bytes": 5991
+  },
+  {
+    "path": "board-elements.cjs",
+    "sha256": "cbf362e74fec07422d7d272f84231d37103087009117bc52c19a62be4b705572",
+    "bytes": 7838
+  },
+  {
+    "path": "board-validation.cjs",
+    "sha256": "838e6f0e0725afcbce1759af08550bbcc462538f30e264748a8375d4451928ff",
+    "bytes": 8875
+  },
+  {
+    "path": "board-web-url.cjs",
+    "sha256": "9528b977d6d5f4628d6f8dcf73812848baa08dbfa6ac8577fb6bfd1bda8ff334",
+    "bytes": 667
+  },
+  {
+    "path": "errors.cjs",
+    "sha256": "316f69105a321b9c7d8ccbdeb94d4bc58c78d449e23838426b4ce4ca03c1bcfc",
+    "bytes": 19690
+  },
+  {
+    "path": "image-import.cjs",
+    "sha256": "bd4a888cb79d4103656c0575d1f65f3980671a98499a829c1ba5c0c73af66172",
+    "bytes": 2724
+  },
+  {
+    "path": "local-ocr-service.cjs",
+    "sha256": "f4cc6dfe619fc9b7c2788743978bf12c87635d3643646839daed0a107a4dad82",
+    "bytes": 11567
+  },
+  {
+    "path": "pdf-layer-service.cjs",
+    "sha256": "900be87f5c8f111e7f767c104924e9c3dc7b4eee786f75d074259a129e21be55",
+    "bytes": 13849
+  },
+  {
+    "path": "pdf-native-ink.cjs",
+    "sha256": "b59e36fcbbbe3c277356a30cda47498a45e3db941c6f949a0947192df3996ddd",
+    "bytes": 1029
+  },
+  {
+    "path": "unified-index-worker.cjs",
+    "sha256": "22b6e1962b570b44bacc35667708e068ba7525428afa016a03b2565f20ea1820",
+    "bytes": 1695
+  },
+  {
+    "path": "unified-index.cjs",
+    "sha256": "72d6c4f1eec6699277420474be05188aa9f6bce332d563d5bff3cbc34696efce",
+    "bytes": 16741
+  },
+  {
+    "path": "vault-path.cjs",
+    "sha256": "cc653522260d048652e02f98bcecd9881cac73f7821648a257430a3a1aaf6ab5",
+    "bytes": 951
+  }
+]

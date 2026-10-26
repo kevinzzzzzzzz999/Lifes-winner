@@ -3,6 +3,7 @@ import Vision
 import CoreGraphics
 import ImageIO
 import PDFKit
+import CryptoKit
 
 /// The same file is compiled by iOS and the Mac helper. Input is read into a
 /// bounded snapshot; OCR never opens an output stream or modifies the source.
@@ -60,6 +61,43 @@ enum LocalOCR {
             case .recognitionUnavailable: NSLocalizedString("本机中英文 OCR 暂不可用，请稍后重试。", comment: "")
             }
         }
+    }
+
+    struct LearningPageMetadata: Codable, Sendable {
+        let sourceSHA256: String
+        let page: Int
+        let imageSHA256: String
+        let width: Int
+        let height: Int
+    }
+    struct LearningPage: Sendable {
+        let pngData: Data
+        let metadata: LearningPageMetadata
+    }
+    /// Independent PDF-only bridge. Reuses the exact existing crop/rotation/image
+    /// renderer; no recognition or source/output file mutation occurs here.
+    static func learningPage(url: URL, page: Int) throws -> LearningPage {
+        let control = OCRCancellation()
+        let scoped = url.startAccessingSecurityScopedResource()
+        defer { if scoped { url.stopAccessingSecurityScopedResource() } }
+        let input = try readSnapshot(url, control: control)
+        guard input.starts(with: Data("%PDF-".utf8)), let provider = CGDataProvider(data: input as CFData),
+              let pdf = CGPDFDocument(provider) else { throw Failure.unsupported }
+        guard !pdf.isEncrypted || pdf.isUnlocked else { throw Failure.lockedPDF }
+        guard pdf.numberOfPages > 0, pdf.numberOfPages <= 100_000,
+              page >= 1, page <= pdf.numberOfPages else { throw Failure.invalidPageRange }
+        let image = try OCRSource.pdf(pdf, nil).image(page: page)
+        guard image.width <= maximumDimension, image.height <= maximumDimension,
+              image.width * image.height <= maximumPixels else { throw Failure.tooLarge }
+        let buffer = NSMutableData()
+        guard let destination = CGImageDestinationCreateWithData(buffer, "public.png" as CFString, 1, nil) else { throw Failure.unavailable }
+        CGImageDestinationAddImage(destination, image, nil)
+        guard CGImageDestinationFinalize(destination) else { throw Failure.unavailable }
+        let bytes = buffer as Data
+        guard !bytes.isEmpty, bytes.count <= 12 * 1024 * 1024 else { throw Failure.tooLarge }
+        let hex: (Data) -> String = { SHA256.hash(data: $0).map { String(format: "%02x", $0) }.joined() }
+        return LearningPage(pngData: bytes, metadata: .init(sourceSHA256: hex(input), page: page,
+            imageSHA256: hex(bytes), width: image.width, height: image.height))
     }
 
     private static let queue = DispatchQueue(label: "InkSpace.LocalOCR", qos: .userInitiated)

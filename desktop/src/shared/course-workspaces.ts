@@ -1,0 +1,5 @@
+export type CourseWorkspacePane={id:string;kind:'file'|'video';path:string;sourceSHA256?:string;editorMode?:'read'|'edit';view?:{page:number;count:number;zoom:number;mode:'horizontal'|'vertical'|'continuous';scrollTop?:number;scrollLeft?:number;pageOffset?:number};scroll?:{top:number;left:number};editorScroll?:{top:number;left:number}};
+export type CourseWorkspaceReading={primaryPath:string;firstId:string;ratio:number;initialPage?:number;panes:CourseWorkspacePane[]};
+export type CourseWorkspaceLayout={version:1;folderPath:string;tabs:Array<{path:string;initialPage?:number;reading?:CourseWorkspaceReading;boardCamera?:{x:number;y:number;zoom:number};surfacePosition?:{editor?:{top:number;left:number};preview?:{top:number;left:number}}}>;activePath:string|null;presentation:'source'|'split'|'preview';panels?:{leftOpen:boolean;aiOpen:boolean;leftWidth:number;rightWidth:number}};
+export type CourseWorkspaceSummary={id:string;name:string;folderName:string;createdAt:string;updatedAt:string;tabCount:number};
+export type CourseWorkspaceList={entries:CourseWorkspaceSummary[];revision:string|null;readOnly:boolean;savedId?:string};

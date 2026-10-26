@@ -1,0 +1,43 @@
+{
+  "enabled" : false,
+  "entries" : [
+    {
+      "confirmations" : 2,
+      "correctedText" : "请加入待办清单",
+      "createdAt" : "2026-10-24T18:23:45.123Z",
+      "id" : "a5408ffa-0951-4398-b799-82500804de2e",
+      "originalText" : "请加入代办清单",
+      "phrase" : "待办清单",
+      "source" : "confirmed-correction",
+      "updatedAt" : "2026-10-24T18:23:45.123Z"
+    },
+    {
+      "confirmations" : 1,
+      "createdAt" : "2026-10-24T18:23:45.123Z",
+      "id" : "b95f88f7-7c16-4952-854a-f6639f5e5161",
+      "phrase" : "state price",
+      "source" : "manual",
+      "updatedAt" : "2026-10-24T18:23:45.123Z"
+    },
+    {
+      "confirmations" : 1,
+      "createdAt" : "2026-10-24T18:23:45.123Z",
+      "id" : "4bf531b8-c259-4f72-bfd4-9f275a19e426",
+      "phrase" : "示例甲",
+      "source" : "manual",
+      "updatedAt" : "2026-10-24T18:23:45.123Z"
+    },
+    {
+      "confirmations" : 1,
+      "createdAt" : "2026-10-24T18:23:45.123Z",
+      "id" : "952b25c1-cda9-41fe-b1f1-1f0f70dbb51d",
+      "phrase" : "DEMO01",
+      "source" : "manual",
+      "updatedAt" : "2026-10-24T18:23:45.123Z"
+    }
+  ],
+  "id" : "a86832f9-3b18-4c2e-83cc-94a8db63abd5",
+  "kind" : "quick-note-voice-profile",
+  "schemaVersion" : 1,
+  "updatedAt" : "2026-10-24T18:23:45.123Z"
+}

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -13,12 +14,20 @@ import struct
 import sys
 import unicodedata
 import zlib
+import zipfile
 
 
 EXCLUDED_DIRECTORIES = {
-    '.git', 'node_modules', 'dist', 'release', 'DerivedData', '.build',
+    '.git', 'node_modules', 'dist', 'DerivedData', '.build',
     '__pycache__', 'xcuserdata', '.venv', 'venv', '.downloads', '.tools',
     '.pytest_cache', '.mypy_cache', '.next', 'coverage',
+}
+# Match generated paths, not every directory named release: scripts/release/
+# is maintained source and must remain in the privacy check.
+EXCLUDED_PATHS = {
+    'desktop/release', 'desktop/runtime', 'desktop/.release-work',
+    'desktop/.development', 'desktop/.cache', 'desktop/.release',
+    'desktop/public/pdfjs',
 }
 ICON_FILES = {'icon.png', 'icon.ico', 'icon.icns'}
 FORBIDDEN_EXTENSIONS = {
@@ -58,6 +67,35 @@ TEXT_NAMES = {
     '.gitattributes', '.editorconfig', '.npmignore', '.env.example',
 }
 MAX_FILE_BYTES = 64 * 1024 * 1024
+# Reviewed synthetic regression media and earlier public source archives only.
+# Exact path AND SHA are required; this does not permit arbitrary Office/media
+# files or archives. Privacy patterns and the external denylist still apply.
+AUDITED_BINARY_FILES = {
+    'desktop/tests/fixtures/recognition-samples/7becfdfa-8e39-47e3-ac05-2d0d6867923e.png':
+        'f68f1fb1188f06d99f7079ec7c4e3105ce846bb12a8ef2b7fc9447a0b90177ab',
+    'desktop/tests/fixtures/recognition-samples/cee2ce56-70c5-4536-b47a-cee09ce42865.wav':
+        'f8f19de95a869c262acc1ae2b7259d540d1b7fbc8d97bf8035fa75ea97fd527a',
+    'desktop/tests/fixtures/brand115-legacy-document.pdf':
+        'eb5d3d5c08b3a863af596d901e2e445ba497a49f82d9517f1b2cdad46fac0086',
+    'desktop/tests/fixtures/brand115-legacy-document.docx':
+        'b8432c604450a2180ad83cb0e2c48ab4dfb9b93daf73553c0aa8ef27b6663870',
+    'desktop/tests/fixtures/brand115-legacy-document.pptx':
+        'b4475a8bdd4f3e597ffe74347c3df5c43077d494665f6867607d79d4ab0c89d8',
+    'InkSpace-source-2026-10-24.zip':
+        'ccdb8ffdce0ca7a68ed089145fae432a9e4991716e752e3696a42cb4d0baf5ae',
+    'life-winner-source-2026-10-24-r2.zip':
+        '57f1462b9a30aea0a9e7c72ece5c03e16d67826d35be8cdbf002c5f3fd4a79e7',
+    'Lifes-winner-source-2026-10-24-r3.zip':
+        '27771d2eeb9aac47ace5a22699fa45e4cf8d2f0b1ff187ddaf9852b8d929b681',
+}
+# These exact rejection-test sources intentionally contain fictional home URLs.
+# A changed file gets the normal home-path check; keys and denylist always apply.
+AUDITED_SYNTHETIC_HOME_TEXT = {
+    'desktop/tests/browser-library.test.cjs':
+        '5e8e1325b24b7bf1f7dbb7ed97a3f99f9afd78eaff844947e78444e8e1e409b0',
+    'desktop/tests/browser-state.test.cjs':
+        '8d40f23c2a757fef2c3d3cb2572e9c2d255383af9e37511b3d69d20808db7f56',
+}
 # SheetJS's unmodified code-page tables contain literal non-NUL controls.
 # Only these reviewed upstream bytes qualify as text; later versions need review.
 AUDITED_CONTROL_TEXT = {
@@ -148,10 +186,58 @@ def icon_rules(data: bytes, suffix: str) -> set[str]:
     return rules
 
 
+def privacy_rules(relative: Path, data: bytes, denied: list[str]) -> set[str]:
+    rules: set[str] = set()
+    text = data.decode('utf-8', errors='ignore')
+    if relative.suffix.lower() in {'.strings', '.plist'} and data[:2] in {b'\xff\xfe', b'\xfe\xff'}:
+        text = data.decode('utf-16', errors='ignore')
+    if HOME_PATH.search(text):
+        reviewed_home = AUDITED_SYNTHETIC_HOME_TEXT.get(relative.as_posix())
+        if reviewed_home is None or hashlib.sha256(data).hexdigest() != reviewed_home:
+            rules.add('private-home-path')
+    for name, pattern in SECRET_PATTERNS.items():
+        if pattern.search(text):
+            rules.add(name)
+    readable = [text]
+    if relative.suffix.lower() in {'.png', '.ico', '.icns', *FONT_SIGNATURES}:
+        readable.extend(data.decode(encoding, errors='ignore') for encoding in ('utf-16-le', 'utf-16-be'))
+    combined = folded(relative.as_posix() + '\n' + '\n'.join(readable))
+    if any(value in combined for value in denied):
+        rules.add('private-denylist')
+    return rules
+
+
+def reviewed_archive_rules(data: bytes, denied: list[str]) -> set[str]:
+    """Read reviewed archive members in memory; never extract or execute them."""
+    rules: set[str] = set()
+    try:
+        with zipfile.ZipFile(io.BytesIO(data)) as archive:
+            entries = archive.infolist()
+            if len(entries) > 10000 or sum(row.file_size for row in entries) > 256 * 1024 * 1024:
+                return {'reviewed-archive-limit'}
+            for row in entries:
+                if row.is_dir():
+                    continue
+                relative = Path(row.filename.replace('\\', '/'))
+                if relative.is_absolute() or '..' in relative.parts or row.file_size > MAX_FILE_BYTES:
+                    rules.add('invalid-reviewed-archive')
+                    continue
+                rules.update(privacy_rules(relative, archive.read(row), denied))
+    except (OSError, ValueError, zipfile.BadZipFile, RuntimeError):
+        rules.add('invalid-reviewed-archive')
+    return rules
+
+
 def file_rules(relative: Path, data: bytes, denied: list[str]) -> set[str]:
     rules: set[str] = set()
     suffix = relative.suffix.lower()
-    if suffix == '.png':
+    reviewed = AUDITED_BINARY_FILES.get(relative.as_posix())
+    if reviewed is not None:
+        if hashlib.sha256(data).hexdigest() != reviewed:
+            rules.add('reviewed-file-changed')
+        elif suffix in {'.zip', '.docx', '.pptx'}:
+            rules.update(reviewed_archive_rules(data, denied))
+    elif suffix == '.png':
         rules.update(png_rules(data))
     elif suffix in {'.ico', '.icns'}:
         rules.update(icon_rules(data, suffix))
@@ -170,21 +256,107 @@ def file_rules(relative: Path, data: bytes, denied: list[str]) -> set[str]:
                     rules.add('unknown-binary')
         except UnicodeError:
             rules.add('unknown-binary')
-    # Also inspect readable byte sequences in permitted asset containers.
-    text = data.decode('utf-8', errors='ignore')
-    if suffix in {'.strings', '.plist'} and data[:2] in {b'\xff\xfe', b'\xfe\xff'}:
-        text = data.decode('utf-16', errors='ignore')
-    if HOME_PATH.search(text):
-        rules.add('private-home-path')
-    for name, pattern in SECRET_PATTERNS.items():
-        if pattern.search(text):
-            rules.add(name)
-    readable = [text]
-    if suffix in {'.png', '.ico', '.icns', *FONT_SIGNATURES}:
-        readable.extend(data.decode(encoding, errors='ignore') for encoding in ('utf-16-le', 'utf-16-be'))
-    combined = folded(relative.as_posix() + '\n' + '\n'.join(readable))
-    if any(value in combined for value in denied):
-        rules.add('private-denylist')
+    rules.update(privacy_rules(relative, data, denied))
+    return rules
+
+
+def source_relative(value: object) -> Path:
+    if (not isinstance(value, str) or not value or '\\' in value
+            or any(ord(char) < 32 for char in value) or ':' in value
+            or value.startswith('/') or any(part in {'', '.', '..'} for part in value.split('/'))):
+        raise ValueError('Invalid source path')
+    return Path(value)
+
+
+def source_manifest(root: Path) -> dict | None:
+    file = root / 'source-manifest.json'
+    if not file.exists() and not file.is_symlink():
+        return None
+    if file.is_symlink() or not file.is_file() or file.stat().st_size > MAX_FILE_BYTES:
+        raise ValueError('Invalid source manifest')
+    manifest = json.loads(file.read_text(encoding='utf-8'))
+    archive = manifest.get('archive')
+    relative = source_relative(archive)
+    if len(relative.parts) != 1 or relative.suffix != '.zip':
+        raise ValueError('Invalid manifest archive')
+    archive_sha = manifest.get('archiveSha256')
+    if not isinstance(archive_sha, str) or not re.fullmatch('[0-9a-f]{64}', archive_sha):
+        raise ValueError('Invalid manifest digest')
+    prefix = manifest.get('archivePrefix')
+    if prefix != 'Lifes-winner/':
+        raise ValueError('Invalid source archive prefix')
+    rows = manifest.get('sourceFiles')
+    if not isinstance(rows, list) or not rows or len(rows) > 10000:
+        raise ValueError('Invalid source inventory')
+    expected = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            raise ValueError('Invalid source member')
+        name = source_relative(row.get('path')).as_posix()
+        size, digest = row.get('bytes'), row.get('sha256')
+        if (name in expected or type(size) is not int or not 0 <= size <= MAX_FILE_BYTES
+                or not isinstance(digest, str) or not re.fullmatch('[0-9a-f]{64}', digest)):
+            raise ValueError('Invalid source member metadata')
+        expected[name] = {'bytes': size, 'sha256': digest}
+    if sum(row['bytes'] for row in expected.values()) > 256 * 1024 * 1024:
+        raise ValueError('Source archive exceeds publication limit')
+    return {'archive': archive, 'sha256': archive_sha, 'prefix': prefix, 'files': expected}
+
+
+def manifest_archive_rules(data: bytes, manifest: dict, denied: list[str]) -> set[str]:
+    """Validate the one currently selected source ZIP without a self-hash cycle."""
+    if hashlib.sha256(data).hexdigest() != manifest['sha256']:
+        return {'manifest-archive-hash-mismatch'}
+    rules: set[str] = set()
+    expected, seen = manifest['files'], set()
+    historical = AUDITED_BINARY_FILES.get(manifest['archive']) == manifest['sha256']
+    try:
+        with zipfile.ZipFile(io.BytesIO(data)) as archive:
+            entries = archive.infolist()
+            if len(entries) != len(expected):
+                rules.add('manifest-member-set-mismatch')
+            if len(entries) > 10000 or sum(row.file_size for row in entries) > 256 * 1024 * 1024:
+                return rules | {'manifest-archive-limit'}
+            for row in entries:
+                if not row.filename.startswith(manifest['prefix']):
+                    rules.add('manifest-unsafe-member')
+                    continue
+                try:
+                    relative = source_relative(row.filename[len(manifest['prefix']):])
+                except ValueError:
+                    rules.add('manifest-unsafe-member')
+                    continue
+                name = relative.as_posix()
+                mode = stat.S_IFMT(row.external_attr >> 16)
+                if row.is_dir() or mode not in {0, stat.S_IFREG} or name in seen:
+                    rules.add('manifest-unsafe-member')
+                    continue
+                seen.add(name)
+                item = expected.get(name)
+                if item is None:
+                    rules.add('manifest-unknown-member')
+                    continue
+                if row.file_size != item['bytes'] or row.file_size > MAX_FILE_BYTES:
+                    rules.add('manifest-member-size-mismatch')
+                    continue
+                value = archive.read(row)
+                if len(value) != item['bytes'] or hashlib.sha256(value).hexdigest() != item['sha256']:
+                    rules.add('manifest-member-hash-mismatch')
+                    continue
+                # A matching manifest is an integrity check, never a privacy or
+                # file-format exemption for new contents or generated outputs.
+                if ((not historical and any(name == item or name.startswith(item + '/') for item in EXCLUDED_PATHS))
+                        or any(part in EXCLUDED_DIRECTORIES | PRIVATE_DIRECTORY_NAMES for part in relative.parts)
+                        or any(Path(part).suffix.lower() in FORBIDDEN_DIRECTORY_SUFFIXES for part in relative.parts[:-1])):
+                    rules.add('manifest-nonsource-member')
+                if ((relative.suffix.lower() in FORBIDDEN_EXTENSIONS and name not in AUDITED_BINARY_FILES)
+                        or relative.name.lower() in FORBIDDEN_NAMES or relative.name.startswith('.env') and relative.name != '.env.example'):
+                    rules.add('manifest-forbidden-member')
+                rules.update(file_rules(relative, value, denied))
+            if seen != set(expected):
+                rules.add('manifest-member-set-mismatch')
+    except (OSError, ValueError, zipfile.BadZipFile, RuntimeError):
+        rules.add('invalid-manifest-archive')
     return rules
 
 
@@ -227,8 +399,15 @@ def main() -> int:
     def record(relative: Path, rule: str) -> None:
         findings.add((safe_label(relative, denied), rule))
 
+    manifest = None
+    manifest_checked = False
+    try:
+        manifest = source_manifest(root)
+    except (OSError, ValueError, TypeError, AttributeError):
+        record(Path('source-manifest.json'), 'invalid-source-manifest')
+
     def visit(directory: Path) -> None:
-        nonlocal checked
+        nonlocal checked, manifest_checked
         try:
             entries = sorted(directory.iterdir(), key=lambda value: value.name)
         except OSError:
@@ -236,13 +415,13 @@ def main() -> int:
             return
         for entry in entries:
             relative = entry.relative_to(root)
+            if relative.as_posix() in EXCLUDED_PATHS:
+                continue
             if entry.name in EXCLUDED_DIRECTORIES or entry.name.endswith('.xcresult'):
                 continue
             if entry.name == 'build' and relative != Path('desktop/build'):
                 continue
             if directory.relative_to(root) == Path('desktop/build') and entry.name not in ICON_FILES:
-                continue
-            if relative == Path('desktop/public/pdfjs'):
                 continue
             try:
                 info = entry.lstat()
@@ -259,7 +438,8 @@ def main() -> int:
                     record(relative, 'nonregular-file')
                     continue
                 name = entry.name.lower()
-                if (entry.suffix.lower() in FORBIDDEN_EXTENSIONS or name in FORBIDDEN_NAMES
+                selected_archive = manifest is not None and relative.as_posix() == manifest['archive']
+                if ((entry.suffix.lower() in FORBIDDEN_EXTENSIONS and relative.as_posix() not in AUDITED_BINARY_FILES and not selected_archive) or name in FORBIDDEN_NAMES
                         or (name.startswith('.env') and name != '.env.example')
                         or re.search(r'\.(?:sqlite\d*|db)-(?:wal|shm)$', name)):
                     record(relative, 'private-or-packaged-file')
@@ -280,12 +460,19 @@ def main() -> int:
                     record(relative, 'input-changed')
                     continue
                 checked += 1
-                for rule in file_rules(relative, data, denied):
+                if selected_archive:
+                    manifest_checked = True
+                    rules = manifest_archive_rules(data, manifest, denied) | privacy_rules(relative, data, denied)
+                else:
+                    rules = file_rules(relative, data, denied)
+                for rule in rules:
                     record(relative, rule)
             except OSError:
                 record(relative, 'unreadable-or-changed-file')
 
     visit(root)
+    if manifest is not None and not manifest_checked:
+        record(Path('source-manifest.json'), 'manifest-archive-missing-or-rejected')
     for relative, rule in sorted(findings):
         print(json.dumps({'path': relative, 'rule': rule}, ensure_ascii=False))
     if findings:

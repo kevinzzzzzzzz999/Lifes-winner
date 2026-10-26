@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Bundled user-triggered Python and TeX runtimes. No system executable fallback.",
+  "archiveVerification": "SHA-256 matched official release metadata over HTTPS; Sigstore signature verification was not performed.",
+  "entries": [
+    {
+      "platform": "darwin-arm64",
+      "version": "3.14.7",
+      "release": "20260901",
+      "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7%2B20260901-aarch64-apple-darwin-install_only_stripped.tar.gz",
+      "sha256": "4632cb1a6edad9e73d3c81b6d2e69131637d995173e3e85005df14102b0592ba",
+      "checksumSource": "https://api.github.com/repos/astral-sh/python-build-standalone/releases/tags/20260901",
+      "archive": "cpython-3.14.7-20260901-darwin-arm64.tar.gz",
+      "executable": "bin/python3",
+      "provider": "Astral python-build-standalone official release",
+      "license": "Python-2.0 and bundled dependency licenses",
+      "downloadBytes": 26486008,
+      "archiveSHA256Verified": true
+    },
+    {
+      "platform": "win32-x64",
+      "version": "3.14.7",
+      "url": "https://www.python.org/ftp/python/3.14.7/python-3.14.7-embed-amd64.zip",
+      "sha256": "d297e5ff019966817ad8502465176139f2d3d840fa4ed84b13bed399a6ab1f15",
+      "checksumSource": "https://www.python.org/ftp/python/3.14.7/python-3.14.7-embed-amd64.zip.sigstore",
+      "archive": "python-3.14.7-embed-amd64.zip",
+      "executable": "python.exe",
+      "provider": "Python Software Foundation official Windows embeddable distribution",
+      "license": "Python-2.0 and bundled dependency licenses",
+      "downloadBytes": 12673227,
+      "archiveSHA256Verified": true
+    }
+  ],
+  "latexProvenance": "latex/PROVENANCE.json"
+}

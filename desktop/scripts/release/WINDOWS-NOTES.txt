@@ -1,0 +1,18 @@
+Life's Winner / 人生赢家 — Windows x64 compatibility preview
+
+This package is built from the shared desktop source and interface. Electron,
+base Python and Tectonic are bundled. Node.js is not required on the target PC.
+
+Windows real-device installation and full functional acceptance are pending.
+Mac-native features are unavailable: PencilKit handwriting helper, Apple Vision
+OCR, Notebook scientific execution, Apple local dictation/recording helper,
+native Work mail helper, legacy .doc conversion and the macOS app chooser.
+FFmpeg export needs Windows-specific setup.
+
+本包为 Windows 兼容预览版，未通过 Windows 真机完整功能验收。
+苹果专属功能不可用。先使用空白测试文件夹验收，再打开正式资料库。
+使用 iCloud for Windows，并对资料库选择“始终保留在此设备”。
+切换设备前等待同步完成，避免多设备同时改同一份笔记。
+
+The installer does not contain the author's notes, preferences, accounts or web
+sessions. Uninstalling preserves app data. Packaging does not upload or publish.

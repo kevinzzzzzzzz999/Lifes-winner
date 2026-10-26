@@ -1,5 +1,7 @@
-# 人生赢家 / Life's winner 桌面版
+# Life's Winner / 人生赢家 — 桌面 build142
 
-本地笔记、白板、PDF、Office 文档、知识整理与 Python Notebook 的开发源码。
+此目录提供当前发布安装包对应的完整 Electron、React/TypeScript、Swift 助手和 Notebook kernel 源码。详见 [维护交接](../docs/BUILD142-MAINTENANCE.md) 与 [可搬迁打包脚本](scripts/release/README.md)。
 
-构建、运行组件及验收边界见 [桌面构建说明](../docs/desktop-build.md)。项目原创代码使用仓库根目录的 MIT 许可；第三方依赖和 vendored SheetJS 保留各自许可。
+推荐：`npm ci` → `npm run typecheck` → `npm test` → `npm run build` → `npm run dev:safe`。最后一步在项目自己的独立配置与空资料夹中运行，避免连接已安装版和原笔记。
+
+维护开发代码请使用此目录，不要从旧压缩源码或安装包内夹带的旧TS文件继续修改。发布包身份及逐文件验证在 `release-baseline/`。

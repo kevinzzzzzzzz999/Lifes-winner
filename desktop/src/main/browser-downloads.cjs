@@ -1,0 +1,69 @@
+'use strict';
+// Only DownloadItems issued by registered browser WebContents enter this store.
+// Paths stay in the main process. A history row is never a resumable DownloadItem.
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const {safeDownloadFilename}=require('./ai-downloads.cjs');
+const FORMAT='inkspace-browser-downloads',VERSION=1,MAX_RECORDS=1000,MAX_BYTES=4*1024*1024,MAX_ACTIVE=64;
+const uuid=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+const count=v=>Number.isSafeInteger(v)&&v>=0;
+const date=v=>typeof v==='string'&&Number.isFinite(Date.parse(v))&&new Date(v).toISOString()===v;
+const keys=(v,allowed)=>v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).every(k=>allowed.includes(k));
+function parseDownloads(value){
+ if(!keys(value,['format','version','entries'])||value.format!==FORMAT||value.version!==VERSION||!Array.isArray(value.entries)||value.entries.length>MAX_RECORDS)throw Error('INVALID_DOWNLOAD_HISTORY');
+ const ids=new Set();for(const row of value.entries){
+  if(!keys(row,['id','filename','source','startedAt','endedAt','state','receivedBytes','totalBytes','file'])||!uuid.test(row.id)||ids.has(row.id)||typeof row.filename!=='string'||row.filename!==safeDownloadFilename(row.filename)||typeof row.source!=='string'||row.source.length>512||/[\x00-\x1f]/.test(row.source)||!date(row.startedAt)||!['unfinished','completed','cancelled','failed'].includes(row.state)||!count(row.receivedBytes)||!count(row.totalBytes)||row.endedAt!==null&&!date(row.endedAt))throw Error('INVALID_DOWNLOAD_HISTORY');ids.add(row.id);
+  if(row.state==='unfinished'?row.endedAt!==null:row.endedAt===null)throw Error('INVALID_DOWNLOAD_HISTORY');
+  if(row.file!==null&&(!keys(row.file,['path','dev','ino'])||typeof row.file.path!=='string'||!path.isAbsolute(row.file.path)||row.file.path.includes('\0')||row.file.path.length>32768||typeof row.file.dev!=='string'||typeof row.file.ino!=='string'||!/^\d+$/.test(row.file.dev)||!/^\d+$/.test(row.file.ino)||row.state!=='completed'))throw Error('INVALID_DOWNLOAD_HISTORY');
+ }
+ return structuredClone(value);
+}
+class BrowserDownloadStore{
+ constructor(directory,{fsAPI=fs,now=()=>new Date()}={}){this.fs=fsAPI;this.now=now;this.file=path.join(directory,'browser-downloads-v1.json');this.data={format:FORMAT,version:VERSION,entries:[]};this.lastBytes=null;this.warning='';this.blocked=false;this.listeners=new Set();this.live=new Map();this.metadataActive=0;this.load();}
+ read(file){let fd;try{fd=this.fs.openSync(file,this.fs.constants.O_RDONLY|this.fs.constants.O_NOFOLLOW|this.fs.constants.O_NONBLOCK);const stat=this.fs.fstatSync(fd);if(!stat.isFile()||stat.size>MAX_BYTES)throw Error('INVALID_DOWNLOAD_HISTORY');const bytes=this.fs.readFileSync(fd);if(bytes.length>MAX_BYTES)throw Error('INVALID_DOWNLOAD_HISTORY');return{bytes,data:parseDownloads(JSON.parse(bytes.toString('utf8')))};}finally{if(fd!==undefined)this.fs.closeSync(fd);}}
+ load(){try{const result=this.read(this.file);this.data=result.data;this.lastBytes=result.bytes;}catch(error){if(error.code!=='ENOENT'){this.blocked=true;this.warning='下载记录无法读取，原文件已保留；本次新记录暂不持久保存。';}try{const backup=this.read(this.file+'.bak');this.data=backup.data;this.blocked=true;this.warning='正在显示上次下载记录备份；原文件已保留，本次新记录暂不持久保存。';}catch(backupError){if(backupError.code!=='ENOENT'){this.blocked=true;this.warning='下载记录或备份无法读取，原文件已保留。';}}}}
+ subscribe(fn){this.listeners.add(fn);return()=>this.listeners.delete(fn);}
+ notify(){for(const fn of this.listeners)try{fn();}catch{}}
+ atomic(file,bytes){const temp=file+'.'+crypto.randomUUID()+'.tmp';let fd;try{fd=this.fs.openSync(temp,'wx',0o600);this.fs.writeFileSync(fd,bytes);this.fs.fsyncSync(fd);this.fs.closeSync(fd);fd=undefined;this.fs.renameSync(temp,file);const dir=this.fs.openSync(path.dirname(file),'r');try{this.fs.fsyncSync(dir);}finally{this.fs.closeSync(dir);}}finally{if(fd!==undefined)this.fs.closeSync(fd);try{this.fs.unlinkSync(temp);}catch(error){if(error.code!=='ENOENT')throw error;}}}
+ put(row){const rows=[row,...this.data.entries.filter(v=>v.id!==row.id)];if(rows.length>MAX_RECORDS){for(let i=rows.length-1;i>=0&&rows.length>MAX_RECORDS;i--)if(!this.live.has(rows[i].id))rows.splice(i,1);}const next=parseDownloads({format:FORMAT,version:VERSION,entries:rows});this.data=next;let saved=false;
+  if(!this.blocked)try{this.fs.mkdirSync(path.dirname(this.file),{recursive:true});let previous=null;try{previous=this.read(this.file).bytes;if(!this.lastBytes||!previous.equals(this.lastBytes))throw Error('DOWNLOAD_HISTORY_CHANGED');}catch(error){if(error.code!=='ENOENT'||this.lastBytes)throw error;}
+   try{this.read(this.file+'.bak');}catch(error){if(error.code!=='ENOENT')throw error;}
+   const bytes=Buffer.from(JSON.stringify(next));if(bytes.length>MAX_BYTES)throw Error('DOWNLOAD_HISTORY_TOO_LARGE');if(previous)this.atomic(this.file+'.bak',previous);try{this.atomic(this.file,bytes);}catch(error){let committed=false;try{committed=this.read(this.file).bytes.equals(bytes);}catch{}if(!committed)throw error;this.warning='下载记录已保存，但目录同步未完成。';}this.lastBytes=bytes;saved=true;if(!this.warning.includes('目录同步'))this.warning='';
+  }catch(error){if(error.message==='DOWNLOAD_HISTORY_CHANGED'||error.message==='INVALID_DOWNLOAD_HISTORY'||error instanceof SyntaxError||['ELOOP','ENOTDIR'].includes(error.code))this.blocked=true;this.warning=this.blocked?'下载记录文件已变化或不可读取，原文件已保留；本次新记录仅在当前运行期间可用。':'本次下载记录未保存，请检查本机空间和文件权限。';}
+  this.notify();return saved;
+ }
+ async metadata(value){
+  if(typeof value!=='string'||!path.isAbsolute(value)||value.includes('\0')||this.metadataActive>=2)throw Error('FILE_UNAVAILABLE');this.metadataActive++;
+  // Metadata only: no open/read/hash of a downloaded (possibly cloud-backed) file.
+  // Timed-out operations keep their slot until the OS operation really settles.
+  const task=(async()=>{const parent=await this.fs.promises.realpath(path.dirname(value)),canonical=path.join(parent,path.basename(value)),stat=await this.fs.promises.lstat(canonical,{bigint:true});if(!stat.isFile()||stat.isSymbolicLink())throw Error('FILE_UNAVAILABLE');return{path:canonical,dev:stat.dev.toString(),ino:stat.ino.toString()};})().finally(()=>{this.metadataActive--;});
+  let timer;try{return await Promise.race([task,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('FILE_UNAVAILABLE')),3000);timer.unref?.();})]);}finally{clearTimeout(timer);}
+ }
+ captureFile(value){return this.metadata(value);}
+ async verifyFile(file){if(!file)throw Error('FILE_UNAVAILABLE');const actual=await this.metadata(file.path);if(actual.path!==file.path||actual.dev!==file.dev||actual.ino!==file.ino)throw Error('FILE_UNAVAILABLE');return file.path;}
+
+}
+const stores=new WeakMap(),hubs=new WeakMap();
+function browserDownloadsForApp(app){let store=stores.get(app);if(!store){store=new BrowserDownloadStore(app.getPath('userData'));stores.set(app,store);}return store;}
+function hubFor(session){let hub=hubs.get(session);if(hub)return hub;hub={owners:new Map()};session.on('will-download',(event,item,contents)=>{const owner=hub.owners.get(contents);if(!owner||owner.disposed||contents.isDestroyed()||contents.session!==session){event.preventDefault();return;}owner.accept(event,item);});hubs.set(session,hub);return hub;}
+const number=(item,method)=>{try{const value=item[method]();return count(value)?value:0;}catch{return 0;}};
+const sourceFor=item=>{try{const url=new URL(item.getURL());return ['http:','https:'].includes(url.protocol)?url.host.slice(0,512):'网页生成文件';}catch{return '网页生成文件';}};
+class BrowserDownloads{
+ constructor({app,session,store=browserDownloadsForApp(app),shell,onChange=()=>{},now=()=>new Date()}){Object.assign(this,{app,session,store,shell,onChange,now});this.hub=hubFor(session);this.jobs=new Map();this.sources=new Map();this.messages=new Map();this.disposed=false;this.timer=null;this.unsubscribe=store.subscribe(onChange);}
+ register(contents){if(this.disposed||!contents||contents.session!==this.session||contents.isDestroyed()||this.hub.owners.has(contents))throw Error('INVALID_DOWNLOAD_OWNER');const remove=()=>{if(this.hub.owners.get(contents)===this)this.hub.owners.delete(contents);this.sources.delete(contents);contents.removeListener('destroyed',remove);};this.sources.set(contents,remove);this.hub.owners.set(contents,this);contents.once('destroyed',remove);return remove;}
+ changed(immediate=false){if(immediate){clearTimeout(this.timer);this.timer=null;this.store.notify();}else if(!this.timer){this.timer=setTimeout(()=>{this.timer=null;this.store.notify();},120);this.timer.unref?.();}}
+ accept(event,item){if(this.disposed||this.store.live.size>=MAX_ACTIVE){event.preventDefault();this.onChange('同时下载项目过多，请等待部分下载结束。');return;}let filename;try{filename=safeDownloadFilename(item.getFilename());item.setSaveDialogOptions({title:'保存浏览器下载文件',defaultPath:path.join(this.app.getPath('downloads'),filename)});}catch{event.preventDefault();this.onChange('无法打开下载保存窗口。');return;}
+  const row={id:crypto.randomUUID(),filename,source:sourceFor(item),startedAt:this.now().toISOString(),endedAt:null,state:'unfinished',receivedBytes:number(item,'getReceivedBytes'),totalBytes:number(item,'getTotalBytes'),file:null};
+  const job={owner:this,item,row,state:'selecting',terminal:false,canResume:false,paused:false,updated:null,done:null};this.jobs.set(row.id,job);this.store.live.set(row.id,job);
+  job.updated=(_event,state)=>{if(job.terminal)return;this.snapshot(job);job.state=state==='interrupted'?'interrupted':job.paused?'paused':'progressing';this.changed();};
+  job.done=(_event,state)=>{if(job.terminal)return;this.snapshot(job);job.terminal=true;item.removeListener('updated',job.updated);item.removeListener('done',job.done);this.jobs.delete(row.id);this.store.live.delete(row.id);row.state=state==='completed'?'completed':state==='cancelled'?'cancelled':'failed';row.endedAt=this.now().toISOString();let savedPath=null;if(row.state==='completed')try{savedPath=item.getSavePath();row.filename=safeDownloadFilename(savedPath||row.filename);}catch{}job.item=null;this.store.put(row);this.changed(true);if(row.state==='completed')void this.completeFile(row,savedPath);};
+  item.on('updated',job.updated);item.once('done',job.done);this.store.put(row);this.changed(true);
+ }
+ async completeFile(row,savedPath){try{row.file=await this.store.captureFile(savedPath);this.messages.delete(row.id);}catch{this.messages.set(row.id,'下载已完成，但文件暂不可用、已移动或路径不安全；请在 Finder 中检查。');}if(this.store.data.entries.some(v=>v.id===row.id))this.store.put(row);this.changed(true);}
+ snapshot(job){job.row.receivedBytes=number(job.item,'getReceivedBytes');job.row.totalBytes=number(job.item,'getTotalBytes');try{job.paused=!!job.item.isPaused();job.canResume=!!job.item.canResume();}catch{job.paused=false;job.canResume=false;}}
+ query(search='',limit=50){const needle=String(search).trim().toLocaleLowerCase(),rows=this.store.data.entries.filter(v=>!needle||(v.filename+'\n'+v.source).toLocaleLowerCase().includes(needle));return{total:this.store.data.entries.length,matched:rows.length,limit,search,warning:this.store.warning,entries:rows.slice(0,Math.min(MAX_RECORDS,Math.max(50,limit))).map(saved=>{const job=this.store.live.get(saved.id),row=job?.row||saved,own=job?.owner===this,state=job?job.state:row.state;let message=this.messages.get(row.id)||'';if(job&&!own)message='此项目正在另一浏览器窗口中下载，请在原窗口管理。';else if(!job&&state==='unfinished')message='上次下载未完成，无法在重启后继续；请回原网页重新下载。';else if(!job&&state==='failed')message='下载已中断或失败，无法继续；请回原网页重新下载。';else if(job&&state==='interrupted')message=job.canResume?'网络已中断，可以尝试继续；服务器不支持续传时可能从头下载。':'当前无法继续，请取消后回原网页重新下载。';else if(job?.paused)message=job.canResume?'已暂停；继续时服务器可能要求从头下载。':'已暂停，但当前下载不支持继续；请取消后回原网页重新下载。';return{id:row.id,filename:row.filename,source:row.source,startedAt:row.startedAt,endedAt:row.endedAt,state,receivedBytes:row.receivedBytes,totalBytes:row.totalBytes,message,canPause:!!own&&!job.terminal&&state==='progressing'&&!job.paused,canResume:!!own&&!job.terminal&&job.canResume&&(job.paused||state==='interrupted'),canCancel:!!own&&!job.terminal,canOpen:!job&&state==='completed'&&!!row.file,canReveal:!job&&state==='completed'&&!!row.file};})};}
+ async action(kind,id){if(this.disposed||typeof id!=='string'||!uuid.test(id))throw Error('INVALID_DOWNLOAD_ACTION');if(['pause','resume','cancel'].includes(kind)){const job=this.jobs.get(id);if(!job||job.terminal)throw Error('DOWNLOAD_NOT_ACTIVE');this.snapshot(job);if(kind==='cancel')job.item.cancel();else if(kind==='pause'){if(job.state!=='progressing'||job.paused)throw Error('DOWNLOAD_NOT_RESUMABLE');job.item.pause();this.snapshot(job);job.state=job.paused?'paused':'progressing';}else{if(!job.canResume||!job.paused&&job.state!=='interrupted')throw Error('DOWNLOAD_NOT_RESUMABLE');job.item.resume();this.snapshot(job);job.state=job.paused?'paused':'progressing';}this.changed(true);return;}
+  if(!['open','reveal'].includes(kind))throw Error('INVALID_DOWNLOAD_ACTION');const row=this.store.data.entries.find(v=>v.id===id);if(!row||row.state!=='completed'||this.store.live.has(id))throw Error('DOWNLOAD_NOT_COMPLETED');try{const file=await this.store.verifyFile(row.file);if(kind==='open'){const error=await this.shell.openPath(file);if(error)throw Error('OPEN_FAILED');}else this.shell.showItemInFolder(file);this.messages.delete(id);}catch(error){this.messages.set(id,error.message==='OPEN_FAILED'?'无法打开文件，请在 Finder 中检查文件关联。':'文件暂不可用、已移动、删除或替换，无法打开或定位；下载记录仍保留。');}this.changed(true);
+ }
+ dispose(){if(this.disposed)return;this.disposed=true;clearTimeout(this.timer);for(const remove of [...this.sources.values()])remove();for(const job of [...this.jobs.values()]){try{job.item.cancel();}catch{}if(!job.terminal)job.done({},'cancelled');}this.unsubscribe();}
+}
+module.exports={BrowserDownloadStore,BrowserDownloads,browserDownloadsForApp,parseDownloads,MAX_RECORDS,MAX_BYTES,MAX_ACTIVE};

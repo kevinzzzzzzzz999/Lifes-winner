@@ -16,3 +16,5 @@
 .form-error{color:#91462b}.knowledge-panel h3 .button{min-height:24px;padding:3px}
 
 .pdf-print-image{display:none}@media print{.pdf-reader,.pdf-scroll,.pdf-scroll>div,.pdf-page{display:block!important;height:auto!important;overflow:visible!important;flex:none!important}.pdf-reader .pdf-page canvas{display:none!important}.pdf-reader .pdf-print-image{display:block;width:100%;height:auto;max-height:690pt;object-fit:contain}.pdf-scroll{break-after:page}.margin-panel{position:static!important;break-inside:auto}.margin-print img{max-height:540pt;object-fit:contain}}
+
+.unified-search{min-width:0}.unified-search-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0}.unified-search-actions input{flex:1;min-width:180px;padding:10px}.unified-search-actions select{max-width:220px;padding:10px}.unified-search-results{max-height:42vh;overflow:auto}.unified-search-results button{display:block;width:100%;text-align:left;overflow-wrap:anywhere}.unified-search-results small{display:block}.unified-search-results p{white-space:pre-wrap}.unified-search details p{line-height:1.6}
