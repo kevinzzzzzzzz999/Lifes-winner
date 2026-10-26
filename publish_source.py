@@ -16,7 +16,7 @@ PROFILES = {
     'inkspace': {
         'manifest': 'source-manifest.json', 'prefix': 'inkspace/', 'allowedPrefixes': {'inkspace/', 'Lifes-winner/'},
         'directories': {'desktop', 'ios', 'obsidian', 'docs', 'scripts'},
-        'files': {'.gitignore', '.gitattributes', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'README.md'},
+        'files': {'.gitignore', '.gitattributes', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'README.md', 'AGENTS.md', 'desktop-build.md'},
     },
     'inkspace-modules': {
         'manifest': 'source-tree-manifest.json', 'prefix': 'inkspace-modules/', 'allowedPrefixes': {'inkspace-modules/', 'Lifes-winner-modules/'},
@@ -65,6 +65,11 @@ def main():
     parser.add_argument('--write', action='store_true')
     args = parser.parse_args()
     root = Path.cwd().resolve()
+    # After the reviewed build142 handoff, maintain source directly in Git.
+    # Never let an old archive expansion replace subsequent bug fixes.
+    if (root / 'desktop/release-baseline/build142.json').is_file():
+        print(json.dumps({'mode': 'source-maintained-directly', 'archiveImportDisabled': True}))
+        return
     profile = PROFILES[PROFILE_ALIASES.get(args.profile, args.profile)]
     manifest = json.loads((root / profile['manifest']).read_text())
     prefix = manifest.get('archivePrefix', profile['prefix'])

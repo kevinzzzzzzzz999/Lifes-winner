@@ -1,3 +1,13 @@
+# 当前桌面维护源码：build142
+
+已同步与 `v0.8.5-build142-desktop-preview` 安装包对应的完整桌面源码、测试及可搬迁构建脚本。另一台电脑上的 Codex 请先阅读 [维护交接说明](docs/BUILD142-MAINTENANCE.md) 和 [AGENTS.md](AGENTS.md)，从 `desktop/` 开始。
+
+[下载已发布安装包](https://github.com/kevinzzzzzzzz999/Lifes-winner/releases/tag/v0.8.5-build142-desktop-preview) · [构建与平台限制](desktop/scripts/release/README.md) · [源码匹配验证](desktop/release-baseline/VALIDATION.md)
+
+仓库内2026-10-24的压缩源码归档是历史快照。原安装包标签的自动源码ZIP不移动；请使用当前仓库或同一Release附加的 `Lifes-Winner-0.8.5-build142-source.zip`。本次未更新移动端及Obsidian历史源码。
+
+---
+
 # 人生赢家 / Life's winner
 
 希望每一个使用我开源功能的人，都是各自的 Life's winner。
@@ -24,7 +34,7 @@ These tools need no Xcode, Node.js or full application. Open home-screen tools o
 
 ## 完整软件源码 / Integrated application source
 
-[**下载源码 ZIP / Download source ZIP**](Lifes-winner-source-2026-10-24-r3.zip?raw=1) · [SHA256 与文件清单 / Hashes and manifest](source-manifest.json)
+[**下载 build142 完整源码 ZIP / Download build142 source ZIP**](Lifes-Winner-0.8.5-build142-reviewed-source.zip?raw=1) · [SHA256 与文件清单 / Hashes and manifest](source-manifest.json)
 
 源码已按目录展开，可以直接浏览、克隆和比较改动；包含工程、测试、通用资源与许可。
 
