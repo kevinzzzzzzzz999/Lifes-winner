@@ -1,37 +1,19 @@
-name: Publish reviewed source tree
+name: Verify reviewed source privacy
 
+# Current desktop source is maintained directly in Git. This manual check never
+# expands historical archives into the checkout or commits back to main.
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - source-manifest.json
-      - source-tree-manifest.json
 
 permissions:
-  contents: write
-
-concurrency:
-  group: reviewed-source-publication
-  cancel-in-progress: false
+  contents: read
 
 jobs:
-  publish-source:
+  verify-source:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Check out this repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Verify and expand the reviewed source archive
-        shell: bash
-        run: |
-          python3 publish_source.py --profile "${GITHUB_REPOSITORY##*/}" --write
-      - name: Commit the verified source tree
-        shell: bash
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add --all
-          if git diff --cached --quiet; then
-            exit 0
-          fi
-          git commit -m 'Publish verified browsable source'
-          git push origin HEAD:main
+      - name: Check reviewed publication files
+        run: python3 scripts/check-publication.py
